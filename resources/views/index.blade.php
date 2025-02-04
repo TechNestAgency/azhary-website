@@ -63,7 +63,6 @@
             border-radius: 50%;
         }
     </style>
-    <!-- Content wrapper -->
     <div class="content-wrapper">
         <!-- Content -->
 
@@ -139,84 +138,225 @@
                                         <button class="btn btn-danger deleteButton" data-room-id="{{ $room->id }}">Delete</button>
                                     </div>
                                 </div>
+                                <div style="display: flex;align-items: center;justify-content: center">
+                                    <div class="p-4">
+                                        <!-- Change Password Button -->
+                                        <button class="btn btn-warning changePasswordButton" data-room-id="{{ $room->id }}">Change Password</button>
+                                    </div>
+                                    <div class="p-4">
+                                        <!-- Select Families Button -->
+                                        <button class="btn btn-info selectFamiliesButton" data-room-id="{{ $room->id }}" data-room-password="{{ $room->password }}">Select Families</button>
+                                    </div>
+                                </div>
+
 
                             </div>
                         </div>
                     </div>
-                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-                    <script>
-                        document.getElementById("copyButton{{$room->id}}").addEventListener("click", function() {
-                            var copyText = document.getElementById("copyInput{{$room->id}}");
-                            copyText.select();
-                            document.execCommand("copy");
-                            // Get the switch
-                            var toggleSwitch = document.getElementById('toggleSwitch');
 
-// Add event listener for the switch
-                            toggleSwitch.addEventListener('change', function() {
-                                if (this.checked) {
-                                    console.log("Switch is in 'Enable' state");
-                                } else {
-                                    console.log("Switch is in 'Disable' state");
-                                }
-                            });
-                        });
 
-                        $('.deleteButton').click(function() {
-                            var roomId = $(this).data('room-id'); // Assuming you have the room ID stored in a data attribute
-
-                            Swal.fire({
-                                title: 'Are you sure?',
-                                text: "You won't be able to revert this!",
-                                icon: 'warning',
-                                showCancelButton: true,
-                                confirmButtonColor: '#3085d6',
-                                cancelButtonColor: '#d33',
-                                confirmButtonText: 'Yes, delete it!'
-                            }).then((result) => {
-                                if (result.isConfirmed) {
-                                    $.ajax({
-                                        url: '/room/' + roomId + '/delete',
-                                        type: 'POST',
-                                        data: {
-                                            _token: '{{ csrf_token() }}'
-                                        },
-                                        success: function(response) {
-                                            window.location.href = document.referrer;
-
-                                        },
-                                        error: function(response) {
-                                            Swal.fire("Error!", "Something went wrong.", "error");
-                                        }
-                                    });
-                                }
-                            });
-                        });
-
-                        $('.toggleSwitch').change(function() {
-                            var roomId = $(this).data('room-id'); // Assuming you have the room ID stored in a data attribute
-                            $.ajax({
-                                url: '/room/' + roomId + '/toggle',
-                                type: 'POST',
-                                data: {
-                                    _token: '{{ csrf_token() }}'
-                                },
-                                success: function(response) {
-                                    Swal.fire("Success!", 'Room Status Changed Successfully', "success");
-
-                                },
-                                error: function(response) {
-                                    Swal.fire("Error!", "Something went wrong.", "error");
-                                }
-                            });
-                        });
-                    </script>
                 @endforeach
             </div>
         </div>
 
     </div>
+    <!-- Select Families Modal -->
+    <!-- Select Families Modal -->
+    <div class="modal fade" id="selectFamiliesModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Select Families</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="familiesSelect" class="form-label">Families</label>
+                            <select id="familiesSelect" class="form-control select2" style="width: 100%;">
+                                @foreach($data['data'] as $whatsapp_number => $name)
+                                    <option value="{{ $whatsapp_number }}">{{ $name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="saveFamiliesButton">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Change Password Modal -->
+    <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Change Password</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col mb-3">
+                            <label for="newPassword" class="form-label">New Password</label>
+                            <input type="password" id="newPassword" class="form-control" placeholder="Enter new password" required/>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="savePasswordButton">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Include jQuery -->
+    <script src="{{url('https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js')}}"></script>
+    <script src="{{ asset('assets/js/select2.min.js') }}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css"  rel="stylesheet" />
+    <script src="{{url('https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js')}}" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $('#familiesSelect').select2({
+            placeholder: 'Select families',
+            allowClear: true,
+            dropdownParent: $("#selectFamiliesModal")
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            var roomId;
+            var roomPassword;
+
+            $('.selectFamiliesButton').click(function() {
+                roomId = $(this).data('room-id');
+                roomPassword = $(this).data('room-password');
+                $('#selectFamiliesModal').modal('show');
+            });
+
+            $('#saveFamiliesButton').click(function() {
+                var selectedFamily = $('#familiesSelect').val();
+                if (selectedFamily) {
+                    var whatsappUrl = 'https://wa.me/' + selectedFamily + '?text=' + encodeURIComponent('The new password of your room is: ' + roomPassword);
+                    window.open(whatsappUrl, '_blank');
+                }
+                $('#selectFamiliesModal').modal('hide');
+            });
+        });
+        $(document).ready(function() {
+            var roomId;
+
+            $('.selectFamiliesButton').click(function() {
+                roomId = $(this).data('room-id');
+                $('#selectFamiliesModal').modal('show');
+            });
+
+            $('#saveFamiliesButton').click(function() {
+                var selectedFamilies = $('#familiesSelect').val();
+                console.log('Selected Families:', selectedFamilies);
+                $('#selectFamiliesModal').modal('hide');
+            });
+        });
+        document.getElementById("copyButton{{$room->id}}").addEventListener("click", function() {
+            var copyText = document.getElementById("copyInput{{$room->id}}");
+            copyText.select();
+            document.execCommand("copy");
+            // Get the switch
+            var toggleSwitch = document.getElementById('toggleSwitch');
+
+// Add event listener for the switch
+            toggleSwitch.addEventListener('change', function() {
+                if (this.checked) {
+                    console.log("Switch is in 'Enable' state");
+                } else {
+                    console.log("Switch is in 'Disable' state");
+                }
+            });
+        });
+
+        $(document).ready(function() {
+            var roomId;
+
+            $('.changePasswordButton').click(function() {
+                roomId = $(this).data('room-id');
+                $('#changePasswordModal').modal('show');
+            });
+
+            $('#savePasswordButton').click(function() {
+                var newPassword = $('#newPassword').val();
+                $.ajax({
+                    url: '/change-password/' + roomId,
+                    type: 'POST',
+                    data: {
+                        _token: '{{ csrf_token() }}',
+                        password: newPassword
+                    },
+                    success: function(response) {
+                        Swal.fire("Success!", 'Password changed successfully', "success");
+                        $('#changePasswordModal').modal('hide');
+                        location.reload();
+                    },
+                    error: function(response) {
+                        Swal.fire("Error!", "Something went wrong.", "error");
+                    }
+                });
+            });
+        });
+
+        $('.deleteButton').click(function() {
+            var roomId = $(this).data('room-id'); // Assuming you have the room ID stored in a data attribute
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/room/' + roomId + '/delete',
+                        type: 'POST',
+                        data: {
+                            _token: '{{ csrf_token() }}'
+                        },
+                        success: function(response) {
+                            window.location.href = document.referrer;
+
+                        },
+                        error: function(response) {
+                            Swal.fire("Error!", "Something went wrong.", "error");
+                        }
+                    });
+                }
+            });
+        });
+
+        $('.toggleSwitch').change(function() {
+            var roomId = $(this).data('room-id'); // Assuming you have the room ID stored in a data attribute
+            $.ajax({
+                url: '/room/' + roomId + '/toggle',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    Swal.fire("Success!", 'Room Status Changed Successfully', "success");
+
+                },
+                error: function(response) {
+                    Swal.fire("Error!", "Something went wrong.", "error");
+                }
+            });
+        });
+    </script>
     <!-- Content wrapper -->
     <!-- Vertically Centered Modal -->
     <div class="col-lg-4 col-md-6">

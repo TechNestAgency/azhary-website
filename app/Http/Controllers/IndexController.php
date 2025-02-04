@@ -6,12 +6,16 @@ use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Http;
 
 class IndexController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $rooms = Room::all();
-        return view('index',compact('rooms'));
+        $response = Http::withOptions(['verify' => false])->get('https://maccaacademy.com/families-apis');
+        $data = $response->json();
+        return view('index', compact('rooms','data'));
     }
 
     public function createRoom(Request $request)
@@ -93,5 +97,20 @@ class IndexController extends Controller
     public function test()
     {
         return response()->json(['message' => 'Test route working','status'=>'success'], 200);
+    }
+
+    public function changePassword(Request $request, $room_id)
+    {
+        $data = $request->validate([
+            'password' => 'required|string|max:255',
+        ]);
+
+        $room = Room::find($room_id);
+        if ($room) {
+            $room->update(['password' => $data['password']]);
+            return response()->json(['message' => 'Password changed successfully', 'status' => 'success'], 200);
+        } else {
+            return response()->json(['message' => 'Room not found', 'status' => 'error'], 404);
+        }
     }
 }
