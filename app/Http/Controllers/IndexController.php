@@ -34,7 +34,7 @@ class IndexController extends Controller
 
     public function resetAllRooms()
     {
-        $apiToken = 'dop_v1_022aae966ad0607fc06518420b16e0f2399a13f2ecf9fdf64c297765b37109b6';
+        $apiToken = env('DIGITAL_OCEAN_API_TOKEN');
         $dropletId = '438432296'; // ضع هنا رقم الـ Droplet ID
 
         Http::withOptions(['verify' => false])->withHeaders([
