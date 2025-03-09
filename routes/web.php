@@ -14,4 +14,5 @@ Route::get('test',[\App\Http\Controllers\IndexController::class,'test']);
 Route::post('check-room',[\App\Http\Controllers\IndexController::class,'checkRoom']);
 
 Route::post('change-password/{room_id}',[\App\Http\Controllers\IndexController::class,'changePassword'])->name('change-password');
-
+Route::post('change-all-password',[\App\Http\Controllers\IndexController::class,'changeAllPassword'])->name('change-all-password');
+Route::get('reset-all-rooms',[\App\Http\Controllers\IndexController::class,'resetAllRooms'])->name('reset-all-rooms');

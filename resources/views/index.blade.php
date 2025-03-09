@@ -74,7 +74,15 @@
                             <div class="col-sm-7">
                                 <div class="card-body text-center">
                                     <h4 class="card-title text-primary">Welcome To Online Academy Meet App</h4>
-                                    <a href="javascript:;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">Create Room</a>
+                                    <a href="javascript:;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">Create Room</a><br>
+                                    <a href="javascript:;" class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#insuranceModal">Reset All Rooms</a>
+                                    {{--                                    <form action="{{route('change-all-password')}}" method="post">--}}
+{{--                                        @csrf--}}
+{{--                                        <div class="form-group">--}}
+{{--                                            <label>change password for all rooms</label>--}}
+{{--                                            <input type="text" name="password" class="form-control" required>--}}
+{{--                                        </div>--}}
+{{--                                    </form>--}}
                                 </div>
                             </div>
                             <div class="col-sm-5 text-center text-sm-left">
@@ -405,7 +413,24 @@
         </div>
     </div>
 
-
+    <!-- Insurance Modal -->
+    <div class="modal fade" id="insuranceModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Insurance Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Are you sure you want to reset all rooms? This action cannot be undone.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a href="{{route('reset-all-rooms')}}" class="btn btn-primary">Confirm</a>
+                </div>
+            </div>
+        </div>
+    </div>
 <script>
     document.getElementById('searchInput').addEventListener('keyup', function() {
         let filter = this.value.toUpperCase();

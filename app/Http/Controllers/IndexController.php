@@ -17,6 +17,34 @@ class IndexController extends Controller
         $data = $response->json();
         return view('index', compact('rooms','data'));
     }
+    public function changeAllPassword(Request $request)
+    {
+        $data = $request->validate([
+            'password' => 'required|string|max:255',
+        ]);
+
+        $rooms = Room::all();
+        foreach ($rooms as $room) {
+            $room->update(['password' => $data['password']]);
+        }
+        session()->flash('success', 'Password Changed for all rooms');
+        return redirect()->back();
+
+    }
+
+    public function resetAllRooms()
+    {
+        $apiToken = 'dop_v1_022aae966ad0607fc06518420b16e0f2399a13f2ecf9fdf64c297765b37109b6';
+        $dropletId = '438432296'; // ضع هنا رقم الـ Droplet ID
+
+        Http::withOptions(['verify' => false])->withHeaders([
+            'Authorization' => 'Bearer ' . $apiToken,
+        ])->post("https://api.digitalocean.com/v2/droplets/{$dropletId}/actions", [
+            'type' => 'reboot'
+        ]);
+
+        return redirect()->back();
+    }
 
     public function createRoom(Request $request)
     {
