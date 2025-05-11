@@ -111,66 +111,59 @@
             </div>
 
             <div class="row">
-                @if(isset($rooms) && $rooms->count() > 0)
-                    @foreach($rooms as $room)
-                        <div class="col-12 col-md-4 mb-4 room">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="card-title d-flex align-items-center justify-content-center">
-                                        <h4>{{$room->name}}</h4>
-                                    </div>
-                                    <div>
-                                        <div class="input-group">
-                                            <div class="input-group-append">
-                                                <a class="btn btn-outline-success" href="{{url('https://wa.me/'.$room->mobile.'?text=https://almajd.link/join/'.$room->name)}}" target="_blank" title="send whatsapp">
-                                                    <img src="{{asset('whatsapp.png')}}" style="width: 20px">
-                                                </a>
-                                            </div>
-                                            <input type="text" value="{{'https://almajd.link/join/'.$room->name}}" class="form-control" id="copyInput{{$room->id}}">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-success" type="button" id="copyButton{{$room->id}}" title="copy link">
-                                                    <i class="fas fa-copy"></i>
-                                                </button>
-                                            </div>
+                @foreach($rooms as $room)
+                    <div class="col-12 col-md-4 mb-4 room">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="card-title d-flex align-items-center justify-content-center">
+                                    <h4>{{$room->name}}</h4>
+                                </div>
+                                <div>
+                                    <div class="input-group">
+                                        <div class="input-group-append">
+                                            <a class="btn btn-outline-success" href="{{url('https://wa.me/'.$room->mobile.'?text=https://almajd.link/join/'.$room->name)}}" target="_blank" title="send whatsapp">
+                                                <img src="{{asset('whatsapp.png')}}" style="width: 20px">
+                                            </a>
                                         </div>
-                                    </div>
-                                    <div style="display: flex;align-items: center;justify-content: center">
-                                        <div class="p-4">
-                                            <!-- Enable/Disable Switch -->
-                                            <label class="switch">
-                                                <input type="checkbox" class="toggleSwitch" data-room-id="{{ $room->id }}" @if($room->status) checked @endif>
-                                                <span class="slider round"></span>
-                                            </label>
-                                        </div>
-                                        <div class="p-4">
-                                            <!-- Fancy Delete Button -->
-                                            <button class="btn btn-danger deleteButton" data-room-id="{{ $room->id }}">Delete</button>
-                                        </div>
-                                    </div>
-                                    <div style="display: flex;align-items: center;justify-content: center">
-                                        <div class="p-4">
-                                            <!-- Change Password Button -->
-                                            <button class="btn btn-warning changePasswordButton" data-room-id="{{ $room->id }}">Change Password</button>
-                                        </div>
-                                        <div class="p-4">
-                                            <!-- Select Families Button -->
-                                            <button class="btn btn-info selectFamiliesButton" data-room-id="{{ $room->id }}" data-room-password="{{ $room->password }}">Select Families</button>
+                                        <input type="text" value="{{'https://almajd.link/join/'.$room->name}}" class="form-control" id="copyInput{{$room->id}}">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-outline-success" type="button" id="copyButton{{$room->id}}" title="copy link">
+                                                <i class="fas fa-copy"></i>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    @endforeach
-                @else
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body text-center">
-                                <h4 class="text-muted">No rooms available</h4>
-                                <p>Click the "Create Room" button above to create your first room.</p>
+                                <div style="display: flex;align-items: center;justify-content: center">
+                                    <div class="p-4">
+                                        <!-- Enable/Disable Switch -->
+                                        <label class="switch">
+                                            <input type="checkbox" class="toggleSwitch" data-room-id="{{ $room->id }}" @if($room->status) checked @endif>
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                    <div class="p-4">
+                                        <!-- Fancy Delete Button -->
+                                        <button class="btn btn-danger deleteButton" data-room-id="{{ $room->id }}">Delete</button>
+                                    </div>
+                                </div>
+                                <div style="display: flex;align-items: center;justify-content: center">
+                                    <div class="p-4">
+                                        <!-- Change Password Button -->
+                                        <button class="btn btn-warning changePasswordButton" data-room-id="{{ $room->id }}">Change Password</button>
+                                    </div>
+                                    <div class="p-4">
+                                        <!-- Select Families Button -->
+                                        <button class="btn btn-info selectFamiliesButton" data-room-id="{{ $room->id }}" data-room-password="{{ $room->password }}">Select Families</button>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>
-                @endif
+
+
+                @endforeach
             </div>
         </div>
 
@@ -189,13 +182,9 @@
                         <div class="col mb-3">
                             <label for="familiesSelect" class="form-label">Families</label>
                             <select id="familiesSelect" class="form-control select2" style="width: 100%;">
-                                @if(isset($data['data']) && !empty($data['data']))
-                                    @foreach($data['data'] as $whatsapp_number => $name)
-                                        <option value="{{ $whatsapp_number }}">{{ $name }}</option>
-                                    @endforeach
-                                @else
-                                    <option value="">No families available</option>
-                                @endif
+                                @foreach($data['data'] as $whatsapp_number => $name)
+                                    <option value="{{ $whatsapp_number }}">{{ $name }}</option>
+                                @endforeach
                             </select>
                         </div>
                     </div>
@@ -281,41 +270,20 @@
                 $('#selectFamiliesModal').modal('hide');
             });
         });
-        $(document).ready(function() {
-            // Handle copy button clicks
-            $('[id^="copyButton"]').click(function() {
-                var buttonId = $(this).attr('id');
-                var roomId = buttonId.replace('copyButton', '');
-                var copyText = document.getElementById("copyInput" + roomId);
-                copyText.select();
-                document.execCommand("copy");
-                
-                // Show feedback to user
-                Swal.fire({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Link copied to clipboard!',
-                    showConfirmButton: false,
-                    timer: 1500
-                });
-            });
+        document.getElementById("copyButton{{$room->id}}").addEventListener("click", function() {
+            var copyText = document.getElementById("copyInput{{$room->id}}");
+            copyText.select();
+            document.execCommand("copy");
+            // Get the switch
+            var toggleSwitch = document.getElementById('toggleSwitch');
 
-            // Handle toggle switch changes
-            $('.toggleSwitch').change(function() {
-                var roomId = $(this).data('room-id');
-                $.ajax({
-                    url: '/room/' + roomId + '/toggle',
-                    type: 'POST',
-                    data: {
-                        _token: '{{ csrf_token() }}'
-                    },
-                    success: function(response) {
-                        Swal.fire("Success!", 'Room Status Changed Successfully', "success");
-                    },
-                    error: function(response) {
-                        Swal.fire("Error!", "Something went wrong.", "error");
-                    }
-                });
+// Add event listener for the switch
+            toggleSwitch.addEventListener('change', function() {
+                if (this.checked) {
+                    console.log("Switch is in 'Enable' state");
+                } else {
+                    console.log("Switch is in 'Disable' state");
+                }
             });
         });
 
@@ -375,6 +343,24 @@
                             Swal.fire("Error!", "Something went wrong.", "error");
                         }
                     });
+                }
+            });
+        });
+
+        $('.toggleSwitch').change(function() {
+            var roomId = $(this).data('room-id'); // Assuming you have the room ID stored in a data attribute
+            $.ajax({
+                url: '/room/' + roomId + '/toggle',
+                type: 'POST',
+                data: {
+                    _token: '{{ csrf_token() }}'
+                },
+                success: function(response) {
+                    Swal.fire("Success!", 'Room Status Changed Successfully', "success");
+
+                },
+                error: function(response) {
+                    Swal.fire("Error!", "Something went wrong.", "error");
                 }
             });
         });
