@@ -1,39 +1,18 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Room;
-use Illuminate\Support\Facades\Http;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
+Route::get('/',[\App\Http\Controllers\IndexController::class,'index']);
+Route::post('create-room',[\App\Http\Controllers\IndexController::class,'createRoom'])->name('create-room');
+Route::get('join/{room}',[\App\Http\Controllers\IndexController::class,'enterRoom'])->name('enter-room');
+Route::get('enter-room2/{room}',[\App\Http\Controllers\IndexController::class,'enterRoom'])->name('enter-room2');
+Route::post('enter-room-post/{room}',[\App\Http\Controllers\IndexController::class,'enterRoomPost'])->name('enter-room-post');
 
-Route::get('/', function () {
-    return redirect()->route('dashboard');
-});
+Route::post('/room/{id}/delete', [\App\Http\Controllers\IndexController::class,'delete'])->name('room.delete');
+Route::post('/room/{id}/toggle', [\App\Http\Controllers\IndexController::class,'toggleStatus'])->name('room.toggle');
+Route::get('test',[\App\Http\Controllers\IndexController::class,'test']);
+Route::post('check-room',[\App\Http\Controllers\IndexController::class,'checkRoom']);
 
-Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', [IndexController::class, 'index'])->name('dashboard');
-
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
-    // Room routes
-    Route::post('/create-room', [IndexController::class, 'createRoom'])->name('create-room');
-    Route::post('/room/{id}/delete', [IndexController::class, 'delete'])->name('room.delete');
-    Route::post('/room/{id}/toggle', [IndexController::class, 'toggleStatus'])->name('room.toggle');
-    Route::post('/change-password/{id}', [IndexController::class, 'changePassword'])->name('change-password');
-    Route::get('/reset-all-rooms', [IndexController::class, 'resetAllRooms'])->name('reset-all-rooms');
-});
-
-require __DIR__.'/auth.php';
+Route::post('change-password/{room_id}',[\App\Http\Controllers\IndexController::class,'changePassword'])->name('change-password');
+Route::post('change-all-password',[\App\Http\Controllers\IndexController::class,'changeAllPassword'])->name('change-all-password');
+Route::get('reset-all-rooms',[\App\Http\Controllers\IndexController::class,'resetAllRooms'])->name('reset-all-rooms');
