@@ -13,9 +13,9 @@ class IndexController extends Controller
     public function index()
     {
         $rooms = Room::all();
-        $response = Http::withOptions(['verify' => false])->get('https://maccaacademy.com/families-apis');
-        $data = $response->json();
-        return view('index', compact('rooms','data'));
+        // $response = Http::withOptions(['verify' => false])->get('https://maccaacademy.com/families-apis');
+        // $data = $response->json();
+        return view('index', compact('rooms'));
     }
     public function changeAllPassword(Request $request)
     {
@@ -70,8 +70,7 @@ class IndexController extends Controller
 
     public function enterRoom($room)
     {
-        $room_object = Room::where('name', $room)->first();
-        return view('enter-room', compact('room','room_object'));
+        return redirect('https://alyqeen.site/'.$room);
     }
 
     public function enterRoomPost(Request $request, $room)
@@ -79,7 +78,7 @@ class IndexController extends Controller
         $password = $request->password;
 
         if (Room::where('name', $room)->where('password', $password)->first()) {
-            return redirect('https://e.almajd.link/'.$room);
+            return redirect('https://alyqeen.site/'.$room);
         } else {
             session()->flash('error', 'Invalid password');
             return redirect()->back();

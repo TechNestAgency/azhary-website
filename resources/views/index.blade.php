@@ -73,9 +73,8 @@
                         <div class="d-flex align-items-end row">
                             <div class="col-sm-7">
                                 <div class="card-body text-center">
-                                    <h4 class="card-title text-primary">Welcome To Online Academy Meet App</h4>
+                                    <h4 class="card-title text-primary">Welcome To Yaqeen Academy Dashboard For Meet App</h4>
                                     <a href="javascript:;" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCenter">Create Room</a><br>
-                                    <a href="javascript:;" class="btn btn-danger mt-3" data-bs-toggle="modal" data-bs-target="#insuranceModal">Reset All Rooms</a>
                                     {{--                                    <form action="{{route('change-all-password')}}" method="post">--}}
 {{--                                        @csrf--}}
 {{--                                        <div class="form-group">--}}
@@ -121,11 +120,11 @@
                                 <div>
                                     <div class="input-group">
                                         <div class="input-group-append">
-                                            <a class="btn btn-outline-success" href="{{url('https://wa.me/'.$room->mobile.'?text=https://almajd.link/join/'.$room->name)}}" target="_blank" title="send whatsapp">
+                                            <a class="btn btn-outline-success" href="{{url('https://wa.me/'.$room->mobile.'?text=https://yaqeen.technest-agency.com/join/'.$room->name)}}" target="_blank" title="send whatsapp">
                                                 <img src="{{asset('whatsapp.png')}}" style="width: 20px">
                                             </a>
                                         </div>
-                                        <input type="text" value="{{'https://almajd.link/join/'.$room->name}}" class="form-control" id="copyInput{{$room->id}}">
+                                        <input type="text" value="{{'https://yaqeen.technest-agency.com/join/'.$room->name}}" class="form-control" id="copyInput{{$room->id}}">
                                         <div class="input-group-append">
                                             <button class="btn btn-outline-success" type="button" id="copyButton{{$room->id}}" title="copy link">
                                                 <i class="fas fa-copy"></i>
@@ -151,10 +150,7 @@
                                         <!-- Change Password Button -->
                                         <button class="btn btn-warning changePasswordButton" data-room-id="{{ $room->id }}">Change Password</button>
                                     </div>
-                                    <div class="p-4">
-                                        <!-- Select Families Button -->
-                                        <button class="btn btn-info selectFamiliesButton" data-room-id="{{ $room->id }}" data-room-password="{{ $room->password }}">Select Families</button>
-                                    </div>
+                            
                                 </div>
 
 
@@ -170,33 +166,6 @@
     </div>
     <!-- Select Families Modal -->
     <!-- Select Families Modal -->
-    <div class="modal fade" id="selectFamiliesModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Select Families</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col mb-3">
-                            <label for="familiesSelect" class="form-label">Families</label>
-                            <select id="familiesSelect" class="form-control select2" style="width: 100%;">
-                                @foreach($data['data'] as $whatsapp_number => $name)
-                                    <option value="{{ $whatsapp_number }}">{{ $name }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="saveFamiliesButton">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <!-- Change Password Modal -->
     <div class="modal fade" id="changePasswordModal" tabindex="-1" aria-hidden="true">
@@ -270,22 +239,21 @@
                 $('#selectFamiliesModal').modal('hide');
             });
         });
-        document.getElementById("copyButton{{$room->id}}").addEventListener("click", function() {
-            var copyText = document.getElementById("copyInput{{$room->id}}");
-            copyText.select();
-            document.execCommand("copy");
-            // Get the switch
-            var toggleSwitch = document.getElementById('toggleSwitch');
-
-// Add event listener for the switch
-            toggleSwitch.addEventListener('change', function() {
-                if (this.checked) {
-                    console.log("Switch is in 'Enable' state");
-                } else {
-                    console.log("Switch is in 'Disable' state");
-                }
+               // Setup copy buttons for each room
+        @foreach($rooms as $room)
+            $("#copyButton{{ $room->id }}").click(function() {
+                var copyText = document.getElementById("copyInput{{ $room->id }}");
+                copyText.select();
+                document.execCommand("copy");
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Link copied!',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
             });
-        });
+        @endforeach
 
         $(document).ready(function() {
             var roomId;
@@ -413,24 +381,7 @@
         </div>
     </div>
 
-    <!-- Insurance Modal -->
-    <div class="modal fade" id="insuranceModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Insurance Confirmation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>Are you sure you want to reset all rooms? This action cannot be undone.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <a href="{{route('reset-all-rooms')}}" class="btn btn-primary">Confirm</a>
-                </div>
-            </div>
-        </div>
-    </div>
+
 <script>
     document.getElementById('searchInput').addEventListener('keyup', function() {
         let filter = this.value.toUpperCase();
