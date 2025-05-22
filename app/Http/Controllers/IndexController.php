@@ -34,15 +34,6 @@ class IndexController extends Controller
 
     public function resetAllRooms()
     {
-        $apiToken = env('DIGITAL_OCEAN_API_TOKEN');
-        $dropletId = '438432296'; // ضع هنا رقم الـ Droplet ID
-
-        Http::withOptions(['verify' => false])->withHeaders([
-            'Authorization' => 'Bearer ' . $apiToken,
-        ])->post("https://api.digitalocean.com/v2/droplets/{$dropletId}/actions", [
-            'type' => 'reboot'
-        ]);
-
         return redirect()->back();
     }
 
