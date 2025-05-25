@@ -1,0 +1,160 @@
+<?php
+
+return [
+    // Navigation
+    'Home' => 'Home',
+    'About' => 'About',
+    'Services' => 'Services',
+    'Portfolio' => 'Portfolio',
+    'Pricing' => 'Pricing',
+    'Team' => 'Team',
+    'Articles' => 'Articles',
+    'Contact' => 'Contact',
+    'Get Started' => 'Get Started',
+
+    // Hero Section
+    'Learn Quran in French' => 'Learn Quran in French',
+    'Discover the beauty of the Quran in your native language' => 'Discover the beauty of the Quran in your native language',
+    'Join our specialized courses designed for French speakers to understand the Noble Quran. Our programs combine classical Arabic teachings with native French instruction to make Islamic knowledge accessible and meaningful.' => 'Join our specialized courses designed for French speakers to understand the Noble Quran. Our programs combine classical Arabic teachings with native French instruction to make Islamic knowledge accessible and meaningful.',
+    'Explore Courses' => 'Explore Courses',
+
+    // Features
+    'Free Trial Course' => 'Free Trial Course',
+    'Start your Quranic journey with a complimentary trial session to experience our teaching methodology.' => 'Start your Quranic journey with a complimentary trial session to experience our teaching methodology.',
+    'Certificate of Completion' => 'Certificate of Completion',
+    'Receive an official certificate upon successful completion of our Quran courses.' => 'Receive an official certificate upon successful completion of our Quran courses.',
+    'Flexibility' => 'Flexibility',
+    'Our teachers are available 24/7 to accommodate students from different time zones.' => 'Our teachers are available 24/7 to accommodate students from different time zones.',
+
+    // About Section
+    'Who We Are' => 'Who We Are',
+    'Bringing Islamic Knowledge to French Speakers Worldwide' => 'Bringing Islamic Knowledge to French Speakers Worldwide',
+    'Azhary Academy is dedicated to making Quranic education and Islamic studies accessible to French-speaking Muslims around the world through personalized online learning.' => 'Azhary Academy is dedicated to making Quranic education and Islamic studies accessible to French-speaking Muslims around the world through personalized online learning.',
+
+    // Services Section
+    'Our Courses' => 'Our Courses',
+    'Comprehensive Islamic education tailored for French-speaking students from beginners to advanced levels' => 'Comprehensive Islamic education tailored for French-speaking students from beginners to advanced levels',
+    'Quran Reading & Tajweed' => 'Quran Reading & Tajweed',
+    'Learn to read the Quran with proper pronunciation and recitation rules. Our native French-speaking instructors will guide you through the fundamentals of Arabic letters, sounds, and tajweed rules for beautiful recitation.' => 'Learn to read the Quran with proper pronunciation and recitation rules. Our native French-speaking instructors will guide you through the fundamentals of Arabic letters, sounds, and tajweed rules for beautiful recitation.',
+    'Learn More' => 'Learn More',
+
+    // Pricing Section
+    'Pricing Plans' => 'Pricing Plans',
+    'Choose the perfect package for your Quran learning journey' => 'Choose the perfect package for your Quran learning journey',
+    'Starter' => 'Starter',
+    'Basic' => 'Basic',
+    'Standard' => 'Standard',
+    'Advanced' => 'Advanced',
+    'Professional' => 'Professional',
+    'Master' => 'Master',
+    'Elite' => 'Elite',
+    'Most Popular' => 'Most Popular',
+
+    // Team Section
+    'Our Teachers' => 'Our Teachers',
+    'Meet our qualified and experienced Quran teachers who are dedicated to helping you learn' => 'Meet our qualified and experienced Quran teachers who are dedicated to helping you learn',
+
+    // Testimonials Section
+    'Student Testimonials' => 'Student Testimonials',
+    'Hear from our students about their journey in learning the Quran and Islamic studies' => 'Hear from our students about their journey in learning the Quran and Islamic studies',
+
+    // Articles Section
+    'Latest Articles' => 'Latest Articles',
+    'Explore our collection of Islamic articles and educational content' => 'Explore our collection of Islamic articles and educational content',
+    'View All Articles' => 'View All Articles',
+
+    // Contact Section
+    'Start Your Journey' => 'Start Your Journey',
+    'Begin your Quranic education with us today' => 'Begin your Quranic education with us today',
+    'Contact Us' => 'Contact Us',
+    'Available 24/7' => 'Available 24/7',
+    'Ready to Start Learning?' => 'Ready to Start Learning?',
+    'Fill out our enrollment form to begin your Quranic journey with us. Our team will contact you shortly to discuss your learning goals and schedule.' => 'Fill out our enrollment form to begin your Quranic journey with us. Our team will contact you shortly to discuss your learning goals and schedule.',
+    'Enroll Now' => 'Enroll Now',
+
+    // Pricing Packages
+    '4 One-hour Classes' => '4 One-hour Classes',
+    '1 Free Trial Session' => '1 Free Trial Session',
+    'Basic Learning Materials' => 'Basic Learning Materials',
+    '8 One-hour Classes' => '8 One-hour Classes',
+    'Study Materials' => 'Study Materials',
+    '12 One-hour Classes' => '12 One-hour Classes',
+    'Premium Materials' => 'Premium Materials',
+    '16 One-hour Classes' => '16 One-hour Classes',
+    'Priority Scheduling' => 'Priority Scheduling',
+    '24 One-hour Classes' => '24 One-hour Classes',
+    'Monthly Assessment' => 'Monthly Assessment',
+    '48 One-hour Classes' => '48 One-hour Classes',
+    'Certificate Included' => 'Certificate Included',
+    '100 One-hour Classes' => '100 One-hour Classes',
+    'Lifetime Resources' => 'Lifetime Resources',
+
+    // Testimonials
+    'Quran Student' => 'Quran Student',
+    'Islamic Studies Student' => 'Islamic Studies Student',
+    'Parent' => 'Parent',
+    'Professional Student' => 'Professional Student',
+    'Hifz Student' => 'Hifz Student',
+    'Tajweed Student' => 'Tajweed Student',
+    'Alhamdulillah, the teachers at Azhary Academy have helped me improve my Quran recitation significantly. Their patience and expertise in tajweed rules have made learning enjoyable and effective.' => 'Alhamdulillah, the teachers at Azhary Academy have helped me improve my Quran recitation significantly. Their patience and expertise in tajweed rules have made learning enjoyable and effective.',
+    'As a French-speaking Muslim, I was looking for a way to learn the Quran in my native language. Azhary Academy\'s approach has made it possible for me to understand and connect with the Quran deeply.' => 'As a French-speaking Muslim, I was looking for a way to learn the Quran in my native language. Azhary Academy\'s approach has made it possible for me to understand and connect with the Quran deeply.',
+    'The children\'s program is excellent! My kids look forward to their Quran classes every week. The teachers make learning fun while maintaining the seriousness of Islamic education.' => 'The children\'s program is excellent! My kids look forward to their Quran classes every week. The teachers make learning fun while maintaining the seriousness of Islamic education.',
+    'The flexibility of scheduling classes has been a blessing. As a working professional, I can learn at my own pace and the teachers are very accommodating with my schedule.' => 'The flexibility of scheduling classes has been a blessing. As a working professional, I can learn at my own pace and the teachers are very accommodating with my schedule.',
+    'The combination of traditional Islamic knowledge with modern teaching methods makes learning engaging and effective. I\'ve seen remarkable progress in my Quran memorization.' => 'The combination of traditional Islamic knowledge with modern teaching methods makes learning engaging and effective. I\'ve seen remarkable progress in my Quran memorization.',
+    'The teachers\' dedication to ensuring proper pronunciation and understanding of the Quran is remarkable. Their attention to detail and personalized approach has helped me improve significantly.' => 'The teachers\' dedication to ensuring proper pronunciation and understanding of the Quran is remarkable. Their attention to detail and personalized approach has helped me improve significantly.',
+
+    // Footer Section
+    'Online Quran Learning Platform' => 'Online Quran Learning Platform',
+    'Quick Links' => 'Quick Links',
+    'Core Courses' => 'Core Courses',
+    'Additional Courses' => 'Additional Courses',
+    'Resources' => 'Resources',
+    'Quran Reading' => 'Quran Reading',
+    'Tajweed' => 'Tajweed',
+    'Memorization' => 'Memorization',
+    'Arabic Language' => 'Arabic Language',
+    'Islamic Studies' => 'Islamic Studies',
+    'Children\'s Program' => 'Children\'s Program',
+    'Pricing Plans' => 'Pricing Plans',
+    'How We Work' => 'How We Work',
+    'Enroll Now' => 'Enroll Now',
+    'All Rights Reserved' => 'All Rights Reserved',
+    'Built by' => 'Built by',
+
+    // Enrollment Form
+    'Enrollment Form' => 'Enrollment Form',
+    'Start your Quranic journey with us today' => 'Start your Quranic journey with us today',
+    'Your name*' => 'Your name*',
+    'Email address*' => 'Email address*',
+    'Phone number*' => 'Phone number*',
+    'Age*' => 'Age*',
+    'Select gender*' => 'Select gender*',
+    'Male' => 'Male',
+    'Female' => 'Female',
+    'Other' => 'Other',
+    'Select package*' => 'Select package*',
+    'Starter' => 'Starter',
+    'Basic' => 'Basic',
+    'Standard' => 'Standard',
+    'Advanced' => 'Advanced',
+    'Professional' => 'Professional',
+    'Master' => 'Master',
+    'Elite' => 'Elite',
+    'courses' => 'courses',
+    'Course details and requirements*' => 'Course details and requirements*',
+    'Preferred Days*' => 'Preferred Days*',
+    'Monday' => 'Monday',
+    'Tuesday' => 'Tuesday',
+    'Wednesday' => 'Wednesday',
+    'Thursday' => 'Thursday',
+    'Friday' => 'Friday',
+    'Saturday' => 'Saturday',
+    'Sunday' => 'Sunday',
+    'Preferred Times*' => 'Preferred Times*',
+    'Morning (8AM-12PM)' => 'Morning (8AM-12PM)',
+    'Afternoon (12PM-4PM)' => 'Afternoon (12PM-4PM)',
+    'Evening (4PM-8PM)' => 'Evening (4PM-8PM)',
+    'Night (8PM-10PM)' => 'Night (8PM-10PM)',
+    'Loading' => 'Loading',
+    'Submit Enrollment' => 'Submit Enrollment',
+]; 
