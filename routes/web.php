@@ -58,3 +58,37 @@ Route::get('language/{locale}', function ($locale) {
     }
     return redirect()->back();
 })->name('language.switch');
+
+// Add this line after the existing routes
+Route::get('/packages', [App\Http\Controllers\Website\PackageController::class, 'index'])->name('website.packages.index');
+
+Route::get('/pricing', function () {
+    return view('website.pricing');
+})->name('pricing');
+
+// Course Routes
+Route::prefix('courses')->name('website.courses.')->group(function () {
+    Route::get('/quran-reading', function () {
+        return view('website.courses.quran-reading');
+    })->name('quran-reading');
+
+    Route::get('/quran-memorization', function () {
+        return view('website.courses.quran-memorization');
+    })->name('quran-memorization');
+
+    Route::get('/quranic-arabic', function () {
+        return view('website.courses.quranic-arabic');
+    })->name('quranic-arabic');
+
+    Route::get('/islamic-studies', function () {
+        return view('website.courses.islamic-studies');
+    })->name('islamic-studies');
+
+    Route::get('/children-quran', function () {
+        return view('website.courses.children-quran');
+    })->name('children-quran');
+
+    Route::get('/ijazah', function () {
+        return view('website.courses.ijazah');
+    })->name('ijazah');
+});

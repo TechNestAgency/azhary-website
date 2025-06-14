@@ -149,6 +149,7 @@ h6 {
   padding: 20px 0;
   transition: all 0.5s;
   z-index: 997;
+  box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.1);
 }
 
 .header .logo {
@@ -207,14 +208,10 @@ h6 {
   }
 }
 
-.scrolled .header {
-  box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.1);
-}
-
 /* Global Header on Scroll
 ------------------------------*/
 .scrolled .header {
-  --background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.1);
 }
 
 /*--------------------------------------------------------------

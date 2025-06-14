@@ -37,119 +37,305 @@
 </head>
 <body class="index-page">
 
-  <header id="header" class="header d-flex align-items-center fixed-top">
-    <div class="container position-relative d-flex align-items-center justify-content-between">
+  <!-- Top Bar -->
+  <div class="top-bar d-flex align-items-center justify-content-between px-4" style="background-color:rgb(2, 37, 108);opacity: 0.88; color: #fff; height: 48px; position: fixed; top: 0; left: 0; width: 100%; z-index: 1040;">
+    <div class="d-flex align-items-center gap-4">
+      <span class="d-flex align-items-center"><i class="bi bi-telephone-fill me-2"></i> Whatsapp : +201507788982</span>
+      <span class="mx-2" style="border-left: 1px solid #fff; height: 20px;"></span>
+      <span class="d-flex align-items-center"><i class="bi bi-envelope-fill me-2"></i> Madrassatazhary4@gmail.com</span>
+    </div>
+    <div class="d-flex align-items-center gap-4">
+      <a href="#" style="color: #fff; text-decoration: none;">Our Social</a>
+      <a href="#" style="color: #ffd600;"><i class="bi bi-facebook"></i></a>
+      <a href="#" style="color: #ffd600;"><i class="bi bi-twitter"></i></a>
+      <a href="#" style="color: #ffd600;"><i class="bi bi-pinterest"></i></a>
+      <a href="#" style="color: #ffd600;"><i class="bi bi-youtube"></i></a>
+      <a href="#" style="color: #ffd600;"><i class="bi bi-instagram"></i></a>
+      <a href="#" style="color: #ffd600;"><i class="bi bi-linkedin"></i></a>
+    </div>
+  </div>
 
+  <!-- Make header background match top bar and remove body padding -->
+
+
+  <header id="header" class="header d-flex align-items-center fixed-top" style="background: white !important; border: none !important; top: 48px;">
+    <div class="container position-relative d-flex align-items-center justify-content-between">
       <a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto me-xl-0">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
         <img src="{{asset('website_assets/img/logo-no.png')}}" alt="">
       </a>
-
-      <nav id="navmenu" class="navmenu">
-        <ul>
-          <li><a href="#hero" class="active">{{ __('website.Home') }}</a></li>
-          <li><a href="#about">{{ __('website.About') }}</a></li>
-          <li><a href="#services">{{ __('website.Services') }}</a></li>
-          <li><a href="#portfolio">{{ __('website.Portfolio') }}</a></li>
-          <li><a href="#pricing">{{ __('website.Pricing') }}</a></li>
-          <li><a href="#team">{{ __('website.Team') }}</a></li>
-          <li><a href="{{ route('website.articles.index') }}">{{ __('website.Articles') }}</a></li>
-          <li><a href="#contact">{{ __('website.Contact') }}</a></li>
-          <li class="dropdown language-switcher">
-            <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="bi bi-globe"></i> {{ strtoupper(app()->getLocale()) }}
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="{{ route('language.switch', 'fr') }}">Français</a></li>
-              <li><a class="dropdown-item" href="{{ route('language.switch', 'en') }}">English</a></li>
-            </ul>
-          </li>
-        </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-      </nav>
-
-      <a class="btn-getstarted" href="{{ route('enroll.show') }}">{{ __('website.Get Started') }}</a>
-
+      <!-- Category Dropdown beside logo -->
+      <div class="d-flex align-items-center ms-3">
+        <div class="dropdown">
+          <button class="btn btn-white border-0 d-flex align-items-center gap-2" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.35rem; font-weight: 500; color: #13223F;">
+            <i class="bi bi-grid-3x3-gap-fill" style="font-size: 1.5rem; color:rgb(49, 65, 99);"></i>
+            <span style="color:rgb(49, 65, 99);">Category</span>
+          </button>
+          <ul class="dropdown-menu shadow border-0" aria-labelledby="categoryDropdown" style="min-width: 270px; border-radius: 18px; background: rgba(245, 247, 255, 0.98); box-shadow: 0 8px 32px 0 rgba(49,65,99,0.18); padding: 0.5rem 0;">
+            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="{{ route('website.courses.quran-reading') }}" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-book-half text-primary"></i> <span>{{ __('website.Quran Reading & Tajweed') }}</span></a></li>
+            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="{{ route('website.courses.quran-memorization') }}" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-journal-richtext text-success"></i> <span>{{ __('website.Quran Memorization') }}</span></a></li>
+            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="{{ route('website.courses.quranic-arabic') }}" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-translate text-info"></i> <span>{{ __('website.Quranic Arabic & Tafseer') }}</span></a></li>
+            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="{{ route('website.courses.islamic-studies') }}" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-moon-stars text-warning"></i> <span>{{ __('website.Islamic Studies') }}</span></a></li>
+            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="{{ route('website.courses.children-quran') }}" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-people text-danger"></i> <span>{{ __('website.Children\'s Quran Program') }}</span></a></li>
+            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="{{ route('website.courses.ijazah') }}" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-award text-secondary"></i> <span>{{ __('website.Ijazah Certification') }}</span></a></li>
+          </ul>
+          <style>
+            #categoryDropdown + .dropdown-menu .dropdown-item:hover, #categoryDropdown + .dropdown-menu .dropdown-item:focus {
+              background: linear-gradient(90deg, #e3eaff 0%, #f7faff 100%);
+              color: #0d7adb;
+              font-weight: 500;
+              border-radius: 12px;
+            }
+            #categoryDropdown + .dropdown-menu .dropdown-item i {
+              transition: color 0.2s;
+            }
+            #categoryDropdown + .dropdown-menu .dropdown-item:hover i {
+              color: #0d7adb !important;
+            }
+          </style>
+        </div>
+      </div>
+      <div class="d-flex align-items-center ms-auto gap-3">
+        <nav id="navmenu" class="navmenu">
+          <ul class="navbar-nav flex-row gap-3 align-items-center mb-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="learningStylesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Learning Styles
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="learningStylesDropdown">
+                <li><a class="dropdown-item" href="#hero">{{ __('website.Home') }}</a></li>
+                <li><a class="dropdown-item" href="#about">{{ __('website.About') }}</a></li>
+                <li><a class="dropdown-item" href="#services">{{ __('website.Services') }}</a></li>
+                <li><a class="dropdown-item" href="#portfolio">{{ __('website.Portfolio') }}</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="organizationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Organizations
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="organizationsDropdown">
+                <li><a class="dropdown-item" href="#team">{{ __('website.Team') }}</a></li>
+                <li><a class="dropdown-item" href="{{ route('website.articles.index') }}">{{ __('website.Articles') }}</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                More
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="moreDropdown">
+                <li><a class="dropdown-item" href="{{ route('pricing') }}">{{ __('website.Pricing') }}</a></li>
+                <li><a class="dropdown-item" href="#contact">{{ __('website.Contact') }}</a></li>
+              </ul>
+            </li>
+            <li class="dropdown language-switcher nav-item">
+              <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: bold; font-size: 1.1rem; letter-spacing: 1px;">
+                <a href="{{ route('language.switch', 'en') }}" style="text-decoration: none; color: {{ app()->getLocale() == 'en' ? '#0a2260' : '#0a2260b0' }}; font-weight: {{ app()->getLocale() == 'en' ? 'bold' : 'normal' }};">EN</a>
+                <span style="color: #0a2260; font-weight: bold;">|</span>
+                <a href="{{ route('language.switch', 'fr') }}" style="text-decoration: none; color: {{ app()->getLocale() == 'fr' ? '#0a2260' : '#0a2260b0' }}; font-weight: {{ app()->getLocale() == 'fr' ? 'bold' : 'normal' }};">FR</a>
+              </div>
+            </li>
+          </ul>
+        </nav>
+        <a class="btn btn-primary" href="{{ route('enroll.show') }}" style="background-color:rgb(2, 37, 108); opacity: 0.88;padding: 0.75rem 2rem; font-size: 1.1rem;">Enroll Now</a>
+      </div>
     </div>
   </header>
 
   <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section">
+    <section id="hero" class="hero section p-0" style="background: url('{{ asset('hero-back.jpg') }}') no-repeat center center; background-size: cover; position: relative; direction: ltr; margin-top: 64px;">
+      <!-- Transparent Overlay -->
+      <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color:rgb(2, 37, 108); opacity: 0.88;"></div>
+      
+      <!-- Carousel Content (Third Layer) -->
+      <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" style="position: relative; z-index: 2;">
+        <div class="carousel-inner pt-5">
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row align-items-center mb-5">
-          <div class="col-lg-6 mb-4 mb-lg-0">
-            <div class="badge-wrapper mb-3">
-              <div class="d-inline-flex align-items-center rounded-pill border border-accent-light">
-                <div class="icon-circle me-2">
-                  <i class="bi bi-book"></i>
+          <!-- Slide 1: Welcome (default/active) -->
+          <div class="carousel-item active">
+            <div class="container">
+              <div class="row align-items-center" style="min-height: 560px;">
+                <!-- Image (left) -->
+                <div class="col-lg-6 text-center">
+                  <img src="{{ asset('presenting.png') }}" alt="Welcome Man" class="img-fluid" style="max-height: 400px;">
                 </div>
-                <span class="badge-text me-3">{{ __('website.Learn Quran in French') }}</span>
+                <!-- Welcome Title (right) -->
+                <div class="col-lg-6 text-white text-center">
+                  <h3 class="display-5 fw-bold" style="color: white; letter-spacing: 2px; margin-bottom: 1.5rem;">Welcome to Azhary Academy</h1>
+                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">Enroll Now</a>
+                </div>
               </div>
             </div>
+          </div>
 
-            <h1 class="hero-title mb-4">{{ __('website.Discover the beauty of the Quran in your native language') }}</h1>
-
-            <p class="hero-description mb-4">{{ __('website.Join our specialized courses designed for French speakers to understand the Noble Quran. Our programs combine classical Arabic teachings with native French instruction to make Islamic knowledge accessible and meaningful.') }}</p>
-
-            <div class="cta-wrapper">
-              <a href="#services" class="btn btn-primary">{{ __('website.Explore Courses') }}</a>
+          <!-- Slide 2: SACT Certificate -->
+          <div class="carousel-item">
+            <div class="container">
+              <div class="row align-items-center" style="min-height: 560px;">
+                <!-- Image (left) -->
+                <div class="col-lg-6 text-center">
+                  <img src="{{ asset('presenting.png') }}" alt="SACT Certificate" class="img-fluid" style="max-height: 400px;">
+                </div>
+                <!-- SACT Description (right) -->
+                <div class="col-lg-6 text-white">
+                  <h1 class="mb-4" style="color: #36b6e7; font-weight: bold;">SACT Certificate</h1>
+                  <p class="mb-4" style="font-size: 1.2rem;">
+                    Now is your chance to assess your level as a Quran and Arabic language teacher for non-native speakers and evaluate yourself to grow further. Take the test offered by Studio Arabiya Institute to earn the <b>SACT</b> certificate, which documents your scientific and practical skills to stand out in the job market.
+                  </p>
+                  <a href="#" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">Register Now & Seize the Opportunity</a>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="col-lg-6">
-            <div class="hero-image">
-              <img src="{{asset('website_assets/img/hero-main.png')}}" alt="Quran Learning" class="img-fluid" loading="lazy">
+          <!-- Slide 3: Online Learning Experience -->
+          <div class="carousel-item">
+            <div class="container">
+              <div class="row align-items-center" style="min-height: 560px;">
+                <!-- Image (left) -->
+                <div class="col-lg-6 text-center">
+                  <img src="{{ asset('presenting.png') }}" alt="Online Learning" class="img-fluid" style="max-height: 400px;">
+                </div>
+                <!-- Online Learning Content (right) -->
+                <div class="col-lg-6 text-white">
+                  <h1 class="mb-4" style="color: #36b6e7; font-weight: bold;">Interactive Online Learning</h1>
+                  <p class="mb-4" style="font-size: 1.2rem;">
+                    Experience our state-of-the-art virtual classroom designed specifically for Quranic education. Learn from qualified teachers through interactive sessions, real-time feedback, and personalized attention, all from the comfort of your home.
+                  </p>
+                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">Start Learning Today</a>
+                </div>
+              </div>
             </div>
           </div>
+
+          <!-- Slide 4: French-Speaking Community -->
+          <div class="carousel-item">
+            <div class="container">
+              <div class="row align-items-center" style="min-height: 560px;">
+                <!-- Image (left) -->
+                <div class="col-lg-6 text-center">
+                  <img src="{{ asset('presenting.png') }}" alt="French Community" class="img-fluid" style="max-height: 400px;">
+                </div>
+                <!-- French Community Content (right) -->
+                <div class="col-lg-6 text-white">
+                  <h1 class="mb-4" style="color: #36b6e7; font-weight: bold;">Join Our French-Speaking Community</h1>
+                  <p class="mb-4" style="font-size: 1.2rem;">
+                    Connect with fellow French-speaking Muslims worldwide in our supportive learning environment. Our native French-speaking teachers ensure you understand every aspect of your Islamic education in your preferred language.
+                  </p>
+                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">Join Our Community</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 5: Children's Arabic Program -->
+          <div class="carousel-item">
+            <div class="container">
+              <div class="row align-items-center" style="min-height: 560px;">
+                <!-- Image (left) -->
+                <div class="col-lg-6 text-center">
+                  <img src="{{ asset('presenting.png') }}" alt="Children's Arabic Learning" class="img-fluid" style="max-height: 400px;">
+                </div>
+                <!-- Children's Program Content (right) -->
+                <div class="col-lg-6 text-white">
+                  <h1 class="mb-4" style="color: #36b6e7; font-weight: bold;">Arabic Learning for Children</h1>
+                  <p class="mb-4" style="font-size: 1.2rem;">
+                    Our specialized Arabic program for children combines fun, interactive learning with effective teaching methods. Using games, stories, and cultural activities, we help children master Arabic alphabet, numbers, colors, and basic conversation skills while developing a deep appreciation for Arabic culture.
+                  </p>
+                  <div class="d-flex gap-3 mb-4">
+                    <span class="badge bg-light text-primary">Interactive Learning</span>
+                    <span class="badge bg-light text-primary">Qualified Teachers</span>
+                    <span class="badge bg-light text-primary">Flexible Schedule</span>
+                  </div>
+                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">Start Your Child's Journey</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-
-        <div class="row feature-boxes">
-          <div class="col-lg-4 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="200">
-            <div class="feature-box">
-              <div class="feature-icon me-sm-4 mb-3 mb-sm-0">
-                <i class="bi bi-play-circle"></i>
-              </div>
-              <div class="feature-content">
-                <h3 class="feature-title">{{ __('website.Free Trial Course') }}</h3>
-                <p class="feature-text">{{ __('website.Start your Quranic journey with a complimentary trial session to experience our teaching methodology.') }}</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4 mb-4 mb-lg-0" data-aos="fade-up" data-aos-delay="300">
-            <div class="feature-box">
-              <div class="feature-icon me-sm-4 mb-3 mb-sm-0">
-                <i class="bi bi-award"></i>
-              </div>
-              <div class="feature-content">
-                <h3 class="feature-title">{{ __('website.Certificate of Completion') }}</h3>
-                <p class="feature-text">{{ __('website.Receive an official certificate upon successful completion of our Quran courses.') }}</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
-            <div class="feature-box">
-              <div class="feature-icon me-sm-4 mb-3 mb-sm-0">
-                <i class="bi bi-clock"></i>
-              </div>
-              <div class="feature-content">
-                <h3 class="feature-title">{{ __('website.Flexibility') }}</h3>
-                <p class="feature-text">{{ __('website.Our teachers are available 24/7 to accommodate students from different time zones.') }}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-
+        <!-- Carousel controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
+    </section>
 
-    </section><!-- /Hero Section -->
+    <!-- Why Choose Section -->
+    <section id="why-choose" class="why-choose section light-background py-5">
+      <div class="container">
+        <div class="text-center mb-5">
+          <h2>
+            ✨ {{ __('website.why_choose_title') }}
+          </h2>
+          <p class="lead">{{ __('website.why_choose_subtitle') }}</p>
+        </div>
+        <div class="row g-4 justify-content-center">
+          <div class="col-md-4">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+              <div class="mb-3" style="font-size:2rem;">👩‍🏫</div>
+              <h4 class="mb-2 text-success">{{ __('website.individual_courses_title') }}</h4>
+              <p>{{ __('website.individual_courses_desc') }}</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+              <div class="mb-3" style="font-size:2rem;">🕒</div>
+              <h4 class="mb-2 text-primary">{{ __('website.flexible_hours_title') }}</h4>
+              <p>{{ __('website.flexible_hours_desc') }}</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+              <div class="mb-3" style="font-size:2rem;">📊</div>
+              <h4 class="mb-2 text-purple">{{ __('website.monthly_reports_title') }}</h4>
+              <p>{{ __('website.monthly_reports_desc') }}</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+              <div class="mb-3" style="font-size:2rem;">🎮</div>
+              <h4 class="mb-2 text-warning">{{ __('website.games_activities_title') }}</h4>
+              <p>{{ __('website.games_activities_desc') }}</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+              <div class="mb-3" style="font-size:2rem;">🎧</div>
+              <h4 class="mb-2 text-danger">{{ __('website.recorded_lessons_title') }}</h4>
+              <p>{{ __('website.recorded_lessons_desc') }}</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+              <div class="mb-3" style="font-size:2rem;">🎓</div>
+              <h4 class="mb-2 text-success">{{ __('website.certified_teachers_title') }}</h4>
+              <p>{{ __('website.certified_teachers_desc') }}</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+              <div class="mb-3" style="font-size:2rem;">📜</div>
+              <h4 class="mb-2 text-orange">{{ __('website.certificates_title') }}</h4>
+              <p>{{ __('website.certificates_desc') }}</p>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+              <div class="mb-3" style="font-size:2rem;">🌍</div>
+              <h4 class="mb-2 text-info">{{ __('website.international_title') }}</h4>
+              <p>{{ __('website.international_desc') }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /Why Choose Section -->
 
     <!-- About Section -->
     <section id="about" class="about section">
@@ -175,7 +361,7 @@
             </div>
           
             <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
-              <img src="{{asset('website_assets/img/muslim.jpg')}}" class="img-fluid rounded-4 shadow" alt="Online Islamic Class">
+              <img src="{{asset('about.png')}}" class="img-fluid rounded-4 shadow" alt="Online Islamic Class">
             </div>
           
           </div>
@@ -183,86 +369,7 @@
       </div>
     </section><!-- /About Section -->
 
-    <!-- How We Work Section -->
-    <section id="how-we-work" class="how-we-work section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>{{ __('website.How We Work') }}</h2>
-        <p>{{ __('website.Our simple and effective learning process designed for students of all ages and backgrounds') }}</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="steps-5">
-          <div class="process-container">
-
-            <div class="process-item" data-aos="fade-up" data-aos-delay="200">
-              <div class="content">
-                <span class="step-number">01</span>
-                <div class="card-body">
-                  <div class="step-icon">
-                    <i class="bi bi-calendar-check"></i>
-                  </div>
-                  <div class="step-content">
-                    <h3>{{ __('website.Free Assessment') }}</h3>
-                    <p>{{ __('website.We begin with a complimentary evaluation session to understand your current level, goals, and learning style to create a personalized learning journey.') }}</p>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End Process Item -->
-
-            <div class="process-item" data-aos="fade-up" data-aos-delay="300">
-              <div class="content">
-                <span class="step-number">02</span>
-                <div class="card-body">
-                  <div class="step-icon">
-                    <i class="bi bi-journal-text"></i>
-                  </div>
-                  <div class="step-content">
-                    <h3>{{ __('website.Custom Curriculum') }}</h3>
-                    <p>{{ __('website.Our qualified instructors develop a tailored curriculum that matches your proficiency level, whether you\'re a beginner starting with Arabic letters or an advanced student perfecting tajweed.') }}</p>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End Process Item -->
-
-            <div class="process-item" data-aos="fade-up" data-aos-delay="400">
-              <div class="content">
-                <span class="step-number">03</span>
-                <div class="card-body">
-                  <div class="step-icon">
-                    <i class="bi bi-camera-video"></i>
-                  </div>
-                  <div class="step-content">
-                    <h3>{{ __('website.Interactive Sessions') }}</h3>
-                    <p>{{ __('website.Engage in one-on-one or small group classes with native French-speaking teachers who provide instruction, feedback, and cultural context to enhance your understanding.') }}</p>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End Process Item -->
-
-            <div class="process-item" data-aos="fade-up" data-aos-delay="500">
-              <div class="content">
-                <span class="step-number">04</span>
-                <div class="card-body">
-                  <div class="step-icon">
-                    <i class="bi bi-graph-up-arrow"></i>
-                  </div>
-                  <div class="step-content">
-                    <h3>{{ __('website.Progress & Certification') }}</h3>
-                    <p>{{ __('website.Track your improvement through regular assessments and milestone achievements, culminating in recognized certificates that validate your Quranic knowledge and Islamic studies.') }}</p>
-                  </div>
-                </div>
-              </div>
-            </div><!-- End Process Item -->
-
-          </div>
-        </div>
-
-      </div>
-
-    </section><!-- /How We Work Section -->
+ 
 
     <!-- Services Section -->
     <section id="services" class="services section">
@@ -285,7 +392,7 @@
               <div class="service-content">
                 <h3>{{ __('website.Quran Reading & Tajweed') }}</h3>
                 <p>{{ __('website.Learn to read the Quran with proper pronunciation and recitation rules. Our native French-speaking instructors will guide you through the fundamentals of Arabic letters, sounds, and tajweed rules for beautiful recitation.') }}</p>
-                <a href="#" class="service-link">
+                <a href="{{ route('website.courses.quran-reading') }}" class="service-link">
                   <span>{{ __('website.Learn More') }}</span>
                   <i class="bi bi-arrow-right"></i>
                 </a>
@@ -301,7 +408,7 @@
               <div class="service-content">
                 <h3>{{ __('website.Quran Memorization') }}</h3>
                 <p>{{ __('website.Develop your ability to memorize the Quran with our structured program that uses proven memorization techniques. Our experienced teachers provide personalized guidance and regular revision sessions to ensure strong retention.') }}</p>
-                <a href="#" class="service-link">
+                <a href="{{ route('website.courses.quran-memorization') }}" class="service-link">
                   <span>{{ __('website.Learn More') }}</span>
                   <i class="bi bi-arrow-right"></i>
                 </a>
@@ -317,7 +424,7 @@
               <div class="service-content">
                 <h3>{{ __('website.Quranic Arabic & Tafseer') }}</h3>
                 <p>{{ __('website.Understand the meaning behind the verses with our Quranic Arabic and Tafseer courses. Learn Arabic vocabulary, grammar, and syntax through the Quran, with explanations in French to deepen your comprehension of Allah\'s words.') }}</p>
-                <a href="#" class="service-link">
+                <a href="{{ route('website.courses.quranic-arabic') }}" class="service-link">
                   <span>{{ __('website.Learn More') }}</span>
                   <i class="bi bi-arrow-right"></i>
                 </a>
@@ -333,7 +440,7 @@
               <div class="service-content">
                 <h3>{{ __('website.Islamic Studies') }}</h3>
                 <p>{{ __('website.Explore the fundamentals of Islam including Aqeedah (beliefs), Fiqh (jurisprudence), and Seerah (biography of Prophet Muhammad ﷺ). Our curriculum provides a solid foundation in Islamic knowledge delivered in French.') }}</p>
-                <a href="#" class="service-link">
+                <a href="{{ route('website.courses.islamic-studies') }}" class="service-link">
                   <span>{{ __('website.Learn More') }}</span>
                   <i class="bi bi-arrow-right"></i>
                 </a>
@@ -349,7 +456,7 @@
               <div class="service-content">
                 <h3>{{ __('website.Children\'s Quran Program') }}</h3>
                 <p>{{ __('website.Specially designed courses for children aged 5-12, making learning fun and engaging through interactive activities, visual aids, and age-appropriate teaching methods. Help your children build a strong Islamic foundation from a young age.') }}</p>
-                <a href="#" class="service-link">
+                <a href="{{ route('website.courses.children-quran') }}" class="service-link">
                   <span>{{ __('website.Learn More') }}</span>
                   <i class="bi bi-arrow-right"></i>
                 </a>
@@ -365,7 +472,7 @@
               <div class="service-content">
                 <h3>{{ __('website.Ijazah Certification') }}</h3>
                 <p>{{ __('website.Advanced program for those seeking formal authorization (Ijazah) in Quran recitation. Study under certified scholars and join the unbroken chain of narration tracing back to the Prophet Muhammad ﷺ through our rigorous certification program.') }}</p>
-                <a href="#" class="service-link">
+                <a href="{{ route('website.courses.ijazah') }}" class="service-link">
                   <span>{{ __('website.Learn More') }}</span>
                   <i class="bi bi-arrow-right"></i>
                 </a>
@@ -380,145 +487,6 @@
     </section><!-- /Services Section -->
 
   
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="pricing section light-background">
-      <div class="container section-title" data-aos="fade-up">
-        <h2>{{ __('website.Pricing Plans') }}</h2>
-        <p>{{ __('website.Choose the perfect package for your Quran learning journey') }}</p>
-      </div>
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row g-3 justify-content-center">
-          <!-- 4 Courses Package -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="pricing-card">
-              <h3>{{ __('website.Starter') }}</h3>
-              <div class="price">
-                <span class="currency">€</span>
-                <span class="amount">32</span>
-                <span class="period">/ 4 courses</span>
-              </div>
-              <ul class="features-list">
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.4 One-hour Classes') }}</li>
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.1 Free Trial Session') }}</li>
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.Basic Learning Materials') }}</li>
-              </ul>
-              <a href="#contact" class="btn btn-primary">{{ __('website.Get Started') }}</a>
-            </div>
-          </div>
-
-          <!-- 8 Courses Package -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="pricing-card popular">
-              <div class="popular-badge">{{ __('website.Most Popular') }}</div>
-              <h3>{{ __('website.Basic') }}</h3>
-              <div class="price">
-                <span class="currency">€</span>
-                <span class="amount">60</span>
-                <span class="period">/ 8 courses</span>
-              </div>
-              <ul class="features-list">
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.8 One-hour Classes') }}</li>
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.1 Free Trial Session') }}</li>
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.Study Materials') }}</li>
-              </ul>
-              <a href="#contact" class="btn btn-light">{{ __('website.Get Started') }}</a>
-            </div>
-          </div>
-
-          <!-- 12 Courses Package -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="pricing-card">
-              <h3>{{ __('website.Standard') }}</h3>
-              <div class="price">
-                <span class="currency">€</span>
-                <span class="amount">90</span>
-                <span class="period">/ 12 courses</span>
-              </div>
-              <ul class="features-list">
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.12 One-hour Classes') }}</li>
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.1 Free Trial Session') }}</li>
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.Premium Materials') }}</li>
-              </ul>
-              <a href="#contact" class="btn btn-primary">{{ __('website.Get Started') }}</a>
-            </div>
-          </div>
-
-          <!-- 16 Courses Package -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="pricing-card">
-              <h3>{{ __('website.Advanced') }}</h3>
-              <div class="price">
-                <span class="currency">€</span>
-                <span class="amount">120</span>
-                <span class="period">/ 16 courses</span>
-              </div>
-              <ul class="features-list">
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.16 One-hour Classes') }}</li>
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.1 Free Trial Session') }}</li>
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.Priority Scheduling') }}</li>
-              </ul>
-              <a href="#contact" class="btn btn-primary">{{ __('website.Get Started') }}</a>
-            </div>
-          </div>
-
-          <!-- 24 Courses Package -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="pricing-card">
-              <h3>{{ __('website.Professional') }}</h3>
-              <div class="price">
-                <span class="currency">€</span>
-                <span class="amount">180</span>
-                <span class="period">/ 24 courses</span>
-              </div>
-              <ul class="features-list">
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.24 One-hour Classes') }}</li>
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.1 Free Trial Session') }}</li>
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.Monthly Assessment') }}</li>
-              </ul>
-              <a href="#contact" class="btn btn-primary">{{ __('website.Get Started') }}</a>
-            </div>
-          </div>
-
-          <!-- 48 Courses Package -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="pricing-card">
-              <h3>{{ __('website.Master') }}</h3>
-              <div class="price">
-                <span class="currency">€</span>
-                <span class="amount">360</span>
-                <span class="period">/ 48 courses</span>
-              </div>
-              <ul class="features-list">
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.48 One-hour Classes') }}</li>
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.1 Free Trial Session') }}</li>
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.Certificate Included') }}</li>
-              </ul>
-              <a href="#contact" class="btn btn-primary">{{ __('website.Get Started') }}</a>
-            </div>
-          </div>
-
-          <!-- 100 Courses Package -->
-          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="700">
-            <div class="pricing-card">
-              <h3>{{ __('website.Elite') }}</h3>
-              <div class="price">
-                <span class="currency">€</span>
-                <span class="amount">750</span>
-                <span class="period">/ 100 courses</span>
-              </div>
-              <ul class="features-list">
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.100 One-hour Classes') }}</li>
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.1 Free Trial Session') }}</li>
-                <li><i class="bi bi-check-circle-fill"></i>{{ __('website.Lifetime Resources') }}</li>
-              </ul>
-              <a href="#contact" class="btn btn-primary">{{ __('website.Get Started') }}</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section><!-- /Pricing Section -->
     <!-- Team Section -->
     <section id="team" class="team section light-background">
 

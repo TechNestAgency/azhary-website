@@ -11,9 +11,10 @@
         <li><a href="{{ route('home') }}#about" class="{{ request()->routeIs('home') && request()->fragment('about') ? 'active' : '' }}">About</a></li>
         <li><a href="{{ route('home') }}#services" class="{{ request()->routeIs('home') && request()->fragment('services') ? 'active' : '' }}">Services</a></li>
         <li><a href="{{ route('home') }}#team" class="{{ request()->routeIs('home') && request()->fragment('team') ? 'active' : '' }}">Teachers</a></li>
-        <li><a href="{{ route('home') }}#pricing" class="{{ request()->routeIs('home') && request()->fragment('pricing') ? 'active' : '' }}">Pricing</a></li>
+        <li><a href="{{ route('pricing') }}" class="{{ request()->routeIs('pricing') ? 'active' : '' }}">Pricing</a></li>
         <li><a href="{{ route('home') }}#contact" class="{{ request()->routeIs('home') && request()->fragment('contact') ? 'active' : '' }}">Contact</a></li>
         <li><a href="{{ route('enroll.show') }}" class="{{ request()->routeIs('enroll.show') ? 'active' : '' }}">Enroll Now</a></li>
+        <li><a href="{{ route('website.packages.index') }}">Packages</a></li>
       </ul>
       <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
     </nav>
