@@ -135,7 +135,7 @@
         <div class="row align-items-center">
           <div class="col-lg-4" data-aos="fade-right">
             <div class="teacher-image">
-              <img src="{{ asset('storage/' . $teacher->photo) }}" alt="{{ $teacher->name }}" class="img-fluid rounded-4 shadow">
+              <img src="{{ asset($teacher->photo) }}" alt="{{ $teacher->name }}" class="img-fluid rounded-4 shadow">
             </div>
           </div>
           <div class="col-lg-8" data-aos="fade-left">

@@ -146,11 +146,15 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-4 text-center mb-4 mb-md-0">
-                                @if($teacher->photo)
-                                    <img src="{{ asset('storage/' . $teacher->photo) }}" alt="{{ $teacher->name }}" class="img-fluid rounded-circle" style="max-width: 200px;">
-                                @else
-                                    <div class="rounded-circle bg-secondary mx-auto" style="width: 200px; height: 200px;"></div>
-                                @endif
+                                <div class="teacher-profile">
+                                    <div class="teacher-avatar">
+                                        @if($teacher->photo)
+                                            <img src="{{ asset($teacher->photo) }}" alt="{{ $teacher->name }}" class="img-fluid rounded-circle" style="max-width: 200px;">
+                                        @else
+                                            <div class="rounded-circle bg-secondary mx-auto" style="width: 200px; height: 200px;"></div>
+                                        @endif
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-md-8">
                                 <h1 class="h3 mb-3">{{ $teacher->name }}</h1>
@@ -288,7 +292,7 @@
                         @foreach($relatedTeachers as $relatedTeacher)
                             <div class="d-flex align-items-center mb-3">
                                 @if($relatedTeacher->photo)
-                                    <img src="{{ asset('storage/' . $relatedTeacher->photo) }}" alt="{{ $relatedTeacher->name }}" class="rounded-circle me-3" style="width: 50px; height: 50px; object-fit: cover;">
+                                    <img src="{{ asset($relatedTeacher->photo) }}" alt="{{ $relatedTeacher->name }}" class="rounded-circle me-3" style="width: 50px; height: 50px; object-fit: cover;">
                                 @else
                                     <div class="rounded-circle bg-secondary me-3" style="width: 50px; height: 50px;"></div>
                                 @endif

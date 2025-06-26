@@ -40,7 +40,7 @@
                             @enderror
                             @if(isset($teacher) && $teacher->photo)
                                 <div class="mt-2">
-                                    <img src="{{ asset('storage/' . $teacher->photo) }}" alt="{{ $teacher->name }}" class="img-thumbnail" style="max-height: 200px;">
+                                    <img src="{{ asset($teacher->photo) }}" alt="{{ $teacher->name }}" class="img-thumbnail" style="max-height: 200px;">
                                 </div>
                             @endif
                         </div>

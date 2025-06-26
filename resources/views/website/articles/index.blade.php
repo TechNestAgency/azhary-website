@@ -258,7 +258,7 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
             <div class="article-card">
               <div class="article-image">
-                <img src="{{ asset('storage/' . $article->image) }}" class="img-fluid" alt="{{ $article->getTranslation('title', app()->getLocale()) }}">
+                <img src="{{ asset($article->image) }}" class="img-fluid" alt="{{ $article->getTranslation('title', app()->getLocale()) }}">
               </div>
               <div class="article-content">
                 <div class="article-meta">

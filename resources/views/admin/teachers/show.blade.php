@@ -28,7 +28,7 @@
                     <div class="row mb-4">
                         <div class="col-md-4">
                             @if($teacher->photo)
-                                <img src="{{ asset('storage/' . $teacher->photo) }}" alt="{{ $teacher->name }}" class="img-fluid rounded">
+                                <img src="{{ asset($teacher->photo) }}" alt="{{ $teacher->name }}" class="img-fluid rounded">
                             @else
                                 <div class="text-center p-4 bg-light rounded">
                                     <i class="bx bx-user bx-lg"></i>

@@ -5,7 +5,7 @@
 
 @section('content')
 <!-- Hero Section -->
-<section class="article-hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset('storage/' . $article->image) }}')">
+<section class="article-hero" style="background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('{{ asset($article->image) }}')">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-lg-10">
@@ -36,7 +36,7 @@
             <div class="col-lg-8">
                 <!-- Featured Image -->
                 <div class="article-featured-image">
-                    <img src="{{ asset('storage/' . $article->image) }}" 
+                    <img src="{{ asset($article->image) }}" 
                          class="img-fluid rounded-4 shadow-lg" 
                          alt="{{ $article->getTranslation('title', app()->getLocale()) }}">
                 </div>
@@ -86,7 +86,7 @@
                         <div class="col-md-6">
                             <div class="related-article-card">
                                 <div class="related-article-image">
-                                    <img src="{{ asset('storage/' . $relatedArticle->image) }}" 
+                                    <img src="{{ asset($relatedArticle->image) }}" 
                                          class="img-fluid" 
                                          alt="{{ $relatedArticle->getTranslation('title', app()->getLocale()) }}">
                                 </div>

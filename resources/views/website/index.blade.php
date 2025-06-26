@@ -483,7 +483,7 @@
           <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="{{ $loop->iteration * 100 }}">
             <div class="team-card">
               <div class="team-image">
-                <img src="{{ asset('storage/' . $teacher->photo) }}" class="img-fluid" alt="{{ $teacher->name }}">
+                <img src="{{ asset($teacher->photo) }}" class="img-fluid" alt="{{ $teacher->name }}">
                 <div class="team-overlay">
                   <p>{!! Str::limit($teacher->short_description, 150) !!}</p>
                   <a href="{{ route('website.teachers.show', $teacher->id) }}" class="btn btn-light">{{ __('website.View Profile') }}</a>
@@ -847,7 +847,7 @@
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
             <div class="article-card h-100">
               <div class="article-image position-relative">
-                <img src="{{ asset('storage/' . $article->image) }}" class="img-fluid rounded-top" alt="{{ $article->getTranslation('title', app()->getLocale()) }}">
+                <img src="{{ asset($article->image) }}" class="img-fluid rounded-top" alt="{{ $article->getTranslation('title', app()->getLocale()) }}">
                 <div class="article-overlay">
                   <a href="{{ route('website.articles.show', $article->id) }}" class="btn btn-light btn-sm">{{ __('website.Read More') }}</a>
                 </div>

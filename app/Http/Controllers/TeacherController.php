@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Teacher;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 
 class TeacherController extends Controller
 {
@@ -43,7 +42,10 @@ class TeacherController extends Controller
         ]);
 
         if ($request->hasFile('photo')) {
-            $validated['photo'] = $request->file('photo')->store('teachers', 'public');
+            $photo = $request->file('photo');
+            $photoName = time() . '_' . $photo->getClientOriginalName();
+            $photo->move(public_path('storage/teachers'), $photoName);
+            $validated['photo'] = 'storage/teachers/' . $photoName;
         }
 
         Teacher::create($validated);
@@ -86,10 +88,15 @@ class TeacherController extends Controller
         ]);
 
         if ($request->hasFile('photo')) {
-            if ($teacher->photo) {
-                Storage::disk('public')->delete($teacher->photo);
+            // Delete old photo if exists
+            if ($teacher->photo && file_exists(public_path($teacher->photo))) {
+                unlink(public_path($teacher->photo));
             }
-            $validated['photo'] = $request->file('photo')->store('teachers', 'public');
+            
+            $photo = $request->file('photo');
+            $photoName = time() . '_' . $photo->getClientOriginalName();
+            $photo->move(public_path('storage/teachers'), $photoName);
+            $validated['photo'] = 'storage/teachers/' . $photoName;
         }
 
         $teacher->update($validated);
@@ -100,8 +107,8 @@ class TeacherController extends Controller
 
     public function destroy(Teacher $teacher)
     {
-        if ($teacher->photo) {
-            Storage::disk('public')->delete($teacher->photo);
+        if ($teacher->photo && file_exists(public_path($teacher->photo))) {
+            unlink(public_path($teacher->photo));
         }
         
         $teacher->delete();

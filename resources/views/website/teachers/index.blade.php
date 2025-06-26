@@ -15,7 +15,7 @@
             <div class="card h-100">
                 <div class="card-body text-center">
                     @if($teacher->photo)
-                        <img src="{{ asset('storage/' . $teacher->photo) }}" alt="{{ $teacher->name }}" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
+                        <img src="{{ asset($teacher->photo) }}" alt="{{ $teacher->name }}" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
                     @else
                         <div class="rounded-circle bg-secondary mx-auto mb-3" style="width: 150px; height: 150px;"></div>
                     @endif

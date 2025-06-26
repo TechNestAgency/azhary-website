@@ -59,7 +59,7 @@
                             <label class="form-label" for="image">Article Image</label>
                             @if($article->image)
                                 <div class="mb-2">
-                                    <img src="{{ Storage::url($article->image) }}" alt="Current Image" class="img-thumbnail" style="max-height: 200px;">
+                                    <img src="{{ asset($article->image) }}" alt="Current Image" class="img-thumbnail" style="max-height: 200px;">
                                 </div>
                             @endif
                             <input type="file" class="form-control @error('image') is-invalid @enderror" 

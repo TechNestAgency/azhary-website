@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Article;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -43,7 +42,10 @@ class ArticleController extends Controller
         $validated['slug'] = Str::slug($validated['title']['en']);
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('articles', 'public');
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('storage/articles'), $imageName);
+            $validated['image'] = 'storage/articles/' . $imageName;
         }
 
         Article::create($validated);
@@ -79,10 +81,15 @@ class ArticleController extends Controller
         $validated['slug'] = Str::slug($validated['title']['en']);
 
         if ($request->hasFile('image')) {
-            if ($article->image) {
-                Storage::disk('public')->delete($article->image);
+            // Delete old image if exists
+            if ($article->image && file_exists(public_path($article->image))) {
+                unlink(public_path($article->image));
             }
-            $validated['image'] = $request->file('image')->store('articles', 'public');
+            
+            $image = $request->file('image');
+            $imageName = time() . '_' . $image->getClientOriginalName();
+            $image->move(public_path('storage/articles'), $imageName);
+            $validated['image'] = 'storage/articles/' . $imageName;
         }
 
         $article->update($validated);
@@ -93,8 +100,8 @@ class ArticleController extends Controller
 
     public function destroy(Article $article)
     {
-        if ($article->image) {
-            Storage::disk('public')->delete($article->image);
+        if ($article->image && file_exists(public_path($article->image))) {
+            unlink(public_path($article->image));
         }
         
         $article->delete();

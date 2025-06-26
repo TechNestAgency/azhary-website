@@ -29,7 +29,7 @@
                                     <tr>
                                         <td>
                                             @if($teacher->photo)
-                                                <img src="{{ asset('storage/' . $teacher->photo) }}" alt="{{ $teacher->name }}" class="rounded-circle" width="50" height="50">
+                                                <img src="{{ asset($teacher->photo) }}" alt="{{ $teacher->name }}" class="rounded-circle" width="50" height="50">
                                             @else
                                                 <div class="rounded-circle bg-secondary" style="width: 50px; height: 50px;"></div>
                                             @endif
