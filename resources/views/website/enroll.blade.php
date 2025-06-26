@@ -31,7 +31,7 @@
 <body class="enroll-page">
 
   <!-- Include Header -->
-  @include('website.partials.header')
+  @include('components.website-header')
 
   <main class="main">
     <!-- Enrollment Form Section -->

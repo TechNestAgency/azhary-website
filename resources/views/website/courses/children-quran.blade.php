@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Children's Quran Program - Azhary Academy</title>
-    <meta name="description" content="Fun and interactive Quran learning program for children with native French-speaking teachers at Azhary Academy">
+    <meta name="description" content="Specialized Arabic and Quran learning program for children aged 5-12 at Azhary Academy">
     
     <!-- Favicons -->
     <link href="{{ asset('website_assets/img/logo-no.png') }}" rel="icon">
@@ -26,61 +26,9 @@
     <link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet">
 </head>
 
-<body>
-    <!-- Top Bar -->
-    <div class="top-bar d-flex align-items-center justify-content-between px-4" style="background-color:rgb(2, 37, 108);opacity: 0.88; color: #fff; height: 48px; position: fixed; top: 0; left: 0; width: 100%; z-index: 1040;">
-        <div class="d-flex align-items-center gap-4">
-            <span class="d-flex align-items-center"><i class="bi bi-telephone-fill me-2"></i> Whatsapp : +201507788982</span>
-            <span class="mx-2" style="border-left: 1px solid #fff; height: 20px;"></span>
-            <span class="d-flex align-items-center"><i class="bi bi-envelope-fill me-2"></i> Madrassatazhary4@gmail.com</span>
-        </div>
-        <div class="d-flex align-items-center gap-4">
-            <a href="#" style="color: #fff; text-decoration: none;">Our Social</a>
-            <a href="#" style="color: #ffd600;"><i class="bi bi-facebook"></i></a>
-            <a href="#" style="color: #ffd600;"><i class="bi bi-twitter"></i></a>
-            <a href="#" style="color: #ffd600;"><i class="bi bi-pinterest"></i></a>
-            <a href="#" style="color: #ffd600;"><i class="bi bi-youtube"></i></a>
-            <a href="#" style="color: #ffd600;"><i class="bi bi-instagram"></i></a>
-            <a href="#" style="color: #ffd600;"><i class="bi bi-linkedin"></i></a>
-        </div>
-    </div>
+<body class="index-page">
 
-    <!-- Header -->
-    <header id="header" class="header d-flex align-items-center fixed-top" style="background: white !important; border: none !important; top: 48px;">
-        <div class="container position-relative d-flex align-items-center justify-content-between">
-            <a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto me-xl-0">
-                <img src="{{asset('website_assets/img/logo-no.png')}}" alt="">
-            </a>
-            <!-- Category Dropdown beside logo -->
-            <div class="d-flex align-items-center ms-3">
-                <div class="dropdown">
-                    <button class="btn btn-white border-0 d-flex align-items-center gap-2" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.35rem; font-weight: 500; color: #13223F;">
-                        <i class="bi bi-grid-3x3-gap-fill" style="font-size: 1.5rem; color:rgb(49, 65, 99);"></i>
-                        <span style="color:rgb(49, 65, 99);">Category</span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                        <li><a class="dropdown-item" href="{{ route('website.courses.quran-reading') }}"><i class="bi bi-book text-primary me-2"></i>Quran Reading</a></li>
-                        <li><a class="dropdown-item" href="{{ route('website.courses.quran-memorization') }}"><i class="bi bi-bookmark text-primary me-2"></i>Quran Memorization</a></li>
-                        <li><a class="dropdown-item" href="{{ route('website.courses.quranic-arabic') }}"><i class="bi bi-translate text-primary me-2"></i>Quranic Arabic</a></li>
-                        <li><a class="dropdown-item" href="{{ route('website.courses.islamic-studies') }}"><i class="bi bi-mortarboard text-primary me-2"></i>Islamic Studies</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="d-flex align-items-center ms-auto gap-3">
-                <nav id="navmenu" class="navmenu">
-                    <ul class="navbar-nav flex-row gap-3 align-items-center mb-0">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#services">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#team">Teachers</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('pricing') }}">Pricing</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#contact">Contact</a></li>
-                    </ul>
-                </nav>
-                <a class="btn btn-primary" href="{{ route('enroll.show') }}" style="background-color:rgb(2, 37, 108); opacity: 0.88;padding: 0.75rem 2rem; font-size: 1.1rem;">Enroll Now</a>
-            </div>
-        </div>
-    </header>
+    @include('components.website-header')
 
     <main class="main">
         <!-- Course Hero Section -->
@@ -88,8 +36,8 @@
             <div class="container">
                 <div class="row justify-content-center text-center">
                     <div class="col-lg-8 text-white">
-                        <h1 class="display-4 fw-bold mb-4 mt-3"  style="color: #36b6e7;">Children's Quran Program</h1>
-                        <p class="lead mb-4">Make learning the Quran fun and engaging for your child with our interactive program designed specifically for young learners.</p>
+                        <h1 class="display-4 fw-bold mb-4 mt-3" style="color: #36b6e7;">{{ __('website.children_course_overview') }}</h1>
+                        <p class="lead mb-4">{{ __('website.children_course_overview') }}</p>
                         <div class="d-flex gap-3 justify-content-center">
                             <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-lg">Enroll Now</a>
                             <a href="#course-details" class="btn btn-outline-light btn-lg">Learn More</a>
@@ -106,54 +54,29 @@
                     <!-- Main Content -->
                     <div class="col-lg-8">
                         <div class="course-content">
-                            <h2 class="mb-4">Course Overview</h2>
-                            <p class="lead">Our Children's Quran Program combines traditional Quranic education with modern teaching methods, making learning enjoyable and effective for young minds.</p>
+                            <h2 class="mb-4">{{ __('website.children_what_learn') }}</h2>
+                            <ul>
+                                <li>{{ __('website.children_basic_reading') }}</li>
+                                <li>{{ __('website.children_short_surahs') }}</li>
+                                <li>{{ __('website.children_islamic_values') }}</li>
+                                <li>{{ __('website.children_basic_arabic') }}</li>
+                            </ul>
                             
                             <div class="course-features mt-5">
-                                <h3 class="mb-4">What Your Child Will Learn</h3>
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="feature-item d-flex align-items-start">
-                                            <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>Basic Quranic reading</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="feature-item d-flex align-items-start">
-                                            <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>Short surahs memorization</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="feature-item d-flex align-items-start">
-                                            <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>Islamic values and manners</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="feature-item d-flex align-items-start">
-                                            <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>Basic Arabic language</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="course-structure mt-5">
-                                <h3 class="mb-4">Program Structure</h3>
+                                <h3 class="mb-4">{{ __('website.children_program_structure') }}</h3>
                                 <div class="accordion" id="courseAccordion">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#level1">
-                                                Level 1: Beginners (Ages 4-7)
+                                                {{ __('website.children_level1') }}
                                             </button>
                                         </h2>
                                         <div id="level1" class="accordion-collapse collapse show" data-bs-parent="#courseAccordion">
                                             <div class="accordion-body">
                                                 <ul class="list-unstyled">
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Arabic alphabet recognition</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Basic pronunciation</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Short surahs with meaning</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.children_alphabet_recognition') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.children_basic_pronunciation') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.children_short_surahs_meaning') }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -161,15 +84,15 @@
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#level2">
-                                                Level 2: Intermediate (Ages 8-10)
+                                                {{ __('website.children_level2') }}
                                             </button>
                                         </h2>
                                         <div id="level2" class="accordion-collapse collapse" data-bs-parent="#courseAccordion">
                                             <div class="accordion-body">
                                                 <ul class="list-unstyled">
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Advanced reading skills</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Longer surahs memorization</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Basic tajweed rules</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.children_advanced_reading') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.children_longer_surahs') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.children_basic_tajweed') }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -177,15 +100,15 @@
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#level3">
-                                                Level 3: Advanced (Ages 11-13)
+                                                {{ __('website.children_level3') }}
                                             </button>
                                         </h2>
                                         <div id="level3" class="accordion-collapse collapse" data-bs-parent="#courseAccordion">
                                             <div class="accordion-body">
                                                 <ul class="list-unstyled">
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Complete Quran reading</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Advanced tajweed</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Quranic stories and lessons</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.children_complete_reading') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.children_advanced_tajweed') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.children_stories_lessons') }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -194,34 +117,34 @@
                             </div>
 
                             <div class="teaching-methods mt-5">
-                                <h3 class="mb-4">Our Teaching Methods</h3>
+                                <h3 class="mb-4">{{ __('website.children_teaching_methods') }}</h3>
                                 <div class="row g-4">
                                     <div class="col-md-6">
                                         <div class="method-card p-4 bg-light rounded-4">
                                             <i class="bi bi-controller text-primary fs-1 mb-3"></i>
-                                            <h4>Interactive Games</h4>
-                                            <p>Learning through fun educational games and activities</p>
+                                            <h4>{{ __('website.children_interactive_games') }}</h4>
+                                            <p>{{ __('website.children_interactive_games_desc') }}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="method-card p-4 bg-light rounded-4">
                                             <i class="bi bi-music-note-beamed text-primary fs-1 mb-3"></i>
-                                            <h4>Quranic Songs</h4>
-                                            <p>Memorization through melodious recitation</p>
+                                            <h4>{{ __('website.children_quranic_songs') }}</h4>
+                                            <p>{{ __('website.children_quranic_songs_desc') }}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="method-card p-4 bg-light rounded-4">
                                             <i class="bi bi-book text-primary fs-1 mb-3"></i>
-                                            <h4>Storytelling</h4>
-                                            <p>Learning through engaging Quranic stories</p>
+                                            <h4>{{ __('website.children_storytelling') }}</h4>
+                                            <p>{{ __('website.children_storytelling_desc') }}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="method-card p-4 bg-light rounded-4">
                                             <i class="bi bi-trophy text-primary fs-1 mb-3"></i>
-                                            <h4>Reward System</h4>
-                                            <p>Motivation through achievement recognition</p>
+                                            <h4>{{ __('website.children_reward_system') }}</h4>
+                                            <p>{{ __('website.children_reward_system_desc') }}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -234,23 +157,23 @@
                         <div class="course-sidebar">
                             <div class="card shadow-sm">
                                 <div class="card-body">
-                                    <h4 class="card-title mb-4">Program Information</h4>
+                                    <h4 class="card-title mb-4">{{ __('website.children_program_info') }}</h4>
                                     <ul class="list-unstyled">
                                         <li class="mb-3">
                                             <i class="bi bi-clock text-primary me-2"></i>
-                                            <strong>Duration:</strong> 20 hours per level
+                                            <strong>{{ __('website.children_duration') }}</strong>
                                         </li>
                                         <li class="mb-3">
                                             <i class="bi bi-person text-primary me-2"></i>
-                                            <strong>Age Groups:</strong> 4-13 years
+                                            <strong>{{ __('website.children_age_groups') }}</strong>
                                         </li>
                                         <li class="mb-3">
                                             <i class="bi bi-translate text-primary me-2"></i>
-                                            <strong>Language:</strong> French
+                                            <strong>{{ __('website.children_language') }}</strong>
                                         </li>
                                         <li class="mb-3">
                                             <i class="bi bi-calendar text-primary me-2"></i>
-                                            <strong>Schedule:</strong> Flexible
+                                            <strong>{{ __('website.children_schedule') }}</strong>
                                         </li>
                                     </ul>
                                     <a href="{{ route('enroll.show') }}" class="btn btn-primary w-100">Enroll Now</a>
@@ -259,9 +182,9 @@
 
                             <div class="card shadow-sm mt-4">
                                 <div class="card-body">
-                                    <h4 class="card-title mb-4">Parent Portal</h4>
-                                    <p>Track your child's progress and access learning materials through our dedicated parent portal.</p>
-                                    <a href="#contact" class="btn btn-outline-primary w-100">Learn More</a>
+                                    <h4 class="card-title mb-4">{{ __('website.children_parent_portal') }}</h4>
+                                    <p>{{ __('website.children_parent_portal_desc') }}</p>
+                                    <a href="#contact" class="btn btn-outline-primary w-100">{{ __('website.children_learn_more') }}</a>
                                 </div>
                             </div>
                         </div>
@@ -273,7 +196,7 @@
         <!-- Testimonials Section -->
         <section class="testimonials section light-background py-5">
             <div class="container">
-                <h2 class="text-center mb-5">What Parents Say</h2>
+                <h2 class="text-center mb-5">{{ __('website.children_what_parents_say') }}</h2>
                 <div class="row g-4">
                     <div class="col-md-6">
                         <div class="testimonial-card p-4 bg-white rounded-4 shadow-sm">
@@ -290,7 +213,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="mb-0">"My daughter loves her Quran classes! The teachers make learning fun and engaging. She's already memorized several short surahs."</p>
+                            <p class="mb-0">{{ __('website.children_testimonial1') }}</p>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -308,7 +231,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <p class="mb-0">"The parent portal is excellent. I can track my son's progress and see what he's learning. The teachers are very supportive and responsive."</p>
+                            <p class="mb-0">{{ __('website.children_testimonial2') }}</p>
                         </div>
                     </div>
                 </div>

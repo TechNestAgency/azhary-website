@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>Islamic Studies - Azhary Academy</title>
-    <meta name="description" content="Comprehensive Islamic Studies program with native French-speaking teachers at Azhary Academy">
+    <meta name="description" content="Learn Islamic studies including Aqeedah, Fiqh, and Seerah at Azhary Academy">
     
     <!-- Favicons -->
     <link href="{{ asset('website_assets/img/logo-no.png') }}" rel="icon">
@@ -26,61 +26,9 @@
     <link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet">
 </head>
 
-<body>
-    <!-- Top Bar -->
-    <div class="top-bar d-flex align-items-center justify-content-between px-4" style="background-color:rgb(2, 37, 108);opacity: 0.88; color: #fff; height: 48px; position: fixed; top: 0; left: 0; width: 100%; z-index: 1040;">
-        <div class="d-flex align-items-center gap-4">
-            <span class="d-flex align-items-center"><i class="bi bi-telephone-fill me-2"></i> Whatsapp : +201507788982</span>
-            <span class="mx-2" style="border-left: 1px solid #fff; height: 20px;"></span>
-            <span class="d-flex align-items-center"><i class="bi bi-envelope-fill me-2"></i> Madrassatazhary4@gmail.com</span>
-        </div>
-        <div class="d-flex align-items-center gap-4">
-            <a href="#" style="color: #fff; text-decoration: none;">Our Social</a>
-            <a href="#" style="color: #ffd600;"><i class="bi bi-facebook"></i></a>
-            <a href="#" style="color: #ffd600;"><i class="bi bi-twitter"></i></a>
-            <a href="#" style="color: #ffd600;"><i class="bi bi-pinterest"></i></a>
-            <a href="#" style="color: #ffd600;"><i class="bi bi-youtube"></i></a>
-            <a href="#" style="color: #ffd600;"><i class="bi bi-instagram"></i></a>
-            <a href="#" style="color: #ffd600;"><i class="bi bi-linkedin"></i></a>
-        </div>
-    </div>
+<body class="index-page">
 
-    <!-- Header -->
-    <header id="header" class="header d-flex align-items-center fixed-top" style="background: white !important; border: none !important; top: 48px;">
-        <div class="container position-relative d-flex align-items-center justify-content-between">
-            <a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto me-xl-0">
-                <img src="{{asset('website_assets/img/logo-no.png')}}" alt="">
-            </a>
-            <!-- Category Dropdown beside logo -->
-            <div class="d-flex align-items-center ms-3">
-                <div class="dropdown">
-                    <button class="btn btn-white border-0 d-flex align-items-center gap-2" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.35rem; font-weight: 500; color: #13223F;">
-                        <i class="bi bi-grid-3x3-gap-fill" style="font-size: 1.5rem; color:rgb(49, 65, 99);"></i>
-                        <span style="color:rgb(49, 65, 99);">Category</span>
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-                        <li><a class="dropdown-item" href="{{ route('website.courses.quran-reading') }}"><i class="bi bi-book text-primary me-2"></i>Quran Reading</a></li>
-                        <li><a class="dropdown-item" href="{{ route('website.courses.quran-memorization') }}"><i class="bi bi-bookmark text-primary me-2"></i>Quran Memorization</a></li>
-                        <li><a class="dropdown-item" href="{{ route('website.courses.quranic-arabic') }}"><i class="bi bi-translate text-primary me-2"></i>Quranic Arabic</a></li>
-                        <li><a class="dropdown-item" href="{{ route('website.courses.islamic-studies') }}"><i class="bi bi-mortarboard text-primary me-2"></i>Islamic Studies</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="d-flex align-items-center ms-auto gap-3">
-                <nav id="navmenu" class="navmenu">
-                    <ul class="navbar-nav flex-row gap-3 align-items-center mb-0">
-                        <li class="nav-item"><a class="nav-link" href="{{ route('home') }}">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#about">About</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#services">Services</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#team">Teachers</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('pricing') }}">Pricing</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('home') }}#contact">Contact</a></li>
-                    </ul>
-                </nav>
-                <a class="btn btn-primary" href="{{ route('enroll.show') }}" style="background-color:rgb(2, 37, 108); opacity: 0.88;padding: 0.75rem 2rem; font-size: 1.1rem;">Enroll Now</a>
-            </div>
-        </div>
-    </header>
+    @include('components.website-header')
 
     <main class="main">
         <!-- Course Hero Section -->
@@ -88,8 +36,8 @@
             <div class="container">
                 <div class="row justify-content-center text-center">
                     <div class="col-lg-8 text-white">
-                        <h1 class="display-4 fw-bold mb-4 mt-3" style="color: #36b6e7;">Islamic Studies</h1>
-                        <p class="lead mb-4">Explore the rich heritage of Islamic knowledge through our comprehensive Islamic Studies program, taught by qualified scholars.</p>
+                        <h1 class="display-4 fw-bold mb-4 mt-3" style="color: #36b6e7;">{{ __('website.islamic_studies_title') }}</h1>
+                        <p class="lead mb-4">{{ __('website.islamic_studies_overview') }}</p>
                         <div class="d-flex gap-3 justify-content-center">
                             <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-lg">Enroll Now</a>
                             <a href="#course-details" class="btn btn-outline-light btn-lg">Learn More</a>
@@ -106,7 +54,7 @@
                     <!-- Main Content -->
                     <div class="col-lg-8">
                         <div class="course-content">
-                            <h2 class="mb-4">Course Overview</h2>
+                            <h2 class="mb-4">{{ __('website.islamic_studies_learn') }}</h2>
                             <p class="lead">Our Islamic Studies program covers essential aspects of Islamic knowledge, from basic principles to advanced topics, helping you build a strong foundation in your faith.</p>
                             
                             <div class="course-features mt-5">
@@ -115,45 +63,45 @@
                                     <div class="col-md-6">
                                         <div class="feature-item d-flex align-items-start">
                                             <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>Islamic beliefs and principles</span>
+                                            <span>{{ __('website.islamic_studies_feature1') }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="feature-item d-flex align-items-start">
                                             <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>Prophetic traditions (Hadith)</span>
+                                            <span>{{ __('website.islamic_studies_feature2') }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="feature-item d-flex align-items-start">
                                             <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>Islamic jurisprudence (Fiqh)</span>
+                                            <span>{{ __('website.islamic_studies_feature3') }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="feature-item d-flex align-items-start">
                                             <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>Islamic history and civilization</span>
+                                            <span>{{ __('website.islamic_studies_feature4') }}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="course-structure mt-5">
-                                <h3 class="mb-4">Course Structure</h3>
+                                <h3 class="mb-4">{{ __('website.islamic_studies_structure') }}</h3>
                                 <div class="accordion" id="courseAccordion">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#level1">
-                                                Level 1: Foundation
+                                                {{ __('website.islamic_studies_level1') }}
                                             </button>
                                         </h2>
                                         <div id="level1" class="accordion-collapse collapse show" data-bs-parent="#courseAccordion">
                                             <div class="accordion-body">
                                                 <ul class="list-unstyled">
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Basic Islamic beliefs</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Introduction to Hadith</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Essential Fiqh rulings</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.islamic_studies_level1_item1') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.islamic_studies_level1_item2') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.islamic_studies_level1_item3') }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -161,15 +109,15 @@
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#level2">
-                                                Level 2: Intermediate
+                                                {{ __('website.islamic_studies_level2') }}
                                             </button>
                                         </h2>
                                         <div id="level2" class="accordion-collapse collapse" data-bs-parent="#courseAccordion">
                                             <div class="accordion-body">
                                                 <ul class="list-unstyled">
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Advanced Islamic theology</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Hadith sciences</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Comparative Fiqh</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.islamic_studies_level2_item1') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.islamic_studies_level2_item2') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.islamic_studies_level2_item3') }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -177,15 +125,15 @@
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#level3">
-                                                Level 3: Advanced
+                                                {{ __('website.islamic_studies_level3') }}
                                             </button>
                                         </h2>
                                         <div id="level3" class="accordion-collapse collapse" data-bs-parent="#courseAccordion">
                                             <div class="accordion-body">
                                                 <ul class="list-unstyled">
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Islamic philosophy</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Advanced Hadith analysis</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>Contemporary Islamic issues</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.islamic_studies_level3_item1') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.islamic_studies_level3_item2') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.islamic_studies_level3_item3') }}</li>
                                                 </ul>
                                             </div>
                                         </div>

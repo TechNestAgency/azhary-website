@@ -38,221 +38,201 @@
 <body class="index-page">
 
   <!-- Top Bar -->
-  <div class="top-bar d-flex align-items-center justify-content-between px-4" style="background-color:rgb(2, 37, 108);opacity: 0.88; color: #fff; height: 48px; position: fixed; top: 0; left: 0; width: 100%; z-index: 1040;">
-    <div class="d-flex align-items-center gap-4">
-      <span class="d-flex align-items-center"><i class="bi bi-telephone-fill me-2"></i> Whatsapp : +201507788982</span>
-      <span class="mx-2" style="border-left: 1px solid #fff; height: 20px;"></span>
-      <span class="d-flex align-items-center"><i class="bi bi-envelope-fill me-2"></i> Madrassatazhary4@gmail.com</span>
-    </div>
-    <div class="d-flex align-items-center gap-4">
-      <a href="#" style="color: #fff; text-decoration: none;">Our Social</a>
-      <a href="#" style="color: #ffd600;"><i class="bi bi-facebook"></i></a>
-      <a href="#" style="color: #ffd600;"><i class="bi bi-twitter"></i></a>
-      <a href="#" style="color: #ffd600;"><i class="bi bi-pinterest"></i></a>
-      <a href="#" style="color: #ffd600;"><i class="bi bi-youtube"></i></a>
-      <a href="#" style="color: #ffd600;"><i class="bi bi-instagram"></i></a>
-      <a href="#" style="color: #ffd600;"><i class="bi bi-linkedin"></i></a>
+  <div class="top-bar px-3 py-2 d-none d-md-block" style="background-color:rgb(2, 37, 108);opacity: 0.88; color: #fff; top: 0; left: 0; width: 100%; z-index: 1040;">
+    <div class="container-fluid">
+      <div class="row align-items-center flex-column flex-md-row text-center text-md-start">
+        <div class="col-12 col-md-auto d-flex align-items-center justify-content-center justify-content-md-start gap-3 flex-wrap mb-2 mb-md-0">
+          <span class="d-flex align-items-center"><i class="bi bi-telephone-fill me-2"></i> {{ __('website.Whatsapp') }} : +201507788982</span>
+          <span class="mx-2 d-none d-md-block" style="border-left: 1px solid #fff; height: 20px;"></span>
+          <span class="d-flex align-items-center"><i class="bi bi-envelope-fill me-2"></i> Madrassatazhary4@gmail.com</span>
+        </div>
+        <div class="col-12 col-md d-flex align-items-center justify-content-center justify-content-md-end gap-3 flex-wrap">
+          <a href="#" style="color: #fff; text-decoration: none;">{{ __('website.Our Social') }}</a>
+          <a href="#" style="color: #ffd600;"><i class="bi bi-facebook"></i></a>
+          <a href="#" style="color: #ffd600;"><i class="bi bi-twitter"></i></a>
+          <a href="#" style="color: #ffd600;"><i class="bi bi-pinterest"></i></a>
+          <a href="#" style="color: #ffd600;"><i class="bi bi-youtube"></i></a>
+          <a href="#" style="color: #ffd600;"><i class="bi bi-instagram"></i></a>
+          <a href="#" style="color: #ffd600;"><i class="bi bi-linkedin"></i></a>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- Make header background match top bar and remove body padding -->
-
-
-  <header id="header" class="header d-flex align-items-center fixed-top" style="background: white !important; border: none !important; top: 48px;">
-    <div class="container position-relative d-flex align-items-center justify-content-between">
-      <a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="">
+  <!-- Responsive Header -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-white" style="z-index: 1030; border: none !important;">
+    <div class="container">
+      <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center me-auto me-xl-0">
+        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="" style="max-height: 60px;">
       </a>
-      <!-- Category Dropdown beside logo -->
-      <div class="d-flex align-items-center ms-3">
-        <div class="dropdown">
-          <button class="btn btn-white border-0 d-flex align-items-center gap-2" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.35rem; font-weight: 500; color: #13223F;">
-            <i class="bi bi-grid-3x3-gap-fill" style="font-size: 1.5rem; color:rgb(49, 65, 99);"></i>
-            <span style="color:rgb(49, 65, 99);">Category</span>
-          </button>
-          <ul class="dropdown-menu shadow border-0" aria-labelledby="categoryDropdown" style="min-width: 270px; border-radius: 18px; background: rgba(245, 247, 255, 0.98); box-shadow: 0 8px 32px 0 rgba(49,65,99,0.18); padding: 0.5rem 0;">
-            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="{{ route('website.courses.quran-reading') }}" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-book-half text-primary"></i> <span>{{ __('website.Quran Reading & Tajweed') }}</span></a></li>
-            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="{{ route('website.courses.quran-memorization') }}" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-journal-richtext text-success"></i> <span>{{ __('website.Quran Memorization') }}</span></a></li>
-            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="{{ route('website.courses.quranic-arabic') }}" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-translate text-info"></i> <span>{{ __('website.Quranic Arabic & Tafseer') }}</span></a></li>
-            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="{{ route('website.courses.islamic-studies') }}" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-moon-stars text-warning"></i> <span>{{ __('website.Islamic Studies') }}</span></a></li>
-            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="{{ route('website.courses.children-quran') }}" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-people text-danger"></i> <span>{{ __('website.Children\'s Quran Program') }}</span></a></li>
-            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="{{ route('website.courses.ijazah') }}" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-award text-secondary"></i> <span>{{ __('website.Ijazah Certification') }}</span></a></li>
-          </ul>
-          <style>
-            #categoryDropdown + .dropdown-menu .dropdown-item:hover, #categoryDropdown + .dropdown-menu .dropdown-item:focus {
-              background: linear-gradient(90deg, #e3eaff 0%, #f7faff 100%);
-              color: #0d7adb;
-              font-weight: 500;
-              border-radius: 12px;
-            }
-            #categoryDropdown + .dropdown-menu .dropdown-item i {
-              transition: color 0.2s;
-            }
-            #categoryDropdown + .dropdown-menu .dropdown-item:hover i {
-              color: #0d7adb !important;
-            }
-          </style>
-        </div>
-      </div>
-      <div class="d-flex align-items-center ms-auto gap-3">
-        <nav id="navmenu" class="navmenu">
-          <ul class="navbar-nav flex-row gap-3 align-items-center mb-0">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="learningStylesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Learning Styles
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="learningStylesDropdown">
-                <li><a class="dropdown-item" href="#hero">{{ __('website.Home') }}</a></li>
-                <li><a class="dropdown-item" href="#about">{{ __('website.About') }}</a></li>
-                <li><a class="dropdown-item" href="#services">{{ __('website.Services') }}</a></li>
-                <li><a class="dropdown-item" href="#portfolio">{{ __('website.Portfolio') }}</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="organizationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Organizations
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="organizationsDropdown">
-                <li><a class="dropdown-item" href="#team">{{ __('website.Team') }}</a></li>
-                <li><a class="dropdown-item" href="{{ route('website.articles.index') }}">{{ __('website.Articles') }}</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                More
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="moreDropdown">
-                <li><a class="dropdown-item" href="{{ route('pricing') }}">{{ __('website.Pricing') }}</a></li>
-                <li><a class="dropdown-item" href="#contact">{{ __('website.Contact') }}</a></li>
-              </ul>
-            </li>
-            <li class="dropdown language-switcher nav-item">
-              <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: bold; font-size: 1.1rem; letter-spacing: 1px;">
-                <a href="{{ route('language.switch', 'en') }}" style="text-decoration: none; color: {{ app()->getLocale() == 'en' ? '#0a2260' : '#0a2260b0' }}; font-weight: {{ app()->getLocale() == 'en' ? 'bold' : 'normal' }};">EN</a>
-                <span style="color: #0a2260; font-weight: bold;">|</span>
-                <a href="{{ route('language.switch', 'fr') }}" style="text-decoration: none; color: {{ app()->getLocale() == 'fr' ? '#0a2260' : '#0a2260b0' }}; font-weight: {{ app()->getLocale() == 'fr' ? 'bold' : 'normal' }};">FR</a>
-              </div>
-            </li>
-          </ul>
-        </nav>
-        <a class="btn btn-primary" href="{{ route('enroll.show') }}" style="background-color:rgb(2, 37, 108); opacity: 0.88;padding: 0.75rem 2rem; font-size: 1.1rem;">Enroll Now</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="bi bi-grid-3x3-gap-fill me-1"></i> {{ __('website.Category') }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
+              <li><a class="dropdown-item" href="{{ route('website.courses.quran-reading') }}">{{ __('website.Quran Reading & Tajweed') }}</a></li>
+              <li><a class="dropdown-item" href="{{ route('website.courses.quran-memorization') }}">{{ __('website.Quran Memorization') }}</a></li>
+              <li><a class="dropdown-item" href="{{ route('website.courses.quranic-arabic') }}">{{ __('website.Quranic Arabic & Tafseer') }}</a></li>
+              <li><a class="dropdown-item" href="{{ route('website.courses.islamic-studies') }}">{{ __('website.Islamic Studies') }}</a></li>
+              <li><a class="dropdown-item" href="{{ route('website.courses.children-quran') }}">{{ __('website.Children\'s Quran Program') }}</a></li>
+              <li><a class="dropdown-item" href="{{ route('website.courses.ijazah') }}">{{ __('website.Ijazah Certification') }}</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="learningStylesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ __('website.Learning Styles') }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="learningStylesDropdown">
+              <li><a class="dropdown-item" href="#hero">{{ __('website.Home') }}</a></li>
+              <li><a class="dropdown-item" href="#about">{{ __('website.About') }}</a></li>
+              <li><a class="dropdown-item" href="#services">{{ __('website.Services') }}</a></li>
+              <li><a class="dropdown-item" href="#portfolio">{{ __('website.Portfolio') }}</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="organizationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ __('website.Organizations') }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="organizationsDropdown">
+              <li><a class="dropdown-item" href="#team">{{ __('website.Team') }}</a></li>
+              <li><a class="dropdown-item" href="{{ route('website.articles.index') }}">{{ __('website.Articles') }}</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ __('website.More') }}
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="moreDropdown">
+              <li><a class="dropdown-item" href="{{ route('pricing') }}">{{ __('website.Pricing') }}</a></li>
+              <li><a class="dropdown-item" href="#contact">{{ __('website.Contact') }}</a></li>
+            </ul>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <div class="language-switcher d-flex align-items-center gap-1">
+              <a href="{{ route('language.switch', 'en') }}" class="nav-link p-0" style="color: {{ app()->getLocale() == 'en' ? '#0a2260' : '#0a2260b0' }}; font-weight: {{ app()->getLocale() == 'en' ? 'bold' : 'normal' }};">EN</a>
+              <span style="color: #0a2260; font-weight: bold;">|</span>
+              <a href="{{ route('language.switch', 'fr') }}" class="nav-link p-0" style="color: {{ app()->getLocale() == 'fr' ? '#0a2260' : '#0a2260b0' }}; font-weight: {{ app()->getLocale() == 'fr' ? 'bold' : 'normal' }};">FR</a>
+            </div>
+          </li>
+          <li class="nav-item mt-2 mt-lg-0">
+            <a class="btn btn-primary w-100 w-lg-auto" href="{{ route('enroll.show') }}" style="background-color:rgb(2, 37, 108); opacity: 0.88; padding: 0.75rem 2rem; font-size: 1.1rem;">{{ __('website.Enroll Now') }}</a>
+          </li>
+        </ul>
       </div>
     </div>
-  </header>
+  </nav>
 
   <main class="main">
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section p-0" style="background: url('{{ asset('hero-back.jpg') }}') no-repeat center center; background-size: cover; position: relative; direction: ltr; margin-top: 64px;">
+    <section id="hero" class="hero section p-0" style="background: url('{{ asset('hero-back.jpg') }}') no-repeat center center; background-size: cover; position: relative; direction: ltr;">
       <!-- Transparent Overlay -->
       <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color:rgb(2, 37, 108); opacity: 0.88;"></div>
-      
       <!-- Carousel Content (Third Layer) -->
       <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" style="position: relative; z-index: 2;">
         <div class="carousel-inner pt-5">
-
           <!-- Slide 1: Welcome (default/active) -->
           <div class="carousel-item active">
             <div class="container">
-              <div class="row align-items-center" style="min-height: 560px;">
+              <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
-                <div class="col-lg-6 text-center">
+                <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
                   <img src="{{ asset('presenting.png') }}" alt="Welcome Man" class="img-fluid" style="max-height: 400px;">
                 </div>
                 <!-- Welcome Title (right) -->
-                <div class="col-lg-6 text-white text-center">
-                  <h3 class="display-5 fw-bold" style="color: white; letter-spacing: 2px; margin-bottom: 1.5rem;">Welcome to Azhary Academy</h1>
-                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">Enroll Now</a>
+                <div class="col-12 col-lg-6 text-white text-center text-lg-start">
+                  <h3 class="display-5 fw-bold" style="color: white; letter-spacing: 2px; margin-bottom: 1.5rem;">{{ __('website.Welcome to Azhary Academy') }}</h3>
+                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">{{ __('website.Enroll Now') }}</a>
                 </div>
               </div>
             </div>
           </div>
-
           <!-- Slide 2: SACT Certificate -->
           <div class="carousel-item">
             <div class="container">
-              <div class="row align-items-center" style="min-height: 560px;">
+              <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
-                <div class="col-lg-6 text-center">
-                  <img src="{{ asset('presenting.png') }}" alt="SACT Certificate" class="img-fluid" style="max-height: 400px;">
+                <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
+                  <img src="{{ asset('man.png') }}" alt="SACT Certificate" class="img-fluid" style="max-height: 400px;">
                 </div>
                 <!-- SACT Description (right) -->
-                <div class="col-lg-6 text-white">
-                  <h1 class="mb-4" style="color: #36b6e7; font-weight: bold;">SACT Certificate</h1>
+                <div class="col-12 col-lg-6 text-white text-center text-lg-start">
+                  <h1 class="mb-4" style="color: #36b6e7; font-weight: bold;">{{ __('website.SACT Certificate') }}</h1>
                   <p class="mb-4" style="font-size: 1.2rem;">
-                    Now is your chance to assess your level as a Quran and Arabic language teacher for non-native speakers and evaluate yourself to grow further. Take the test offered by Studio Arabiya Institute to earn the <b>SACT</b> certificate, which documents your scientific and practical skills to stand out in the job market.
+                    {{ __('website.Now is your chance to assess your level as a Quran and Arabic language teacher for non-native speakers and evaluate yourself to grow further. Take the test offered by Studio Arabiya Institute to earn the SACT certificate, which documents your scientific and practical skills to stand out in the job market.') }}
                   </p>
-                  <a href="#" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">Register Now & Seize the Opportunity</a>
+                  <a href="#" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">{{ __('website.Register Now & Seize the Opportunity') }}</a>
                 </div>
               </div>
             </div>
           </div>
-
           <!-- Slide 3: Online Learning Experience -->
           <div class="carousel-item">
             <div class="container">
-              <div class="row align-items-center" style="min-height: 560px;">
+              <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
-                <div class="col-lg-6 text-center">
-                  <img src="{{ asset('presenting.png') }}" alt="Online Learning" class="img-fluid" style="max-height: 400px;">
+                <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
+                  <img src="{{ asset('man2.png') }}" alt="Online Learning" class="img-fluid" style="max-height: 400px;">
                 </div>
                 <!-- Online Learning Content (right) -->
-                <div class="col-lg-6 text-white">
-                  <h1 class="mb-4" style="color: #36b6e7; font-weight: bold;">Interactive Online Learning</h1>
+                <div class="col-12 col-lg-6 text-white text-center text-lg-start">
+                  <h1 class="mb-4" style="color: #36b6e7; font-weight: bold;">{{ __('website.Interactive Online Learning') }}</h1>
                   <p class="mb-4" style="font-size: 1.2rem;">
-                    Experience our state-of-the-art virtual classroom designed specifically for Quranic education. Learn from qualified teachers through interactive sessions, real-time feedback, and personalized attention, all from the comfort of your home.
+                    {{ __('website.Experience our state-of-the-art virtual classroom designed specifically for Quranic education. Learn from qualified teachers through interactive sessions, real-time feedback, and personalized attention, all from the comfort of your home.') }}
                   </p>
-                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">Start Learning Today</a>
+                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">{{ __('website.Start Learning Today') }}</a>
                 </div>
               </div>
             </div>
           </div>
-
           <!-- Slide 4: French-Speaking Community -->
           <div class="carousel-item">
             <div class="container">
-              <div class="row align-items-center" style="min-height: 560px;">
+              <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
-                <div class="col-lg-6 text-center">
-                  <img src="{{ asset('presenting.png') }}" alt="French Community" class="img-fluid" style="max-height: 400px;">
+                <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
+                  <img src="{{ asset('man3.png') }}" alt="French Community" class="img-fluid" style="max-height: 400px;">
                 </div>
                 <!-- French Community Content (right) -->
-                <div class="col-lg-6 text-white">
-                  <h1 class="mb-4" style="color: #36b6e7; font-weight: bold;">Join Our French-Speaking Community</h1>
+                <div class="col-12 col-lg-6 text-white text-center text-lg-start">
+                  <h1 class="mb-4" style="color: #36b6e7; font-weight: bold;">{{ __('website.Join Our French-Speaking Community') }}</h1>
                   <p class="mb-4" style="font-size: 1.2rem;">
-                    Connect with fellow French-speaking Muslims worldwide in our supportive learning environment. Our native French-speaking teachers ensure you understand every aspect of your Islamic education in your preferred language.
+                    {{ __('website.Connect with fellow French-speaking Muslims worldwide in our supportive learning environment. Our native French-speaking teachers ensure you understand every aspect of your Islamic education in your preferred language.') }}
                   </p>
-                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">Join Our Community</a>
+                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">{{ __('website.Join Our Community') }}</a>
                 </div>
               </div>
             </div>
           </div>
-
           <!-- Slide 5: Children's Arabic Program -->
           <div class="carousel-item">
             <div class="container">
-              <div class="row align-items-center" style="min-height: 560px;">
+              <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
-                <div class="col-lg-6 text-center">
-                  <img src="{{ asset('presenting.png') }}" alt="Children's Arabic Learning" class="img-fluid" style="max-height: 400px;">
+                <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
+                  <img src="{{ asset('man4.png') }}" alt="Children's Arabic Learning" class="img-fluid" style="max-height: 400px;">
                 </div>
                 <!-- Children's Program Content (right) -->
-                <div class="col-lg-6 text-white">
-                  <h1 class="mb-4" style="color: #36b6e7; font-weight: bold;">Arabic Learning for Children</h1>
+                <div class="col-12 col-lg-6 text-white text-center text-lg-start">
+                  <h1 class="mb-4" style="color: #36b6e7; font-weight: bold;">{{ __('website.Arabic Learning for Children') }}</h1>
                   <p class="mb-4" style="font-size: 1.2rem;">
-                    Our specialized Arabic program for children combines fun, interactive learning with effective teaching methods. Using games, stories, and cultural activities, we help children master Arabic alphabet, numbers, colors, and basic conversation skills while developing a deep appreciation for Arabic culture.
+                    {{ __('website.Our specialized Arabic program for children combines fun, interactive learning with effective teaching methods. Using games, stories, and cultural activities, we help children master Arabic alphabet, numbers, colors, and basic conversation skills while developing a deep appreciation for Arabic culture.') }}
                   </p>
-                  <div class="d-flex gap-3 mb-4">
-                    <span class="badge bg-light text-primary">Interactive Learning</span>
-                    <span class="badge bg-light text-primary">Qualified Teachers</span>
-                    <span class="badge bg-light text-primary">Flexible Schedule</span>
+                  <div class="d-flex gap-3 mb-4 flex-wrap">
+                    <span class="badge bg-light text-primary">{{ __('website.Interactive Learning') }}</span>
+                    <span class="badge bg-light text-primary">{{ __('website.Qualified Teachers') }}</span>
+                    <span class="badge bg-light text-primary">{{ __('website.Flexible Schedule') }}</span>
                   </div>
-                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">Start Your Child's Journey</a>
+                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">{{ __('website.Start Your Child\'s Journey') }}</a>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
         <!-- Carousel controls -->
         <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
@@ -722,6 +702,136 @@
         </div>
       </div>
     </section><!-- /Testimonials Section -->
+
+    <!-- Video Testimonials Section -->
+    <section id="video-testimonials" class="video-testimonials section light-background">
+      <div class="container section-title" data-aos="fade-up">
+        <h2>{{ __('website.Video Testimonials') }}</h2>
+        <p>{{ __('website.Watch our students share their learning experience and success stories') }}</p>
+      </div>
+
+      <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="row g-4 justify-content-center">
+          <!-- Video 1 -->
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
+            <div class="video-testimonial-card h-100 bg-white rounded-4 shadow-lg overflow-hidden">
+              <div class="video-container position-relative">
+                <video class="w-100" controls>
+                  <source src="{{ asset('video1.mp4') }}" type="video/mp4">
+                  {{ __('website.Your browser does not support the video tag.') }}
+                </video>
+              </div>
+          
+            </div>
+          </div>
+
+          <!-- Video 2 -->
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
+            <div class="video-testimonial-card h-100 bg-white rounded-4 shadow-lg overflow-hidden">
+              <div class="video-container position-relative">
+                <video class="w-100" controls>
+                  <source src="{{ asset('video2.mp4') }}" type="video/mp4">
+                  {{ __('website.Your browser does not support the video tag.') }}
+                </video>
+              </div>
+          
+            </div>
+          </div>
+
+          <!-- Video 3 -->
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
+            <div class="video-testimonial-card h-100 bg-white rounded-4 shadow-lg overflow-hidden">
+              <div class="video-container position-relative">
+                <video class="w-100" controls>
+                  <source src="{{ asset('video3.mp4') }}" type="video/mp4">
+                  {{ __('website.Your browser does not support the video tag.') }}
+                </video>
+              </div>
+             
+            </div>
+          </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="400">
+          <div class="cta-video-box bg-primary text-white p-5 rounded-4">
+            <h3 class="mb-3" style="color: white;">{{ __('website.Join Our Success Stories') }}</h3>
+            <p class="mb-4">{{ __('website.Be part of our growing community of successful learners. Start your Quranic journey today and create your own success story.') }}</p>
+            <a href="{{ route('enroll.show') }}" class="btn btn-light btn-lg px-5">{{ __('website.Start Learning Now') }}</a>
+          </div>
+        </div>
+      </div>
+
+      <style>
+        .video-testimonials {
+          padding: 80px 0;
+        }
+        
+        .video-testimonial-card {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          border: none;
+        }
+        
+        .video-testimonial-card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
+        }
+        
+        .video-container {
+          position: relative;
+          overflow: hidden;
+        }
+        
+        .video-container video {
+          display: block;
+          width: 100%;
+          height: auto;
+        }
+        
+        .video-content h4 {
+          color: #13223F;
+          font-weight: 600;
+        }
+        
+        .video-content p {
+          font-size: 0.95rem;
+          line-height: 1.6;
+        }
+        
+        .cta-video-box {
+          background: linear-gradient(135deg, #0d7adb 0%, #0a2260 100%) !important;
+          box-shadow: 0 15px 35px rgba(13, 122, 219, 0.3);
+        }
+        
+        .cta-video-box h3 {
+          font-weight: 700;
+          font-size: 2rem;
+        }
+        
+        .cta-video-box p {
+          font-size: 1.1rem;
+          opacity: 0.9;
+        }
+        
+        .avatar img {
+          border: 2px solid #e9ecef;
+        }
+        
+        @media (max-width: 768px) {
+          .video-testimonials {
+            padding: 60px 0;
+          }
+          
+          .cta-video-box {
+            padding: 3rem 2rem !important;
+          }
+          
+          .cta-video-box h3 {
+            font-size: 1.5rem;
+          }
+        }
+      </style>
+    </section><!-- /Video Testimonials Section -->
 
     <!-- Articles Section -->
     <section id="articles" class="articles section light-background">
