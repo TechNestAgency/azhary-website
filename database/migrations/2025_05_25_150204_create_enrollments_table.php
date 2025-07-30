@@ -16,12 +16,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('mobile');
-            $table->integer('age');
-            $table->enum('gender', ['male', 'female', 'other']);
-            $table->enum('package', ['basic', 'standard', 'premium']);
-            $table->text('course_details');
-            $table->json('preferred_days');
-            $table->json('preferred_times');
+            $table->integer('age')->nullable();
+            $table->enum('gender', ['male', 'female', 'other'])->nullable();
+            $table->string('arabic_level'); // Arabic proficiency level
+            $table->string('package'); // Changed from enum to string to accommodate course types
+            $table->text('course_details')->nullable();
+            $table->json('preferred_days')->nullable();
+            $table->json('preferred_times')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->text('notes')->nullable();
             $table->timestamps();

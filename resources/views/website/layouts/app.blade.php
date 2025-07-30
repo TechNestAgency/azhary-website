@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
   <meta charset="utf-8">
@@ -56,6 +56,92 @@
 
   <!-- Main JS File -->
   <script src="{{ asset('website_assets/js/main.js') }}"></script>
+
+  <!-- Fixed WhatsApp Icon -->
+  <div id="whatsapp-float" class="whatsapp-float">
+    <a href="https://wa.me/33758684170" target="_blank" class="whatsapp-link">
+      <i class="bi bi-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Scroll Shadow Effect Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.getElementById('fixedHeader');
+      
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 10) {
+          header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        } else {
+          header.style.boxShadow = 'none';
+        }
+      });
+    });
+  </script>
+
+  <!-- WhatsApp Float Styles -->
+  <style>
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      animation: whatsapp-bounce 2s infinite;
+    }
+    
+    .whatsapp-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+    }
+    
+    .whatsapp-link:hover {
+      background-color: #128c7e;
+      color: white;
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+    }
+    
+    .whatsapp-link i {
+      font-size: 28px;
+    }
+    
+    @keyframes whatsapp-bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .whatsapp-link {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .whatsapp-link i {
+        font-size: 24px;
+      }
+    }
+  </style>
 
   @stack('scripts')
 </body>

@@ -9,12 +9,9 @@
         </div>
         <div class="col-12 col-md d-flex align-items-center justify-content-center justify-content-md-end gap-3 flex-wrap">
           <a href="#" style="color: #fff; text-decoration: none;">{{ __('website.Our Social') }}</a>
-          <a href="#" style="color: #ffd600;"><i class="bi bi-facebook"></i></a>
-          <a href="#" style="color: #ffd600;"><i class="bi bi-twitter"></i></a>
-          <a href="#" style="color: #ffd600;"><i class="bi bi-pinterest"></i></a>
-          <a href="#" style="color: #ffd600;"><i class="bi bi-youtube"></i></a>
-          <a href="#" style="color: #ffd600;"><i class="bi bi-instagram"></i></a>
-          <a href="#" style="color: #ffd600;"><i class="bi bi-linkedin"></i></a>
+          <a href="https://www.facebook.com/share/1FjSh3nMAU/" target="_blank" style="color: #ffd600;"><i class="bi bi-facebook"></i></a>
+          <a href="https://x.com/MadrassatAzhary?t=7nDlU99ZIjGwJTPM0daDwQ&s=09" target="_blank" style="color: #ffd600;"><i class="bi bi-twitter-x"></i></a>
+          <a href="https://www.instagram.com/madrassat.azhary?igsh=MXMxd3E5bnhxdzBjNw==" target="_blank" style="color: #ffd600;"><i class="bi bi-instagram"></i></a>
         </div>
       </div>
     </div>
@@ -36,12 +33,10 @@
               <i class="bi bi-grid-3x3-gap-fill me-1"></i> {{ __('website.Category') }}
             </a>
             <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-              <li><a class="dropdown-item" href="{{ route('website.courses.quran-reading') }}">{{ __('website.Quran Reading & Tajweed') }}</a></li>
-              <li><a class="dropdown-item" href="{{ route('website.courses.quran-memorization') }}">{{ __('website.Quran Memorization') }}</a></li>
-              <li><a class="dropdown-item" href="{{ route('website.courses.quranic-arabic') }}">{{ __('website.Quranic Arabic & Tafseer') }}</a></li>
-              <li><a class="dropdown-item" href="{{ route('website.courses.islamic-studies') }}">{{ __('website.Islamic Studies') }}</a></li>
-              <li><a class="dropdown-item" href="{{ route('website.courses.children-quran') }}">{{ __('website.Children\'s Quran Program') }}</a></li>
-              <li><a class="dropdown-item" href="{{ route('website.courses.ijazah') }}">{{ __('website.Ijazah Certification') }}</a></li>
+                          <li><a class="dropdown-item" href="{{ route('website.courses.quran') }}">{{ __('website.Quran (Recitation, Tajweed & Memorization)') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('website.courses.arabic-language') }}">{{ __('website.Arabic Language') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('website.courses.islamic-studies') }}">{{ __('website.Islamic Studies') }}</a></li>
+            <li><a class="dropdown-item" href="{{ route('website.courses.ijazah') }}">{{ __('website.Ijazah (Qur\'an Certification)') }}</a></li>
             </ul>
           </li>
           <li class="nav-item dropdown">

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Azhary Academy</title>
+  <title>Madrassat Azhary</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -37,30 +37,28 @@
 </head>
 <body class="index-page">
 
-  <!-- Top Bar -->
-  <div class="top-bar px-3 py-2 d-none d-md-block" style="background-color:rgb(2, 37, 108);opacity: 0.88; color: #fff; top: 0; left: 0; width: 100%; z-index: 1040;">
-    <div class="container-fluid">
-      <div class="row align-items-center flex-column flex-md-row text-center text-md-start">
-        <div class="col-12 col-md-auto d-flex align-items-center justify-content-center justify-content-md-start gap-3 flex-wrap mb-2 mb-md-0">
-          <span class="d-flex align-items-center"><i class="bi bi-telephone-fill me-2"></i> {{ __('website.Whatsapp') }} : +201507788982</span>
-          <span class="mx-2 d-none d-md-block" style="border-left: 1px solid #fff; height: 20px;"></span>
-          <span class="d-flex align-items-center"><i class="bi bi-envelope-fill me-2"></i> Madrassatazhary4@gmail.com</span>
-        </div>
-        <div class="col-12 col-md d-flex align-items-center justify-content-center justify-content-md-end gap-3 flex-wrap">
-          <a href="#" style="color: #fff; text-decoration: none;">{{ __('website.Our Social') }}</a>
-          <a href="#" style="color: #ffd600;"><i class="bi bi-facebook"></i></a>
-          <a href="#" style="color: #ffd600;"><i class="bi bi-twitter"></i></a>
-          <a href="#" style="color: #ffd600;"><i class="bi bi-pinterest"></i></a>
-          <a href="#" style="color: #ffd600;"><i class="bi bi-youtube"></i></a>
-          <a href="#" style="color: #ffd600;"><i class="bi bi-instagram"></i></a>
-          <a href="#" style="color: #ffd600;"><i class="bi bi-linkedin"></i></a>
+  <!-- Fixed Top Bar with Social Links and Navigation -->
+  <div class="fixed-top" id="fixedHeader" style="background-color:rgb(2, 37, 108);opacity: 0.88; color: #fff; z-index: 1040; transition: box-shadow 0.3s ease;">
+    <!-- Social Links Section -->
+    <div class="px-3 py-2 d-none d-md-block" style="border-bottom: 1px solid rgba(255,255,255,0.2);">
+      <div class="container-fluid">
+        <div class="row align-items-center flex-column flex-md-row text-center text-md-start">
+          <div class="col-12 col-md-auto d-flex align-items-center justify-content-center justify-content-md-start gap-3 flex-wrap mb-2 mb-md-0">
+            <span class="d-flex align-items-center"><i class="bi bi-telephone-fill me-2"></i> {{ __('website.Whatsapp') }} : +33 7 58 68 41 70</span>
+          </div>
+          <div class="col-12 col-md d-flex align-items-center justify-content-center justify-content-md-end gap-3 flex-wrap">
+            <a href="#" style="color: #fff; text-decoration: none;">{{ __('website.Our Social') }}</a>
+            <a href="mailto:Madrassatazhary4@gmail.com" style="color: #ffd600;"><i class="bi bi-envelope-fill"></i></a>
+            <a href="https://www.facebook.com/share/1FjSh3nMAU/" target="_blank" style="color: #ffd600;"><i class="bi bi-facebook"></i></a>
+            <a href="https://x.com/MadrassatAzhary?t=7nDlU99ZIjGwJTPM0daDwQ&s=09" target="_blank" style="color: #ffd600;"><i class="bi bi-twitter-x"></i></a>
+            <a href="https://www.instagram.com/madrassat.azhary?igsh=MXMxd3E5bnhxdzBjNw==" target="_blank" style="color: #ffd600;"><i class="bi bi-instagram"></i></a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- Responsive Header -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white" style="z-index: 1030; border: none !important;">
+    <!-- Navigation Section -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border: none !important;">
     <div class="container">
       <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center me-auto me-xl-0">
         <img src="{{asset('website_assets/img/logo-no.png')}}" alt="" style="max-height: 60px;">
@@ -70,47 +68,35 @@
       </button>
       <div class="collapse navbar-collapse" id="mainNavbar">
         <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-3">
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('home') }}">{{ __('website.Home Page') }}</a>
+          </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="categoryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="bi bi-grid-3x3-gap-fill me-1"></i> {{ __('website.Category') }}
+            <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {{ __('website.Our Courses') }}
             </a>
-            <ul class="dropdown-menu" aria-labelledby="categoryDropdown">
-              <li><a class="dropdown-item" href="{{ route('website.courses.quran-reading') }}">{{ __('website.Quran Reading & Tajweed') }}</a></li>
-              <li><a class="dropdown-item" href="{{ route('website.courses.quran-memorization') }}">{{ __('website.Quran Memorization') }}</a></li>
-              <li><a class="dropdown-item" href="{{ route('website.courses.quranic-arabic') }}">{{ __('website.Quranic Arabic & Tafseer') }}</a></li>
+            <ul class="dropdown-menu" aria-labelledby="coursesDropdown">
+              <li><a class="dropdown-item" href="{{ route('website.courses.quran') }}">{{ __('website.Quran (Recitation, Tajweed & Memorization)') }}</a></li>
+              <li><a class="dropdown-item" href="{{ route('website.courses.arabic-language') }}">{{ __('website.Arabic Language') }}</a></li>
               <li><a class="dropdown-item" href="{{ route('website.courses.islamic-studies') }}">{{ __('website.Islamic Studies') }}</a></li>
-              <li><a class="dropdown-item" href="{{ route('website.courses.children-quran') }}">{{ __('website.Children\'s Quran Program') }}</a></li>
-              <li><a class="dropdown-item" href="{{ route('website.courses.ijazah') }}">{{ __('website.Ijazah Certification') }}</a></li>
+              <li><a class="dropdown-item" href="{{ route('website.courses.ijazah') }}">{{ __('website.Ijazah (Qur\'an Certification)') }}</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="learningStylesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {{ __('website.Learning Styles') }}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="learningStylesDropdown">
-              <li><a class="dropdown-item" href="#hero">{{ __('website.Home') }}</a></li>
-              <li><a class="dropdown-item" href="#about">{{ __('website.About') }}</a></li>
-              <li><a class="dropdown-item" href="#services">{{ __('website.Services') }}</a></li>
-              <li><a class="dropdown-item" href="#portfolio">{{ __('website.Portfolio') }}</a></li>
-            </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('website.teachers.index') }}">{{ __('website.Our Teachers') }}</a>
           </li>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="organizationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {{ __('website.Organizations') }}
+            <a class="nav-link dropdown-toggle" href="#" id="ratesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              🪙 {{ __('website.Rates') }}
             </a>
-            <ul class="dropdown-menu" aria-labelledby="organizationsDropdown">
-              <li><a class="dropdown-item" href="#team">{{ __('website.Team') }}</a></li>
-              <li><a class="dropdown-item" href="{{ route('website.articles.index') }}">{{ __('website.Articles') }}</a></li>
+            <ul class="dropdown-menu" aria-labelledby="ratesDropdown">
+              <li><a class="dropdown-item" href="{{ route('rates.confirmed') }}">{{ __('website.Confirmed Teachers') }} ✔️</a></li>
+              <li><a class="dropdown-item" href="{{ route('rates.super') }}">{{ __('website.Super Teachers') }} ⚡</a></li>
+              <li><a class="dropdown-item" href="{{ route('rates.ambassador') }}">{{ __('website.Ambassador Teachers') }} 🚀</a></li>
             </ul>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              {{ __('website.More') }}
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="moreDropdown">
-              <li><a class="dropdown-item" href="{{ route('pricing') }}">{{ __('website.Pricing') }}</a></li>
-              <li><a class="dropdown-item" href="#contact">{{ __('website.Contact') }}</a></li>
-            </ul>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ route('website.articles.index') }}">{{ __('website.Articles') }}</a>
           </li>
           <li class="nav-item d-flex align-items-center">
             <div class="language-switcher d-flex align-items-center gap-1">
@@ -125,16 +111,17 @@
         </ul>
       </div>
     </div>
-  </nav>
+    </nav>
+  </div>
 
-  <main class="main">
+  <main class="main" style="padding-top: 140px;">
 
     <!-- Hero Section -->
     <section id="hero" class="hero section p-0" style="background: url('{{ asset('hero-back.jpg') }}') no-repeat center center; background-size: cover; position: relative; direction: ltr;">
       <!-- Transparent Overlay -->
       <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color:rgb(2, 37, 108); opacity: 0.88;"></div>
       <!-- Carousel Content (Third Layer) -->
-      <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" style="position: relative; z-index: 2;">
+      <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000" style="position: relative; z-index: 2;">
         <div class="carousel-inner pt-5">
           <!-- Slide 1: Welcome (default/active) -->
           <div class="carousel-item active">
@@ -147,31 +134,12 @@
                 <!-- Welcome Title (right) -->
                 <div class="col-12 col-lg-6 text-white text-center text-lg-start">
                   <h3 class="display-5 fw-bold" style="color: white; letter-spacing: 2px; margin-bottom: 1.5rem;">{{ __('website.Welcome to Azhary Academy') }}</h3>
-                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">{{ __('website.Enroll Now') }}</a>
+                  <a href="{{ route('enroll.show') }}" class="btn btn-islamic btn-lg">{{ __('website.Enroll Now') }}</a>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Slide 2: SACT Certificate -->
-          <div class="carousel-item">
-            <div class="container">
-              <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
-                <!-- Image (left) -->
-                <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
-                  <img src="{{ asset('man.png') }}" alt="SACT Certificate" class="img-fluid" style="max-height: 400px;">
-                </div>
-                <!-- SACT Description (right) -->
-                <div class="col-12 col-lg-6 text-white text-center text-lg-start">
-                  <h1 class="mb-4" style="color: #36b6e7; font-weight: bold;">{{ __('website.SACT Certificate') }}</h1>
-                  <p class="mb-4" style="font-size: 1.2rem;">
-                    {{ __('website.Now is your chance to assess your level as a Quran and Arabic language teacher for non-native speakers and evaluate yourself to grow further. Take the test offered by Studio Arabiya Institute to earn the SACT certificate, which documents your scientific and practical skills to stand out in the job market.') }}
-                  </p>
-                  <a href="#" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">{{ __('website.Register Now & Seize the Opportunity') }}</a>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Slide 3: Online Learning Experience -->
+         
           <div class="carousel-item">
             <div class="container">
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
@@ -185,7 +153,7 @@
                   <p class="mb-4" style="font-size: 1.2rem;">
                     {{ __('website.Experience our state-of-the-art virtual classroom designed specifically for Quranic education. Learn from qualified teachers through interactive sessions, real-time feedback, and personalized attention, all from the comfort of your home.') }}
                   </p>
-                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">{{ __('website.Start Learning Today') }}</a>
+                  <a href="{{ route('enroll.show') }}" class="btn btn-islamic btn-lg">{{ __('website.Start Learning Today') }}</a>
                 </div>
               </div>
             </div>
@@ -204,7 +172,7 @@
                   <p class="mb-4" style="font-size: 1.2rem;">
                     {{ __('website.Connect with fellow French-speaking Muslims worldwide in our supportive learning environment. Our native French-speaking teachers ensure you understand every aspect of your Islamic education in your preferred language.') }}
                   </p>
-                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">{{ __('website.Join Our Community') }}</a>
+                  <a href="{{ route('enroll.show') }}" class="btn btn-islamic btn-lg">{{ __('website.Join Our Community') }}</a>
                 </div>
               </div>
             </div>
@@ -228,7 +196,7 @@
                     <span class="badge bg-light text-primary">{{ __('website.Qualified Teachers') }}</span>
                     <span class="badge bg-light text-primary">{{ __('website.Flexible Schedule') }}</span>
                   </div>
-                  <a href="{{ route('enroll.show') }}" class="btn btn-outline-info btn-lg" style="color: #36b6e7; border-color: #36b6e7;">{{ __('website.Start Your Child\'s Journey') }}</a>
+                  <a href="{{ route('enroll.show') }}" class="btn btn-islamic btn-lg">{{ __('website.Start Your Child\'s Journey') }}</a>
                 </div>
               </div>
             </div>
@@ -247,9 +215,9 @@
     </section>
 
     <!-- Why Choose Section -->
-    <section id="why-choose" class="why-choose section light-background py-5">
+    <section id="why-choose" class="why-choose section light-background py-5 islamic-pattern-1">
       <div class="container">
-        <div class="text-center mb-5">
+        <div class="text-center mb-5 islamic-section-header">
           <h2>
             ✨ {{ __('website.why_choose_title') }}
           </h2>
@@ -257,56 +225,56 @@
         </div>
         <div class="row g-4 justify-content-center">
           <div class="col-md-4">
-            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white islamic-card">
               <div class="mb-3" style="font-size:2rem;">👩‍🏫</div>
               <h4 class="mb-2 text-success">{{ __('website.individual_courses_title') }}</h4>
               <p>{{ __('website.individual_courses_desc') }}</p>
             </div>
           </div>
           <div class="col-md-4">
-            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white islamic-card">
               <div class="mb-3" style="font-size:2rem;">🕒</div>
               <h4 class="mb-2 text-primary">{{ __('website.flexible_hours_title') }}</h4>
               <p>{{ __('website.flexible_hours_desc') }}</p>
             </div>
           </div>
           <div class="col-md-4">
-            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white islamic-card">
               <div class="mb-3" style="font-size:2rem;">📊</div>
               <h4 class="mb-2 text-purple">{{ __('website.monthly_reports_title') }}</h4>
               <p>{{ __('website.monthly_reports_desc') }}</p>
             </div>
           </div>
           <div class="col-md-4">
-            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white islamic-card">
               <div class="mb-3" style="font-size:2rem;">🎮</div>
               <h4 class="mb-2 text-warning">{{ __('website.games_activities_title') }}</h4>
               <p>{{ __('website.games_activities_desc') }}</p>
             </div>
           </div>
           <div class="col-md-4">
-            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white islamic-card">
               <div class="mb-3" style="font-size:2rem;">🎧</div>
               <h4 class="mb-2 text-danger">{{ __('website.recorded_lessons_title') }}</h4>
               <p>{{ __('website.recorded_lessons_desc') }}</p>
             </div>
           </div>
           <div class="col-md-4">
-            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white islamic-card">
               <div class="mb-3" style="font-size:2rem;">🎓</div>
               <h4 class="mb-2 text-success">{{ __('website.certified_teachers_title') }}</h4>
               <p>{{ __('website.certified_teachers_desc') }}</p>
             </div>
           </div>
           <div class="col-md-4">
-            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white islamic-card">
               <div class="mb-3" style="font-size:2rem;">📜</div>
               <h4 class="mb-2 text-orange">{{ __('website.certificates_title') }}</h4>
               <p>{{ __('website.certificates_desc') }}</p>
             </div>
           </div>
           <div class="col-md-4">
-            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white">
+            <div class="feature-card h-100 text-center p-4 shadow-sm rounded-4 bg-white islamic-card">
               <div class="mb-3" style="font-size:2rem;">🌍</div>
               <h4 class="mb-2 text-info">{{ __('website.international_title') }}</h4>
               <p>{{ __('website.international_desc') }}</p>
@@ -317,8 +285,118 @@
     </section>
     <!-- /Why Choose Section -->
 
+    <!-- Statistics Section -->
+    <section id="statistics" class="statistics-section py-5" style="background: linear-gradient(135deg, #0a2260 0%, #1e3a8a 50%, #3b82f6 100%); position: relative; overflow: hidden;">
+      <!-- Islamic Pattern Overlay -->
+      <div class="islamic-pattern-overlay"></div>
+      
+      <div class="container position-relative" style="z-index: 2;">
+        <div class="text-center mb-5">
+          <h2 class="text-white display-4 fw-bold mb-3" style="text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">
+            🏆 {{ __('website.Our Achievements') }}
+          </h2>
+          <p class="text-white-50 lead" style="font-size: 1.2rem;">
+            {{ __('website.Join thousands of students who have transformed their Quranic journey with us') }}
+          </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+          <!-- Students Counter -->
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="stat-card text-center p-4">
+              <div class="stat-icon mb-3">
+                <i class="bi bi-people-fill"></i>
+              </div>
+              <div class="stat-number mb-2">
+                <span class="counter" data-target="2500" data-live="true" data-live-increment="3">0</span>+
+              </div>
+              <div class="stat-label">{{ __('website.Happy Students') }}</div>
+              <div class="stat-description">{{ __('website.Enrolled worldwide') }}</div>
+            </div>
+          </div>
+
+          <!-- Teachers Counter -->
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="stat-card text-center p-4">
+              <div class="stat-icon mb-3">
+                <i class="bi bi-person-workspace"></i>
+              </div>
+              <div class="stat-number mb-2">
+                <span class="counter" data-target="85" data-live="true" data-live-increment="1">0</span>+
+              </div>
+              <div class="stat-label">{{ __('website.Expert Teachers') }}</div>
+              <div class="stat-description">{{ __('website.Certified instructors') }}</div>
+            </div>
+          </div>
+
+          <!-- Hours Conducted Counter -->
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="stat-card text-center p-4">
+              <div class="stat-icon mb-3">
+                <i class="bi bi-clock-history"></i>
+              </div>
+              <div class="stat-number mb-2">
+                <span class="counter" data-target="15000" data-live="true" data-live-increment="25">0</span>+
+              </div>
+              <div class="stat-label">{{ __('website.Hours Conducted') }}</div>
+              <div class="stat-description">{{ __('website.Quranic lessons') }}</div>
+            </div>
+          </div>
+
+          <!-- Countries Counter -->
+          <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="stat-card text-center p-4">
+              <div class="stat-icon mb-3">
+                <i class="bi bi-globe"></i>
+              </div>
+              <div class="stat-number mb-2">
+                <span class="counter" data-target="45" data-live="true" data-live-increment="1">0</span>+
+              </div>
+              <div class="stat-label">{{ __('website.Countries') }}</div>
+              <div class="stat-description">{{ __('website.Worldwide reach') }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Additional Achievement Row -->
+        <div class="row g-4 justify-content-center mt-4">
+          <!-- Certificates Awarded -->
+          <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="500">
+            <div class="stat-card text-center p-4">
+              <div class="stat-icon mb-3">
+                <i class="bi bi-award-fill"></i>
+              </div>
+              <div class="stat-number mb-2">
+                <span class="counter" data-target="750" data-live="true" data-live-increment="2">0</span>+
+              </div>
+              <div class="stat-label">{{ __('website.Certificates Awarded') }}</div>
+              <div class="stat-description">{{ __('website.Quran completion') }}</div>
+            </div>
+          </div>
+
+          <!-- Years of Experience -->
+          <div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-delay="600">
+            <div class="stat-card text-center p-4">
+              <div class="stat-icon mb-3">
+                <i class="bi bi-calendar-check-fill"></i>
+              </div>
+              <div class="stat-number mb-2">
+                <span class="counter" data-target="12" data-live="true" data-live-increment="1">0</span>+
+              </div>
+              <div class="stat-label">{{ __('website.Years of Experience') }}</div>
+              <div class="stat-description">{{ __('website.In Islamic education') }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /Statistics Section -->
+
+    <!-- Islamic Divider -->
+    <div class="islamic-divider"></div>
+
     <!-- About Section -->
-    <section id="about" class="about section">
+    <section id="about" class="about section islamic-gradient-1">
 
       <div class="container">
 
@@ -349,13 +427,14 @@
       </div>
     </section><!-- /About Section -->
 
- 
+    <!-- Islamic Divider -->
+    <div class="islamic-divider"></div>
 
     <!-- Services Section -->
-    <section id="services" class="services section">
+    <section id="services" class="services section islamic-pattern-2">
 
       <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
+      <div class="container section-title islamic-section-header" data-aos="fade-up">
         <h2>{{ __('website.Our Courses') }}</h2>
         <p>{{ __('website.Comprehensive Islamic education tailored for French-speaking students from beginners to advanced levels') }}</p>
       </div><!-- End Section Title -->
@@ -370,9 +449,9 @@
                 <i class="bi bi-book-half"></i>
               </div>
               <div class="service-content">
-                <h3>{{ __('website.Quran Reading & Tajweed') }}</h3>
-                <p>{{ __('website.Learn to read the Quran with proper pronunciation and recitation rules. Our native French-speaking instructors will guide you through the fundamentals of Arabic letters, sounds, and tajweed rules for beautiful recitation.') }}</p>
-                <a href="{{ route('website.courses.quran-reading') }}" class="service-link">
+                <h3>{{ __('website.Quran (Recitation, Tajweed & Memorization)') }}</h3>
+                <p>{{ __('website.Comprehensive Quran learning program covering recitation, tajweed rules, and memorization techniques. Our native French-speaking instructors guide you through proper pronunciation, tajweed rules, and systematic memorization methods.') }}</p>
+                <a href="{{ route('website.courses.quran') }}" class="service-link">
                   <span>{{ __('website.Learn More') }}</span>
                   <i class="bi bi-arrow-right"></i>
                 </a>
@@ -383,12 +462,12 @@
           <div class="col-md-6" data-aos="fade-left" data-aos-delay="100">
             <div class="service-item">
               <div class="service-icon">
-                <i class="bi bi-journal-richtext"></i>
+                <i class="bi bi-translate"></i>
               </div>
               <div class="service-content">
-                <h3>{{ __('website.Quran Memorization') }}</h3>
-                <p>{{ __('website.Develop your ability to memorize the Quran with our structured program that uses proven memorization techniques. Our experienced teachers provide personalized guidance and regular revision sessions to ensure strong retention.') }}</p>
-                <a href="{{ route('website.courses.quran-memorization') }}" class="service-link">
+                <h3>{{ __('website.Arabic Language') }}</h3>
+                <p>{{ __('website.Master the Arabic language with native speakers - from basic conversation to advanced grammar and cultural understanding. Learn Modern Standard Arabic and colloquial dialects with authentic cultural context.') }}</p>
+                <a href="{{ route('website.courses.arabic-language') }}" class="service-link">
                   <span>{{ __('website.Learn More') }}</span>
                   <i class="bi bi-arrow-right"></i>
                 </a>
@@ -397,22 +476,6 @@
           </div><!-- End Service Item -->
 
           <div class="col-md-6" data-aos="fade-right" data-aos-delay="200">
-            <div class="service-item">
-              <div class="service-icon">
-                <i class="bi bi-translate"></i>
-              </div>
-              <div class="service-content">
-                <h3>{{ __('website.Quranic Arabic & Tafseer') }}</h3>
-                <p>{{ __('website.Understand the meaning behind the verses with our Quranic Arabic and Tafseer courses. Learn Arabic vocabulary, grammar, and syntax through the Quran, with explanations in French to deepen your comprehension of Allah\'s words.') }}</p>
-                <a href="{{ route('website.courses.quranic-arabic') }}" class="service-link">
-                  <span>{{ __('website.Learn More') }}</span>
-                  <i class="bi bi-arrow-right"></i>
-                </a>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
             <div class="service-item">
               <div class="service-icon">
                 <i class="bi bi-moon-stars"></i>
@@ -428,29 +491,13 @@
             </div>
           </div><!-- End Service Item -->
 
-          <div class="col-md-6" data-aos="fade-right" data-aos-delay="300">
-            <div class="service-item">
-              <div class="service-icon">
-                <i class="bi bi-people"></i>
-              </div>
-              <div class="service-content">
-                <h3>{{ __('website.Children\'s Quran Program') }}</h3>
-                <p>{{ __('website.Specially designed courses for children aged 5-12, making learning fun and engaging through interactive activities, visual aids, and age-appropriate teaching methods. Help your children build a strong Islamic foundation from a young age.') }}</p>
-                <a href="{{ route('website.courses.children-quran') }}" class="service-link">
-                  <span>{{ __('website.Learn More') }}</span>
-                  <i class="bi bi-arrow-right"></i>
-                </a>
-              </div>
-            </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-md-6" data-aos="fade-left" data-aos-delay="300">
+          <div class="col-md-6" data-aos="fade-left" data-aos-delay="200">
             <div class="service-item">
               <div class="service-icon">
                 <i class="bi bi-award"></i>
               </div>
               <div class="service-content">
-                <h3>{{ __('website.Ijazah Certification') }}</h3>
+                <h3>{{ __('website.Ijazah (Qur\'an Certification)') }}</h3>
                 <p>{{ __('website.Advanced program for those seeking formal authorization (Ijazah) in Quran recitation. Study under certified scholars and join the unbroken chain of narration tracing back to the Prophet Muhammad ﷺ through our rigorous certification program.') }}</p>
                 <a href="{{ route('website.courses.ijazah') }}" class="service-link">
                   <span>{{ __('website.Learn More') }}</span>
@@ -466,45 +513,78 @@
 
     </section><!-- /Services Section -->
 
-  
+    <!-- Islamic Divider -->
+    <div class="islamic-divider"></div>
+
     <!-- Team Section -->
-    <section id="team" class="team section light-background">
+    <section id="team" class="team section light-background geometric-islamic-bg">
 
       <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
+      <div class="container section-title islamic-section-header" data-aos="fade-up">
         <h2>{{ __('website.Our Teachers') }}</h2>
         <p>{{ __('website.Meet our qualified and experienced Quran teachers who are dedicated to helping you learn') }}</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row g-5">
-          @foreach($teachers as $teacher)
-          <div class="col-md-6 col-lg-3" data-aos="zoom-in" data-aos-delay="{{ $loop->iteration * 100 }}">
-            <div class="team-card">
-              <div class="team-image">
-                <img src="{{ asset($teacher->photo) }}" class="img-fluid" alt="{{ $teacher->name }}">
-                <div class="team-overlay">
-                  <p>{!! Str::limit($teacher->short_description, 150) !!}</p>
-                  <a href="{{ route('website.teachers.show', $teacher->id) }}" class="btn btn-light">{{ __('website.View Profile') }}</a>
+        <div class="teachers-slider swiper init-swiper">
+          <script type="application/json" class="swiper-config">
+            {
+              "loop": true,
+              "speed": 800,
+              "autoplay": {
+                "delay": 4000
+              },
+              "slidesPerView": 1,
+              "spaceBetween": 30,
+              "pagination": {
+                "el": ".swiper-pagination",
+                "type": "bullets",
+                "clickable": true
+              },
+              "navigation": {
+                "nextEl": ".swiper-button-next",
+                "prevEl": ".swiper-button-prev"
+              },
+              "breakpoints": {
+                "576": {
+                  "slidesPerView": 2
+                },
+                "768": {
+                  "slidesPerView": 3
+                },
+                "1200": {
+                  "slidesPerView": 4
+                }
+              }
+            }
+          </script>
+          <div class="swiper-wrapper">
+            @foreach($teachers as $teacher)
+            <div class="swiper-slide" data-aos="zoom-in" data-aos-delay="{{ $loop->iteration * 100 }}">
+              <div class="teacher-profile-card">
+                <div class="teacher-photo-section">
+                  <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->name }}">
+                </div>
+                <div class="teacher-info-section">
+                  <h4 class="teacher-name">{{ $teacher->name }}</h4>
+                  <p class="teacher-description">{!! Str::limit($teacher->short_description, 200) !!}</p>
+                  <a href="{{ route('website.teachers.show', $teacher->id) }}" class="teacher-btn">{{ __('website.Learn More') }}</a>
                 </div>
               </div>
-              <div class="team-content">
-                <h4>{{ $teacher->name }}</h4>
-                <span class="position">{{ $teacher->specialization }}</span>
-              </div>
             </div>
+            @endforeach
           </div>
-          @endforeach
+          <div class="swiper-pagination"></div>
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
         </div>
-
       </div>
 
     </section><!-- /Team Section -->
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section">
-      <div class="container section-title" data-aos="fade-up">
+    <section id="testimonials" class="testimonials section islamic-gradient-2">
+      <div class="container section-title islamic-section-header" data-aos="fade-up">
         <h2>{{ __('website.Student Testimonials') }}</h2>
         <p>{{ __('website.Hear from our students about their journey in learning the Quran and Islamic studies') }}</p>
       </div>
@@ -704,8 +784,8 @@
     </section><!-- /Testimonials Section -->
 
     <!-- Video Testimonials Section -->
-    <section id="video-testimonials" class="video-testimonials section light-background">
-      <div class="container section-title" data-aos="fade-up">
+    <section id="video-testimonials" class="video-testimonials section light-background islamic-pattern-3">
+      <div class="container section-title islamic-section-header" data-aos="fade-up">
         <h2>{{ __('website.Video Testimonials') }}</h2>
         <p>{{ __('website.Watch our students share their learning experience and success stories') }}</p>
       </div>
@@ -757,7 +837,7 @@
           <div class="cta-video-box bg-primary text-white p-5 rounded-4">
             <h3 class="mb-3" style="color: white;">{{ __('website.Join Our Success Stories') }}</h3>
             <p class="mb-4">{{ __('website.Be part of our growing community of successful learners. Start your Quranic journey today and create your own success story.') }}</p>
-            <a href="{{ route('enroll.show') }}" class="btn btn-light btn-lg px-5">{{ __('website.Start Learning Now') }}</a>
+            <a href="{{ route('enroll.show') }}" class="btn btn-islamic btn-lg px-5">{{ __('website.Start Learning Now') }}</a>
           </div>
         </div>
       </div>
@@ -834,9 +914,9 @@
     </section><!-- /Video Testimonials Section -->
 
     <!-- Articles Section -->
-    <section id="articles" class="articles section light-background">
+    <section id="articles" class="articles section light-background arabic-calligraphy-bg">
       <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
+      <div class="container section-title islamic-section-header" data-aos="fade-up">
         <h2>{{ __('website.Latest Articles') }}</h2>
         <p>{{ __('website.Explore our collection of Islamic articles and educational content') }}</p>
       </div><!-- End Section Title -->
@@ -881,9 +961,9 @@
     </section><!-- /Articles Section -->
 
     <!-- Contact Section -->
-    <section id="contact" class="contact section">
+    <section id="contact" class="contact section islamic-gradient-3">
       <div class="container">
-        <div class="section-title" data-aos="fade-up">
+        <div class="section-title islamic-section-header" data-aos="fade-up">
           <h2>{{ __('website.Start Your Journey') }}</h2>
           <p>{{ __('website.Begin your Quranic education with us today') }}</p>
         </div>
@@ -895,7 +975,7 @@
                 <i class="bi bi-telephone"></i>
               </div>
               <h3>{{ __('website.Contact Us') }}</h3>
-              <p>WhatsApp: +201507788982<br>
+              <p>WhatsApp: +33 7 58 68 41 70<br>
                 Email: Madrassatazhary4@gmail.com</p>
               <div class="social-links mt-3">
                 <a href="https://x.com/MadrassatAzhary?t=7nDlU99ZIjGwJTPM0daDwQ&s=09" target="_blank"><i class="bi bi-twitter-x"></i></a>
@@ -921,7 +1001,7 @@
             <div class="cta-box">
               <h3>{{ __('website.Ready to Start Learning?') }}</h3>
               <p class="mb-4">{{ __('website.Fill out our enrollment form to begin your Quranic journey with us. Our team will contact you shortly to discuss your learning goals and schedule.') }}</p>
-              <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-lg px-5 py-3">{{ __('website.Enroll Now') }}</a>
+              <a href="{{ route('enroll.show') }}" class="btn btn-islamic btn-lg px-5 py-3">{{ __('website.Enroll Now') }}</a>
             </div>
           </div>
         </div>
@@ -952,6 +1032,664 @@
   <script src="{{ asset('website_assets/js/main.js') }}"></script>
   <script src="{{ asset('website_assets/js/enroll-form.js') }}"></script>
 
+  <!-- Carousel Auto-Start Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const carousel = document.getElementById('heroCarousel');
+      if (carousel) {
+        const bsCarousel = new bootstrap.Carousel(carousel, {
+          interval: 2000,
+          ride: true,
+          wrap: true
+        });
+        // Force start the carousel
+        bsCarousel.cycle();
+      }
+    });
+  </script>
+
+  <!-- Fixed WhatsApp Icon -->
+  <div id="whatsapp-float" class="whatsapp-float">
+    <a href="https://wa.me/33758684170" target="_blank" class="whatsapp-link">
+      <i class="bi bi-whatsapp"></i>
+    </a>
+  </div>
+
+  <!-- Islamic Background Styles -->
+  <style>
+    /* Statistics Section Styles */
+    .statistics-section {
+      position: relative;
+      background-attachment: fixed;
+    }
+    
+    .islamic-pattern-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+      background-size: 200px 200px, 300px 300px;
+      background-position: 0 0, 100px 100px;
+      background-repeat: repeat;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .stat-card {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 20px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      transition: left 0.6s ease;
+    }
+    
+    .stat-card:hover::before {
+      left: 100%;
+    }
+    
+    .stat-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+    
+    .stat-icon {
+      font-size: 3rem;
+      color: #ffd700;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      animation: icon-pulse 2s infinite;
+    }
+    
+    @keyframes icon-pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.1);
+      }
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 0.5;
+        transform: scale(1.2);
+      }
+    }
+    
+    @keyframes live-glow {
+      0%, 100% {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+      50% {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3), 0 0 10px rgba(255, 215, 0, 0.5);
+      }
+    }
+    
+    .counter[data-live="true"] {
+      animation: live-glow 3s infinite;
+    }
+    
+    .stat-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 0.5rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    .stat-description {
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.8);
+      font-weight: 400;
+    }
+    
+    /* Responsive adjustments for statistics */
+    @media (max-width: 768px) {
+      .stat-number {
+        font-size: 2.5rem;
+      }
+      
+      .stat-label {
+        font-size: 1.1rem;
+      }
+      
+      .stat-icon {
+        font-size: 2.5rem;
+      }
+      
+      .stat-card {
+        padding: 1.5rem !important;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .stat-number {
+        font-size: 2rem;
+      }
+      
+      .stat-label {
+        font-size: 1rem;
+      }
+      
+      .stat-icon {
+        font-size: 2rem;
+      }
+    }
+    
+    /* Enhanced Islamic styling */
+    .feature-card {
+      border: 2px solid rgba(212, 175, 55, 0.2);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.1), transparent);
+      transition: left 0.5s ease;
+    }
+    
+    .feature-card:hover::before {
+      left: 100%;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(212, 175, 55, 0.2);
+      border-color: rgba(212, 175, 55, 0.4);
+    }
+    
+    .service-item {
+      border: 1px solid rgba(34, 139, 34, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .service-item:hover {
+      border-color: rgba(34, 139, 34, 0.4);
+      box-shadow: 0 10px 25px rgba(34, 139, 34, 0.15);
+    }
+    
+    .team-card {
+      border: 2px solid rgba(30, 58, 138, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .team-card:hover {
+      border-color: rgba(30, 58, 138, 0.4);
+      box-shadow: 0 10px 25px rgba(30, 58, 138, 0.15);
+    }
+    
+    .testimonial-card {
+      border: 1px solid rgba(212, 175, 55, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .testimonial-card:hover {
+      border-color: rgba(212, 175, 55, 0.4);
+      box-shadow: 0 10px 25px rgba(212, 175, 55, 0.15);
+    }
+    
+    .article-card {
+      border: 1px solid rgba(34, 139, 34, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .article-card:hover {
+      border-color: rgba(34, 139, 34, 0.4);
+      box-shadow: 0 10px 25px rgba(34, 139, 34, 0.15);
+    }
+    
+    .info-card {
+      border: 2px solid rgba(30, 58, 138, 0.2);
+      transition: all 0.3s ease;
+    }
+    
+    .info-card:hover {
+      border-color: rgba(30, 58, 138, 0.4);
+      box-shadow: 0 10px 25px rgba(30, 58, 138, 0.15);
+    }
+    
+    /* Islamic decorative elements */
+    .section-title h2::before {
+      background: linear-gradient(90deg, var(--islamic-gold), var(--islamic-green));
+    }
+    
+    .section-title h2::after {
+      background: linear-gradient(90deg, var(--islamic-green), var(--islamic-blue));
+    }
+    
+    /* Enhanced button styling */
+    .btn-primary {
+      background: linear-gradient(135deg, var(--islamic-gold), var(--islamic-green));
+      border: none;
+      transition: all 0.3s ease;
+    }
+    
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--islamic-green), var(--islamic-blue));
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+    }
+    
+    .btn-outline-info {
+      border-color: var(--islamic-gold);
+      color: var(--islamic-gold);
+      transition: all 0.3s ease;
+    }
+    
+    .btn-outline-info:hover {
+      background-color: var(--islamic-gold);
+      border-color: var(--islamic-gold);
+      color: white;
+      transform: translateY(-2px);
+    }
+    
+    /* Islamic pattern overlay for main sections */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(34, 139, 34, 0.05) 0%, transparent 30%);
+      background-size: 100px 100px, 150px 150px;
+      background-position: 0 0, 50px 50px;
+      background-repeat: repeat;
+      pointer-events: none;
+      z-index: 1;
+    }
+    
+    .hero .carousel {
+      position: relative;
+      z-index: 2;
+    }
+    
+    /* WhatsApp Float Styles */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 1000;
+      animation: whatsapp-bounce 2s infinite;
+    }
+    
+    .whatsapp-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+    }
+    
+    .whatsapp-link:hover {
+      background-color: #128c7e;
+      color: white;
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+    }
+    
+    .whatsapp-link i {
+      font-size: 28px;
+    }
+    
+    @keyframes whatsapp-bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+    
+    @media (max-width: 768px) {
+      .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .whatsapp-link {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .whatsapp-link i {
+        font-size: 24px;
+      }
+    }
+    
+    /* Teachers Slider Styles */
+    .teachers-slider {
+      position: relative;
+      padding: 0 50px;
+    }
+    
+    .teachers-slider .swiper-slide {
+      height: auto;
+    }
+    
+    .teachers-slider .team-card {
+      height: 100%;
+      margin: 0;
+    }
+    
+    .teachers-slider .swiper-button-next,
+    .teachers-slider .swiper-button-prev {
+      width: 40px;
+      height: 40px;
+      background-color: rgba(2, 37, 108, 0.9);
+      border-radius: 50%;
+      color: white;
+      transition: all 0.3s ease;
+    }
+    
+    .teachers-slider .swiper-button-next:hover,
+    .teachers-slider .swiper-button-prev:hover {
+      background-color: rgba(2, 37, 108, 1);
+      transform: scale(1.1);
+    }
+    
+    .teachers-slider .swiper-button-next::after,
+    .teachers-slider .swiper-button-prev::after {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    
+    .teachers-slider .swiper-pagination {
+      bottom: -30px;
+    }
+    
+    .teachers-slider .swiper-pagination-bullet {
+      width: 12px;
+      height: 12px;
+      background-color: rgba(2, 37, 108, 0.3);
+      opacity: 1;
+      transition: all 0.3s ease;
+    }
+    
+    .teachers-slider .swiper-pagination-bullet-active {
+      background-color: rgba(2, 37, 108, 0.9);
+      transform: scale(1.2);
+    }
+    
+    @media (max-width: 768px) {
+      .teachers-slider {
+        padding: 0 30px;
+      }
+      
+      .teachers-slider .swiper-button-next,
+      .teachers-slider .swiper-button-prev {
+        width: 35px;
+        height: 35px;
+      }
+      
+      .teachers-slider .swiper-button-next::after,
+      .teachers-slider .swiper-button-prev::after {
+        font-size: 16px;
+      }
+    }
+    
+    /* Teacher Profile Card Styles - Matching the Design */
+    .teacher-profile-card {
+      background: white;
+      border-radius: 90px 90px 20px 20px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.03) 0%, transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(34, 139, 34, 0.03) 0%, transparent 30%);
+      background-size: 100px 100px, 150px 150px;
+      background-position: 0 0, 50px 50px;
+      background-repeat: repeat;
+    }
+    
+    .teacher-photo-section {
+      position: relative;
+      background: white;
+      padding: 0;
+      overflow: hidden;
+      border-radius: 90px 90px 0 0;
+    }
+    
+    .teacher-photo {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 0 0 20px 20px;
+      display: block;
+      position: relative;
+    }
+    
+    .teacher-photo::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 30px;
+      background: white;
+      border-radius: 0 0 20px 20px;
+      z-index: 1;
+    }
+    
+    .teacher-info-section {
+      padding: 25px 20px 30px 20px;
+      text-align: center;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    
+    .teacher-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #2c3e50;
+      margin-bottom: 15px;
+      line-height: 1.2;
+    }
+    
+    .teacher-description {
+      color: #6c757d;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 25px;
+      flex-grow: 1;
+    }
+    
+    .teacher-btn {
+      display: inline-block;
+      background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+      color: white;
+      padding: 12px 30px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(40, 167, 69, 0.3);
+    }
+    
+    .teacher-btn:hover {
+      background: linear-gradient(135deg, #218838 0%, #1ea085 100%);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(40, 167, 69, 0.4);
+    }
+    
+    /* Responsive adjustments for teacher cards */
+    @media (max-width: 768px) {
+      .teacher-photo {
+        height: 220px;
+      }
+      
+      .teacher-name {
+        font-size: 1.3rem;
+      }
+      
+      .teacher-description {
+        font-size: 0.9rem;
+      }
+      
+      .teacher-btn {
+        padding: 10px 25px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+
+  <!-- Scroll Shadow Effect Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const header = document.getElementById('fixedHeader');
+      
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > 10) {
+          header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        } else {
+          header.style.boxShadow = 'none';
+        }
+      });
+    });
+  </script>
+
+  <!-- Counter Animation Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Counter animation function
+      function animateCounter(element, target, duration = 2000) {
+        const start = 0;
+        const increment = target / (duration / 16); // 60fps
+        let current = start;
+        
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
+          }
+          element.textContent = Math.floor(current);
+        }, 16);
+      }
+      
+      // Live counter update function
+      function startLiveCounter(element, baseTarget, increment) {
+        let currentValue = baseTarget;
+        
+        setInterval(() => {
+          currentValue += increment;
+          element.textContent = Math.floor(currentValue);
+        }, 3000); // Update every 3 seconds
+      }
+      
+      // Intersection Observer for triggering counter animation
+      const observerOptions = {
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
+      };
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const counter = entry.target.querySelector('.counter');
+            if (counter && !counter.classList.contains('animated')) {
+              const target = parseInt(counter.getAttribute('data-target'));
+              const isLive = counter.getAttribute('data-live') === 'true';
+              const liveIncrement = parseInt(counter.getAttribute('data-live-increment')) || 1;
+              
+              counter.classList.add('animated');
+              animateCounter(counter, target);
+              
+              // Start live updates if enabled
+              if (isLive) {
+                setTimeout(() => {
+                  startLiveCounter(counter, target, liveIncrement);
+                }, 2000); // Start live updates after initial animation
+              }
+            }
+          }
+        });
+      }, observerOptions);
+      
+      // Observe all stat cards
+      const statCards = document.querySelectorAll('.stat-card');
+      statCards.forEach(card => {
+        observer.observe(card);
+      });
+      
+      // Add pulsing effect to live counters
+      function addLiveIndicator() {
+        const liveCounters = document.querySelectorAll('.counter[data-live="true"]');
+        liveCounters.forEach(counter => {
+          counter.style.position = 'relative';
+          
+          // Add live indicator dot
+          const liveDot = document.createElement('span');
+          liveDot.innerHTML = ' 🔴';
+          liveDot.style.fontSize = '0.5em';
+          liveDot.style.animation = 'pulse 2s infinite';
+          counter.appendChild(liveDot);
+        });
+      }
+      
+      // Add live indicator after a delay
+      setTimeout(addLiveIndicator, 3000);
+    });
+  </script>
+
 </body>
 
 </html></html>
+

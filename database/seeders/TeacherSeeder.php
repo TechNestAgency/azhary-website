@@ -17,7 +17,7 @@ class TeacherSeeder extends Seeder
             [
                 'name' => 'Sheikh Ahmed Hassan',
                 'name_fr' => 'Cheikh Ahmed Hassan',
-                'photo' => 'teachers/teacher1.jpg',
+                'photo' => null,
                 'short_description' => 'Experienced Quran teacher with expertise in Tajweed and Qiraat.',
                 'short_description_fr' => 'Enseignant expérimenté du Coran avec expertise en Tajweed et Qiraat.',
                 'full_bio' => 'Sheikh Ahmed Hassan has been teaching Quran for over 15 years. He holds an Ijazah in Hafs an Asim and is certified in advanced Tajweed. He specializes in teaching children and beginners, making complex concepts easy to understand.',
@@ -59,7 +59,7 @@ class TeacherSeeder extends Seeder
             [
                 'name' => 'Ustadha Fatima Ali',
                 'name_fr' => 'Ustadha Fatima Ali',
-                'photo' => 'teachers/teacher2.jpg',
+                'photo' => null,
                 'short_description' => 'Specialized in teaching Quran to women and children with a gentle approach.',
                 'short_description_fr' => 'Spécialisée dans l\'enseignement du Coran aux femmes et aux enfants avec une approche douce.',
                 'full_bio' => 'Ustadha Fatima Ali has dedicated her life to teaching Quran to women and children. She has developed unique teaching methods that make learning engaging and effective. Her patience and understanding make her particularly popular among young learners.',
@@ -101,7 +101,7 @@ class TeacherSeeder extends Seeder
             [
                 'name' => 'Sheikh Mohammed Ibrahim',
                 'name_fr' => 'Cheikh Mohammed Ibrahim',
-                'photo' => 'teachers/teacher3.jpg',
+                'photo' => null,
                 'short_description' => 'Expert in advanced Quranic studies and Islamic sciences.',
                 'short_description_fr' => 'Expert en études coraniques avancées et sciences islamiques.',
                 'full_bio' => 'Sheikh Mohammed Ibrahim is a renowned scholar with expertise in advanced Quranic studies, Tafsir, and Islamic sciences. He has studied under prominent scholars and brings deep knowledge to his teaching.',

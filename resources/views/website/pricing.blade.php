@@ -1,34 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('website.layouts.app')
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Azhary Academy - Pricing</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+@section('title', __('website.Pricing') . ' - Azhary Academy')
+@section('meta_description', __('website.Choose the perfect package for your Quran learning journey'))
 
-  <!-- Favicons -->
-  <link href="{{ asset('website_assets/img/logo-no.png') }}" rel="icon">
-  <link href="{{ asset('website_assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('website_assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet">
-  <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-
-  <!-- Main CSS File -->
-  <link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet">
-
-  <!-- Pricing Page Specific Styles -->
-  <style>
+@push('styles')
+<style>
     :root {
       --heading-color: #13223F;
       --accent-color: #0d7adb;
@@ -265,190 +241,160 @@
       color: #6c757d;
       font-size: 16px;
     }
+
+    /* Page specific styles */
+    .pricing-page {
+      padding-top: 140px;
+    }
+
+    .page-header {
+      background: linear-gradient(135deg, #0a2260 0%, #1e3a8a 50%, #3b82f6 100%);
+      color: white;
+      padding: 60px 0;
+      margin-bottom: 50px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+      background-size: 200px 200px, 300px 300px;
+      background-position: 0 0, 100px 100px;
+      background-repeat: repeat;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .page-header .container {
+      position: relative;
+      z-index: 2;
+    }
+
+    .page-title {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .page-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    @media (max-width: 768px) {
+      .page-title {
+        font-size: 2rem;
+      }
+      
+      .page-subtitle {
+        font-size: 1rem;
+      }
+      
+      .page-header {
+        padding: 40px 0;
+      }
+    }
   </style>
-</head>
+@endpush
 
-<body class="index-page">
-  <!-- Top Bar -->
-  <div class="top-bar d-flex align-items-center justify-content-between px-4" style="background-color:rgb(2, 37, 108);opacity: 0.88; color: #fff; height: 48px; position: fixed; top: 0; left: 0; width: 100%; z-index: 1040;">
-    <div class="d-flex align-items-center gap-4">
-      <span class="d-flex align-items-center"><i class="bi bi-telephone-fill me-2"></i> Whatsapp : +201507788982</span>
-      <span class="mx-2" style="border-left: 1px solid #fff; height: 20px;"></span>
-      <span class="d-flex align-items-center"><i class="bi bi-envelope-fill me-2"></i> Madrassatazhary4@gmail.com</span>
-    </div>
-    <div class="d-flex align-items-center gap-4">
-      <a href="#" style="color: #fff; text-decoration: none;">Our Social</a>
-      <a href="#" style="color: #ffd600;"><i class="bi bi-facebook"></i></a>
-      <a href="#" style="color: #ffd600;"><i class="bi bi-twitter"></i></a>
-      <a href="#" style="color: #ffd600;"><i class="bi bi-pinterest"></i></a>
-      <a href="#" style="color: #ffd600;"><i class="bi bi-youtube"></i></a>
-      <a href="#" style="color: #ffd600;"><i class="bi bi-instagram"></i></a>
-      <a href="#" style="color: #ffd600;"><i class="bi bi-linkedin"></i></a>
-    </div>
-  </div>
-
-  <header id="header" class="header d-flex align-items-center fixed-top" style="background: white !important; border: none !important; top: 48px;">
-    <div class="container position-relative d-flex align-items-center justify-content-between">
-      <a href="{{ route('home') }}" class="logo d-flex align-items-center me-auto me-xl-0">
-        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="">
-      </a>
-      <!-- Category Dropdown beside logo -->
-      <div class="d-flex align-items-center ms-3">
-        <div class="dropdown">
-          <button class="btn btn-white border-0 d-flex align-items-center gap-2" type="button" id="categoryDropdown" data-bs-toggle="dropdown" aria-expanded="false" style="font-size: 1.35rem; font-weight: 500; color: #13223F;">
-            <i class="bi bi-grid-3x3-gap-fill" style="font-size: 1.5rem; color:rgb(49, 65, 99);"></i>
-            <span style="color:rgb(49, 65, 99);">Category</span>
-          </button>
-          <ul class="dropdown-menu shadow border-0" aria-labelledby="categoryDropdown" style="min-width: 270px; border-radius: 18px; background: rgba(245, 247, 255, 0.98); box-shadow: 0 8px 32px 0 rgba(49,65,99,0.18); padding: 0.5rem 0;">
-            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="#services" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-book-half text-primary"></i> <span>{{ __('website.Quran Reading & Tajweed') }}</span></a></li>
-            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="#services" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-journal-richtext text-success"></i> <span>{{ __('website.Quran Memorization') }}</span></a></li>
-            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="#services" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-translate text-info"></i> <span>{{ __('website.Quranic Arabic & Tafseer') }}</span></a></li>
-            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="#services" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-moon-stars text-warning"></i> <span>{{ __('website.Islamic Studies') }}</span></a></li>
-            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="#services" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-people text-danger"></i> <span>{{ __('website.Children\'s Quran Program') }}</span></a></li>
-            <li><a class="dropdown-item d-flex align-items-center gap-2 py-3 px-4" href="#services" style="transition: background 0.2s, color 0.2s;"><i class="bi bi-award text-secondary"></i> <span>{{ __('website.Ijazah Certification') }}</span></a></li>
-          </ul>
-          <style>
-            #categoryDropdown + .dropdown-menu .dropdown-item:hover, #categoryDropdown + .dropdown-menu .dropdown-item:focus {
-              background: linear-gradient(90deg, #e3eaff 0%, #f7faff 100%);
-              color: #0d7adb;
-              font-weight: 500;
-              border-radius: 12px;
-            }
-            #categoryDropdown + .dropdown-menu .dropdown-item i {
-              transition: color 0.2s;
-            }
-            #categoryDropdown + .dropdown-menu .dropdown-item:hover i {
-              color: #0d7adb !important;
-            }
-          </style>
+@section('content')
+<div class="pricing-page">
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="page-title">{{ __('website.Pricing Plans') }}</h1>
+                    <p class="page-subtitle">{{ __('website.Choose the perfect package for your Quran learning journey') }}</p>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="d-flex align-items-center ms-auto gap-3">
-        <nav id="navmenu" class="navmenu">
-          <ul class="navbar-nav flex-row gap-3 align-items-center mb-0">
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="learningStylesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Learning Styles
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="learningStylesDropdown">
-                <li><a class="dropdown-item" href="{{ route('home') }}#hero">{{ __('website.Home') }}</a></li>
-                <li><a class="dropdown-item" href="{{ route('home') }}#about">{{ __('website.About') }}</a></li>
-                <li><a class="dropdown-item" href="{{ route('home') }}#services">{{ __('website.Services') }}</a></li>
-                <li><a class="dropdown-item" href="{{ route('home') }}#portfolio">{{ __('website.Portfolio') }}</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="organizationsDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Organizations
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="organizationsDropdown">
-                <li><a class="dropdown-item" href="{{ route('home') }}#team">{{ __('website.Team') }}</a></li>
-                <li><a class="dropdown-item" href="{{ route('website.articles.index') }}">{{ __('website.Articles') }}</a></li>
-              </ul>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="moreDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                More
-              </a>
-              <ul class="dropdown-menu" aria-labelledby="moreDropdown">
-                <li><a class="dropdown-item" href="{{ route('pricing') }}">{{ __('website.Pricing') }}</a></li>
-                <li><a class="dropdown-item" href="{{ route('home') }}#contact">{{ __('website.Contact') }}</a></li>
-              </ul>
-            </li>
-            <li class="dropdown language-switcher nav-item">
-              <div style="display: flex; align-items: center; gap: 0.5rem; font-weight: bold; font-size: 1.1rem; letter-spacing: 1px;">
-                <a href="{{ route('language.switch', 'en') }}" style="text-decoration: none; color: {{ app()->getLocale() == 'en' ? '#0a2260' : '#0a2260b0' }}; font-weight: {{ app()->getLocale() == 'en' ? 'bold' : 'normal' }};">EN</a>
-                <span style="color: #0a2260; font-weight: bold;">|</span>
-                <a href="{{ route('language.switch', 'fr') }}" style="text-decoration: none; color: {{ app()->getLocale() == 'fr' ? '#0a2260' : '#0a2260b0' }}; font-weight: {{ app()->getLocale() == 'fr' ? 'bold' : 'normal' }};">FR</a>
-              </div>
-            </li>
-          </ul>
-        </nav>
-        <a class="btn btn-primary" href="{{ route('enroll.show') }}" style="background-color:rgb(2, 37, 108); opacity: 0.88;padding: 0.75rem 2rem; font-size: 1.1rem;">Enroll Now</a>
-      </div>
-    </div>
-  </header>
-
-  <main id="main" style="margin-top: 64px;">
-    <!-- Page Title -->
-    <div class="page-title" data-aos="fade">
-      <div class="container">       
-      </div>
-    </div>
+    </section>
 
     <!-- Pricing Section -->
     <section class="pricing section">
-      <div class="container">
+        <div class="container">
         <div class="section-title" data-aos="fade-up">
-          <h2>Choose Your Learning Path</h2>
-          <p>Select the perfect plan that matches your goals and budget</p>
+          <h2>{{ __('website.Choose Your Learning Path') }}</h2>
+          <p>{{ __('website.Select the perfect plan that matches your goals and budget') }}</p>
         </div>
 
         <!-- Best Value Category -->
         <div class="category-section mb-5" data-aos="fade-up">
-          <h3 class="category-title">Best Value Plans</h3>
+          <h3 class="category-title">{{ __('website.Best Value Plans') }}</h3>
           <div class="row gy-4">
             <!-- Basic Plan -->
             <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
               <div class="pricing-item">
-                <h3>Starter Plan</h3>
+                <h3>{{ __('website.Starter') }}</h3>
                 <div class="price">
-                  <sup>$</sup>49<span>/month</span>
+                  <sup>$</sup>49<span>/{{ __('website.month') }}</span>
                 </div>
                 <ul>
-                  <li><i class="bi bi-check-circle-fill"></i> 2 Classes/week</li>
-                  <li><i class="bi bi-check-circle-fill"></i> 30 min/class</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Basic Quran reading</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Email support</li>
+                  <li><i class="bi bi-check-circle-fill"></i> {{ __('website.2 Classes/week') }}</li>
+                  <li><i class="bi bi-check-circle-fill"></i> {{ __('website.30 min/class') }}</li>
+                  <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Basic Quran reading') }}</li>
+                  <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Email support') }}</li>
                 </ul>
                 <div class="savings-box">
-                  <p>Save 20% annually</p>
-                  <p class="savings-amount">$470/year</p>
+                  <p>{{ __('website.Save 20% annually') }}</p>
+                  <p class="savings-amount">$470/{{ __('website.year') }}</p>
                 </div>
-                <a href="{{ route('enroll.show') }}" class="btn btn-primary">Get Started</a>
+                <a href="{{ route('enroll.show') }}" class="btn btn-primary">{{ __('website.Get Started') }}</a>
               </div>
             </div>
 
             <!-- Standard Plan -->
             <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
               <div class="pricing-item featured">
-                <div class="popular-badge">Most Popular</div>
-                <h3>Family Plan</h3>
+                <div class="popular-badge">{{ __('website.Most Popular') }}</div>
+                <h3>{{ __('website.Family Plan') }}</h3>
                 <div class="price">
-                  <sup>$</sup>79<span>/month</span>
+                  <sup>$</sup>79<span>/{{ __('website.month') }}</span>
                 </div>
                 <ul>
-                  <li><i class="bi bi-check-circle-fill"></i> 3 Classes/week</li>
-                  <li><i class="bi bi-check-circle-fill"></i> 45 min/class</li>
-                  <li><i class="bi bi-check-circle-fill"></i> With Tajweed</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Priority support</li>
+                  <li><i class="bi bi-check-circle-fill"></i> {{ __('website.3 Classes/week') }}</li>
+                  <li><i class="bi bi-check-circle-fill"></i> {{ __('website.45 min/class') }}</li>
+                  <li><i class="bi bi-check-circle-fill"></i> {{ __('website.With Tajweed') }}</li>
+                  <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Priority support') }}</li>
                 </ul>
                 <div class="savings-box">
-                  <p>Save 25% annually</p>
-                  <p class="savings-amount">$711/year</p>
+                  <p>{{ __('website.Save 25% annually') }}</p>
+                  <p class="savings-amount">$711/{{ __('website.year') }}</p>
                 </div>
-                <a href="{{ route('enroll.show') }}" class="btn btn-primary">Get Started</a>
+                <a href="{{ route('enroll.show') }}" class="btn btn-primary">{{ __('website.Get Started') }}</a>
               </div>
             </div>
 
             <!-- Premium Plan -->
             <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
               <div class="pricing-item">
-                <h3>Premium Plan</h3>
+                <h3>{{ __('website.Premium Plan') }}</h3>
                 <div class="price">
-                  <sup>$</sup>129<span>/month</span>
+                  <sup>$</sup>129<span>/{{ __('website.month') }}</span>
                 </div>
                 <ul>
-                  <li><i class="bi bi-check-circle-fill"></i> 4 Classes/week</li>
-                  <li><i class="bi bi-check-circle-fill"></i> 60 min/class</li>
-                  <li><i class="bi bi-check-circle-fill"></i> Advanced reading</li>
-                  <li><i class="bi bi-check-circle-fill"></i> 24/7 support</li>
+                  <li><i class="bi bi-check-circle-fill"></i> {{ __('website.4 Classes/week') }}</li>
+                  <li><i class="bi bi-check-circle-fill"></i> {{ __('website.60 min/class') }}</li>
+                  <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Advanced reading') }}</li>
+                  <li><i class="bi bi-check-circle-fill"></i> {{ __('website.24/7 support') }}</li>
                 </ul>
                 <div class="savings-box">
-                  <p>Save 30% annually</p>
-                  <p class="savings-amount">$1,083/year</p>
+                  <p>{{ __('website.Save 30% annually') }}</p>
+                  <p class="savings-amount">$1,083/{{ __('website.year') }}</p>
                 </div>
-                <a href="{{ route('enroll.show') }}" class="btn btn-primary">Get Started</a>
+                <a href="{{ route('enroll.show') }}" class="btn btn-primary">{{ __('website.Get Started') }}</a>
               </div>
             </div>
           </div>
@@ -456,7 +402,7 @@
 
         <!-- Special Offers Category -->
         <div class="category-section mb-5" data-aos="fade-up">
-          <h3 class="category-title">Special Offers</h3>
+          <h3 class="category-title">{{ __('website.Special Offers') }}</h3>
           <div class="row gy-4">
             <!-- Basic Memorization -->
             <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
@@ -528,7 +474,7 @@
 
         <!-- Islamic Values Category -->
         <div class="category-section mb-5" data-aos="fade-up">
-          <h3 class="category-title">Islamic Values</h3>
+          <h3 class="category-title">{{ __('website.Islamic Values') }}</h3>
           <div class="row gy-4">
             <!-- Basic Islamic Studies -->
             <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
@@ -599,27 +545,27 @@
         <!-- Additional Benefits Section -->
         <div class="row mt-5">
           <div class="col-12 text-center" data-aos="fade-up">
-            <h3>All Plans Include</h3>
+            <h3>{{ __('website.All Plans Include') }}</h3>
           </div>
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
             <div class="benefit-item">
               <i class="bi bi-person-check-fill"></i>
-              <h4>Qualified Teachers</h4>
-              <p>Learn from certified Quran teachers with years of experience</p>
+              <h4>{{ __('website.Qualified Teachers') }}</h4>
+              <p>{{ __('website.Learn from certified Quran teachers with years of experience') }}</p>
             </div>
           </div>
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
             <div class="benefit-item">
               <i class="bi bi-calendar-check"></i>
-              <h4>Flexible Schedule</h4>
-              <p>Choose class times that work best for you</p>
+              <h4>{{ __('website.Flexible Schedule') }}</h4>
+              <p>{{ __('website.Choose class times that work best for you') }}</p>
             </div>
           </div>
           <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
             <div class="benefit-item">
               <i class="bi bi-laptop"></i>
-              <h4>Online Platform</h4>
-              <p>Access your classes from anywhere in the world</p>
+              <h4>{{ __('website.Online Platform') }}</h4>
+              <p>{{ __('website.Access your classes from anywhere in the world') }}</p>
             </div>
           </div>
         </div>
@@ -627,30 +573,30 @@
         <!-- FAQ Section -->
         <div class="row mt-5">
           <div class="col-12 text-center" data-aos="fade-up">
-            <h3>Frequently Asked Questions</h3>
+            <h3>{{ __('website.Frequently Asked Questions') }}</h3>
           </div>
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="faq-item">
-              <h4>Can I change my plan later?</h4>
-              <p>Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.</p>
+              <h4>{{ __('website.Can I change my plan later?') }}</h4>
+              <p>{{ __('website.Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle.') }}</p>
             </div>
           </div>
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="faq-item">
-              <h4>What payment methods do you accept?</h4>
-              <p>We accept all major credit cards, PayPal, and bank transfers. All payments are secure and encrypted.</p>
+              <h4>{{ __('website.What payment methods do you accept?') }}</h4>
+              <p>{{ __('website.We accept all major credit cards, PayPal, and bank transfers. All payments are secure and encrypted.') }}</p>
             </div>
           </div>
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
             <div class="faq-item">
-              <h4>Is there a free trial?</h4>
-              <p>Yes, we offer a free trial class to help you experience our teaching methods and meet your potential teacher.</p>
+              <h4>{{ __('website.Is there a free trial?') }}</h4>
+              <p>{{ __('website.Yes, we offer a free trial class to help you experience our teaching methods and meet your potential teacher.') }}</p>
             </div>
           </div>
           <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
             <div class="faq-item">
-              <h4>What if I miss a class?</h4>
-              <p>We understand life happens. You can reschedule missed classes within the same week, subject to teacher availability.</p>
+              <h4>{{ __('website.What if I miss a class?') }}</h4>
+              <p>{{ __('website.We understand life happens. You can reschedule missed classes within the same week, subject to teacher availability.') }}</p>
             </div>
           </div>
         </div>
@@ -663,36 +609,15 @@
         <div class="row justify-content-center">
           <div class="col-lg-8 text-center" data-aos="fade-up">
             <div class="cta-box">
-              <h3>Ready to Start Your Quranic Journey?</h3>
-              <p class="mb-4">Join thousands of students who have already transformed their relationship with the Quran through our structured learning programs.</p>
-              <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-lg px-5 py-3">Enroll Now</a>
+              <h3>{{ __('website.Ready to Start Your Quranic Journey?') }}</h3>
+              <p class="mb-4">{{ __('website.Join thousands of students who have already transformed their relationship with the Quran through our structured learning programs.') }}</p>
+              <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-lg px-5 py-3">{{ __('website.Enroll Now') }}</a>
             </div>
           </div>
         </div>
       </div>
     </section>
-  </main>
-
-  <!-- Include Footer -->
-  @include('website.partials.footer')
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="{{ asset('website_assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/php-email-form/validate.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/aos/aos.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-
-  <!-- Main JS File -->
-  <script src="{{ asset('website_assets/js/main.js') }}"></script>
-  <script src="{{ asset('website_assets/js/enroll-form.js') }}"></script>
-</body>
+  </div>
+</section>
+@endsection 
 </html> 

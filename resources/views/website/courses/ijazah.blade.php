@@ -1,296 +1,289 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Ijazah Certification - Azhary Academy</title>
-    <meta name="description" content="Advanced Ijazah certification program for Quran recitation at Azhary Academy">
-    
-    <!-- Favicons -->
-    <link href="{{ asset('website_assets/img/logo-no.png') }}" rel="icon">
-    <link href="{{ asset('website_assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+@extends('website.layouts.app')
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+@section('title', __('website.Ijazah (Qur\'an Certification)') . ' - Azhary Academy')
+@section('meta_description', __('website.Advanced program for those seeking formal authorization in Quran recitation'))
 
-    <!-- Vendor CSS Files -->
-    <link href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('website_assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+@push('styles')
+<style>
+    /* Course page specific styles */
+    .course-page {
+        padding-top: 140px;
+    }
 
-    <!-- Main CSS File -->
-    <link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet">
-</head>
+    .course-hero {
+        background: linear-gradient(rgba(2, 37, 108, 0.88), rgba(2, 37, 108, 0.88)), url('{{ asset('website_assets/img/course-bg.jpg') }}') no-repeat center center;
+        background-size: cover;
+        padding: 120px 0 60px;
+        position: relative;
+        overflow: hidden;
+    }
 
-<body class="index-page">
+    .course-hero::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: 
+            radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+        background-size: 200px 200px, 300px 300px;
+        background-position: 0 0, 100px 100px;
+        background-repeat: repeat;
+        pointer-events: none;
+        z-index: 1;
+    }
 
-    @include('components.website-header')
+    .course-hero .container {
+        position: relative;
+        z-index: 2;
+    }
 
-    <main class="main">
-        <!-- Course Hero Section -->
-        <section class="course-hero section" style="background: linear-gradient(rgba(2, 37, 108, 0.88), rgba(2, 37, 108, 0.88)), url('{{ asset('website_assets/img/course-bg.jpg') }}') no-repeat center center; background-size: cover; padding: 120px 0 60px; margin-top: 64px;">
-            <div class="container">
-                <div class="row justify-content-center text-center">
-                    <div class="col-lg-8 text-white">
-                        <h1 class="display-4 fw-bold mb-4 mt-3" style="color: #36b6e7;">{{ __('website.ijazah_title') }}</h1>
-                        <p class="lead mb-4">{{ __('website.ijazah_overview') }}</p>
-                        <div class="d-flex gap-3 justify-content-center">
-                            <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-lg">Enroll Now</a>
-                            <a href="#course-details" class="btn btn-outline-light btn-lg">Learn More</a>
-                        </div>
+    .course-hero h1 {
+        color: #36b6e7 !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .course-details {
+        background: #f8f9fa;
+    }
+
+    .feature-item {
+        background: white;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .feature-item:hover {
+        transform: translateY(-5px);
+    }
+
+    .course-sidebar {
+        position: sticky;
+        top: 100px;
+    }
+
+    .course-card {
+        background: white;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .course-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .testimonial-card {
+        transition: transform 0.3s ease;
+    }
+
+    .testimonial-card:hover {
+        transform: translateY(-5px);
+    }
+
+    @media (max-width: 768px) {
+        .course-hero {
+            padding: 80px 0 40px;
+        }
+        
+        .course-hero h1 {
+            font-size: 2rem;
+        }
+    }
+</style>
+@endpush
+
+@section('content')
+<div class="course-page">
+    <!-- Course Hero Section -->
+    <section class="course-hero section">
+        <div class="container">
+            <div class="row justify-content-center text-center">
+                <div class="col-lg-8 text-white">
+                    <h1 class="display-4 fw-bold mb-4 mt-3" style="color: #36b6e7;">{{ __('website.ijazah_title') }}</h1>
+                    <p class="lead mb-4">{{ __('website.ijazah_overview') }}</p>
+                    <div class="d-flex gap-3 justify-content-center">
+                        <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-lg">{{ __('website.Enroll Now') }}</a>
+                        <a href="#course-details" class="btn btn-outline-light btn-lg">{{ __('website.Learn More') }}</a>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Course Details Section -->
-        <section id="course-details" class="course-details section py-5">
-            <div class="container">
-                <div class="row g-4">
-                    <!-- Main Content -->
-                    <div class="col-lg-8">
-                        <div class="course-content">
-                            <h2 class="mb-4">{{ __('website.ijazah_learn') }}</h2>
-                            <p class="lead">Our Ijazah program is designed for serious students who wish to achieve the highest level of Quranic recitation and memorization, leading to certification by qualified scholars.</p>
-                            
-                            <div class="course-features mt-5">
-                                <h3 class="mb-4">What You'll Learn</h3>
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="feature-item d-flex align-items-start">
-                                            <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>{{ __('website.ijazah_feature1') }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="feature-item d-flex align-items-start">
-                                            <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>{{ __('website.ijazah_feature2') }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="feature-item d-flex align-items-start">
-                                            <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>{{ __('website.ijazah_feature3') }}</span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="feature-item d-flex align-items-start">
-                                            <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>{{ __('website.ijazah_feature4') }}</span>
-                                        </div>
+    <!-- Course Details Section -->
+    <section id="course-details" class="course-details section py-5">
+        <div class="container">
+            <div class="row g-4">
+                <!-- Main Content -->
+                <div class="col-lg-8">
+                    <div class="course-content">
+                        <h2 class="mb-4">{{ __('website.ijazah_learn') }}</h2>
+                        <p class="lead">{{ __('website.ijazah_description') }}</p>
+                        
+                        <div class="course-features mt-5">
+                            <h3 class="mb-4">{{ __('website.What You\'ll Learn') }}</h3>
+                            <div class="row g-4">
+                                <div class="col-md-6">
+                                    <div class="feature-item d-flex align-items-start">
+                                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                        <span>{{ __('website.ijazah_feature1') }}</span>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="course-structure mt-5">
-                                <h3 class="mb-4">{{ __('website.ijazah_structure') }}</h3>
-                                <div class="accordion" id="courseAccordion">
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#level1">
-                                                {{ __('website.ijazah_level1') }}
-                                            </button>
-                                        </h2>
-                                        <div id="level1" class="accordion-collapse collapse show" data-bs-parent="#courseAccordion">
-                                            <div class="accordion-body">
-                                                <ul class="list-unstyled">
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.ijazah_level1_item1') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.ijazah_level1_item2') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.ijazah_level1_item3') }}</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#level2">
-                                                {{ __('website.ijazah_level2') }}
-                                            </button>
-                                        </h2>
-                                        <div id="level2" class="accordion-collapse collapse" data-bs-parent="#courseAccordion">
-                                            <div class="accordion-body">
-                                                <ul class="list-unstyled">
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.ijazah_level2_item1') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.ijazah_level2_item2') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.ijazah_level2_item3') }}</li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header">
-                                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#level3">
-                                                {{ __('website.ijazah_level3') }}
-                                            </button>
-                                        </h2>
-                                        <div id="level3" class="accordion-collapse collapse" data-bs-parent="#courseAccordion">
-                                            <div class="accordion-body">
-                                                <ul class="list-unstyled">
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.ijazah_level3_item1') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.ijazah_level3_item2') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.ijazah_level3_item3') }}</li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                                <div class="col-md-6">
+                                    <div class="feature-item d-flex align-items-start">
+                                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                        <span>{{ __('website.ijazah_feature2') }}</span>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="certification-process mt-5">
-                                <h3 class="mb-4">Certification Process</h3>
-                                <div class="row g-4">
-                                    <div class="col-md-6">
-                                        <div class="process-card p-4 bg-light rounded-4">
-                                            <div class="d-flex align-items-center mb-3">
-                                                <span class="process-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">1</span>
-                                                <h4 class="mb-0 ms-3">Initial Assessment</h4>
-                                            </div>
-                                            <p>Evaluation of current recitation and memorization level</p>
-                                        </div>
+                                <div class="col-md-6">
+                                    <div class="feature-item d-flex align-items-start">
+                                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                        <span>{{ __('website.ijazah_feature3') }}</span>
                                     </div>
-                                    <div class="col-md-6">
-                                        <div class="process-card p-4 bg-light rounded-4">
-                                            <div class="d-flex align-items-center mb-3">
-                                                <span class="process-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">2</span>
-                                                <h4 class="mb-0 ms-3">Training Period</h4>
-                                            </div>
-                                            <p>Intensive training with certified scholars</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="process-card p-4 bg-light rounded-4">
-                                            <div class="d-flex align-items-center mb-3">
-                                                <span class="process-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">3</span>
-                                                <h4 class="mb-0 ms-3">Final Assessment</h4>
-                                            </div>
-                                            <p>Comprehensive evaluation of skills and knowledge</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="process-card p-4 bg-light rounded-4">
-                                            <div class="d-flex align-items-center mb-3">
-                                                <span class="process-number bg-primary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 40px; height: 40px;">4</span>
-                                                <h4 class="mb-0 ms-3">Certification</h4>
-                                            </div>
-                                            <p>Issuance of Ijazah by qualified scholars</p>
-                                        </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="feature-item d-flex align-items-start">
+                                        <i class="bi bi-check-circle-fill text-success me-2"></i>
+                                        <span>{{ __('website.ijazah_feature4') }}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Sidebar -->
-                    <div class="col-lg-4">
-                        <div class="course-sidebar">
-                            <div class="card shadow-sm">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-4">Program Information</h4>
-                                    <ul class="list-unstyled">
-                                        <li class="mb-3">
-                                            <i class="bi bi-clock text-primary me-2"></i>
-                                            <strong>Duration:</strong> 2-3 years
-                                        </li>
-                                        <li class="mb-3">
-                                            <i class="bi bi-person text-primary me-2"></i>
-                                            <strong>Level:</strong> Advanced
-                                        </li>
-                                        <li class="mb-3">
-                                            <i class="bi bi-translate text-primary me-2"></i>
-                                            <strong>Language:</strong> French
-                                        </li>
-                                        <li class="mb-3">
-                                            <i class="bi bi-calendar text-primary me-2"></i>
-                                            <strong>Schedule:</strong> Flexible
-                                        </li>
-                                    </ul>
-                                    <a href="{{ route('enroll.show') }}" class="btn btn-primary w-100">Enroll Now</a>
+                        <div class="course-structure mt-5">
+                            <h3 class="mb-4">{{ __('website.ijazah_structure') }}</h3>
+                            <div class="accordion" id="courseAccordion">
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#level1">
+                                            {{ __('website.ijazah_level1') }}
+                                        </button>
+                                    </h2>
+                                    <div id="level1" class="accordion-collapse collapse show" data-bs-parent="#courseAccordion">
+                                        <div class="accordion-body">
+                                            <p>{{ __('website.ijazah_level1_desc') }}</p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-
-                            <div class="card shadow-sm mt-4">
-                                <div class="card-body">
-                                    <h4 class="card-title mb-4">Prerequisites</h4>
-                                    <ul class="list-unstyled">
-                                        <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Advanced Quran reading</li>
-                                        <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Basic memorization</li>
-                                        <li class="mb-2"><i class="bi bi-check2-circle text-success me-2"></i>Commitment to study</li>
-                                    </ul>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#level2">
+                                            {{ __('website.ijazah_level2') }}
+                                        </button>
+                                    </h2>
+                                    <div id="level2" class="accordion-collapse collapse" data-bs-parent="#courseAccordion">
+                                        <div class="accordion-body">
+                                            <p>{{ __('website.ijazah_level2_desc') }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="accordion-item">
+                                    <h2 class="accordion-header">
+                                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#level3">
+                                            {{ __('website.ijazah_level3') }}
+                                        </button>
+                                    </h2>
+                                    <div id="level3" class="accordion-collapse collapse" data-bs-parent="#courseAccordion">
+                                        <div class="accordion-body">
+                                            <p>{{ __('website.ijazah_level3_desc') }}</p>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </section>
 
-        <!-- Testimonials Section -->
-        <section class="testimonials section light-background py-5">
-            <div class="container">
-                <h2 class="text-center mb-5">What Our Graduates Say</h2>
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="testimonial-card p-4 bg-white rounded-4 shadow-sm">
-                            <div class="d-flex align-items-center mb-3">
-                                <img src="{{ asset('website_assets/img/test_man1.png') }}" alt="Graduate" class="rounded-circle me-3" width="60">
-                                <div>
-                                    <h5 class="mb-1">Karim Abdullah</h5>
-                                    <div class="text-warning">
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                    </div>
-                                </div>
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <div class="course-sidebar">
+                        <div class="course-card">
+                            <div class="card-body p-4">
+                                <h4 class="card-title mb-4">{{ __('website.Course Information') }}</h4>
+                                <ul class="list-unstyled">
+                                    <li class="mb-3">
+                                        <i class="bi bi-clock text-primary me-2"></i>
+                                        <strong>{{ __('website.Duration') }}:</strong> 2-3 years
+                                    </li>
+                                    <li class="mb-3">
+                                        <i class="bi bi-person text-primary me-2"></i>
+                                        <strong>{{ __('website.Level') }}:</strong> {{ __('website.Advanced') }}
+                                    </li>
+                                    <li class="mb-3">
+                                        <i class="bi bi-translate text-primary me-2"></i>
+                                        <strong>{{ __('website.Language') }}:</strong> {{ __('website.French') }}
+                                    </li>
+                                    <li class="mb-3">
+                                        <i class="bi bi-calendar text-primary me-2"></i>
+                                        <strong>{{ __('website.Schedule') }}:</strong> {{ __('website.Flexible') }}
+                                    </li>
+                                </ul>
+                                <a href="{{ route('enroll.show') }}" class="btn btn-primary w-100">{{ __('website.Enroll Now') }}</a>
                             </div>
-                            <p class="mb-0">"The Ijazah program was challenging but incredibly rewarding. The scholars are highly qualified and provide excellent guidance throughout the journey."</p>
                         </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="testimonial-card p-4 bg-white rounded-4 shadow-sm">
-                            <div class="d-flex align-items-center mb-3">
-                                <img src="{{ asset('website_assets/img/test_girl.png') }}" alt="Graduate" class="rounded-circle me-3" width="60">
-                                <div>
-                                    <h5 class="mb-1">Safiya Rahman</h5>
-                                    <div class="text-warning">
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                        <i class="bi bi-star-fill"></i>
-                                    </div>
-                                </div>
+
+                        <div class="card shadow-sm mt-4">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">{{ __('website.Need Help?') }}</h4>
+                                <p>{{ __('website.Contact our support team for any questions about the course.') }}</p>
+                                <a href="#contact" class="btn btn-outline-primary w-100">{{ __('website.Contact Us') }}</a>
                             </div>
-                            <p class="mb-0">"Receiving my Ijazah was a dream come true. The program's structure and the support from teachers made this achievement possible."</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
-    <!-- Include Footer -->
-    @include('website.partials.footer')
-
-    <!-- Scroll Top -->
-    <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-    <!-- Preloader -->
-    <div id="preloader"></div>
-
-    <!-- Vendor JS Files -->
-    <script src="{{ asset('website_assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('website_assets/vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('website_assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-
-    <!-- Main JS File -->
-    <script src="{{ asset('website_assets/js/main.js') }}"></script>
-</body>
-</html> 
+    <!-- Testimonials Section -->
+    <section class="testimonials section light-background py-5">
+        <div class="container">
+            <h2 class="text-center mb-5">{{ __('website.What Our Students Say') }}</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="testimonial-card p-4 bg-white rounded-4 shadow-sm">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{{ asset('website_assets/img/test_man1.png') }}" alt="Student" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-1">{{ __('website.Omar Khalid') }}</h5>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">{{ __('website.testimonial_ijazah_1') }}</p>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="testimonial-card p-4 bg-white rounded-4 shadow-sm">
+                        <div class="d-flex align-items-center mb-3">
+                            <img src="{{ asset('website_assets/img/test_girl.png') }}" alt="Student" class="rounded-circle me-3" width="60">
+                            <div>
+                                <h5 class="mb-1">{{ __('website.Layla Ibrahim') }}</h5>
+                                <div class="text-warning">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="mb-0">{{ __('website.testimonial_ijazah_2') }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+@endsection 

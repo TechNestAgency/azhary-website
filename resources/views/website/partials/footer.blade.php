@@ -1,4 +1,4 @@
-<footer id="footer" class="footer light-background">
+<footer id="footer" class="footer light-background islamic-pattern-4">
 
   <div class="container footer-top">
     <div class="row gy-4">

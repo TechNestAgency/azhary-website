@@ -35,39 +35,54 @@ class TeacherController extends Controller
             $teacher->materials_used = $teacher->materials_used_fr ?: $teacher->materials_used;
         }
         
-        return view('website.teacher-details', compact('teacher'));
+        // Get related teachers (other active teachers)
+        $relatedTeachers = Teacher::where('is_active', true)
+            ->where('id', '!=', $teacher->id)
+            ->latest()
+            ->limit(5)
+            ->get();
+        
+        return view('website.teacher-details', compact('teacher', 'relatedTeachers'));
     }
 
     public function storeReview(Request $request, Teacher $teacher)
     {
-        $validated = $request->validate([
-            'rating' => 'required|integer|min:1|max:5',
-            'comment' => 'required|string|min:10|max:500',
-            'reviewer_name' => 'required|string|max:255',
-            'reviewer_email' => 'required|email|max:255'
-        ]);
+        try {
+            $rules = [
+                'rating' => 'required|integer|min:1|max:5',
+                'comment' => 'required|string|min:10|max:500',
+                'reviewer_name' => 'required|string|max:255',
+                'reviewer_email' => 'required|email|max:255',
+            ];
 
-        $review = new TeacherReview([
-            'rating' => $validated['rating'],
-            'comment' => $validated['comment'],
-            'reviewer_name' => $validated['reviewer_name'],
-            'reviewer_email' => $validated['reviewer_email']
-        ]);
+            $validated = $request->validate($rules);
 
-        // If user is authenticated, add user_id
-        if (auth()->check()) {
-            $review->user_id = auth()->id();
+            // Create the review with all required fields
+            $review = new TeacherReview([
+                'teacher_id' => $teacher->id,
+                'reviewer_name' => trim($validated['reviewer_name']),
+                'reviewer_email' => trim($validated['reviewer_email']),
+                'rating' => $validated['rating'],
+                'comment' => trim($validated['comment']),
+            ]);
+
+            $review->save();
+
+            // Update teacher's average rating and total reviews
+            $averageRating = $teacher->reviews()->avg('rating');
+            $totalReviews = $teacher->reviews()->count();
+            
+            $teacher->update([
+                'rating' => round($averageRating, 1),
+                'total_reviews' => $totalReviews
+            ]);
+
+            return redirect()->back()->with('success', 'Thank you! Your review has been submitted successfully.');
+
+        } catch (\Exception $e) {
+            \Log::error('Review submission error: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'An error occurred while submitting your review. Please try again.']);
         }
-
-        $teacher->reviews()->save($review);
-
-        // Update teacher's average rating
-        $teacher->update([
-            'rating' => $teacher->reviews()->avg('rating'),
-            'total_reviews' => $teacher->reviews()->count()
-        ]);
-
-        return redirect()->back()->with('success', 'Review submitted successfully.');
     }
 
     public function bookSession(Request $request, Teacher $teacher)
