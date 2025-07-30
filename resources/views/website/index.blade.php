@@ -215,7 +215,7 @@
     </section>
 
     <!-- Why Choose Section -->
-    <section id="why-choose" class="why-choose section py-5" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%);">
+    <section id="why-choose" class="why-choose section py-5">
       <div class="container">
         <div class="text-center mb-5 islamic-section-header">
           <h2>
@@ -396,7 +396,7 @@
     <div class="islamic-divider"></div>
 
     <!-- About Section -->
-    <section id="about" class="about section" style="background: linear-gradient(135deg, #e0f2fe 0%, #b3e5fc 50%, #81d4fa 100%);">
+    <section id="about" class="about section">
 
       <div class="container">
 
@@ -431,7 +431,7 @@
     <div class="islamic-divider"></div>
 
     <!-- Services Section -->
-    <section id="services" class="services section" style="background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 50%, #bbf7d0 100%);">
+    <section id="services" class="services section">
 
       <!-- Section Title -->
       <div class="container section-title islamic-section-header" data-aos="fade-up">
@@ -517,7 +517,7 @@
     <div class="islamic-divider"></div>
 
     <!-- Team Section -->
-    <section id="team" class="team section" style="background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 50%, #e9d5ff 100%);">
+    <section id="team" class="team section">
 
       <!-- Section Title -->
       <div class="container section-title islamic-section-header" data-aos="fade-up">
@@ -583,7 +583,7 @@
     </section><!-- /Team Section -->
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="testimonials section" style="background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 50%, #fdba74 100%);">
+    <section id="testimonials" class="testimonials section">
       <div class="container section-title islamic-section-header" data-aos="fade-up">
         <h2>{{ __('website.Student Testimonials') }}</h2>
         <p>{{ __('website.Hear from our students about their journey in learning the Quran and Islamic studies') }}</p>
@@ -784,7 +784,7 @@
     </section><!-- /Testimonials Section -->
 
     <!-- Video Testimonials Section -->
-    <section id="video-testimonials" class="video-testimonials section" style="background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #bae6fd 100%);">
+    <section id="video-testimonials" class="video-testimonials section">
       <div class="container section-title islamic-section-header" data-aos="fade-up">
         <h2>{{ __('website.Video Testimonials') }}</h2>
         <p>{{ __('website.Watch our students share their learning experience and success stories') }}</p>
@@ -914,7 +914,7 @@
     </section><!-- /Video Testimonials Section -->
 
     <!-- Articles Section -->
-    <section id="articles" class="articles section" style="background: linear-gradient(135deg, #fdf2f8 0%, #fce7f3 50%, #fbcfe8 100%);">
+    <section id="articles" class="articles section">
       <!-- Section Title -->
       <div class="container section-title islamic-section-header" data-aos="fade-up">
         <h2>{{ __('website.Latest Articles') }}</h2>
@@ -961,7 +961,7 @@
     </section><!-- /Articles Section -->
 
     <!-- Contact Section -->
-    <section id="contact" class="contact section" style="background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 50%, #a7f3d0 100%);">
+    <section id="contact" class="contact section">
       <div class="container">
         <div class="section-title islamic-section-header" data-aos="fade-up">
           <h2>{{ __('website.Start Your Journey') }}</h2>
@@ -1055,41 +1055,9 @@
     </a>
   </div>
 
-  <!-- Islamic Background Styles -->
+  <!-- Additional Styles -->
   <style>
-    /* Section Background Enhancements */
-    .section {
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .section::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background-image: 
-        radial-gradient(circle at 25% 25%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-        radial-gradient(circle at 75% 75%, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
-      background-size: 200px 200px, 300px 300px;
-      background-position: 0 0, 100px 100px;
-      background-repeat: repeat;
-      pointer-events: none;
-      z-index: 1;
-    }
-    
-    .section > .container {
-      position: relative;
-      z-index: 2;
-    }
-    
-    /* Statistics Section Styles */
-    .statistics-section {
-      position: relative;
-      background-attachment: fixed;
-    }
+    /* Additional custom styles for enhanced visual appeal */
     
     .islamic-pattern-overlay {
       position: absolute;
