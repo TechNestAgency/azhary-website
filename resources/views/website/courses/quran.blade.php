@@ -105,8 +105,8 @@
             <div class="container">
                 <div class="row justify-content-center text-center">
                     <div class="col-lg-8 text-white">
-                        <h1 class="display-4 fw-bold mb-4 mt-3" style="color: #36b6e7;">{{ __('website.Quran (Recitation, Tajweed & Memorization)') }}</h1>
-                        <p class="lead mb-4">{{ __('website.Comprehensive Quran learning program covering recitation, tajweed rules, and memorization techniques with expert guidance') }}</p>
+                        <h1 class="display-4 fw-bold mb-4 mt-3" style="color: #36b6e7;">{{ __('website.quran_title') }}</h1>
+                        <p class="lead mb-4">{{ __('website.quran_overview') }}</p>
                         <div class="d-flex gap-3 justify-content-center">
                             <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-lg">{{ __('website.Enroll Now') }}</a>
                             <a href="#course-details" class="btn btn-outline-light btn-lg">{{ __('website.Learn More') }}</a>
@@ -123,8 +123,8 @@
                     <!-- Main Content -->
                     <div class="col-lg-8">
                         <div class="course-content">
-                            <h2 class="mb-4">{{ __('website.Master the Quran: Recitation, Tajweed & Memorization') }}</h2>
-                            <p class="lead">{{ __('website.Our comprehensive Quran course combines the essential elements of Quranic learning: proper recitation with tajweed rules, and systematic memorization techniques. Learn from qualified teachers who ensure you develop both beautiful recitation and strong memorization skills.') }}</p>
+                            <h2 class="mb-4">{{ __('website.quran_learn') }}</h2>
+                            <p class="lead">{{ __('website.quran_description') }}</p>
                             
                             <div class="course-features mt-5">
                                 <h3 class="mb-4">{{ __('website.What You\'ll Learn') }}</h3>
@@ -132,58 +132,58 @@
                                     <div class="col-md-6">
                                         <div class="feature-item d-flex align-items-start">
                                             <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>{{ __('website.Proper Arabic letter pronunciation and articulation') }}</span>
+                                            <span>{{ __('website.quran_feature1') }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="feature-item d-flex align-items-start">
                                             <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>{{ __('website.Tajweed rules and their practical application') }}</span>
+                                            <span>{{ __('website.quran_feature2') }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="feature-item d-flex align-items-start">
                                             <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>{{ __('website.Systematic memorization techniques and strategies') }}</span>
+                                            <span>{{ __('website.quran_feature3') }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="feature-item d-flex align-items-start">
                                             <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>{{ __('website.Regular revision and retention methods') }}</span>
+                                            <span>{{ __('website.quran_feature4') }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="feature-item d-flex align-items-start">
                                             <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>{{ __('website.Beautiful recitation with proper rhythm and melody') }}</span>
+                                            <span>{{ __('website.quran_feature5') }}</span>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="feature-item d-flex align-items-start">
                                             <i class="bi bi-check-circle-fill text-success me-2"></i>
-                                            <span>{{ __('website.Understanding of Quranic verses and their meanings') }}</span>
+                                            <span>{{ __('website.quran_feature6') }}</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="course-structure mt-5">
-                                <h3 class="mb-4">{{ __('website.Course Structure') }}</h3>
+                                <h3 class="mb-4">{{ __('website.quran_structure') }}</h3>
                                 <div class="accordion" id="courseAccordion">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#level1">
-                                                {{ __('website.Foundation Level') }}
+                                                {{ __('website.quran_level1') }}
                                             </button>
                                         </h2>
                                         <div id="level1" class="accordion-collapse collapse show" data-bs-parent="#courseAccordion">
                                             <div class="accordion-body">
                                                 <ul class="list-unstyled">
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.Basic Arabic alphabet and letter forms') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.Fundamental tajweed rules (Noon, Meem, Qalqalah)') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.Short surahs memorization (Juz Amma)') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.Basic recitation techniques') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.quran_level1_item1') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.quran_level1_item2') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.quran_level1_item3') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.quran_level1_item4') }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -191,16 +191,16 @@
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#level2">
-                                                {{ __('website.Intermediate Level') }}
+                                                {{ __('website.quran_level2') }}
                                             </button>
                                         </h2>
                                         <div id="level2" class="accordion-collapse collapse" data-bs-parent="#courseAccordion">
                                             <div class="accordion-body">
                                                 <ul class="list-unstyled">
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.Advanced tajweed rules (Madd, Idgham, Ikhfa)') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.Medium surahs memorization and recitation') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.Improved pronunciation and fluency') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.Memorization techniques and revision strategies') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.quran_level2_item1') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.quran_level2_item2') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.quran_level2_item3') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.quran_level2_item4') }}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -208,16 +208,16 @@
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#level3">
-                                                {{ __('website.Advanced Level') }}
+                                                {{ __('website.quran_level3') }}
                                             </button>
                                         </h2>
                                         <div id="level3" class="accordion-collapse collapse" data-bs-parent="#courseAccordion">
                                             <div class="accordion-body">
                                                 <ul class="list-unstyled">
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.Complete Quran memorization (Hifz)') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.Mastery of all tajweed rules') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.Beautiful and melodious recitation') }}</li>
-                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.Preparation for Ijazah certification') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.quran_level3_item1') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.quran_level3_item2') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.quran_level3_item3') }}</li>
+                                                    <li><i class="bi bi-circle-fill text-primary me-2"></i>{{ __('website.quran_level3_item4') }}</li>
                                                 </ul>
                                             </div>
                                         </div>

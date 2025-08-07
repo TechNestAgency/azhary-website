@@ -20,10 +20,18 @@
   <!-- Responsive Header -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white" style="z-index: 1030; border: none !important;">
     <div class="container">
-      <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center me-auto me-xl-0">
+      <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center me-auto me-xl-0" style="min-width: 120px;">
         <img src="{{asset('website_assets/img/logo-no.png')}}" alt="" style="max-height: 60px;">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      
+      <!-- Mobile Trial Button - Centered in Mobile Topbar -->
+      <div class="d-flex d-lg-none justify-content-center position-fixed" style="left: 50%; transform: translateX(-50%); width: auto; max-width: 160px; z-index: 1050; top: 50px;">
+        <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-sm" style="background-color:rgb(2, 37, 108); opacity: 0.88; padding: 0.4rem 0.6rem; font-size: 0.75rem; white-space: nowrap;">
+          {{ __('website.Register Now & Seize the Opportunity') }}
+        </a>
+      </div>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation" style="z-index: 2; min-width: 60px;">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="mainNavbar">

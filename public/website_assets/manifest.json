@@ -1,0 +1,62 @@
+{
+  "name": "Azhary Academy - Online Quran & Islamic Studies",
+  "short_name": "Azhary Academy",
+  "description": "Learn Quran recitation, tajweed, Arabic language, and Islamic studies online with native French-speaking teachers",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#02256c",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/website_assets/img/logo-no.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/website_assets/img/apple-touch-icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["education", "religion"],
+  "screenshots": [
+    {
+      "src": "/website_assets/img/hero-main.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Enroll Now",
+      "short_name": "Enroll",
+      "description": "Start your Quranic journey",
+      "url": "/enroll",
+      "icons": [
+        {
+          "src": "/website_assets/img/logo-no.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Our Courses",
+      "short_name": "Courses",
+      "description": "Explore our Islamic courses",
+      "url": "/courses",
+      "icons": [
+        {
+          "src": "/website_assets/img/logo-no.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ]
+} 

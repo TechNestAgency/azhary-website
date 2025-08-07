@@ -7,10 +7,10 @@
           <img src="{{ asset('website_assets/img/logo-no.png') }}" alt="Azhary Academy">
         </a>
         <div class="footer-contact pt-3">
-          <p>Azhary Academy</p>
+          <p>Madrassat Azhary</p>
           <p>{{ __('website.Online Quran Learning Platform') }}</p>
           <p class="mt-3"><strong>Email:</strong> <span>Madrassatazhary4@gmail.com</span></p>
-          <p><strong>WhatsApp:</strong> <span>+201507788982</span></p>
+          <p><strong>WhatsApp:</strong> <span>+33758684170</span></p>
           <div class="social-links mt-3">
             <a href="https://x.com/MadrassatAzhary?t=7nDlU99ZIjGwJTPM0daDwQ&s=09" target="_blank"><i class="bi bi-twitter-x"></i></a>
             <a href="https://www.instagram.com/madrassat.azhary?igsh=MXMxd3E5bnhxdzBjNw==" target="_blank"><i class="bi bi-instagram"></i></a>
@@ -61,7 +61,7 @@
   </div>
 
   <div class="container copyright text-center mt-4">
-    <p>&copy; {{ date('Y') }} <strong>Azhary Academy</strong>. {{ __('website.All Rights Reserved') }} | {{ __('website.Built by') }} <a href="https://www.facebook.com/profile.php?id=61571489512337" target="_blank">TechNest Company</a></p>
+    <p>&copy; {{ date('Y') }} <strong>Madrassat Azhary</strong>. {{ __('website.All Rights Reserved') }} | {{ __('website.Built by') }} <a href="https://www.facebook.com/profile.php?id=61571489512337" target="_blank">TechNest Company</a></p>
   </div>
 
 </footer> 

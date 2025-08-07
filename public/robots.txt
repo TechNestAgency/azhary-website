@@ -1,2 +1,53 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Allow all search engines to crawl the site
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+# Disallow admin and private areas
+Disallow: /admin/
+Disallow: /storage/
+Disallow: /vendor/
+Disallow: /node_modules/
+Disallow: /bootstrap/
+Disallow: /config/
+Disallow: /database/
+Disallow: /resources/
+Disallow: /routes/
+Disallow: /tests/
+Disallow: /app/
+Disallow: /artisan
+Disallow: /composer.json
+Disallow: /composer.lock
+Disallow: /package.json
+Disallow: /package-lock.json
+Disallow: /phpunit.xml
+Disallow: /tailwind.config.js
+Disallow: /vite.config.js
+Disallow: /webpack.mix.js
+Disallow: /.env
+Disallow: /.git/
+Disallow: /.github/
+Disallow: /.vscode/
+
+# Allow important assets
+Allow: /public/
+Allow: /website_assets/
+Allow: /css/
+Allow: /js/
+Allow: /img/
+Allow: /images/
+Allow: /fonts/
+
+# Sitemap location
+Sitemap: https://azharyacademy.com/sitemap.xml
+
+# Crawl delay (optional - be respectful to server)
+Crawl-delay: 1

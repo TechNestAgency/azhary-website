@@ -11,6 +11,17 @@ use App\Http\Controllers\Admin\ArticleController;
 
 // Public Website Routes
 Route::get('/', [IndexController::class, 'index'])->name('home');
+Route::get('/optimized', function () {
+    return view('website.index-optimized');
+})->name('home.optimized');
+
+Route::get('/test-loading', function () {
+    return view('website.test-loading');
+})->name('website.test-loading');
+
+Route::get('/debug-content', function () {
+    return view('website.debug-content');
+})->name('website.debug-content');
 
 // Admin Authentication Routes
 Route::prefix('admin')->name('admin.')->group(function () {

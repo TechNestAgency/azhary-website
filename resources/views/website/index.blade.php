@@ -60,10 +60,18 @@
     <!-- Navigation Section -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border: none !important;">
     <div class="container">
-      <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center me-auto me-xl-0">
+      <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center me-auto me-xl-0" style="min-width: 120px;">
         <img src="{{asset('website_assets/img/logo-no.png')}}" alt="" style="max-height: 60px;">
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+      
+      <!-- Mobile Trial Button - Centered in Mobile Topbar -->
+      <div class="d-flex d-lg-none justify-content-center position-fixed" style="left: 50%; transform: translateX(-50%); width: auto; max-width: 160px; z-index: 1050; top: 50px;">
+        <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-sm" style="background-color:rgb(2, 37, 108); opacity: 0.88; padding: 0.4rem 0.6rem; font-size: 0.75rem; white-space: nowrap;">
+          {{ __('website.Register Now & Seize the Opportunity') }}
+        </a>
+      </div>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation" style="z-index: 2; min-width: 60px;">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="mainNavbar">
@@ -140,6 +148,7 @@
             </div>
           </div>
          
+          
           <div class="carousel-item">
             <div class="container">
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
@@ -436,7 +445,7 @@
       <!-- Section Title -->
       <div class="container section-title islamic-section-header" data-aos="fade-up">
         <h2>{{ __('website.Our Courses') }}</h2>
-        <p>{{ __('website.Comprehensive Islamic education tailored for French-speaking students from beginners to advanced levels') }}</p>
+        <p class="mt-4">{{ __('website.Comprehensive Islamic education tailored for French-speaking students from beginners to advanced levels') }}</p>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -793,17 +802,7 @@
       <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="row g-4 justify-content-center">
           <!-- Video 1 -->
-          <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="100">
-            <div class="video-testimonial-card h-100 bg-white rounded-4 shadow-lg overflow-hidden">
-              <div class="video-container position-relative">
-                <video class="w-100" controls>
-                  <source src="{{ asset('video1.mp4') }}" type="video/mp4">
-                  {{ __('website.Your browser does not support the video tag.') }}
-                </video>
-              </div>
-          
-            </div>
-          </div>
+        
 
           <!-- Video 2 -->
           <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
@@ -818,18 +817,7 @@
             </div>
           </div>
 
-          <!-- Video 3 -->
-          <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="300">
-            <div class="video-testimonial-card h-100 bg-white rounded-4 shadow-lg overflow-hidden">
-              <div class="video-container position-relative">
-                <video class="w-100" controls>
-                  <source src="{{ asset('video3.mp4') }}" type="video/mp4">
-                  {{ __('website.Your browser does not support the video tag.') }}
-                </video>
-              </div>
-             
-            </div>
-          </div>
+      
         </div>
 
         <!-- Call to Action -->
@@ -913,52 +901,6 @@
       </style>
     </section><!-- /Video Testimonials Section -->
 
-    <!-- Articles Section -->
-    <section id="articles" class="articles section">
-      <!-- Section Title -->
-      <div class="container section-title islamic-section-header" data-aos="fade-up">
-        <h2>{{ __('website.Latest Articles') }}</h2>
-        <p>{{ __('website.Explore our collection of Islamic articles and educational content') }}</p>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row g-4">
-          @foreach($articles as $article)
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
-            <div class="article-card h-100">
-              <div class="article-image position-relative">
-                <img src="{{ asset($article->image) }}" class="img-fluid rounded-top" alt="{{ $article->getTranslation('title', app()->getLocale()) }}">
-                <div class="article-overlay">
-                  <a href="{{ route('website.articles.show', $article->id) }}" class="btn btn-light btn-sm">{{ __('website.Read More') }}</a>
-                </div>
-              </div>
-              <div class="article-content p-4">
-                <div class="article-meta d-flex gap-3 mb-3 text-muted small">
-                  <span><i class="bi bi-calendar"></i> {{ $article->created_at->format('M d, Y') }}</span>
-                  @if($article->author)
-                  <span><i class="bi bi-person"></i> {{ $article->author->name }}</span>
-                  @endif
-                </div>
-                <h3 class="article-title h4 mb-3">
-                  <a href="{{ route('website.articles.show', $article->id) }}" class="text-decoration-none text-dark">
-                    {!! $article->getTranslation('title', app()->getLocale()) !!}
-                  </a>
-                </h3>
-                <p class="article-excerpt text-muted mb-4">{!! Str::limit($article->getTranslation('content', app()->getLocale()), 150) !!}</p>
-                <a href="{{ route('website.articles.show', $article->id) }}" class="read-more d-inline-flex align-items-center text-primary text-decoration-none">
-                  {{ __('website.Read More') }} <i class="bi bi-arrow-right ms-2"></i>
-                </a>
-              </div>
-            </div>
-          </div>
-          @endforeach
-        </div>
-
-        <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="200">
-          <a href="{{ route('website.articles.index') }}" class="btn btn-primary btn-lg px-5">{{ __('website.View All Articles') }}</a>
-        </div>
-      </div>
-    </section><!-- /Articles Section -->
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
