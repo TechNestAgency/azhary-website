@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
+use Symfony\Component\HttpFoundation\Response;
 
 class PerformanceOptimization
 {
@@ -19,31 +19,30 @@ class PerformanceOptimization
     {
         $response = $next($request);
 
-        // Add security headers
+        // Add performance headers
         $response->headers->set('X-Content-Type-Options', 'nosniff');
         $response->headers->set('X-Frame-Options', 'SAMEORIGIN');
         $response->headers->set('X-XSS-Protection', '1; mode=block');
         $response->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
+
+        // Add security headers
         $response->headers->set('Permissions-Policy', 'geolocation=(), microphone=(), camera=()');
 
-        // Add performance headers for static assets
+        // Add caching headers for static assets
         if ($this->isStaticAsset($request)) {
             $response->headers->set('Cache-Control', 'public, max-age=31536000, immutable');
             $response->headers->set('Expires', gmdate('D, d M Y H:i:s \G\M\T', time() + 31536000));
         } else {
-            // Add caching headers for HTML pages
+            // Add caching for HTML pages
             $response->headers->set('Cache-Control', 'public, max-age=3600');
-            $response->headers->set('Vary', 'Accept-Encoding');
         }
 
-        // Enable compression
-        if (function_exists('gzencode') && !$this->isAlreadyCompressed($response)) {
-            $content = $response->getContent();
-            if (strlen($content) > 1024) { // Only compress if content is larger than 1KB
-                $response->setContent(gzencode($content, 6));
-                $response->headers->set('Content-Encoding', 'gzip');
-                $response->headers->set('Content-Length', strlen($response->getContent()));
-            }
+        // Add compression headers
+        $response->headers->set('Vary', 'Accept-Encoding');
+
+        // Add preload hints for critical resources
+        if ($this->isHtmlResponse($response)) {
+            $this->addPreloadHints($response);
         }
 
         return $response;
@@ -51,32 +50,47 @@ class PerformanceOptimization
 
     /**
      * Check if the request is for a static asset
-     *
-     * @param Request $request
-     * @return bool
      */
-    private function isStaticAsset(Request $request)
+    private function isStaticAsset(Request $request): bool
     {
         $path = $request->path();
-        $staticExtensions = ['css', 'js', 'png', 'jpg', 'jpeg', 'gif', 'svg', 'ico', 'woff', 'woff2', 'ttf', 'eot'];
         
-        foreach ($staticExtensions as $ext) {
-            if (str_ends_with($path, '.' . $ext)) {
-                return true;
-            }
-        }
-        
-        return false;
+        return preg_match('/\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|woff|woff2|ttf|eot)$/i', $path) ||
+               str_starts_with($path, 'website_assets/') ||
+               str_starts_with($path, 'vendor/');
     }
 
     /**
-     * Check if response is already compressed
-     *
-     * @param \Illuminate\Http\Response $response
-     * @return bool
+     * Check if the response is HTML
      */
-    private function isAlreadyCompressed($response)
+    private function isHtmlResponse(Response $response): bool
     {
-        return $response->headers->has('Content-Encoding');
+        return str_contains($response->headers->get('Content-Type', ''), 'text/html');
+    }
+
+    /**
+     * Add preload hints for critical resources
+     */
+    private function addPreloadHints(Response $response): void
+    {
+        $preloadHints = [
+            '<link rel="preload" href="/website_assets/css/optimized.css" as="style">',
+            '<link rel="preload" href="/website_assets/js/optimized.js" as="script">',
+            '<link rel="preload" href="/website_assets/img/logo-no.png" as="image">',
+            '<link rel="preload" href="/hero-back.jpg" as="image">',
+            '<link rel="dns-prefetch" href="//fonts.googleapis.com">',
+            '<link rel="dns-prefetch" href="//fonts.gstatic.com">',
+            '<link rel="preconnect" href="https://fonts.googleapis.com">',
+            '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+        ];
+
+        $content = $response->getContent();
+        $headPos = strpos($content, '</head>');
+        
+        if ($headPos !== false) {
+            $preloadHtml = "\n    " . implode("\n    ", $preloadHints) . "\n  ";
+            $content = substr_replace($content, $preloadHtml, $headPos, 0);
+            $response->setContent($content);
+        }
     }
 } 

@@ -4,18 +4,145 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Madrassat Azhary</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <title>Madrassat Azhary - Islamic Education Online</title>
+  <meta name="description" content="Learn Quran, Arabic, and Islamic studies online with qualified French-speaking teachers. Join our community of learners worldwide.">
+  <meta name="keywords" content="Quran online, Arabic learning, Islamic studies, French Muslim education, online Islamic academy">
+  
+  <!-- Performance Optimizations -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+  <!-- Critical CSS Inline -->
+  <style>
+    /* Critical CSS for above-the-fold content */
+    :root {
+      --islamic-gold: #d4af37;
+      --islamic-green: #228b22;
+      --islamic-blue: #1e3a8a;
+    }
+    
+    body {
+      font-family: "Roboto", system-ui, -apple-system, sans-serif;
+      line-height: 1.6;
+      color: #212529;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .fixed-top {
+      background-color: rgb(2, 37, 108);
+      opacity: 0.88;
+      color: #fff;
+      z-index: 1040;
+      transition: box-shadow 0.3s ease;
+    }
+    
+    .navbar {
+      background: white !important;
+      border: none !important;
+    }
+    
+    .navbar-brand img {
+      max-height: 60px;
+    }
+    
+    .hero {
+      background: url('{{ asset("hero-back.jpg") }}') no-repeat center center;
+      background-size: cover;
+      position: relative;
+      direction: ltr;
+      min-height: 560px;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgb(2, 37, 108);
+      opacity: 0.88;
+    }
+    
+    .btn-islamic {
+      background: linear-gradient(135deg, var(--islamic-gold), var(--islamic-green));
+      border: none;
+      color: white;
+      padding: 12px 30px;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      display: inline-block;
+    }
+    
+    .btn-islamic:hover {
+      background: linear-gradient(135deg, var(--islamic-green), var(--islamic-blue));
+      transform: translateY(-2px);
+      color: white;
+      text-decoration: none;
+    }
+    
+    .main {
+      padding-top: 140px;
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    .row {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 0 -15px;
+    }
+    
+    .col-12, .col-md-4, .col-md-6, .col-lg-3, .col-lg-6 {
+      padding: 0 15px;
+      box-sizing: border-box;
+    }
+    
+    .col-12 { flex: 0 0 100%; }
+    .col-md-4 { flex: 0 0 33.333333%; }
+    .col-md-6 { flex: 0 0 50%; }
+    .col-lg-3 { flex: 0 0 25%; }
+    .col-lg-6 { flex: 0 0 50%; }
+    
+    /* Additional critical styles */
+    .text-white { color: white !important; }
+    .text-center { text-align: center; }
+    .mb-4 { margin-bottom: 1.5rem; }
+    .mb-lg-0 { margin-bottom: 0; }
+    .py-5 { padding-top: 3rem; padding-bottom: 3rem; }
+    .section { padding: 60px 0; }
+    .display-5 { font-size: 3rem; font-weight: 300; line-height: 1.2; }
+    .fw-bold { font-weight: 700 !important; }
+    .btn-lg { padding: 0.75rem 1.5rem; font-size: 1.25rem; }
+    .img-fluid { max-width: 100%; height: auto; }
+    .rounded-4 { border-radius: 0.5rem; }
+    .shadow { box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); }
+    
+    @media (max-width: 768px) {
+      .col-md-4, .col-md-6 { flex: 0 0 100%; }
+      .display-5 { font-size: 2.5rem; }
+    }
+    
+    @media (max-width: 992px) {
+      .col-lg-3, .col-lg-6 { flex: 0 0 50%; }
+    }
+  </style>
 
   <!-- Favicons -->
   <link href="{{ asset('website_assets/img/logo-no.png') }}" rel="icon">
   <link href="{{ asset('website_assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!-- Fonts with display=swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -26,14 +153,6 @@
 
   <!-- Main CSS File -->
   <link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: Invent
-  * Template URL: https://bootstrapmade.com/invent-bootstrap-business-template/
-  * Updated: May 12 2025 with Bootstrap v5.3.6
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 <body class="index-page">
 
