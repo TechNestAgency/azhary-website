@@ -285,5 +285,14 @@
             </div>
         </div>
     </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section section py-5" style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);">
+        <div class="container text-center text-dark">
+            <h2 class="mb-4">{{ __('website.Ready to Pursue Ijazah Certification?') }}</h2>
+            <p class="lead mb-4">{{ __('website.Join our prestigious Ijazah program and become part of the unbroken chain of Quranic transmission with certified scholars.') }}</p>
+            <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-lg px-5">{{ __('website.Enroll Now') }}</a>
+        </div>
+    </section>
 </div>
 @endsection 

@@ -352,16 +352,7 @@
   margin-bottom: 3rem;
 }
 
-.islamic-section-header::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--islamic-gold), transparent);
-  transform: translateY(-50%);
-}
+
 
 .islamic-section-header h2 {
   background: white;
@@ -951,7 +942,7 @@ h6 {
   color: var(--default-color);
   background-color: var(--background-color);
   position: relative;
-  padding-top: 80px;
+  padding: 30px;
 }
 
 .page-title .heading {

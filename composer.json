@@ -11,7 +11,9 @@
         "laravel/framework": "^10.0",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "spatie/laravel-translatable": "^6.11"
+        "php-flasher/flasher-toastr-laravel": "^1.15",
+        "spatie/laravel-translatable": "^6.11",
+        "yoeunes/toastr": "^2.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>{{ $teacher->name }} - Azhary Academy</title>
-  <meta name="description" content="{{ $teacher->short_description }}">
+  <title>{{ $teacher->localized_name }} - Azhary Academy</title>
+  <meta name="description" content="{{ $teacher->localized_short_description }}">
   <meta name="keywords" content="">
 
   <!-- Favicons -->
@@ -123,7 +123,7 @@
         <div class="row align-items-center">
           <div class="col-lg-6 text-center text-lg-start">
             <div class="hero-content" style="color: white;">
-              <h1 class="display-4 fw-bold mb-4" style="font-size: 3.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">{{ $teacher->name }}</h1>
+              <h1 class="display-4 fw-bold mb-4" style="font-size: 3.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">{{ $teacher->localized_name }}</h1>
               <div class="rating-display mb-4">
                 <div class="stars mb-2" style="font-size: 2rem;">
                   @for($i = 1; $i <= 5; $i++)
@@ -136,31 +136,31 @@
                 </div>
                 <div class="rating-text">
                   <span class="rating-number" style="font-size: 2.5rem; font-weight: bold;">{{ number_format($teacher->rating, 1) }}</span>
-                  <span class="rating-label" style="font-size: 1.2rem; opacity: 0.9;">{{ __('out of 5') }}</span>
-                  <span class="reviews-count" style="font-size: 1rem; opacity: 0.8;">({{ $teacher->total_reviews }} {{ __('reviews') }})</span>
+                  <span class="rating-label" style="font-size: 1.2rem; opacity: 0.9;">{{ __('website.out of 5') }}</span>
+                  <span class="reviews-count" style="font-size: 1rem; opacity: 0.8;">({{ $teacher->total_reviews }} {{ __('website.reviews') }})</span>
                 </div>
               </div>
-              <p class="lead mb-4" style="font-size: 1.3rem; opacity: 0.95;">{!! $teacher->short_description !!}</p>
+              <p class="lead mb-4" style="font-size: 1.3rem; opacity: 0.95;">{!! $teacher->localized_short_description !!}</p>
               
               <!-- Statistics -->
               <div class="stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 3rem 0;">
                 <div class="stat-item text-center">
                   <div class="stat-number" style="font-size: 2.5rem; font-weight: bold; display: block;">{{ min($teacher->total_teaching_hours, 500) }}+</div>
-                  <div class="stat-label" style="font-size: 1rem; opacity: 0.9;">{{ __('Teaching Hours') }}</div>
+                  <div class="stat-label" style="font-size: 1rem; opacity: 0.9;">{{ __('website.Teaching Hours') }}</div>
                 </div>
                 <div class="stat-item text-center">
                   <div class="stat-number" style="font-size: 2.5rem; font-weight: bold; display: block;">{{ $teacher->years_experience }}+</div>
-                  <div class="stat-label" style="font-size: 1rem; opacity: 0.9;">{{ __('Years Experience') }}</div>
+                  <div class="stat-label" style="font-size: 1rem; opacity: 0.9;">{{ __('website.Years Experience') }}</div>
                 </div>
                 <div class="stat-item text-center">
                   <div class="stat-number" style="font-size: 2.5rem; font-weight: bold; display: block;">{{ $teacher->total_reviews }}+</div>
-                  <div class="stat-label" style="font-size: 1rem; opacity: 0.9;">{{ __('Happy Students') }}</div>
+                  <div class="stat-label" style="font-size: 1rem; opacity: 0.9;">{{ __('website.Happy Students') }}</div>
                 </div>
               </div>
               
               <div class="hero-cta">
                 <a href="{{ route('enroll.show') }}" class="btn btn-warning btn-lg px-5 py-3" style="font-size: 1.2rem; font-weight: 600; border-radius: 50px; box-shadow: 0 8px 25px rgba(0,0,0,0.3);">
-                  <i class="bi bi-calendar-check me-2"></i>{{ __('Book Your Lesson') }}
+                  <i class="bi bi-calendar-check me-2"></i>{{ __('website.Book Your Lesson') }}
                 </a>
               </div>
             </div>
@@ -168,7 +168,7 @@
           <div class="col-lg-6 text-center">
             <div class="teacher-avatar-hero">
               @if($teacher->photo)
-                <img src="{{ asset($teacher->photo) }}" alt="{{ $teacher->name }}" class="img-fluid rounded-circle" style="max-width: 350px; border: 8px solid rgba(255,255,255,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                <img src="{{ asset($teacher->photo) }}" alt="{{ $teacher->localized_name }}" class="img-fluid rounded-circle" style="max-width: 350px; border: 8px solid rgba(255,255,255,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
               @else
                 <div class="rounded-circle bg-light mx-auto d-flex align-items-center justify-content-center" style="width: 350px; height: 350px; border: 8px solid rgba(255,255,255,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
                   <i class="bi bi-person" style="font-size: 8rem; color: #666;"></i>
@@ -189,12 +189,12 @@
                 <div class="content-section mb-5">
                     <div class="section-header mb-4">
                         <h2 class="section-title" style="font-size: 2.5rem; font-weight: 700; color: #13223F; position: relative; padding-bottom: 1rem;">
-                            {{ __('About') }} {{ $teacher->name }}
+                            {{ __('website.About') }} {{ $teacher->localized_name }}
                             <div class="title-underline" style="position: absolute; bottom: 0; left: 0; width: 80px; height: 4px; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 2px;"></div>
                         </h2>
                     </div>
                     <div class="section-content" style="background: white; border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <div class="lead" style="font-size: 1.2rem; line-height: 1.8; color: #555;">{!! $teacher->full_bio !!}</div>
+                        <div class="lead" style="font-size: 1.2rem; line-height: 1.8; color: #555;">{!! $teacher->localized_full_bio !!}</div>
                     </div>
                 </div>
 
@@ -206,16 +206,16 @@
                         <div class="card-header mb-3">
                             <h3 class="card-title" style="font-size: 1.5rem; font-weight: 600; color: #13223F; display: flex; align-items: center;">
                                 <i class="bi bi-translate me-2" style="color: #667eea; font-size: 1.8rem;"></i>
-                                {{ __('Languages Spoken') }}
+                                {{ __('website.Languages Spoken') }}
                             </h3>
                         </div>
                         <div class="card-content">
-                            @if($teacher->languages)
+                            @if($teacher->localized_languages)
                                 <div class="language-list">
-                                    {!! $teacher->languages !!}
+                                    {!! $teacher->localized_languages !!}
                                 </div>
                             @else
-                                <p class="text-muted">{{ __('No languages specified') }}</p>
+                                <p class="text-muted">{{ __('website.No languages specified') }}</p>
                             @endif
                         </div>
                     </div>
@@ -225,16 +225,16 @@
                         <div class="card-header mb-3">
                             <h3 class="card-title" style="font-size: 1.5rem; font-weight: 600; color: #13223F; display: flex; align-items: center;">
                                 <i class="bi bi-award me-2" style="color: #764ba2; font-size: 1.8rem;"></i>
-                                {{ __('Diplomas & Certificates') }}
+                                {{ __('website.Diplomas & Certificates') }}
                             </h3>
                         </div>
                         <div class="card-content">
-                            @if($teacher->certifications)
+                            @if($teacher->localized_certifications)
                                 <div class="certification-list">
-                                    {!! $teacher->certifications !!}
+                                    {!! $teacher->localized_certifications !!}
                                 </div>
                             @else
-                                <p class="text-muted">{{ __('No certifications specified') }}</p>
+                                <p class="text-muted">{{ __('website.No certifications specified') }}</p>
                             @endif
                         </div>
                     </div>
@@ -245,13 +245,13 @@
                 <div class="content-section mb-5">
                     <div class="section-header mb-4">
                         <h2 class="section-title" style="font-size: 2.5rem; font-weight: 700; color: #13223F; position: relative; padding-bottom: 1rem;">
-                            {{ __('Teaching Methods') }}
+                            {{ __('website.Teaching Methods') }}
                             <div class="title-underline" style="position: absolute; bottom: 0; left: 0; width: 80px; height: 4px; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 2px;"></div>
                         </h2>
                     </div>
                     <div class="section-content" style="background: white; border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                         <div class="methods-content">
-                            <div class="lead" style="font-size: 1.2rem; line-height: 1.8; color: #555;">{!! $teacher->teaching_methods !!}</div>
+                            <div class="lead" style="font-size: 1.2rem; line-height: 1.8; color: #555;">{!! $teacher->localized_teaching_methods !!}</div>
                         </div>
                     </div>
                 </div>
@@ -260,13 +260,13 @@
                 <div class="content-section mb-5">
                     <div class="section-header mb-4">
                         <h2 class="section-title" style="font-size: 2.5rem; font-weight: 700; color: #13223F; position: relative; padding-bottom: 1rem;">
-                            {{ __('Materials Used') }}
+                            {{ __('website.Materials Used') }}
                             <div class="title-underline" style="position: absolute; bottom: 0; left: 0; width: 80px; height: 4px; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 2px;"></div>
                         </h2>
                     </div>
                     <div class="section-content" style="background: white; border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                         <div class="materials-content">
-                            <div class="lead" style="font-size: 1.2rem; line-height: 1.8; color: #555;">{!! $teacher->materials_used !!}</div>
+                            <div class="lead" style="font-size: 1.2rem; line-height: 1.8; color: #555;">{!! $teacher->localized_materials_used !!}</div>
                         </div>
                     </div>
                 </div>
@@ -275,7 +275,7 @@
                 <div class="reviews-section">
                     <div class="section-header mb-4">
                         <h2 class="section-title" style="font-size: 2.5rem; font-weight: 700; color: #13223F; position: relative; padding-bottom: 1rem;">
-                            {{ __('Student Reviews') }}
+                            {{ __('website.Student Reviews') }}
                             <div class="title-underline" style="position: absolute; bottom: 0; left: 0; width: 80px; height: 4px; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 2px;"></div>
                         </h2>
                     </div>
@@ -295,7 +295,7 @@
                                             @endif
                                         @endfor
                                     </div>
-                                    <div class="total-reviews" style="color: #666; font-size: 1rem;">{{ $teacher->total_reviews }} {{ __('reviews') }}</div>
+                                    <div class="total-reviews" style="color: #666; font-size: 1rem;">{{ $teacher->total_reviews }} {{ __('website.reviews') }}</div>
                                 </div>
                             </div>
                             <div class="col-md-8">
@@ -346,13 +346,13 @@
                         @else
                             <div class="no-reviews text-center py-4">
                                 <i class="bi bi-chat-dots" style="font-size: 3rem; color: #ddd;"></i>
-                                <p class="mt-3 text-muted">{{ __('No reviews yet') }}</p>
+                                <p class="mt-3 text-muted">{{ __('website.No reviews yet') }}</p>
                             </div>
                         @endif
 
                         <!-- Review Form -->
                         <div class="review-form mt-5 pt-4" style="border-top: 2px solid #eee;">
-                            <h4 class="form-title mb-4" style="font-weight: 600; color: #13223F;">{{ __('Write a Review') }}</h4>
+                            <h4 class="form-title mb-4" style="font-weight: 600; color: #13223F;">{{ __('website.Write a Review') }}</h4>
                             
                             @if(session('success'))
                                 <div class="alert alert-success alert-dismissible fade show mb-4" role="alert" style="border-radius: 15px; border: none; background: linear-gradient(135deg, #d4edda, #c3e6cb);">
@@ -365,7 +365,7 @@
                             @if($errors->any())
                                 <div class="alert alert-danger alert-dismissible fade show mb-4" role="alert" style="border-radius: 15px; border: none; background: linear-gradient(135deg, #f8d7da, #f5c6cb);">
                                     <i class="bi bi-exclamation-triangle me-2"></i>
-                                    <strong>{{ __('Please fix the following errors:') }}</strong>
+                                    <strong>{{ __('website.Please fix the following errors:') }}</strong>
                                     <ul class="mb-0 mt-2">
                                         @foreach($errors->all() as $error)
                                             <li>{{ $error }}</li>
@@ -378,7 +378,7 @@
                             <form action="{{ route('website.teachers.reviews.store', $teacher) }}" method="POST" id="reviewForm">
                                 @csrf
                                 <div class="mb-4">
-                                    <label class="form-label fw-semibold">{{ __('Your Rating') }} <span class="text-danger">*</span></label>
+                                    <label class="form-label fw-semibold">{{ __('website.Your Rating') }} <span class="text-danger">*</span></label>
                                     <div class="rating-input">
                                         @for($i = 5; $i >= 1; $i--)
                                             <input type="radio" name="rating" value="{{ $i }}" id="star{{ $i }}" required {{ old('rating') == $i ? 'checked' : '' }}>
@@ -391,14 +391,14 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 mb-4">
-                                        <label class="form-label fw-semibold">{{ __('Your Name') }} <span class="text-danger">*</span></label>
+                                        <label class="form-label fw-semibold">{{ __('website.Your Name') }} <span class="text-danger">*</span></label>
                                         <input type="text" name="reviewer_name" class="form-control @error('reviewer_name') is-invalid @enderror" value="{{ old('reviewer_name') }}" required style="border-radius: 10px; border: 2px solid #eee; padding: 1rem;">
                                         @error('reviewer_name')
                                             <div class="text-danger mt-1 small">{{ $message }}</div>
                                         @enderror
                                     </div>
                                     <div class="col-md-6 mb-4">
-                                        <label class="form-label fw-semibold">{{ __('Your Email') }} <span class="text-danger">*</span></label>
+                                        <label class="form-label fw-semibold">{{ __('website.Your Email') }} <span class="text-danger">*</span></label>
                                         <input type="email" name="reviewer_email" class="form-control @error('reviewer_email') is-invalid @enderror" value="{{ old('reviewer_email') }}" required style="border-radius: 10px; border: 2px solid #eee; padding: 1rem;">
                                         @error('reviewer_email')
                                             <div class="text-danger mt-1 small">{{ $message }}</div>
@@ -406,15 +406,15 @@
                                     </div>
                                 </div>
                                 <div class="mb-4">
-                                    <label class="form-label fw-semibold">{{ __('Your Review') }} <span class="text-danger">*</span></label>
-                                    <textarea name="comment" class="form-control @error('comment') is-invalid @enderror" rows="4" required style="border-radius: 10px; border: 2px solid #eee; padding: 1rem;" placeholder="{{ __('Share your experience with this teacher...') }}">{{ old('comment') }}</textarea>
-                                    <div class="form-text">{{ __('Minimum 10 characters, maximum 500 characters') }}</div>
+                                    <label class="form-label fw-semibold">{{ __('website.Your Review') }} <span class="text-danger">*</span></label>
+                                    <textarea name="comment" class="form-control @error('comment') is-invalid @enderror" rows="4" required style="border-radius: 10px; border: 2px solid #eee; padding: 1rem;" placeholder="{{ __('website.Share your experience with this teacher...') }}">{{ old('comment') }}</textarea>
+                                    <div class="form-text">{{ __('website.Minimum 10 characters, maximum 500 characters') }}</div>
                                     @error('comment')
                                         <div class="text-danger mt-1 small">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <button type="submit" class="btn btn-primary px-4 py-2" style="background: linear-gradient(90deg, #667eea, #764ba2); border: none; border-radius: 25px; font-weight: 600;">
-                                    <i class="bi bi-send me-2"></i>{{ __('Submit Review') }}
+                                    <i class="bi bi-send me-2"></i>{{ __('website.Submit Review') }}
                                 </button>
                             </form>
                         </div>
@@ -429,23 +429,23 @@
                     <div class="cta-icon mb-3">
                         <i class="bi bi-calendar-check" style="font-size: 3rem; opacity: 0.9;"></i>
                     </div>
-                    <h3 class="cta-title mb-3" style="font-size: 1.5rem; font-weight: 600;">{{ __('Try a Lesson with') }} {{ $teacher->name }}</h3>
-                    <p class="cta-description mb-4" style="opacity: 0.9;">{{ __('Book your first lesson and experience quality teaching') }}</p>
+                    <h3 class="cta-title mb-3" style="font-size: 1.5rem; font-weight: 600;">{{ __('website.Try a Lesson with') }} {{ $teacher->localized_name }}</h3>
+                    <p class="cta-description mb-4" style="opacity: 0.9;">{{ __('website.Book your first lesson and experience quality teaching') }}</p>
                     <a href="{{ route('enroll.show') }}" class="btn btn-warning btn-lg px-4 py-2" style="border-radius: 25px; font-weight: 600; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
-                        {{ __('Book Your Lesson') }}
+                        {{ __('website.Book Your Lesson') }}
                     </a>
                 </div>
 
                 <!-- Related Teachers -->
                 <div class="related-teachers" style="background: white; border-radius: 20px; padding: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                     <h3 class="section-title mb-4" style="font-size: 1.5rem; font-weight: 600; color: #13223F; position: relative; padding-bottom: 1rem;">
-                        {{ __('Other Teachers') }}
+                        {{ __('website.Other Teachers') }}
                         <div class="title-underline" style="position: absolute; bottom: 0; left: 0; width: 60px; height: 3px; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 2px;"></div>
                     </h3>
                     @foreach($relatedTeachers as $relatedTeacher)
                         <div class="teacher-item d-flex align-items-center mb-3 p-3" style="border-radius: 15px; transition: all 0.3s ease; border: 1px solid #eee;">
                             @if($relatedTeacher->photo)
-                                <img src="{{ asset($relatedTeacher->photo) }}" alt="{{ $relatedTeacher->name }}" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                <img src="{{ asset($relatedTeacher->photo) }}" alt="{{ $relatedTeacher->localized_name }}" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
                             @else
                                 <div class="rounded-circle bg-secondary me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
                                     <i class="bi bi-person text-white"></i>
@@ -454,7 +454,7 @@
                             <div class="teacher-info flex-grow-1">
                                 <h4 class="teacher-name mb-1" style="font-size: 1rem; font-weight: 600;">
                                     <a href="{{ route('website.teachers.show', $relatedTeacher) }}" class="text-decoration-none text-dark">
-                                        {{ $relatedTeacher->name }}
+                                        {{ $relatedTeacher->localized_name }}
                                     </a>
                                 </h4>
                                 <div class="teacher-rating">
@@ -586,6 +586,16 @@
 
   <!-- Scroll Shadow Effect Script -->
   <script>
+    // Pass translations to JavaScript
+    const translations = {
+      'Please select a rating': '{{ __("website.Please select a rating") }}',
+      'Please enter your name': '{{ __("website.Please enter your name") }}',
+      'Please enter your email': '{{ __("website.Please enter your email") }}',
+      'Please enter a valid email address': '{{ __("website.Please enter a valid email address") }}',
+      'Please write a review with at least 10 characters': '{{ __("website.Please write a review with at least 10 characters") }}',
+      'Review is too long. Please keep it under 500 characters': '{{ __("website.Review is too long. Please keep it under 500 characters") }}'
+    };
+    
     document.addEventListener('DOMContentLoaded', function() {
       const header = document.getElementById('fixedHeader');
       
@@ -614,14 +624,14 @@
           const maxLength = 500;
           const minLength = 10;
           
-          charCounter.textContent = `${length}/${maxLength} characters`;
+          charCounter.textContent = `${length}/${maxLength} {{ __("website.characters") }}`;
           
           if (length < minLength) {
             charCounter.className = 'text-warning small mt-1';
-            charCounter.textContent += ` (minimum ${minLength} characters required)`;
+            charCounter.textContent += ` ({{ __("website.minimum") }} ${minLength} {{ __("website.characters required") }})`;
           } else if (length > maxLength) {
             charCounter.className = 'text-danger small mt-1';
-            charCounter.textContent += ' (exceeds maximum length)';
+            charCounter.textContent += ' ({{ __("website.exceeds maximum length") }})';
           } else {
             charCounter.className = 'text-muted small mt-1';
           }
@@ -640,19 +650,19 @@
 
         if (!rating) {
           e.preventDefault();
-          alert('Please select a rating');
+          alert(translations['Please select a rating']);
           return;
         }
 
         if (!reviewerName) {
           e.preventDefault();
-          alert('Please enter your name');
+          alert(translations['Please enter your name']);
           return;
         }
 
         if (!reviewerEmail) {
           e.preventDefault();
-          alert('Please enter your email');
+          alert(translations['Please enter your email']);
           return;
         }
 
@@ -660,25 +670,25 @@
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(reviewerEmail)) {
           e.preventDefault();
-          alert('Please enter a valid email address');
+          alert(translations['Please enter a valid email address']);
           return;
         }
 
         if (comment.length < 10) {
           e.preventDefault();
-          alert('Please write a review with at least 10 characters');
+          alert(translations['Please write a review with at least 10 characters']);
           return;
         }
 
         if (comment.length > 500) {
           e.preventDefault();
-          alert('Review is too long. Please keep it under 500 characters');
+          alert(translations['Review is too long. Please keep it under 500 characters']);
           return;
         }
 
         // Show loading state
         submitButton.disabled = true;
-        submitButton.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Submitting...';
+        submitButton.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>{{ __("website.Submitting...") }}';
       });
 
       // Auto-dismiss alerts after 5 seconds

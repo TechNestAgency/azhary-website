@@ -22,7 +22,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border: none !important;">
     <div class="container">
       <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center me-auto me-xl-0" style="min-width: 120px;">
-        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="" style="max-height: 60px;">
+        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="" style="max-height: 80px;">
       </a>
       
       <!-- Mobile Trial Button - Centered in Mobile Topbar -->
@@ -69,9 +69,9 @@
           </li>
           <li class="nav-item d-flex align-items-center">
             <div class="language-switcher d-flex align-items-center gap-1">
-              <a href="{{ route('language.switch', 'en') }}" class="nav-link p-0" style="color: {{ app()->getLocale() == 'en' ? '#0a2260' : '#0a2260b0' }}; font-weight: {{ app()->getLocale() == 'en' ? 'bold' : 'normal' }};">EN</a>
+              <a href="{{ route('language.switch', 'en') }}" class="nav-link p-0 language-link" data-lang="en" style="color: {{ app()->getLocale() == 'en' ? '#0a2260' : '#0a2260b0' }}; font-weight: {{ app()->getLocale() == 'en' ? 'bold' : 'normal' }};">EN</a>
               <span style="color: #0a2260; font-weight: bold;">|</span>
-              <a href="{{ route('language.switch', 'fr') }}" class="nav-link p-0" style="color: {{ app()->getLocale() == 'fr' ? '#0a2260' : '#0a2260b0' }}; font-weight: {{ app()->getLocale() == 'fr' ? 'bold' : 'normal' }};">FR</a>
+              <a href="{{ route('language.switch', 'fr') }}" class="nav-link p-0 language-link" data-lang="fr" style="color: {{ app()->getLocale() == 'fr' ? '#0a2260' : '#0a2260b0' }}; font-weight: {{ app()->getLocale() == 'fr' ? 'bold' : 'normal' }};">FR</a>
             </div>
           </li>
           <li class="nav-item mt-2 mt-lg-0">

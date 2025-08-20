@@ -280,6 +280,14 @@
                                     <li class="mb-2"><i class="bi bi-check-circle text-success me-2"></i>{{ __('website.Practical conversation focus') }}</li>
                                 </ul>
                             </div>
+
+                            <div class="card shadow-sm mt-4">
+                                <div class="card-body">
+                                    <h4 class="card-title mb-4">{{ __('website.Need Help?') }}</h4>
+                                    <p>{{ __('website.Contact our support team for any questions about the course.') }}</p>
+                                    <a href="#contact" class="btn btn-outline-primary w-100">{{ __('website.Contact Us') }}</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -324,11 +332,15 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="cta-section section py-5" style="background: linear-gradient(135deg, #0a2260 0%, #1e3a8a 100%);">
-            <div class="container text-center text-white">
-                <h2 class="mb-4">{{ __('website.Ready to Learn Arabic?') }}</h2>
-                <p class="lead mb-4">{{ __('website.Start your Arabic language journey with native speakers and immerse yourself in the rich culture and beautiful language.') }}</p>
-                <a href="{{ route('enroll.show') }}" class="btn btn-light btn-lg px-5">{{ __('website.Enroll Now') }}</a>
+        <section class="cta-section section py-5" style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);">
+            <div class="container text-center text-dark">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <h2 class="mb-4">{{ __('website.Ready to Learn Arabic?') }}</h2>
+                        <p class="lead mb-4">{{ __('website.Start your Arabic language journey with native speakers and immerse yourself in the rich culture and beautiful language.') }}</p>
+                        <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-lg px-5">{{ __('website.Essayer le premier cours d\'essai gratuit') }}</a>
+                    </div>
+                </div>
             </div>
         </section>
     </div>

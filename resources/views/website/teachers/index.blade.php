@@ -117,18 +117,22 @@
     }
   }
 
+  
   /* Page specific styles */
   .teachers-page {
-    padding-top: 140px;
+    padding: 80px;
   }
 
   .page-header {
     background: linear-gradient(135deg, #0a2260 0%, #1e3a8a 50%, #3b82f6 100%);
     color: white;
-    padding: 60px 0;
-    margin-bottom: 50px;
+    padding: 20px 0;
+    margin-bottom: 40px;
     position: relative;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    min-height: 120px;
   }
 
   .page-header::before {
@@ -154,14 +158,13 @@
   }
 
   .page-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-weight: 700;
-    margin-bottom: 1rem;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   }
 
   .page-subtitle {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     opacity: 0.9;
     max-width: 600px;
     margin: 0 auto;
@@ -169,15 +172,20 @@
 
   @media (max-width: 768px) {
     .page-title {
-      font-size: 2rem;
+      font-size: 1.8rem;
     }
     
     .page-subtitle {
-      font-size: 1rem;
+      font-size: 0.95rem;
     }
     
     .page-header {
-      padding: 40px 0;
+      padding: 15px 0;
+      min-height: 100px;
+    }
+    
+    .teachers-page {
+      padding: 20px;
     }
   }
 </style>
@@ -207,7 +215,7 @@
             <div class="teacher-profile-card">
                 <div class="teacher-photo-section">
                     @if($teacher->photo)
-                        <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->name }}">
+                        <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->localized_name }}">
                     @else
                         <div class="teacher-photo bg-secondary d-flex align-items-center justify-content-center">
                             <i class="bi bi-person" style="font-size: 3rem; color: #6c757d;"></i>
@@ -215,7 +223,7 @@
                     @endif
                 </div>
                 <div class="teacher-info-section">
-                    <h4 class="teacher-name">{{ $teacher->name }}</h4>
+                    <h4 class="teacher-name">{{ $teacher->localized_name }}</h4>
                     <div class="text-warning mb-3">
                         @for($i = 1; $i <= 5; $i++)
                             @if($i <= round($teacher->rating))
@@ -226,7 +234,7 @@
                         @endfor
                         <span class="text-muted ms-1">({{ $teacher->total_reviews }})</span>
                     </div>
-                    <p class="teacher-description">{!! Str::limit($teacher->short_description, 150) !!}</p>
+                    <p class="teacher-description">{!! Str::limit($teacher->localized_short_description, 150) !!}</p>
                     <a href="{{ route('website.teachers.show', $teacher) }}" class="teacher-btn">{{ __('website.Learn More') }}</a>
                 </div>
             </div>

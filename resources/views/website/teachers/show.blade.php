@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>{{ $teacher->name }} - Azhary Academy</title>
-  <meta name="description" content="{{ $teacher->short_description }}">
+  <title>{{ $teacher->localized_name }} - Azhary Academy</title>
+  <meta name="description" content="{{ $teacher->localized_short_description }}">
   <meta name="keywords" content="">
 
   <!-- Favicons -->
@@ -142,7 +142,7 @@
         <div class="row align-items-center">
           <div class="col-lg-6 text-center text-lg-start">
             <div class="hero-content" style="color: white;">
-              <h1 class="display-4 fw-bold mb-4" style="font-size: 3.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">{{ $teacher->name }}</h1>
+              <h1 class="display-4 fw-bold mb-4" style="font-size: 3.5rem; text-shadow: 2px 2px 4px rgba(0,0,0,0.3);">{{ $teacher->localized_name }}</h1>
               <div class="rating-display mb-4">
                 <div class="stars mb-2" style="font-size: 2rem;">
                   @for($i = 1; $i <= 5; $i++)
@@ -159,7 +159,7 @@
                   <span class="reviews-count" style="font-size: 1rem; opacity: 0.8;">({{ $teacher->total_reviews }} {{ __('reviews') }})</span>
                 </div>
               </div>
-              <p class="lead mb-4" style="font-size: 1.3rem; opacity: 0.95;">{{ $teacher->short_description }}</p>
+              <p class="lead mb-4" style="font-size: 1.3rem; opacity: 0.95;">{{ $teacher->localized_short_description }}</p>
               
               <!-- Statistics -->
               <div class="stats-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin: 3rem 0;">
@@ -187,7 +187,7 @@
           <div class="col-lg-6 text-center">
             <div class="teacher-avatar-hero">
               @if($teacher->photo)
-                <img src="{{ asset($teacher->photo) }}" alt="{{ $teacher->name }}" class="img-fluid rounded-circle" style="max-width: 350px; border: 8px solid rgba(255,255,255,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
+                <img src="{{ asset($teacher->photo) }}" alt="{{ $teacher->localized_name }}" class="img-fluid rounded-circle" style="max-width: 350px; border: 8px solid rgba(255,255,255,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
               @else
                 <div class="rounded-circle bg-light mx-auto d-flex align-items-center justify-content-center" style="width: 350px; height: 350px; border: 8px solid rgba(255,255,255,0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.3);">
                   <i class="bi bi-person" style="font-size: 8rem; color: #666;"></i>
@@ -208,12 +208,12 @@
                 <div class="content-section mb-5">
                     <div class="section-header mb-4">
                         <h2 class="section-title" style="font-size: 2.5rem; font-weight: 700; color: #13223F; position: relative; padding-bottom: 1rem;">
-                            {{ __('About') }} {{ $teacher->name }}
+                            {{ __('About') }} {{ $teacher->localized_name }}
                             <div class="title-underline" style="position: absolute; bottom: 0; left: 0; width: 80px; height: 4px; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 2px;"></div>
                         </h2>
                     </div>
                     <div class="section-content" style="background: white; border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                        <p class="lead" style="font-size: 1.2rem; line-height: 1.8; color: #555;">{{ $teacher->full_bio }}</p>
+                        <p class="lead" style="font-size: 1.2rem; line-height: 1.8; color: #555;">{{ $teacher->localized_full_bio }}</p>
                     </div>
                 </div>
 
@@ -229,9 +229,9 @@
                             </h3>
                         </div>
                         <div class="card-content">
-                            @if($teacher->languages)
+                            @if($teacher->localized_languages)
                                 <div class="language-list">
-                                    {!! $teacher->languages !!}
+                                    {!! $teacher->localized_languages !!}
                                 </div>
                             @else
                                 <p class="text-muted">{{ __('No languages specified') }}</p>
@@ -248,9 +248,9 @@
                             </h3>
                         </div>
                         <div class="card-content">
-                            @if($teacher->certifications)
+                            @if($teacher->localized_certifications)
                                 <div class="certification-list">
-                                    {!! $teacher->certifications !!}
+                                    {!! $teacher->localized_certifications !!}
                                 </div>
                             @else
                                 <p class="text-muted">{{ __('No certifications specified') }}</p>
@@ -270,7 +270,7 @@
                     </div>
                     <div class="section-content" style="background: white; border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                         <div class="methods-content">
-                            <p class="lead" style="font-size: 1.2rem; line-height: 1.8; color: #555;">{{ $teacher->teaching_methods }}</p>
+                            <p class="lead" style="font-size: 1.2rem; line-height: 1.8; color: #555;">{{ $teacher->localized_teaching_methods }}</p>
                         </div>
                     </div>
                 </div>
@@ -285,7 +285,7 @@
                     </div>
                     <div class="section-content" style="background: white; border-radius: 20px; padding: 2.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
                         <div class="materials-content">
-                            <p class="lead" style="font-size: 1.2rem; line-height: 1.8; color: #555;">{{ $teacher->materials_used }}</p>
+                            <p class="lead" style="font-size: 1.2rem; line-height: 1.8; color: #555;">{{ $teacher->localized_materials_used }}</p>
                         </div>
                     </div>
                 </div>
@@ -412,7 +412,7 @@
                     <div class="cta-icon mb-3">
                         <i class="bi bi-calendar-check" style="font-size: 3rem; opacity: 0.9;"></i>
                     </div>
-                    <h3 class="cta-title mb-3" style="font-size: 1.5rem; font-weight: 600;">{{ __('Try a Lesson with') }} {{ $teacher->name }}</h3>
+                    <h3 class="cta-title mb-3" style="font-size: 1.5rem; font-weight: 600;">{{ __('Try a Lesson with') }} {{ $teacher->localized_name }}</h3>
                     <p class="cta-description mb-4" style="opacity: 0.9;">{{ __('Book your first lesson and experience quality teaching') }}</p>
                     <a href="{{ route('enroll.show') }}" class="btn btn-warning btn-lg px-4 py-2" style="border-radius: 25px; font-weight: 600; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
                         {{ __('Book Your Lesson') }}
@@ -428,7 +428,7 @@
                     @foreach($relatedTeachers as $relatedTeacher)
                         <div class="teacher-item d-flex align-items-center mb-3 p-3" style="border-radius: 15px; transition: all 0.3s ease; border: 1px solid #eee;">
                             @if($relatedTeacher->photo)
-                                <img src="{{ asset($relatedTeacher->photo) }}" alt="{{ $relatedTeacher->name }}" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
+                                <img src="{{ asset($relatedTeacher->photo) }}" alt="{{ $relatedTeacher->localized_name }}" class="rounded-circle me-3" style="width: 60px; height: 60px; object-fit: cover;">
                             @else
                                 <div class="rounded-circle bg-secondary me-3 d-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
                                     <i class="bi bi-person text-white"></i>
@@ -437,7 +437,7 @@
                             <div class="teacher-info flex-grow-1">
                                 <h4 class="teacher-name mb-1" style="font-size: 1rem; font-weight: 600;">
                                     <a href="{{ route('website.teachers.show', $relatedTeacher) }}" class="text-decoration-none text-dark">
-                                        {{ $relatedTeacher->name }}
+                                        {{ $relatedTeacher->localized_name }}
                                     </a>
                                 </h4>
                                 <div class="teacher-rating">

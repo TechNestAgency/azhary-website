@@ -4,6 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
   
   <!-- Primary Meta Tags -->
   <title>@yield('title', 'Azhary Academy - Online Quran & Islamic Studies for French Speakers')</title>
@@ -232,9 +233,9 @@
   </style>
   
   <!-- Load critical CSS synchronously to prevent content hiding -->
-  <link rel="stylesheet" href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}?v={{ time() }}">
-  <link rel="stylesheet" href="{{ asset('website_assets/css/main.css') }}?v={{ time() }}">
-  <link rel="stylesheet" href="{{ asset('website_assets/vendor/bootstrap-icons/bootstrap-icons.css') }}?v={{ time() }}">
+  <link rel="stylesheet" href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('website_assets/css/main.css') }}">
+  <link rel="stylesheet" href="{{ asset('website_assets/vendor/bootstrap-icons/bootstrap-icons.css') }}">
   
   <!-- Fonts with display=swap for better performance -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
@@ -243,6 +244,10 @@
   <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
   <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
   <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+  
+  <!-- Toastr CSS -->
+  <link href="{{ asset('vendor/flasher/css/flasher.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('vendor/flasher/css/toastr.min.css') }}" rel="stylesheet">
   
   <!-- Structured Data -->
   <script type="application/ld+json">
@@ -624,6 +629,10 @@
     }
   </style>
 
+  <!-- Toastr JavaScript -->
+  <script src="{{ asset('vendor/flasher/js/flasher.min.js') }}"></script>
+  <script src="{{ asset('vendor/flasher/js/toastr.min.js') }}"></script>
+  
   @stack('scripts')
 </body>
 </html> 

@@ -61,13 +61,37 @@ Route::prefix('articles')->name('website.articles.')->group(function () {
 });
 
 // Language Switch Route
-Route::get('language/{locale}', function ($locale) {
+Route::get('language/{locale}', [App\Http\Controllers\LanguageController::class, 'switchLang'])->name('language.switch');
+
+// Debug route to test language switching
+Route::get('debug/locale', function () {
+    return response()->json([
+        'current_locale' => app()->getLocale(),
+        'session_locale' => session()->get('locale'),
+        'config_locale' => config('app.locale'),
+        'fallback_locale' => config('app.fallback_locale'),
+        'session_id' => session()->getId(),
+        'session_data' => session()->all()
+    ]);
+})->name('debug.locale');
+
+// Test route to manually set locale
+Route::get('test/set-locale/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'fr'])) {
         session()->put('locale', $locale);
         app()->setLocale($locale);
+        session()->save();
+        
+        return response()->json([
+            'success' => true,
+            'locale_set' => $locale,
+            'session_locale' => session()->get('locale'),
+            'app_locale' => app()->getLocale()
+        ]);
     }
-    return redirect()->back();
-})->name('language.switch');
+    
+    return response()->json(['success' => false, 'error' => 'Invalid locale']);
+})->name('test.set-locale');
 
 // Add this line after the existing routes
 // Route::get('/packages', [App\Http\Controllers\Website\PackageController::class, 'index'])->name('website.packages.index');

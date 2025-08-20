@@ -180,7 +180,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border: none !important;">
     <div class="container">
       <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center me-auto me-xl-0" style="min-width: 120px;">
-        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="" style="max-height: 60px;">
+        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="" style="max-height: 80px;">
       </a>
       
       <!-- Mobile Trial Button - Centered in Mobile Topbar -->
@@ -528,26 +528,30 @@
 
       <div class="container">
 
-        <div class="row gy-4">
+        <div class="row gy-4 align-items-center">
 
-            <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
-              <p class="who-we-are">{{ __('website.Who We Are') }}</p>
-              <h3>{{ __('website.Bringing Islamic Knowledge to French Speakers Worldwide') }}</h3>
-              <p class="fst-italic">
-                {{ __('website.Azhary Academy is dedicated to making Quranic education and Islamic studies accessible to French-speaking Muslims around the world through personalized online learning.') }}
-              </p>
-              <ul>
-                <li><i class="bi bi-check-circle"></i> <span>{{ __('website.Native French-speaking teachers with deep knowledge of Islamic sciences') }}</span></li>
-                <li><i class="bi bi-check-circle"></i> <span>{{ __('website.Personalized curriculum tailored to each student\'s level and goals') }}</span></li>
-                <li><i class="bi bi-check-circle"></i> <span>{{ __('website.Comprehensive courses in Quran recitation, memorization, tajweed') }}</span></li>
-                <li><i class="bi bi-check-circle"></i> <span>{{ __('website.Flexible scheduling to accommodate students across different time zones') }}</span></li>
-                <li><i class="bi bi-check-circle"></i> <span>{{ __('website.Engaging teaching methods that make learning enjoyable and effective') }}</span></li>
-              </ul>
-              <a href="#services" class="read-more"><span>{{ __('website.Explore Our Courses') }}</span><i class="bi bi-arrow-right"></i></a>
+            <div class="col-12 col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+              <div class="about-content">
+                <p class="who-we-are">{{ __('website.Who We Are') }}</p>
+                <h3>{{ __('website.Bringing Islamic Knowledge to French Speakers Worldwide') }}</h3>
+                <p class="fst-italic">
+                  {{ __('website.Azhary Academy is dedicated to making Quranic education and Islamic studies accessible to French-speaking Muslims around the world through personalized online learning.') }}
+                </p>
+                <ul class="about-features">
+                  <li><i class="bi bi-check-circle"></i> <span>{{ __('website.Native French-speaking teachers with deep knowledge of Islamic sciences') }}</span></li>
+                  <li><i class="bi bi-check-circle"></i> <span>{{ __('website.Personalized curriculum tailored to each student\'s level and goals') }}</span></li>
+                  <li><i class="bi bi-check-circle"></i> <span>{{ __('website.Comprehensive courses in Quran recitation, memorization, tajweed') }}</span></li>
+                  <li><i class="bi bi-check-circle"></i> <span>{{ __('website.Flexible scheduling to accommodate students across different time zones') }}</span></li>
+                  <li><i class="bi bi-check-circle"></i> <span>{{ __('website.Engaging teaching methods that make learning enjoyable and effective') }}</span></li>
+                </ul>
+                <a href="#services" class="read-more"><span>{{ __('website.Explore Our Courses') }}</span><i class="bi bi-arrow-right"></i></a>
+              </div>
             </div>
           
-            <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
-              <img src="{{asset('about.png')}}" class="img-fluid rounded-4 shadow" alt="Online Islamic Class">
+            <div class="col-12 col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
+              <div class="about-image-container">
+                <img src="{{asset('about.png')}}" class="img-fluid rounded-4 shadow" alt="Online Islamic Class">
+              </div>
             </div>
           
           </div>
@@ -691,11 +695,11 @@
             <div class="swiper-slide" data-aos="zoom-in" data-aos-delay="{{ $loop->iteration * 100 }}">
               <div class="teacher-profile-card">
                 <div class="teacher-photo-section">
-                  <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->name }}">
+                  <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->localized_name }}">
                 </div>
                 <div class="teacher-info-section">
-                  <h4 class="teacher-name">{{ $teacher->name }}</h4>
-                  <p class="teacher-description">{!! Str::limit($teacher->short_description, 200) !!}</p>
+                  <h4 class="teacher-name">{{ $teacher->localized_name }}</h4>
+                  <p class="teacher-description">{!! Str::limit($teacher->localized_short_description, 200) !!}</p>
                   <a href="{{ route('website.teachers.show', $teacher->id) }}" class="teacher-btn">{{ __('website.Learn More') }}</a>
                 </div>
               </div>
@@ -761,7 +765,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/test_man1.png') }}" alt="Student Profile">
+                    <img src="{{ asset('website_assets/img/man1.jpeg') }}" alt="Student Profile">
                     <div>
                       <h3>Ahmed Hassan</h3>
                       <h4>{{ __('website.Quran Student') }}</h4>
@@ -788,7 +792,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/test_girl.png') }}" alt="Student Profile">
+                    <img src="{{ asset('website_assets/img/girl.jpeg') }}" alt="Student Profile">
                     <div>
                       <h3>Fatima Zahra</h3>
                       <h4>{{ __('website.Islamic Studies Student') }}</h4>
@@ -815,7 +819,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/test_girl.png') }}" alt="Student Profile">
+                    <img src="{{ asset('website_assets/img/whomen1.jpeg') }}" alt="Student Profile">
                     <div>
                       <h3>Sarah Mohammed</h3>
                       <h4>{{ __('website.Parent') }}</h4>
@@ -842,7 +846,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/test_man2.png') }}" alt="Student Profile">
+                    <img src="{{ asset('website_assets/img/boy.jpeg') }}" alt="Student Profile">
                     <div>
                       <h3>Yusuf Ali</h3>
                       <h4>{{ __('website.Professional Student') }}</h4>
@@ -869,7 +873,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/test_girl.png') }}" alt="Student Profile">
+                    <img src="{{ asset('website_assets/img/girl.jpeg') }}" alt="Student Profile">
                     <div>
                       <h3>Layla Ibrahim</h3>
                       <h4>{{ __('website.Hifz Student') }}</h4>
@@ -896,7 +900,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/test_man2.png') }}" alt="Student Profile">
+                    <img src="{{ asset('website_assets/img/boy2.jpeg') }}" alt="Student Profile">
                     <div>
                       <h3>Omar Khalid</h3>
                       <h4>{{ __('website.Tajweed Student') }}</h4>
@@ -1030,39 +1034,40 @@
         </div>
 
         <div class="row gy-4 mb-5">
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-12 col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <div class="info-card">
               <div class="icon-box">
                 <i class="bi bi-telephone"></i>
               </div>
               <h3>{{ __('website.Contact Us') }}</h3>
-              <p>WhatsApp: +33 7 58 68 41 70<br>
-                Email: Madrassatazhary4@gmail.com</p>
+              <p class="contact-info">
+                <strong>WhatsApp:</strong> +33 7 58 68 41 70<br>
+                <strong>Email:</strong> Madrassatazhary4@gmail.com
+              </p>
               <div class="social-links mt-3">
-                <a href="https://x.com/MadrassatAzhary?t=7nDlU99ZIjGwJTPM0daDwQ&s=09" target="_blank"><i class="bi bi-twitter-x"></i></a>
-                <a href="https://www.instagram.com/madrassat.azhary?igsh=MXMxd3E5bnhxdzBjNw==" target="_blank"><i class="bi bi-instagram"></i></a>
-                <a href="https://www.facebook.com/share/1FjSh3nMAU/" target="_blank"><i class="bi bi-facebook"></i></a>
+                <a href="https://x.com/MadrassatAzhary?t=7nDlU99ZIjGwJTPM0daDwQ&s=09" target="_blank" aria-label="Twitter"><i class="bi bi-twitter-x"></i></a>
+                <a href="https://www.instagram.com/madrassat.azhary?igsh=MXMxd3E5bnhxdzBjNw==" target="_blank" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                <a href="https://www.facebook.com/share/1FjSh3nMAU/" target="_blank" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
               </div>
             </div>
           </div>
 
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-12 col-md-6 col-lg-6" data-aos="fade-up" data-aos-delay="200">
             <div class="info-card">
               <div class="icon-box">
                 <i class="bi bi-clock"></i>
               </div>
               <h3>{{ __('website.Available 24/7') }}</h3>
-              <p>{{ __('website.Our teachers are available around the clock to accommodate students from different time zones. Book your session at any time that suits you.') }}</p>
             </div>
           </div>
         </div>
 
         <div class="row justify-content-center">
-          <div class="col-lg-8 text-center" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-12 col-lg-8 text-center" data-aos="fade-up" data-aos-delay="300">
             <div class="cta-box">
               <h3>{{ __('website.Ready to Start Learning?') }}</h3>
               <p class="mb-4">{{ __('website.Fill out our enrollment form to begin your Quranic journey with us. Our team will contact you shortly to discuss your learning goals and schedule.') }}</p>
-              <a href="{{ route('enroll.show') }}" class="btn btn-islamic btn-lg px-5 py-3">{{ __('website.Enroll Now') }}</a>
+              <a href="{{ route('enroll.show') }}" class="btn btn-islamic btn-lg px-4 py-3">{{ __('website.Enroll Now') }}</a>
             </div>
           </div>
         </div>
@@ -1348,6 +1353,9 @@
       transition: all 0.3s ease;
       background: rgba(255, 255, 255, 0.9);
       backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 15px;
+      height: 100%;
     }
     
     .info-card:hover {
@@ -1355,7 +1363,424 @@
       box-shadow: 0 10px 25px rgba(30, 58, 138, 0.15);
     }
     
-    /* Islamic decorative elements */
+    /* Mobile-specific improvements for contact section */
+    @media (max-width: 768px) {
+      .contact .row.gy-4 {
+        margin: 0 -10px;
+      }
+      
+      .contact .col-lg-6 {
+        padding: 0 10px;
+        margin-bottom: 1rem;
+      }
+      
+      .info-card {
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        border-radius: 12px;
+      }
+      
+      .info-card h3 {
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+      }
+      
+      .info-card p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+      }
+      
+      .info-card .icon-box {
+        margin-bottom: 1rem;
+      }
+      
+      .info-card .icon-box i {
+        font-size: 2rem;
+      }
+      
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+      
+      .social-links a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background: rgba(30, 58, 138, 0.1);
+        border-radius: 50%;
+        color: #1e3a8a;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      
+      .social-links a:hover {
+        background: rgba(30, 58, 138, 0.2);
+        transform: scale(1.1);
+      }
+      
+      .cta-box {
+        padding: 2rem 1rem;
+        margin-top: 2rem;
+      }
+      
+      .cta-box h3 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      
+      .cta-box p {
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+      
+      .btn-islamic.btn-lg {
+        padding: 0.75rem 2rem;
+        font-size: 1rem;
+        white-space: normal;
+        word-wrap: break-word;
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .contact .container {
+        padding: 0 15px;
+      }
+      
+      .info-card {
+        padding: 1.25rem;
+        border-radius: 10px;
+      }
+      
+      .info-card h3 {
+        font-size: 1.2rem;
+      }
+      
+      .info-card p {
+        font-size: 0.9rem;
+      }
+      
+      .cta-box {
+        padding: 1.5rem 1rem;
+      }
+      
+      .cta-box h3 {
+        font-size: 1.3rem;
+      }
+      
+      .cta-box p {
+        font-size: 0.95rem;
+      }
+      
+      .btn-islamic.btn-lg {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.95rem;
+        width: 100%;
+        max-width: 280px;
+      }
+      
+      .contact-info {
+        word-break: break-word;
+        overflow-wrap: break-word;
+      }
+      
+      .contact-info strong {
+        color: #1e3a8a;
+        font-weight: 600;
+      }
+    }
+    
+    /* Additional mobile optimizations */
+    @media (max-width: 480px) {
+      .contact .section-title h2 {
+        font-size: 1.8rem;
+      }
+      
+      .contact .section-title p {
+        font-size: 0.95rem;
+      }
+      
+      .info-card {
+        padding: 1rem;
+        border-radius: 8px;
+      }
+      
+      .info-card h3 {
+        font-size: 1.1rem;
+      }
+      
+      .info-card p {
+        font-size: 0.85rem;
+      }
+      
+      .cta-box {
+        padding: 1.25rem 0.75rem;
+      }
+      
+      .cta-box h3 {
+        font-size: 1.2rem;
+      }
+      
+      .cta-box p {
+        font-size: 0.9rem;
+      }
+      
+             .btn-islamic.btn-lg {
+         padding: 0.5rem 1.25rem;
+         font-size: 0.9rem;
+         max-width: 250px;
+       }
+           }
+      
+      /* About Section Mobile Responsiveness */
+      .about {
+        padding: 60px 0;
+      }
+      
+      .about-content {
+        padding: 0 15px;
+      }
+      
+      .about-content .who-we-are {
+        color: #d4af37;
+        font-weight: 600;
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      
+      .about-content h3 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        color: #2c3e50;
+        margin-bottom: 1.5rem;
+        line-height: 1.3;
+      }
+      
+      .about-content .fst-italic {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #6c757d;
+        margin-bottom: 2rem;
+      }
+      
+      .about-features {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 2rem;
+      }
+      
+      .about-features li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+        padding: 0.5rem 0;
+      }
+      
+      .about-features li i {
+        color: #28a745;
+        font-size: 1.2rem;
+        margin-right: 1rem;
+        margin-top: 0.2rem;
+        flex-shrink: 0;
+      }
+      
+      .about-features li span {
+        color: #495057;
+        font-size: 1rem;
+        line-height: 1.5;
+      }
+      
+      .read-more {
+        display: inline-flex;
+        align-items: center;
+        color: #d4af37;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        padding: 0.75rem 1.5rem;
+        border: 2px solid #d4af37;
+        border-radius: 25px;
+        background: transparent;
+      }
+      
+      .read-more:hover {
+        background: #d4af37;
+        color: white;
+        transform: translateY(-2px);
+        text-decoration: none;
+      }
+      
+      .read-more i {
+        margin-left: 0.5rem;
+        transition: transform 0.3s ease;
+      }
+      
+      .read-more:hover i {
+        transform: translateX(5px);
+      }
+      
+      .about-image-container {
+        text-align: center;
+        padding: 0 15px;
+      }
+      
+      .about-image-container img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* Mobile-specific improvements for about section */
+      @media (max-width: 768px) {
+        .about {
+          padding: 40px 0;
+        }
+        
+        .about-content {
+          text-align: center;
+          padding: 0 10px;
+          margin-bottom: 2rem;
+        }
+        
+        .about-content .who-we-are {
+          font-size: 1rem;
+          margin-bottom: 0.75rem;
+        }
+        
+        .about-content h3 {
+          font-size: 1.8rem;
+          margin-bottom: 1rem;
+          line-height: 1.2;
+        }
+        
+        .about-content .fst-italic {
+          font-size: 1rem;
+          margin-bottom: 1.5rem;
+          text-align: center;
+        }
+        
+        .about-features {
+          text-align: left;
+          margin-bottom: 1.5rem;
+        }
+        
+        .about-features li {
+          margin-bottom: 0.75rem;
+          padding: 0.25rem 0;
+        }
+        
+        .about-features li i {
+          font-size: 1.1rem;
+          margin-right: 0.75rem;
+        }
+        
+        .about-features li span {
+          font-size: 0.95rem;
+          line-height: 1.4;
+        }
+        
+        .read-more {
+          font-size: 1rem;
+          padding: 0.6rem 1.25rem;
+          width: auto;
+          justify-content: center;
+        }
+        
+        .about-image-container {
+          padding: 0 10px;
+        }
+        
+        .about-image-container img {
+          border-radius: 12px;
+          max-width: 90%;
+        }
+      }
+      
+      @media (max-width: 576px) {
+        .about {
+          padding: 30px 0;
+        }
+        
+        .about-content {
+          padding: 0 5px;
+        }
+        
+        .about-content .who-we-are {
+          font-size: 0.9rem;
+          margin-bottom: 0.5rem;
+        }
+        
+        .about-content h3 {
+          font-size: 1.5rem;
+          margin-bottom: 0.75rem;
+        }
+        
+        .about-content .fst-italic {
+          font-size: 0.9rem;
+          margin-bottom: 1.25rem;
+        }
+        
+        .about-features li {
+          margin-bottom: 0.5rem;
+        }
+        
+        .about-features li i {
+          font-size: 1rem;
+          margin-right: 0.5rem;
+        }
+        
+        .about-features li span {
+          font-size: 0.85rem;
+          line-height: 1.3;
+        }
+        
+        .read-more {
+          font-size: 0.9rem;
+          padding: 0.5rem 1rem;
+          width: 100%;
+          max-width: 250px;
+        }
+        
+        .about-image-container img {
+          max-width: 85%;
+          border-radius: 10px;
+        }
+      }
+      
+      @media (max-width: 480px) {
+        .about-content h3 {
+          font-size: 1.3rem;
+        }
+        
+        .about-content .fst-italic {
+          font-size: 0.85rem;
+        }
+        
+        .about-features li span {
+          font-size: 0.8rem;
+        }
+        
+        .read-more {
+          font-size: 0.85rem;
+          padding: 0.45rem 0.9rem;
+          max-width: 220px;
+        }
+        
+        .about-image-container img {
+          max-width: 80%;
+        }
+      }
+      
+      /* Islamic decorative elements */
     .section-title h2::before {
       background: linear-gradient(90deg, var(--islamic-gold), var(--islamic-green));
     }

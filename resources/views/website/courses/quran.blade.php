@@ -324,11 +324,11 @@
         </section>
 
         <!-- CTA Section -->
-        <section class="cta-section section py-5" style="background: linear-gradient(135deg, #0a2260 0%, #1e3a8a 100%);">
-            <div class="container text-center text-white">
+        <section class="cta-section section py-5" style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);">
+            <div class="container text-center text-dark">
                 <h2 class="mb-4">{{ __('website.Ready to Start Your Quran Journey?') }}</h2>
                 <p class="lead mb-4">{{ __('website.Join our comprehensive Quran course and master recitation, tajweed, and memorization with expert guidance.') }}</p>
-                <a href="{{ route('enroll.show') }}" class="btn btn-light btn-lg px-5">{{ __('website.Enroll Now') }}</a>
+                <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-lg px-5">{{ __('website.Enroll Now') }}</a>
             </div>
         </section>
     </div>

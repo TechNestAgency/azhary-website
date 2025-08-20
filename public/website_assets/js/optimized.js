@@ -125,7 +125,7 @@
       });
     }
 
-    // Smooth scroll for anchor links
+    // Smooth scroll for anchor links (only for hash links, not language switcher)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -182,21 +182,34 @@
     });
   }
 
-  // Initialize everything when DOM is ready
-  function init() {
-    // Critical functionality
+  // Language switcher functionality
+  function initLanguageSwitcher() {
+    const languageLinks = document.querySelectorAll('.language-link');
+    
+    languageLinks.forEach(link => {
+      link.addEventListener('click', function(e) {
+        const lang = this.getAttribute('data-lang');
+        const href = this.getAttribute('href');
+        
+        console.log('Language link clicked:', lang, href);
+        
+        // Allow the default navigation to proceed
+        // Don't prevent default - let the link work normally
+      });
+    });
+  }
+
+  // Initialize all functions when DOM is ready
+  document.addEventListener('DOMContentLoaded', function() {
+    initLazyLoading();
+    initCounters();
     initScrollEffects();
     initMobileNav();
     initSmoothScroll();
     initCarousel();
-
-    // Non-critical functionality (deferred)
-    requestIdleCallback(() => {
-      initLazyLoading();
-      initCounters();
-      preloadCriticalResources();
-    });
-  }
+    initLanguageSwitcher();
+    preloadCriticalResources();
+  });
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {

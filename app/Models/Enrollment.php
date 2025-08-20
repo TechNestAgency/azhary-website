@@ -32,11 +32,10 @@ class Enrollment extends Model
 
     // Course interest mapping
     protected static $courseMapping = [
-        'quran_recitation' => 'Recitation of the Quran',
-        'tajweed' => 'Tajweed Rules',
-        'arabic_grammar' => 'Arabic Grammar',
+        'quran' => 'Quran (Recitation, Tajweed & Memorization)',
+        'arabic_language' => 'Arabic Language',
         'islamic_studies' => 'Islamic Studies',
-        'quran_memorization' => 'Quran Memorization'
+        'ijazah' => 'Ijazah (Qur\'an Certification)'
     ];
 
     public function getCourseInterestTextAttribute()

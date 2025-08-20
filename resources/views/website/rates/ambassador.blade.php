@@ -94,19 +94,23 @@
       border: 3px solid transparent;
     }
 
-    .pricing-card::before {
+    .pricing-card::after {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-      transition: left 0.5s ease;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(255, 215, 0, 0.05), rgba(255, 215, 0, 0.02));
+      border-radius: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 1;
     }
 
-    .pricing-card:hover::before {
-      left: 100%;
+    .pricing-card:hover::after {
+      opacity: 1;
     }
 
     .pricing-card:hover {
@@ -196,6 +200,10 @@
       display: inline-block;
       width: 100%;
       text-align: center;
+      position: relative;
+      z-index: 50;
+      cursor: pointer;
+      pointer-events: auto;
     }
 
     .enroll-btn:hover {
@@ -203,6 +211,12 @@
       color: #13223F;
       transform: translateY(-2px);
       box-shadow: 0 5px 15px rgba(255, 215, 0, 0.3);
+      z-index: 100;
+    }
+
+    .enroll-btn:active {
+      transform: translateY(0);
+      box-shadow: 0 2px 8px rgba(255, 215, 0, 0.4);
     }
 
     .info-section {
@@ -441,47 +455,223 @@
         </div>
     </section>
 
-    <!-- Pricing Structure -->
+    <!-- Pricing Packages -->
     <section class="pricing-grid">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
-                    <div class="pricing-card text-center">
+            <div class="row g-4">
+                <!-- Starter Pack -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pricing-card">
+                        <div class="exclusive-badge">Exclusive</div>
+                        <div class="card-content" style="position: relative; z-index: 30;">
+                            <h3 class="package-name">🪴 {{ __('website.Starter Pack') }}</h3>
+                            <p class="package-subtitle">{{ __('website.to get started') }}</p>
+                            
+                            <div class="price-container">
+                                <div class="original-price">€60</div>
+                                <div class="current-price">
+                                    <span class="currency">€</span>58
+                                </div>
+                                <div class="savings-badge">{{ __('website.You save') }} €2</div>
+                            </div>
+
+                            <ul class="features-list">
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.4 courses') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.1 hour per course') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.VIP personalized accompaniment') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive teaching methods') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
+                            </ul>
+
+                            <a href="{{ route('enroll.show', ['package' => 'ambassador_starter']) }}" class="enroll-btn">{{ __('website.Book Now') }} !</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scholar Pack -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pricing-card">
+                        <div class="exclusive-badge">Exclusive</div>
+                        <div class="card-content" style="position: relative; z-index: 30;">
+                            <h3 class="package-name">😁 {{ __('website.Scholar Pack') }}</h3>
+                            <p class="package-subtitle">{{ __('website.For advanced users') }}</p>
+                            
+                            <div class="price-container">
+                                <div class="original-price">€120</div>
+                                <div class="current-price">
+                                    <span class="currency">€</span>114
+                                </div>
+                                <div class="savings-badge">{{ __('website.You save') }} €6</div>
+                            </div>
+
+                            <ul class="features-list">
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.8 courses') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.1 hour per course') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.VIP personalized accompaniment') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive teaching methods') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
+                            </ul>
+
+                            <a href="{{ route('enroll.show', ['package' => 'ambassador_scholar']) }}" class="enroll-btn">{{ __('website.Book Now') }} !</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Expert Pack -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pricing-card">
                         <div class="exclusive-badge">Exclusive</div>
                         <div class="vip-badge">VIP</div>
-                        <h3 class="package-name">🚀 {{ __('website.Ambassador Teachers') }}</h3>
-                        <p class="package-subtitle">{{ __('website.Flexible monthly pricing based on your needs') }}</p>
-                        
-                        <div class="price-container">
-                            <div class="current-price">
-                                <span class="currency">€</span>15
+                        <div class="card-content" style="position: relative; z-index: 30;">
+                            <h3 class="package-name">😎 {{ __('website.Expert Pack') }}</h3>
+                            <p class="package-subtitle">{{ __('website.The best choice') }}</p>
+                            
+                            <div class="price-container">
+                                <div class="original-price">€180</div>
+                                <div class="current-price">
+                                    <span class="currency">€</span>168
+                                </div>
+                                <div class="savings-badge">{{ __('website.You save') }} €12</div>
                             </div>
-                            <div class="price-per-hour">{{ __('website.per hour') }}</div>
-                            <div class="savings-badge">{{ __('website.Flexible monthly calculation') }}</div>
+
+                            <ul class="features-list">
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.12 courses') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.1 hour per course') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.VIP personalized accompaniment') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive teaching methods') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Advanced progress tracking') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
+                            </ul>
+
+                            <a href="{{ route('enroll.show', ['package' => 'ambassador_expert']) }}" class="enroll-btn">{{ __('website.Book Now') }} !</a>
                         </div>
+                    </div>
+                </div>
 
-                        <div class="pricing-explanation mb-4">
-                            <p class="lead">{{ __('website.The pricing is calculated based on the number of hours you need per month. This gives you complete flexibility to choose exactly how many hours of learning you want.') }}</p>
+                <!-- Master Pack -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                    <div class="pricing-card">
+                        <div class="exclusive-badge">Exclusive</div>
+                        <div class="card-content" style="position: relative; z-index: 30;">
+                            <h3 class="package-name">🥉 {{ __('website.Master Pack') }}</h3>
+                            <p class="package-subtitle">{{ __('website.For advanced users') }}</p>
+                            
+                            <div class="price-container">
+                                <div class="original-price">€240</div>
+                                <div class="current-price">
+                                    <span class="currency">€</span>220
+                                </div>
+                                <div class="savings-badge">{{ __('website.You save') }} €20</div>
+                            </div>
+
+                            <ul class="features-list">
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.16 courses') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.1 hour per course') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.VIP personalized accompaniment') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive teaching methods') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Priority scheduling') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
+                            </ul>
+
+                            <a href="{{ route('enroll.show', ['package' => 'ambassador_master']) }}" class="enroll-btn">{{ __('website.Book Now') }} !</a>
                         </div>
+                    </div>
+                </div>
 
-                        <ul class="features-list">
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.VIP personalized accompaniment') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive teaching methods') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Advanced progress tracking') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Priority scheduling') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive study materials') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.24/7 VIP support') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Personal mentor') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive workshops') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Certificate of excellence') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
-                        </ul>
+                <!-- Elite Pack -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                    <div class="pricing-card">
+                        <div class="exclusive-badge">Exclusive</div>
+                        <div class="vip-badge">VIP</div>
+                        <div class="card-content" style="position: relative; z-index: 30;">
+                            <h3 class="package-name">🥈 {{ __('website.Elite Pack') }}</h3>
+                            <p class="package-subtitle">{{ __('website.The most popular') }}</p>
+                            
+                            <div class="price-container">
+                                <div class="original-price">€360</div>
+                                <div class="current-price">
+                                    <span class="currency">€</span>325
+                                </div>
+                                <div class="savings-badge">{{ __('website.You save') }} €35</div>
+                            </div>
 
-                        <div class="pricing-note mt-4">
-                            <p class="lead text-center">{{ __('website.Pricing is based on the number of hours per month, calculated at €15 per hour') }}</p>
+                            <ul class="features-list">
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.24 courses') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.1 hour per course') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.VIP personalized accompaniment') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive teaching methods') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive study materials') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.24/7 VIP support') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
+                            </ul>
+
+                            <a href="{{ route('enroll.show', ['package' => 'ambassador_elite']) }}" class="enroll-btn">{{ __('website.Book Now') }} !</a>
                         </div>
+                    </div>
+                </div>
 
-                        <a href="{{ route('enroll.show') }}" class="enroll-btn mt-4">{{ __('website.Contact Us for Custom Quote') }}</a>
+                <!-- Premium Pack -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                    <div class="pricing-card">
+                        <div class="exclusive-badge">Exclusive</div>
+                        <div class="vip-badge">VIP</div>
+                        <div class="card-content" style="position: relative; z-index: 30;">
+                            <h3 class="package-name">🥇 {{ __('website.Premium Pack') }}</h3>
+                            <p class="package-subtitle">{{ __('website.For advanced users') }}</p>
+                            
+                            <div class="price-container">
+                                <div class="original-price">€720</div>
+                                <div class="current-price">
+                                    <span class="currency">€</span>640
+                                </div>
+                                <div class="savings-badge">{{ __('website.You save') }} €80</div>
+                            </div>
+
+                            <ul class="features-list">
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.48 courses') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.1 hour per course') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.VIP personalized accompaniment') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive teaching methods') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Personal mentor') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive workshops') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
+                            </ul>
+
+                            <a href="{{ route('enroll.show', ['package' => 'ambassador_premium']) }}" class="enroll-btn">{{ __('website.Book Now') }} !</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Ultimate Pack -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
+                    <div class="pricing-card">
+                        <div class="exclusive-badge">Exclusive</div>
+                        <div class="vip-badge">VIP</div>
+                        <div class="card-content" style="position: relative; z-index: 30;">
+                            <h3 class="package-name">🌟 {{ __('website.Ultimate Pack') }}</h3>
+                            <p class="package-subtitle">{{ __('website.The most economical') }}</p>
+                            
+                            <div class="price-container">
+                                <div class="original-price">€1500</div>
+                                <div class="current-price">
+                                    <span class="currency">€</span>1250
+                                </div>
+                                <div class="savings-badge">{{ __('website.You save') }} €250</div>
+                            </div>
+
+                            <ul class="features-list">
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.100 courses') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.1 hour per course') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.VIP personalized accompaniment') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive teaching methods') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Certificate of excellence') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Priority scheduling') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive study materials') }}</li>
+                                <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
+                            </ul>
+
+                            <a href="{{ route('enroll.show', ['package' => 'ambassador_ultimate']) }}" class="enroll-btn">{{ __('website.Book Now') }} !</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -550,7 +740,7 @@
                 <div class="col-12 text-center">
                     <h3>{{ __('website.Ready for the Ultimate Learning Experience?') }}</h3>
                     <p>{{ __('website.Choose the perfect Ambassador Teacher package for your needs and experience the highest quality Quranic education with our most prestigious and qualified instructors.') }}</p>
-                    <a href="{{ route('enroll.show') }}" class="cta-btn">{{ __('website.Enroll Now') }}</a>
+                    <a href="{{ route('enroll.show', ['package' => 'ambassador_elite']) }}" class="cta-btn">{{ __('website.Enroll Now') }}</a>
                 </div>
             </div>
         </div>
