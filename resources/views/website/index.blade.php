@@ -11,8 +11,12 @@
   <!-- Performance Optimizations -->
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  <link rel="dns-prefetch" href="//code.jquery.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://code.jquery.com">
   
   <!-- Critical CSS Inline -->
   <style>
@@ -135,26 +139,166 @@
     @media (max-width: 992px) {
       .col-lg-3, .col-lg-6 { flex: 0 0 50%; }
     }
+
+    /* Loading Spinner Styles */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      z-index: 9999;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+
+    .loading-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loading-content {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .loading-logo {
+      margin-bottom: 10px;
+    }
+
+    .spinner-logo {
+      width: 120px;
+      height: auto;
+      animation: logoPulse 2s ease-in-out infinite;
+    }
+
+    .loading-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid #d4af37;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .loading-text {
+      font-family: "Roboto", sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: #333;
+      margin-top: 10px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @keyframes logoPulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.8; }
+    }
+
+    /* Blur effect for main content while loading */
+    body.loading {
+      overflow: hidden;
+    }
+
+    body.loading .fixed-top,
+    body.loading .main {
+      filter: blur(5px);
+      transition: filter 0.3s ease;
+    }
+
+    /* Performance optimizations */
+    * {
+      box-sizing: border-box;
+    }
+    
+    /* Optimize animations */
+    .animate-on-scroll {
+      will-change: transform, opacity;
+    }
+    
+    /* Reduce paint operations */
+    .stat-card,
+    .testimonial-card,
+    .teacher-profile-card {
+      will-change: transform;
+      backface-visibility: hidden;
+      transform: translateZ(0);
+    }
+    
+    /* Optimize images */
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+    
+    /* Reduce layout thrashing */
+    .container,
+    .row {
+      contain: layout;
+    }
   </style>
 
   <!-- Favicons -->
   <link href="{{ asset('website_assets/img/logo-no.png') }}" rel="icon">
   <link href="{{ asset('website_assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
-  <!-- Fonts with display=swap -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Preload Critical Resources -->
+  <link rel="preload" href="{{ asset('website_assets/img/logo-no.png') }}" as="image">
+  <link rel="preload" href="{{ asset('hero-back.jpg') }}" as="image">
+  <link rel="preload" href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" as="style">
+  <link rel="preload" href="{{ asset('website_assets/css/main.css') }}" as="style">
+  
+  <!-- DNS Prefetch for External Resources -->
+  <link rel="dns-prefetch" href="//fonts.googleapis.com">
+  <link rel="dns-prefetch" href="//fonts.gstatic.com">
+  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+  
+  <!-- Fonts with display=swap and preload -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
+  <!-- Critical CSS Files (inline for above-the-fold) -->
   <link href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('website_assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet">
-  <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-
-  <!-- Main CSS File -->
   <link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet">
+  
+  <!-- Non-Critical CSS (load asynchronously) -->
+  <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+  <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+  
+  <!-- Fallback for browsers that don't support onload -->
+  <noscript>
+    <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+  </noscript>
 </head>
 <body class="index-page">
+
+  <!-- Loading Spinner -->
+  <div id="loading-spinner" class="loading-overlay">
+    <div class="loading-content">
+      <div class="loading-logo">
+        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="Madrassat Azhary" class="spinner-logo">
+      </div>
+      <div class="loading-spinner"></div>
+      <div class="loading-text">Loading...</div>
+    </div>
+  </div>
 
   <!-- Fixed Top Bar with Social Links and Navigation -->
   <div class="fixed-top" id="fixedHeader" style="background-color:rgb(2, 37, 108);opacity: 0.88; color: #fff; z-index: 1040; transition: box-shadow 0.3s ease;">
@@ -180,7 +324,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border: none !important;">
     <div class="container">
       <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center me-auto me-xl-0" style="min-width: 120px;">
-        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="" style="max-height: 80px;">
+        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="" style="max-height: 80px;" data-critical="true">
       </a>
       
       <!-- Mobile Trial Button - Centered in Mobile Topbar -->
@@ -256,7 +400,7 @@
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
                 <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
-                  <img src="{{ asset('presenting.png') }}" alt="Welcome Man" class="img-fluid" style="max-height: 400px;">
+                  <img src="{{ asset('presenting.png') }}" alt="Welcome Man" class="img-fluid" style="max-height: 400px;" loading="lazy">
                 </div>
                 <!-- Welcome Title (right) -->
                 <div class="col-12 col-lg-6 text-white text-center text-lg-start">
@@ -273,7 +417,7 @@
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
                 <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
-                  <img src="{{ asset('man2.png') }}" alt="Online Learning" class="img-fluid" style="max-height: 400px;">
+                  <img src="{{ asset('man2.png') }}" alt="Online Learning" class="img-fluid" style="max-height: 400px;" loading="lazy">
                 </div>
                 <!-- Online Learning Content (right) -->
                 <div class="col-12 col-lg-6 text-white text-center text-lg-start">
@@ -292,7 +436,7 @@
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
                 <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
-                  <img src="{{ asset('man3.png') }}" alt="French Community" class="img-fluid" style="max-height: 400px;">
+                  <img src="{{ asset('man3.png') }}" alt="French Community" class="img-fluid" style="max-height: 400px;" loading="lazy">
                 </div>
                 <!-- French Community Content (right) -->
                 <div class="col-12 col-lg-6 text-white text-center text-lg-start">
@@ -311,7 +455,7 @@
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
                 <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
-                  <img src="{{ asset('man4.png') }}" alt="Children's Arabic Learning" class="img-fluid" style="max-height: 400px;">
+                  <img src="{{ asset('man4.png') }}" alt="Children's Arabic Learning" class="img-fluid" style="max-height: 400px;" loading="lazy">
                 </div>
                 <!-- Children's Program Content (right) -->
                 <div class="col-12 col-lg-6 text-white text-center text-lg-start">
@@ -550,7 +694,7 @@
           
             <div class="col-12 col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
               <div class="about-image-container">
-                <img src="{{asset('about.png')}}" class="img-fluid rounded-4 shadow" alt="Online Islamic Class">
+                <img src="{{asset('about.png')}}" class="img-fluid rounded-4 shadow" alt="Online Islamic Class" loading="lazy">
               </div>
             </div>
           
@@ -695,7 +839,7 @@
             <div class="swiper-slide" data-aos="zoom-in" data-aos-delay="{{ $loop->iteration * 100 }}">
               <div class="teacher-profile-card">
                 <div class="teacher-photo-section">
-                  <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->localized_name }}">
+                  <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->localized_name }}" loading="lazy">
                 </div>
                 <div class="teacher-info-section">
                   <h4 class="teacher-name">{{ $teacher->localized_name }}</h4>
@@ -765,7 +909,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/man1.jpeg') }}" alt="Student Profile">
+                    <img src="{{ asset('website_assets/img/man1.jpeg') }}" alt="Student Profile" loading="lazy">
                     <div>
                       <h3>Ahmed Hassan</h3>
                       <h4>{{ __('website.Quran Student') }}</h4>
@@ -792,7 +936,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/girl.jpeg') }}" alt="Student Profile">
+                    <img src="{{ asset('website_assets/img/girl.jpeg') }}" alt="Student Profile" loading="lazy">
                     <div>
                       <h3>Fatima Zahra</h3>
                       <h4>{{ __('website.Islamic Studies Student') }}</h4>
@@ -819,7 +963,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/whomen1.jpeg') }}" alt="Student Profile">
+                    <img src="{{ asset('website_assets/img/whomen1.jpeg') }}" alt="Student Profile" loading="lazy">
                     <div>
                       <h3>Sarah Mohammed</h3>
                       <h4>{{ __('website.Parent') }}</h4>
@@ -846,7 +990,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/boy.jpeg') }}" alt="Student Profile">
+                    <img src="{{ asset('website_assets/img/boy.jpeg') }}" alt="Student Profile" loading="lazy">
                     <div>
                       <h3>Yusuf Ali</h3>
                       <h4>{{ __('website.Professional Student') }}</h4>
@@ -873,7 +1017,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/girl.jpeg') }}" alt="Student Profile">
+                    <img src="{{ asset('website_assets/img/girl.jpeg') }}" alt="Student Profile" loading="lazy">
                     <div>
                       <h3>Layla Ibrahim</h3>
                       <h4>{{ __('website.Hifz Student') }}</h4>
@@ -900,7 +1044,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/boy2.jpeg') }}" alt="Student Profile">
+                    <img src="{{ asset('website_assets/img/boy2.jpeg') }}" alt="Student Profile" loading="lazy">
                     <div>
                       <h3>Omar Khalid</h3>
                       <h4>{{ __('website.Tajweed Student') }}</h4>
@@ -1085,31 +1229,43 @@
   <!-- Preloader -->
   <div id="preloader"></div>
 
-  <!-- Vendor JS Files -->
+  <!-- Critical JS Files (load immediately) -->
   <script src="{{ asset('website_assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/php-email-form/validate.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/aos/aos.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  
+  <!-- Non-Critical JS Files (load asynchronously) -->
+  <script src="{{ asset('website_assets/vendor/php-email-form/validate.js') }}" defer></script>
+  <script src="{{ asset('website_assets/vendor/aos/aos.js') }}" defer></script>
+  <script src="{{ asset('website_assets/vendor/glightbox/js/glightbox.min.js') }}" defer></script>
+  <script src="{{ asset('website_assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}" defer></script>
+  <script src="{{ asset('website_assets/vendor/isotope-layout/isotope.pkgd.min.js') }}" defer></script>
+  <script src="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.js') }}" defer></script>
 
-  <!-- Main JS File -->
-  <script src="{{ asset('website_assets/js/main.js') }}"></script>
-  <script src="{{ asset('website_assets/js/enroll-form.js') }}"></script>
+  <!-- Main JS Files (load asynchronously) -->
+  <script src="{{ asset('website_assets/js/main.js') }}" defer></script>
+  <script src="{{ asset('website_assets/js/enroll-form.js') }}" defer></script>
 
-  <!-- Carousel Auto-Start Script -->
+  <!-- Optimized Carousel Auto-Start Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      const carousel = document.getElementById('heroCarousel');
-      if (carousel) {
-        const bsCarousel = new bootstrap.Carousel(carousel, {
-          interval: 2000,
-          ride: true,
-          wrap: true
-        });
-        // Force start the carousel
-        bsCarousel.cycle();
+      // Use requestIdleCallback for better performance
+      const startCarousel = () => {
+        const carousel = document.getElementById('heroCarousel');
+        if (carousel) {
+          const bsCarousel = new bootstrap.Carousel(carousel, {
+            interval: 3000, // Increased interval for better performance
+            ride: true,
+            wrap: true
+          });
+          // Force start the carousel
+          bsCarousel.cycle();
+        }
+      };
+      
+      // Use requestIdleCallback if available, otherwise setTimeout
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(startCarousel);
+      } else {
+        setTimeout(startCarousel, 100);
       }
     });
   </script>
@@ -2099,23 +2255,30 @@
     });
   </script>
 
-  <!-- Counter Animation Script -->
+  <!-- Optimized Counter Animation Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Counter animation function
+      // Optimized counter animation function with requestAnimationFrame
       function animateCounter(element, target, duration = 2000) {
         const start = 0;
-        const increment = target / (duration / 16); // 60fps
-        let current = start;
+        const startTime = performance.now();
         
-        const timer = setInterval(() => {
-          current += increment;
-          if (current >= target) {
-            current = target;
-            clearInterval(timer);
+        function updateCounter(currentTime) {
+          const elapsed = currentTime - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          
+          // Use easing function for smoother animation
+          const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+          const current = Math.floor(start + (target - start) * easeOutQuart);
+          
+          element.textContent = current;
+          
+          if (progress < 1) {
+            requestAnimationFrame(updateCounter);
           }
-          element.textContent = Math.floor(current);
-        }, 16);
+        }
+        
+        requestAnimationFrame(updateCounter);
       }
       
       // Live counter update function
@@ -2181,6 +2344,115 @@
       // Add live indicator after a delay
       setTimeout(addLiveIndicator, 3000);
     });
+  </script>
+
+  <!-- Optimized Loading Spinner Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const loadingSpinner = document.getElementById('loading-spinner');
+      const body = document.body;
+      
+      // Add loading class to body
+      body.classList.add('loading');
+      
+      // Function to check if critical images are loaded
+      function checkCriticalImagesLoaded() {
+        const criticalImages = document.querySelectorAll('img[data-critical="true"], .hero img, .navbar-brand img');
+        const totalCriticalImages = criticalImages.length;
+        let loadedCriticalImages = 0;
+        
+        // If no critical images, hide spinner after a short delay
+        if (totalCriticalImages === 0) {
+          setTimeout(hideSpinner, 800);
+          return;
+        }
+        
+        // Check each critical image
+        criticalImages.forEach(img => {
+          if (img.complete && img.naturalHeight !== 0) {
+            loadedCriticalImages++;
+            checkComplete();
+          } else {
+            img.addEventListener('load', () => {
+              loadedCriticalImages++;
+              checkComplete();
+            });
+            img.addEventListener('error', () => {
+              loadedCriticalImages++;
+              checkComplete();
+            });
+          }
+        });
+        
+        function checkComplete() {
+          if (loadedCriticalImages >= totalCriticalImages) {
+            // Add a small delay for better UX
+            setTimeout(hideSpinner, 300);
+          }
+        }
+      }
+      
+      // Function to hide spinner
+      function hideSpinner() {
+        loadingSpinner.classList.add('hidden');
+        body.classList.remove('loading');
+        
+        // Remove spinner from DOM after animation
+        setTimeout(() => {
+          if (loadingSpinner.parentNode) {
+            loadingSpinner.parentNode.removeChild(loadingSpinner);
+          }
+        }, 500);
+      }
+      
+      // Start checking critical images immediately
+      checkCriticalImagesLoaded();
+      
+      // Fallback: hide spinner after 3 seconds maximum
+      setTimeout(() => {
+        if (!loadingSpinner.classList.contains('hidden')) {
+          hideSpinner();
+        }
+      }, 3000);
+    });
+  </script>
+
+  <!-- Performance Monitoring Script -->
+  <script>
+    // Performance monitoring
+    window.addEventListener('load', function() {
+      // Measure page load time
+      const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
+      console.log('Page load time:', loadTime + 'ms');
+      
+      // Measure DOM content loaded time
+      const domReadyTime = performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart;
+      console.log('DOM ready time:', domReadyTime + 'ms');
+      
+      // Report to analytics if needed
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'timing_complete', {
+          name: 'load',
+          value: loadTime
+        });
+      }
+    });
+    
+    // Optimize scroll performance
+    let ticking = false;
+    function updateScroll() {
+      // Scroll-based animations and effects
+      ticking = false;
+    }
+    
+    function requestTick() {
+      if (!ticking) {
+        requestAnimationFrame(updateScroll);
+        ticking = true;
+      }
+    }
+    
+    window.addEventListener('scroll', requestTick, { passive: true });
   </script>
 
 </body>
