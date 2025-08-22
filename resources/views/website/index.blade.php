@@ -248,6 +248,46 @@
     .row {
       contain: layout;
     }
+
+    /* Mobile Enroll Button Responsive Styling */
+    .mobile-enroll-btn {
+      max-width: 140px !important;
+    }
+    
+    .mobile-enroll-link {
+      font-size: 0.65rem !important;
+      padding: 0.3rem 0.5rem !important;
+      line-height: 1.2 !important;
+      white-space: nowrap !important;
+    }
+    
+    /* Extra small devices (phones, 576px and down) */
+    @media (max-width: 576px) {
+      .mobile-enroll-btn {
+        max-width: 120px !important;
+        top: 45px !important;
+      }
+      
+      .mobile-enroll-link {
+        font-size: 0.6rem !important;
+        padding: 0.25rem 0.4rem !important;
+        line-height: 1.1 !important;
+      }
+    }
+    
+    /* Very small devices (phones, 375px and down) */
+    @media (max-width: 375px) {
+      .mobile-enroll-btn {
+        max-width: 110px !important;
+        top: 40px !important;
+      }
+      
+      .mobile-enroll-link {
+        font-size: 0.55rem !important;
+        padding: 0.2rem 0.3rem !important;
+        line-height: 1.0 !important;
+      }
+    }
   </style>
 
   <!-- Favicons -->
@@ -328,8 +368,8 @@
       </a>
       
       <!-- Mobile Trial Button - Centered in Mobile Topbar -->
-      <div class="d-flex d-lg-none justify-content-center position-fixed" style="left: 50%; transform: translateX(-50%); width: auto; max-width: 160px; z-index: 1050; top: 50px;">
-        <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-sm" style="background-color:rgb(2, 37, 108); opacity: 0.88; padding: 0.4rem 0.6rem; font-size: 0.75rem; white-space: nowrap;">
+      <div class="d-flex d-lg-none justify-content-center position-fixed mobile-enroll-btn" style="left: 50%; transform: translateX(-50%); width: auto; max-width: 140px; z-index: 1050; top: 50px;">
+        <a href="{{ route('enroll.show') }}" class="btn btn-primary btn-sm mobile-enroll-link" style="background-color:rgb(2, 37, 108); opacity: 0.88; padding: 0.3rem 0.5rem; font-size: 0.65rem; white-space: nowrap; line-height: 1.2;">
           {{ __('website.Register Now & Seize the Opportunity') }}
         </a>
       </div>
