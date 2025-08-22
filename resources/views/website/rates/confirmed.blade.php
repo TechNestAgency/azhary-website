@@ -326,12 +326,13 @@
                 <!-- Trial Pack -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="pricing-card">
+                        <div class="sale-badge">SALE</div>
                         <h3 class="package-name">🪴 {{ __('website.Trial Pack') }}</h3>
                         <p class="package-subtitle">{{ __('website.to get started') }}</p>
                         
                         <div class="price-container">
                             <div class="current-price">
-                                <span class="currency">€</span>48
+                                <span class="currency">€</span>40
                             </div>
                             <div class="savings-badge">{{ __('website.You save') }} €0</div>
                         </div>
@@ -350,13 +351,14 @@
                 <!-- Hafiz Pack -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="pricing-card">
+                        <div class="sale-badge">SALE</div>
                         <h3 class="package-name">😁 {{ __('website.Hafiz Pack') }}</h3>
                         <p class="package-subtitle">{{ __('website.For advanced users') }}</p>
                         
                         <div class="price-container">
-                            <div class="original-price">€96</div>
+                            <div class="original-price">€80</div>
                             <div class="current-price">
-                                <span class="currency">€</span>92
+                                <span class="currency">€</span>76
                             </div>
                             <div class="savings-badge">{{ __('website.You save') }} €4</div>
                         </div>
@@ -375,13 +377,14 @@
                 <!-- Mujtahid Pack -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="pricing-card">
+                        <div class="sale-badge">SALE</div>
                         <h3 class="package-name">😎 {{ __('website.Mujtahid Pack') }}</h3>
                         <p class="package-subtitle">{{ __('website.The best choice') }}</p>
                         
                         <div class="price-container">
-                            <div class="original-price">€144</div>
+                            <div class="original-price">€120</div>
                             <div class="current-price">
-                                <span class="currency">€</span>134
+                                <span class="currency">€</span>110
                             </div>
                             <div class="savings-badge">{{ __('website.You save') }} €10</div>
                         </div>
@@ -400,15 +403,16 @@
                 <!-- Bronze Pack -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
                     <div class="pricing-card">
+                        <div class="sale-badge">SALE</div>
                         <h3 class="package-name">🥉 {{ __('website.Bronze Pack') }}</h3>
                         <p class="package-subtitle">{{ __('website.For advanced users') }}</p>
                         
                         <div class="price-container">
-                            <div class="original-price">€192</div>
+                            <div class="original-price">€160</div>
                             <div class="current-price">
-                                <span class="currency">€</span>175
+                                <span class="currency">€</span>145
                             </div>
-                            <div class="savings-badge">{{ __('website.You save') }} €17</div>
+                            <div class="savings-badge">{{ __('website.You save') }} €15</div>
                         </div>
 
                         <ul class="features-list">
@@ -425,15 +429,16 @@
                 <!-- Silver Pack -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
                     <div class="pricing-card">
+                        <div class="sale-badge">SALE</div>
                         <h3 class="package-name">🥈 {{ __('website.Silver Pack') }}</h3>
                         <p class="package-subtitle">{{ __('website.The most popular') }}</p>
                         
                         <div class="price-container">
-                            <div class="original-price">€288</div>
+                            <div class="original-price">€240</div>
                             <div class="current-price">
-                                <span class="currency">€</span>259.99
+                                <span class="currency">€</span>220
                             </div>
-                            <div class="savings-badge">{{ __('website.You save') }} €28</div>
+                            <div class="savings-badge">{{ __('website.You save') }} €20</div>
                         </div>
 
                         <ul class="features-list">
@@ -450,15 +455,16 @@
                 <!-- Gold Pack -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
                     <div class="pricing-card">
+                        <div class="sale-badge">SALE</div>
                         <h3 class="package-name">🥇 {{ __('website.Gold Pack') }}</h3>
                         <p class="package-subtitle">{{ __('website.For advanced users') }}</p>
                         
                         <div class="price-container">
-                            <div class="original-price">€576</div>
+                            <div class="original-price">€480</div>
                             <div class="current-price">
-                                <span class="currency">€</span>499.99
+                                <span class="currency">€</span>440
                             </div>
-                            <div class="savings-badge">{{ __('website.You save') }} €76</div>
+                            <div class="savings-badge">{{ __('website.You save') }} €40</div>
                         </div>
 
                         <ul class="features-list">
@@ -475,15 +481,16 @@
                 <!-- Diamond Pack -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
                     <div class="pricing-card">
+                        <div class="sale-badge">SALE</div>
                         <h3 class="package-name">🌟 {{ __('website.Diamond Pack') }}</h3>
                         <p class="package-subtitle">{{ __('website.The most economical') }}</p>
                         
                         <div class="price-container">
-                            <div class="original-price">€1200</div>
+                            <div class="original-price">€1000</div>
                             <div class="current-price">
-                                <span class="currency">€</span>999.99
+                                <span class="currency">€</span>850
                             </div>
-                            <div class="savings-badge">{{ __('website.You save') }} €200</div>
+                            <div class="savings-badge">{{ __('website.You save') }} €150</div>
                         </div>
 
                         <ul class="features-list">

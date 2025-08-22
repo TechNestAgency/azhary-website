@@ -15,6 +15,14 @@ Route::get('/optimized', function () {
     return view('website.index-optimized');
 })->name('home.optimized');
 
+Route::get('/ultra-optimized', function () {
+    return view('website.index-ultra-optimized');
+})->name('home.ultra-optimized');
+
+Route::get('/test-performance', function () {
+    return view('website.test-performance');
+})->name('website.test-performance');
+
 Route::get('/test-loading', function () {
     return view('website.test-loading');
 })->name('website.test-loading');

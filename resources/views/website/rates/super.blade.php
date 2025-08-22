@@ -339,26 +339,24 @@
     <section class="pricing-grid">
         <div class="container">
             <div class="row g-4">
-                <!-- Starter Pack -->
+                <!-- Trial Pack -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
                     <div class="pricing-card">
-                        <div class="premium-badge">Premium</div>
-                        <h3 class="package-name">🚀 {{ __('website.Super Starter') }}</h3>
-                        <p class="package-subtitle">{{ __('website.Premium entry level') }}</p>
+                        <div class="sale-badge">SALE</div>
+                        <h3 class="package-name">🪴 {{ __('website.Trial Pack') }}</h3>
+                        <p class="package-subtitle">{{ __('website.to get started') }}</p>
                         
                         <div class="price-container">
-                            <div class="original-price">€60</div>
                             <div class="current-price">
-                                <span class="currency">€</span>55
+                                <span class="currency">€</span>48
                             </div>
-                            <div class="savings-badge">{{ __('website.You save') }} €5</div>
+                            <div class="savings-badge">{{ __('website.You save') }} €0</div>
                         </div>
 
                         <ul class="features-list">
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.4 courses') }}</li>
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.1 hour per course') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Premium personalized accompaniment') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Advanced teaching methods') }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Personalized accompaniment') }}</li>
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
                         </ul>
 
@@ -366,27 +364,25 @@
                     </div>
                 </div>
 
-                <!-- Advanced Pack -->
+                <!-- Hafiz Pack -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
                     <div class="pricing-card">
-                        <div class="premium-badge">Premium</div>
-                        <h3 class="package-name">💎 {{ __('website.Super Advanced') }}</h3>
-                        <p class="package-subtitle">{{ __('website.For serious learners') }}</p>
+                        <div class="sale-badge">SALE</div>
+                        <h3 class="package-name">😁 {{ __('website.Hafiz Pack') }}</h3>
+                        <p class="package-subtitle">{{ __('website.For advanced users') }}</p>
                         
                         <div class="price-container">
-                            <div class="original-price">€100</div>
+                            <div class="original-price">€96</div>
                             <div class="current-price">
-                                <span class="currency">€</span>90
+                                <span class="currency">€</span>92
                             </div>
-                            <div class="savings-badge">{{ __('website.You save') }} €10</div>
+                            <div class="savings-badge">{{ __('website.You save') }} €4</div>
                         </div>
 
                         <ul class="features-list">
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.8 courses') }}</li>
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.1 hour per course') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Premium personalized accompaniment') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Advanced teaching methods') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Progress tracking system') }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Personalized accompaniment') }}</li>
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
                         </ul>
 
@@ -394,28 +390,25 @@
                     </div>
                 </div>
 
-                <!-- Professional Pack -->
+                <!-- Mujtahid Pack -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
                     <div class="pricing-card">
-                        <div class="premium-badge">Premium</div>
-                        <h3 class="package-name">👑 {{ __('website.Super Professional') }}</h3>
-                        <p class="package-subtitle">{{ __('website.The ultimate choice') }}</p>
+                        <div class="sale-badge">SALE</div>
+                        <h3 class="package-name">😎 {{ __('website.Mujtahid Pack') }}</h3>
+                        <p class="package-subtitle">{{ __('website.The best choice') }}</p>
                         
                         <div class="price-container">
-                            <div class="original-price">€150</div>
+                            <div class="original-price">€144</div>
                             <div class="current-price">
-                                <span class="currency">€</span>135
+                                <span class="currency">€</span>134
                             </div>
-                            <div class="savings-badge">{{ __('website.You save') }} €15</div>
+                            <div class="savings-badge">{{ __('website.You save') }} €10</div>
                         </div>
 
                         <ul class="features-list">
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.12 courses') }}</li>
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.1 hour per course') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Premium personalized accompaniment') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Advanced teaching methods') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Progress tracking system') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Priority scheduling') }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Personalized accompaniment') }}</li>
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
                         </ul>
 
@@ -423,29 +416,25 @@
                     </div>
                 </div>
 
-                <!-- Master Pack -->
+                <!-- Bronze Pack -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
                     <div class="pricing-card">
-                        <div class="premium-badge">Premium</div>
-                        <h3 class="package-name">🎯 {{ __('website.Super Master') }}</h3>
+                        <div class="sale-badge">SALE</div>
+                        <h3 class="package-name">🥉 {{ __('website.Bronze Pack') }}</h3>
                         <p class="package-subtitle">{{ __('website.For advanced users') }}</p>
                         
                         <div class="price-container">
-                            <div class="original-price">€200</div>
+                            <div class="original-price">€192</div>
                             <div class="current-price">
-                                <span class="currency">€</span>180
+                                <span class="currency">€</span>175
                             </div>
-                            <div class="savings-badge">{{ __('website.You save') }} €20</div>
+                            <div class="savings-badge">{{ __('website.You save') }} €17</div>
                         </div>
 
                         <ul class="features-list">
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.16 courses') }}</li>
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.1 hour per course') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Premium personalized accompaniment') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Advanced teaching methods') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Progress tracking system') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Priority scheduling') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive study materials') }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Personalized accompaniment') }}</li>
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
                         </ul>
 
@@ -453,30 +442,25 @@
                     </div>
                 </div>
 
-                <!-- Elite Pack -->
+                <!-- Silver Pack -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
                     <div class="pricing-card">
-                        <div class="premium-badge">Premium</div>
-                        <h3 class="package-name">⭐ {{ __('website.Super Elite') }}</h3>
+                        <div class="sale-badge">SALE</div>
+                        <h3 class="package-name">🥈 {{ __('website.Silver Pack') }}</h3>
                         <p class="package-subtitle">{{ __('website.The most popular') }}</p>
                         
                         <div class="price-container">
-                            <div class="original-price">€300</div>
+                            <div class="original-price">€288</div>
                             <div class="current-price">
-                                <span class="currency">€</span>270
+                                <span class="currency">€</span>259.99
                             </div>
-                            <div class="savings-badge">{{ __('website.You save') }} €30</div>
+                            <div class="savings-badge">{{ __('website.You save') }} €28</div>
                         </div>
 
                         <ul class="features-list">
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.24 courses') }}</li>
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.1 hour per course') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Premium personalized accompaniment') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Advanced teaching methods') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Progress tracking system') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Priority scheduling') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive study materials') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.24/7 support') }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Personalized accompaniment') }}</li>
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
                         </ul>
 
@@ -484,31 +468,51 @@
                     </div>
                 </div>
 
-                <!-- Ultimate Pack -->
+                <!-- Gold Pack -->
                 <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
                     <div class="pricing-card">
-                        <div class="premium-badge">Premium</div>
-                        <h3 class="package-name">🏆 {{ __('website.Super Ultimate') }}</h3>
-                        <p class="package-subtitle">{{ __('website.The most economical') }}</p>
+                        <div class="sale-badge">SALE</div>
+                        <h3 class="package-name">🥇 {{ __('website.Gold Pack') }}</h3>
+                        <p class="package-subtitle">{{ __('website.For advanced users') }}</p>
                         
                         <div class="price-container">
-                            <div class="original-price">€600</div>
+                            <div class="original-price">€576</div>
                             <div class="current-price">
-                                <span class="currency">€</span>520
+                                <span class="currency">€</span>499.99
                             </div>
-                            <div class="savings-badge">{{ __('website.You save') }} €80</div>
+                            <div class="savings-badge">{{ __('website.You save') }} €76</div>
                         </div>
 
                         <ul class="features-list">
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.50 courses') }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.48 courses') }}</li>
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.1 hour per course') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Premium personalized accompaniment') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Advanced teaching methods') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Progress tracking system') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Priority scheduling') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Exclusive study materials') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.24/7 support') }}</li>
-                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Certificate of completion') }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Personalized accompaniment') }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
+                        </ul>
+
+                        <a href="{{ route('enroll.show') }}" class="enroll-btn">{{ __('website.Book Now') }} !</a>
+                    </div>
+                </div>
+
+                <!-- Diamond Pack -->
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="700">
+                    <div class="pricing-card">
+                        <div class="sale-badge">SALE</div>
+                        <h3 class="package-name">🌟 {{ __('website.Diamond Pack') }}</h3>
+                        <p class="package-subtitle">{{ __('website.The most economical') }}</p>
+                        
+                        <div class="price-container">
+                            <div class="original-price">€1200</div>
+                            <div class="current-price">
+                                <span class="currency">€</span>999.99
+                            </div>
+                            <div class="savings-badge">{{ __('website.You save') }} €200</div>
+                        </div>
+
+                        <ul class="features-list">
+                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.100 courses') }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.1 hour per course') }}</li>
+                            <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Personalized accompaniment') }}</li>
                             <li><i class="bi bi-check-circle-fill"></i> {{ __('website.Free choice') }} ({{ __('website.Arabic, Quran, Tajweed, Islamic Studies') }})</li>
                         </ul>
 

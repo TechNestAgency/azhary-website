@@ -633,6 +633,21 @@
   <script src="{{ asset('vendor/flasher/js/flasher.min.js') }}"></script>
   <script src="{{ asset('vendor/flasher/js/toastr.min.js') }}"></script>
   
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('Service Worker registered successfully:', registration.scope);
+          })
+          .catch(function(error) {
+            console.log('Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
+  
   @stack('scripts')
 </body>
 </html> 

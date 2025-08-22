@@ -6,16 +6,28 @@ use App\Http\Controllers\Controller;
 use App\Models\Teacher;
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class IndexController extends Controller
 {
     public function index()
     {
-        $teachers = Teacher::all();
-        $articles = Article::where('status', true)
-            ->latest()
-            ->take(3)
-            ->get();
+        // Cache teachers and articles for 1 hour to reduce database queries
+        $teachers = Cache::remember('homepage_teachers', 3600, function () {
+            return Teacher::select('id', 'name', 'short_description', 'photo', 'rating', 'total_reviews')
+                         ->where('is_active', true)
+                         ->take(6)
+                         ->get();
+        });
+
+        $articles = Cache::remember('homepage_articles', 3600, function () {
+            return Article::select('id', 'title', 'content', 'image', 'created_at')
+                         ->where('status', true)
+                         ->latest()
+                         ->take(3)
+                         ->get();
+        });
+
         return view('website.index', compact('teachers', 'articles'));
     }
 }
