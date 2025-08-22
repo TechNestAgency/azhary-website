@@ -429,8 +429,42 @@
     </div>
   </footer>
 
-  <!-- Load non-critical CSS asynchronously -->
-  <link rel="preload" href="{{ asset('website_assets/css/optimized.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="{{ asset('website_assets/css/optimized.css') }}"></noscript>
+  <!-- Load minimal additional CSS only if needed -->
+  <style>
+    /* Additional styles for cards and other elements */
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      margin-bottom: 1rem;
+      transition: transform 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .card h3 {
+      color: var(--islamic-blue);
+      margin-bottom: 1rem;
+    }
+    
+    .text-white-50 {
+      color: rgba(255, 255, 255, 0.5);
+    }
+    
+    .g-4 > * {
+      margin-bottom: 1.5rem;
+    }
+    
+    @media (min-width: 768px) {
+      .g-4 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+      }
+    }
+  </style>
 </body>
 </html>
