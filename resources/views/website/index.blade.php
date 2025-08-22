@@ -3,10 +3,16 @@
 
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
   <title>Madrassat Azhary - Islamic Education Online</title>
   <meta name="description" content="Learn Quran, Arabic, and Islamic studies online with qualified French-speaking teachers. Join our community of learners worldwide.">
   <meta name="keywords" content="Quran online, Arabic learning, Islamic studies, French Muslim education, online Islamic academy">
+  
+  <!-- Android-specific optimizations -->
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
   
   <!-- Performance Optimizations -->
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -224,6 +230,15 @@
       height: auto;
     }
 
+    /* Android-specific optimizations */
+    @media screen and (-webkit-min-device-pixel-ratio: 0) {
+      /* WebKit browsers (Chrome, Safari, Android) */
+      * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+    }
+
     /* Mobile Enroll Button - Optimized for Performance */
     @media (max-width: 576px) {
       .mobile-enroll-btn {
@@ -235,6 +250,56 @@
         font-size: 0.6rem;
         padding: 0.25rem 0.4rem;
         line-height: 1.1;
+      }
+    }
+
+    /* Android-specific mobile optimizations */
+    @media (max-width: 768px) {
+      /* Reduce animations on mobile */
+      .btn-islamic:hover {
+        transform: none;
+      }
+      
+      /* Optimize images for mobile */
+      .hero {
+        background-attachment: scroll;
+      }
+      
+      /* Reduce transition times */
+      .fixed-top {
+        transition: none;
+      }
+      
+      /* Optimize carousel for mobile */
+      .carousel-item {
+        will-change: auto;
+      }
+      
+      /* Disable hover effects on mobile */
+      .stat-card:hover,
+      .testimonial-card:hover,
+      .teacher-profile-card:hover {
+        transform: none;
+      }
+      
+      /* Optimize touch interactions */
+      * {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        -webkit-user-select: none;
+        -khtml-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+      
+      /* Allow text selection where needed */
+      p, h1, h2, h3, h4, h5, h6, span, div {
+        -webkit-user-select: text;
+        -khtml-user-select: text;
+        -moz-user-select: text;
+        -ms-user-select: text;
+        user-select: text;
       }
     }
   </style>
@@ -1207,17 +1272,61 @@
   <script src="{{ asset('website_assets/js/main.js') }}"></script>
   <script src="{{ asset('website_assets/js/enroll-form.js') }}"></script>
 
-  <!-- Carousel Auto-Start Script -->
+  <!-- Android-Optimized Carousel Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const carousel = document.getElementById('heroCarousel');
       if (carousel) {
+        // Detect mobile device
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
         const bsCarousel = new bootstrap.Carousel(carousel, {
-          interval: 2000,
+          interval: isMobile ? 3000 : 2000, // Slower on mobile for better performance
           ride: true,
-          wrap: true
+          wrap: true,
+          touch: true // Enable touch support
         });
+        
+        // Optimize for mobile
+        if (isMobile) {
+          // Reduce carousel complexity on mobile
+          carousel.style.willChange = 'auto';
+        }
+        
         bsCarousel.cycle();
+      }
+    });
+  </script>
+
+  <!-- Android Performance Optimization Script -->
+  <script>
+    // Mobile performance optimizations
+    document.addEventListener('DOMContentLoaded', function() {
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      if (isMobile) {
+        // Reduce scroll performance impact
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+          if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+          }
+          scrollTimeout = setTimeout(function() {
+            // Handle scroll-based effects here
+          }, 16); // ~60fps
+        }, { passive: true });
+        
+        // Optimize images for mobile
+        const images = document.querySelectorAll('img');
+        images.forEach(img => {
+          img.style.imageRendering = 'optimizeSpeed';
+        });
+        
+        // Reduce animation complexity
+        const animatedElements = document.querySelectorAll('.stat-card, .testimonial-card, .teacher-profile-card');
+        animatedElements.forEach(el => {
+          el.style.transition = 'none';
+        });
       }
     });
   </script>
