@@ -218,35 +218,10 @@
       transition: filter 0.3s ease;
     }
 
-    /* Performance optimizations */
-    * {
-      box-sizing: border-box;
-    }
-    
-    /* Optimize animations */
-    .animate-on-scroll {
-      will-change: transform, opacity;
-    }
-    
-    /* Reduce paint operations */
-    .stat-card,
-    .testimonial-card,
-    .teacher-profile-card {
-      will-change: transform;
-      backface-visibility: hidden;
-      transform: translateZ(0);
-    }
-    
-    /* Optimize images */
+    /* Light performance optimizations */
     img {
       max-width: 100%;
       height: auto;
-    }
-    
-    /* Reduce layout thrashing */
-    .container,
-    .row {
-      contain: layout;
     }
 
     /* Mobile Enroll Button - Optimized for Performance */
@@ -268,38 +243,16 @@
   <link href="{{ asset('website_assets/img/logo-no.png') }}" rel="icon">
   <link href="{{ asset('website_assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
-  <!-- Preload Critical Resources -->
-  <link rel="preload" href="{{ asset('website_assets/img/logo-no.png') }}" as="image">
-  <link rel="preload" href="{{ asset('hero-back.jpg') }}" as="image">
-  <link rel="preload" href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" as="style">
-  <link rel="preload" href="{{ asset('website_assets/css/main.css') }}" as="style">
-  
-  <!-- DNS Prefetch for External Resources -->
-  <link rel="dns-prefetch" href="//fonts.googleapis.com">
-  <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-  
-  <!-- Fonts with display=swap and preload -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <!-- Critical CSS Files (inline for above-the-fold) -->
+  <!-- CSS Files -->
   <link href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('website_assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
   <link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet">
-  
-  <!-- Non-Critical CSS (load asynchronously) -->
-  <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-  <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-  <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-  
-  <!-- Fallback for browsers that don't support onload -->
-  <noscript>
-    <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-  </noscript>
 </head>
 <body class="index-page">
 
@@ -1243,43 +1196,28 @@
   <!-- Preloader -->
   <div id="preloader"></div>
 
-  <!-- Critical JS Files (load immediately) -->
+  <!-- JavaScript Files -->
   <script src="{{ asset('website_assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  
-  <!-- Non-Critical JS Files (load asynchronously) -->
-  <script src="{{ asset('website_assets/vendor/php-email-form/validate.js') }}" defer></script>
-  <script src="{{ asset('website_assets/vendor/aos/aos.js') }}" defer></script>
-  <script src="{{ asset('website_assets/vendor/glightbox/js/glightbox.min.js') }}" defer></script>
-  <script src="{{ asset('website_assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}" defer></script>
-  <script src="{{ asset('website_assets/vendor/isotope-layout/isotope.pkgd.min.js') }}" defer></script>
-  <script src="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.js') }}" defer></script>
+  <script src="{{ asset('website_assets/vendor/php-email-form/validate.js') }}"></script>
+  <script src="{{ asset('website_assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ asset('website_assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ asset('website_assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+  <script src="{{ asset('website_assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+  <script src="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="{{ asset('website_assets/js/main.js') }}"></script>
+  <script src="{{ asset('website_assets/js/enroll-form.js') }}"></script>
 
-  <!-- Main JS Files (load asynchronously) -->
-  <script src="{{ asset('website_assets/js/main.js') }}" defer></script>
-  <script src="{{ asset('website_assets/js/enroll-form.js') }}" defer></script>
-
-  <!-- Optimized Carousel Auto-Start Script -->
+  <!-- Carousel Auto-Start Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Use requestIdleCallback for better performance
-      const startCarousel = () => {
-        const carousel = document.getElementById('heroCarousel');
-        if (carousel) {
-          const bsCarousel = new bootstrap.Carousel(carousel, {
-            interval: 3000, // Increased interval for better performance
-            ride: true,
-            wrap: true
-          });
-          // Force start the carousel
-          bsCarousel.cycle();
-        }
-      };
-      
-      // Use requestIdleCallback if available, otherwise setTimeout
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(startCarousel);
-      } else {
-        setTimeout(startCarousel, 100);
+      const carousel = document.getElementById('heroCarousel');
+      if (carousel) {
+        const bsCarousel = new bootstrap.Carousel(carousel, {
+          interval: 2000,
+          ride: true,
+          wrap: true
+        });
+        bsCarousel.cycle();
       }
     });
   </script>
@@ -2269,30 +2207,23 @@
     });
   </script>
 
-  <!-- Optimized Counter Animation Script -->
+  <!-- Counter Animation Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Optimized counter animation function with requestAnimationFrame
+      // Simple counter animation function
       function animateCounter(element, target, duration = 2000) {
         const start = 0;
-        const startTime = performance.now();
+        const increment = target / (duration / 16);
+        let current = start;
         
-        function updateCounter(currentTime) {
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          
-          // Use easing function for smoother animation
-          const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-          const current = Math.floor(start + (target - start) * easeOutQuart);
-          
-          element.textContent = current;
-          
-          if (progress < 1) {
-            requestAnimationFrame(updateCounter);
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
           }
-        }
-        
-        requestAnimationFrame(updateCounter);
+          element.textContent = Math.floor(current);
+        }, 16);
       }
       
       // Live counter update function
@@ -2360,7 +2291,7 @@
     });
   </script>
 
-  <!-- Optimized Loading Spinner Script -->
+  <!-- Loading Spinner Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const loadingSpinner = document.getElementById('loading-spinner');
@@ -2369,39 +2300,36 @@
       // Add loading class to body
       body.classList.add('loading');
       
-      // Function to check if critical images are loaded
-      function checkCriticalImagesLoaded() {
-        const criticalImages = document.querySelectorAll('img[data-critical="true"], .hero img, .navbar-brand img');
-        const totalCriticalImages = criticalImages.length;
-        let loadedCriticalImages = 0;
+      // Function to check if images are loaded
+      function checkImagesLoaded() {
+        const images = document.querySelectorAll('img');
+        const totalImages = images.length;
+        let loadedImages = 0;
         
-        // If no critical images, hide spinner after a short delay
-        if (totalCriticalImages === 0) {
-          setTimeout(hideSpinner, 800);
+        if (totalImages === 0) {
+          setTimeout(hideSpinner, 500);
           return;
         }
         
-        // Check each critical image
-        criticalImages.forEach(img => {
-          if (img.complete && img.naturalHeight !== 0) {
-            loadedCriticalImages++;
+        images.forEach(img => {
+          if (img.complete) {
+            loadedImages++;
             checkComplete();
           } else {
             img.addEventListener('load', () => {
-              loadedCriticalImages++;
+              loadedImages++;
               checkComplete();
             });
             img.addEventListener('error', () => {
-              loadedCriticalImages++;
+              loadedImages++;
               checkComplete();
             });
           }
         });
         
         function checkComplete() {
-          if (loadedCriticalImages >= totalCriticalImages) {
-            // Add a small delay for better UX
-            setTimeout(hideSpinner, 300);
+          if (loadedImages >= totalImages) {
+            setTimeout(hideSpinner, 500);
           }
         }
       }
@@ -2411,7 +2339,6 @@
         loadingSpinner.classList.add('hidden');
         body.classList.remove('loading');
         
-        // Remove spinner from DOM after animation
         setTimeout(() => {
           if (loadingSpinner.parentNode) {
             loadingSpinner.parentNode.removeChild(loadingSpinner);
@@ -2419,54 +2346,16 @@
         }, 500);
       }
       
-      // Start checking critical images immediately
-      checkCriticalImagesLoaded();
+      // Start checking images
+      setTimeout(checkImagesLoaded, 100);
       
-      // Fallback: hide spinner after 3 seconds maximum
+      // Fallback: hide spinner after 5 seconds
       setTimeout(() => {
         if (!loadingSpinner.classList.contains('hidden')) {
           hideSpinner();
         }
-      }, 3000);
+      }, 5000);
     });
-  </script>
-
-  <!-- Performance Monitoring Script -->
-  <script>
-    // Performance monitoring
-    window.addEventListener('load', function() {
-      // Measure page load time
-      const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-      console.log('Page load time:', loadTime + 'ms');
-      
-      // Measure DOM content loaded time
-      const domReadyTime = performance.timing.domContentLoadedEventEnd - performance.timing.navigationStart;
-      console.log('DOM ready time:', domReadyTime + 'ms');
-      
-      // Report to analytics if needed
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'timing_complete', {
-          name: 'load',
-          value: loadTime
-        });
-      }
-    });
-    
-    // Optimize scroll performance
-    let ticking = false;
-    function updateScroll() {
-      // Scroll-based animations and effects
-      ticking = false;
-    }
-    
-    function requestTick() {
-      if (!ticking) {
-        requestAnimationFrame(updateScroll);
-        ticking = true;
-      }
-    }
-    
-    window.addEventListener('scroll', requestTick, { passive: true });
   </script>
 
 </body>
