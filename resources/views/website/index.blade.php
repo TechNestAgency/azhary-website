@@ -228,7 +228,6 @@
     img {
       max-width: 100%;
       height: auto;
-      image-rendering: optimizeSpeed;
     }
 
     /* Android-specific optimizations */
@@ -237,70 +236,6 @@
       * {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-      }
-    }
-    
-    /* Performance optimizations for mobile */
-    @media (max-width: 768px) {
-      .hero {
-        background-attachment: scroll !important;
-      }
-      
-      .carousel-item {
-        will-change: auto;
-      }
-      
-      /* Reduce animation complexity on mobile */
-      .stat-card,
-      .testimonial-card,
-      .teacher-profile-card {
-        transition: none !important;
-      }
-      
-      .stat-card:hover,
-      .testimonial-card:hover,
-      .teacher-profile-card:hover {
-        transform: none !important;
-      }
-      
-      /* Optimize touch interactions */
-      * {
-        -webkit-tap-highlight-color: transparent;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-      
-      /* Allow text selection where needed */
-      p, h1, h2, h3, h4, h5, h6, span, div {
-        -webkit-user-select: text;
-        -khtml-user-select: text;
-        -moz-user-select: text;
-        -ms-user-select: text;
-        user-select: text;
-      }
-    }
-    
-    /* Additional performance optimizations */
-    .carousel {
-      will-change: transform;
-    }
-    
-    .carousel-item {
-      will-change: transform;
-    }
-    
-    /* Optimize animations for better performance */
-    @media (prefers-reduced-motion: reduce) {
-      *,
-      *::before,
-      *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
       }
     }
 
@@ -373,32 +308,16 @@
   <link href="{{ asset('website_assets/img/logo-no.png') }}" rel="icon">
   <link href="{{ asset('website_assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
-  <!-- Fonts with display=swap for better performance -->
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  
-  <!-- Resource hints for better performance -->
-  <link rel="preload" href="{{ asset('hero-back.jpg') }}" as="image">
-  <link rel="preload" href="{{ asset('presenting.png') }}" as="image">
-  <link rel="preload" href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" as="style">
-  <link rel="preload" href="{{ asset('website_assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" as="style">
 
-  <!-- Critical CSS Files (Load immediately) -->
+  <!-- CSS Files -->
   <link href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('website_assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  
-  <!-- Non-Critical CSS Files (Load after page render) -->
-  <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-  <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-  <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-  <link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-  
-  <!-- Fallback for browsers that don't support onload -->
-  <noscript>
-    <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet">
-  </noscript>
+  <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet">
+  <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet">
 </head>
 <body class="index-page">
 
@@ -513,7 +432,7 @@
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
                 <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
-                  <img src="{{ asset('presenting.png') }}" alt="Welcome Man" class="img-fluid" style="max-height: 400px;" loading="eager" fetchpriority="high">
+                  <img src="{{ asset('presenting.png') }}" alt="Welcome Man" class="img-fluid" style="max-height: 400px;" loading="lazy">
                 </div>
                 <!-- Welcome Title (right) -->
                 <div class="col-12 col-lg-6 text-white text-center text-lg-start">
@@ -530,7 +449,7 @@
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
                 <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
-                  <img src="{{ asset('man2.png') }}" alt="Online Learning" class="img-fluid" style="max-height: 400px;" loading="lazy" fetchpriority="low">
+                  <img src="{{ asset('man2.png') }}" alt="Online Learning" class="img-fluid" style="max-height: 400px;" loading="lazy">
                 </div>
                 <!-- Online Learning Content (right) -->
                 <div class="col-12 col-lg-6 text-white text-center text-lg-start">
@@ -549,7 +468,7 @@
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
                 <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
-                  <img src="{{ asset('man3.png') }}" alt="French Community" class="img-fluid" style="max-height: 400px;" loading="lazy" fetchpriority="low">
+                  <img src="{{ asset('man3.png') }}" alt="French Community" class="img-fluid" style="max-height: 400px;" loading="lazy">
                 </div>
                 <!-- French Community Content (right) -->
                 <div class="col-12 col-lg-6 text-white text-center text-lg-start">
@@ -568,7 +487,7 @@
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
                 <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
-                  <img src="{{ asset('man4.png') }}" alt="Children's Arabic Learning" class="img-fluid" style="max-height: 400px;" loading="lazy" fetchpriority="low">
+                  <img src="{{ asset('man4.png') }}" alt="Children's Arabic Learning" class="img-fluid" style="max-height: 400px;" loading="lazy">
                 </div>
                 <!-- Children's Program Content (right) -->
                 <div class="col-12 col-lg-6 text-white text-center text-lg-start">
@@ -807,7 +726,7 @@
           
             <div class="col-12 col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
               <div class="about-image-container">
-                <img src="{{asset('about.png')}}" class="img-fluid rounded-4 shadow" alt="Online Islamic Class" loading="lazy" fetchpriority="low">
+                <img src="{{asset('about.png')}}" class="img-fluid rounded-4 shadow" alt="Online Islamic Class" loading="lazy">
               </div>
             </div>
           
@@ -915,7 +834,7 @@
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="teachers-slider swiper init-swiper" data-swiper-options='{"lazy": true, "preloadImages": false}'>
+        <div class="teachers-slider swiper init-swiper">
           <script type="application/json" class="swiper-config">
             {
               "loop": true,
@@ -952,7 +871,7 @@
             <div class="swiper-slide" data-aos="zoom-in" data-aos-delay="{{ $loop->iteration * 100 }}">
               <div class="teacher-profile-card">
                 <div class="teacher-photo-section">
-                  <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->localized_name }}" loading="lazy" fetchpriority="low">
+                  <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->localized_name }}" loading="lazy">
                 </div>
                 <div class="teacher-info-section">
                   <h4 class="teacher-name">{{ $teacher->localized_name }}</h4>
@@ -979,7 +898,7 @@
       </div>
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="testimonials-slider swiper init-swiper" data-swiper-options='{"lazy": true, "preloadImages": false}'>
+        <div class="testimonials-slider swiper init-swiper">
           <script type="application/json" class="swiper-config">
             {
               "loop": true,
@@ -1049,7 +968,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/girl.jpeg') }}" alt="Student Profile" loading="lazy" fetchpriority="low">
+                    <img src="{{ asset('website_assets/img/girl.jpeg') }}" alt="Student Profile" loading="lazy">
                     <div>
                       <h3>Fatima Zahra</h3>
                       <h4>{{ __('website.Islamic Studies Student') }}</h4>
@@ -1076,7 +995,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/whomen1.jpeg') }}" alt="Student Profile" loading="lazy" fetchpriority="low">
+                    <img src="{{ asset('website_assets/img/whomen1.jpeg') }}" alt="Student Profile" loading="lazy">
                     <div>
                       <h3>Sarah Mohammed</h3>
                       <h4>{{ __('website.Parent') }}</h4>
@@ -1103,7 +1022,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/boy.jpeg') }}" alt="Student Profile" loading="lazy" fetchpriority="low">
+                    <img src="{{ asset('website_assets/img/boy.jpeg') }}" alt="Student Profile" loading="lazy">
                     <div>
                       <h3>Yusuf Ali</h3>
                       <h4>{{ __('website.Professional Student') }}</h4>
@@ -1130,7 +1049,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/girl.jpeg') }}" alt="Student Profile" loading="lazy" fetchpriority="low">
+                    <img src="{{ asset('website_assets/img/girl.jpeg') }}" alt="Student Profile" loading="lazy">
                     <div>
                       <h3>Layla Ibrahim</h3>
                       <h4>{{ __('website.Hifz Student') }}</h4>
@@ -1157,7 +1076,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/boy2.jpeg') }}" alt="Student Profile" loading="lazy" fetchpriority="low">
+                    <img src="{{ asset('website_assets/img/boy2.jpeg') }}" alt="Student Profile" loading="lazy">
                     <div>
                       <h3>Omar Khalid</h3>
                       <h4>{{ __('website.Tajweed Student') }}</h4>
@@ -1188,7 +1107,7 @@
           <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
             <div class="video-testimonial-card h-100 bg-white rounded-4 shadow-lg overflow-hidden">
               <div class="video-container position-relative">
-                <video class="w-100" controls preload="metadata">
+                <video class="w-100" controls>
                   <source src="{{ asset('video2.mp4') }}" type="video/mp4">
                   {{ __('website.Your browser does not support the video tag.') }}
                 </video>
@@ -1342,20 +1261,18 @@
   <!-- Preloader -->
   <div id="preloader"></div>
 
-  <!-- Critical JavaScript Files (Load immediately) -->
+  <!-- JavaScript Files -->
   <script src="{{ asset('website_assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  
-  <!-- Non-Critical JavaScript Files (Load after page render) -->
-  <script src="{{ asset('website_assets/vendor/php-email-form/validate.js') }}" defer></script>
-  <script src="{{ asset('website_assets/vendor/aos/aos.js') }}" defer></script>
-  <script src="{{ asset('website_assets/vendor/glightbox/js/glightbox.min.js') }}" defer></script>
-  <script src="{{ asset('website_assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}" defer></script>
-  <script src="{{ asset('website_assets/vendor/isotope-layout/isotope.pkgd.min.js') }}" defer></script>
-  <script src="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.js') }}" defer></script>
-  <script src="{{ asset('website_assets/js/main.js') }}" defer></script>
-  <script src="{{ asset('website_assets/js/enroll-form.js') }}" defer></script>
+  <script src="{{ asset('website_assets/vendor/php-email-form/validate.js') }}"></script>
+  <script src="{{ asset('website_assets/vendor/aos/aos.js') }}"></script>
+  <script src="{{ asset('website_assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+  <script src="{{ asset('website_assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
+  <script src="{{ asset('website_assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+  <script src="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
+  <script src="{{ asset('website_assets/js/main.js') }}"></script>
+  <script src="{{ asset('website_assets/js/enroll-form.js') }}"></script>
 
-  <!-- Performance-Optimized Carousel Script -->
+  <!-- Android-Optimized Carousel Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const carousel = document.getElementById('heroCarousel');
@@ -1363,28 +1280,20 @@
         // Detect mobile device
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
         
-        // Optimize carousel settings for performance
-        const carouselOptions = {
-          interval: isMobile ? 4000 : 3000, // Slower intervals for better performance
+        const bsCarousel = new bootstrap.Carousel(carousel, {
+          interval: isMobile ? 3000 : 2000, // Slower on mobile for better performance
           ride: true,
           wrap: true,
-          touch: true,
-          pause: isMobile ? 'hover' : false // Pause on hover only for desktop
-        };
+          touch: true // Enable touch support
+        });
         
-        const bsCarousel = new bootstrap.Carousel(carousel, carouselOptions);
-        
-        // Performance optimizations
+        // Optimize for mobile
         if (isMobile) {
+          // Reduce carousel complexity on mobile
           carousel.style.willChange = 'auto';
-          // Reduce animation complexity
-          carousel.style.transform = 'translateZ(0)';
         }
         
-        // Start carousel with a slight delay to prioritize page rendering
-        setTimeout(() => {
-          bsCarousel.cycle();
-        }, 100);
+        bsCarousel.cycle();
       }
     });
   </script>
@@ -1429,23 +1338,7 @@
     </a>
   </div>
 
-  <!-- Performance Monitoring Script -->
-  <script>
-    // Performance monitoring
-    window.addEventListener('load', function() {
-      if ('performance' in window) {
-        const perfData = performance.getEntriesByType('navigation')[0];
-        const loadTime = perfData.loadEventEnd - perfData.loadEventStart;
-        const domContentLoaded = perfData.domContentLoadedEventEnd - perfData.domContentLoadedEventStart;
-        
-        console.log('Page Load Performance:', {
-          'Total Load Time': loadTime + 'ms',
-          'DOM Content Loaded': domContentLoaded + 'ms',
-          'First Contentful Paint': performance.getEntriesByName('first-contentful-paint')[0]?.startTime + 'ms'
-        });
-      }
-    });
-  </script>
+
 
   <!-- Additional Styles -->
   <style>
@@ -2425,50 +2318,39 @@
     });
   </script>
 
-  <!-- Performance-Optimized Counter Animation Script -->
+  <!-- Counter Animation Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Optimized counter animation function with requestAnimationFrame
-      function animateCounter(element, target, duration = 1500) {
+      // Simple counter animation function
+      function animateCounter(element, target, duration = 2000) {
         const start = 0;
-        const startTime = performance.now();
+        const increment = target / (duration / 16);
+        let current = start;
         
-        function updateCounter(currentTime) {
-          const elapsed = currentTime - startTime;
-          const progress = Math.min(elapsed / duration, 1);
-          
-          // Easing function for smoother animation
-          const easeOutQuart = 1 - Math.pow(1 - progress, 4);
-          const current = Math.floor(target * easeOutQuart);
-          
-          element.textContent = current;
-          
-          if (progress < 1) {
-            requestAnimationFrame(updateCounter);
+        const timer = setInterval(() => {
+          current += increment;
+          if (current >= target) {
+            current = target;
+            clearInterval(timer);
           }
-        }
-        
-        requestAnimationFrame(updateCounter);
+          element.textContent = Math.floor(current);
+        }, 16);
       }
       
-      // Optimized live counter update function
+      // Live counter update function
       function startLiveCounter(element, baseTarget, increment) {
         let currentValue = baseTarget;
         
-        // Use a more efficient interval
-        const interval = setInterval(() => {
+        setInterval(() => {
           currentValue += increment;
           element.textContent = Math.floor(currentValue);
-        }, 5000); // Update every 5 seconds instead of 3
-        
-        // Store interval reference for cleanup
-        element.dataset.liveInterval = interval;
+        }, 3000); // Update every 3 seconds
       }
       
-      // Intersection Observer with performance optimizations
+      // Intersection Observer for triggering counter animation
       const observerOptions = {
-        threshold: 0.3, // Reduced threshold for earlier triggering
-        rootMargin: '0px 0px -50px 0px' // Reduced margin
+        threshold: 0.5,
+        rootMargin: '0px 0px -100px 0px'
       };
       
       const observer = new IntersectionObserver((entries) => {
@@ -2481,73 +2363,46 @@
               const liveIncrement = parseInt(counter.getAttribute('data-live-increment')) || 1;
               
               counter.classList.add('animated');
-              
-              // Use requestIdleCallback for better performance
-              if ('requestIdleCallback' in window) {
-                requestIdleCallback(() => {
-                  animateCounter(counter, target);
-                });
-              } else {
-                setTimeout(() => {
-                  animateCounter(counter, target);
-                }, 100);
-              }
+              animateCounter(counter, target);
               
               // Start live updates if enabled
               if (isLive) {
                 setTimeout(() => {
                   startLiveCounter(counter, target, liveIncrement);
-                }, 1500);
+                }, 2000); // Start live updates after initial animation
               }
             }
           }
         });
       }, observerOptions);
       
-      // Observe all stat cards with a slight delay
-      setTimeout(() => {
-        const statCards = document.querySelectorAll('.stat-card');
-        statCards.forEach(card => {
-          observer.observe(card);
-        });
-      }, 200);
+      // Observe all stat cards
+      const statCards = document.querySelectorAll('.stat-card');
+      statCards.forEach(card => {
+        observer.observe(card);
+      });
       
-      // Simplified live indicator
+      // Add pulsing effect to live counters
       function addLiveIndicator() {
         const liveCounters = document.querySelectorAll('.counter[data-live="true"]');
         liveCounters.forEach(counter => {
-          if (!counter.querySelector('.live-indicator')) {
-            const liveDot = document.createElement('span');
-            liveDot.className = 'live-indicator';
-            liveDot.innerHTML = ' 🔴';
-            liveDot.style.fontSize = '0.5em';
-            counter.appendChild(liveDot);
-          }
+          counter.style.position = 'relative';
+          
+          // Add live indicator dot
+          const liveDot = document.createElement('span');
+          liveDot.innerHTML = ' 🔴';
+          liveDot.style.fontSize = '0.5em';
+          liveDot.style.animation = 'pulse 2s infinite';
+          counter.appendChild(liveDot);
         });
       }
       
       // Add live indicator after a delay
-      setTimeout(addLiveIndicator, 2000);
+      setTimeout(addLiveIndicator, 3000);
     });
   </script>
 
-  <!-- Performance-Optimized Loading Spinner Script -->
-  <script>
-    // Optimize AOS initialization for better performance
-    document.addEventListener('DOMContentLoaded', function() {
-      if (typeof AOS !== 'undefined') {
-        AOS.init({
-          duration: 600,
-          easing: 'ease-in-out',
-          once: true, // Only animate once
-          offset: 100,
-          delay: 0,
-          disable: 'mobile' // Disable on mobile for better performance
-        });
-      }
-    });
-  </script>
-  
+  <!-- Loading Spinner Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const loadingSpinner = document.getElementById('loading-spinner');
@@ -2556,63 +2411,61 @@
       // Add loading class to body
       body.classList.add('loading');
       
-      // Function to check if critical images are loaded
-      function checkCriticalImagesLoaded() {
-        const criticalImages = document.querySelectorAll('img[fetchpriority="high"], img[loading="eager"]');
-        const totalCriticalImages = criticalImages.length;
-        let loadedCriticalImages = 0;
+      // Function to check if images are loaded
+      function checkImagesLoaded() {
+        const images = document.querySelectorAll('img');
+        const totalImages = images.length;
+        let loadedImages = 0;
         
-        if (totalCriticalImages === 0) {
-          setTimeout(hideSpinner, 300);
+        if (totalImages === 0) {
+          setTimeout(hideSpinner, 500);
           return;
         }
         
-        criticalImages.forEach(img => {
+        images.forEach(img => {
           if (img.complete) {
-            loadedCriticalImages++;
+            loadedImages++;
             checkComplete();
           } else {
             img.addEventListener('load', () => {
-              loadedCriticalImages++;
+              loadedImages++;
               checkComplete();
             });
             img.addEventListener('error', () => {
-              loadedCriticalImages++;
+              loadedImages++;
               checkComplete();
             });
           }
         });
         
         function checkComplete() {
-          if (loadedCriticalImages >= totalCriticalImages) {
-            setTimeout(hideSpinner, 300);
+          if (loadedImages >= totalImages) {
+            setTimeout(hideSpinner, 500);
           }
         }
       }
       
       // Function to hide spinner
       function hideSpinner() {
-        if (loadingSpinner && !loadingSpinner.classList.contains('hidden')) {
-          loadingSpinner.classList.add('hidden');
-          body.classList.remove('loading');
-          
-          setTimeout(() => {
-            if (loadingSpinner && loadingSpinner.parentNode) {
-              loadingSpinner.parentNode.removeChild(loadingSpinner);
-            }
-          }, 300);
-        }
+        loadingSpinner.classList.add('hidden');
+        body.classList.remove('loading');
+        
+        setTimeout(() => {
+          if (loadingSpinner.parentNode) {
+            loadingSpinner.parentNode.removeChild(loadingSpinner);
+          }
+        }, 500);
       }
       
-      // Start checking critical images immediately
-      checkCriticalImagesLoaded();
+      // Start checking images
+      setTimeout(checkImagesLoaded, 100);
       
-      // Fallback: hide spinner after 3 seconds
+      // Fallback: hide spinner after 5 seconds
       setTimeout(() => {
-        if (loadingSpinner && !loadingSpinner.classList.contains('hidden')) {
+        if (!loadingSpinner.classList.contains('hidden')) {
           hideSpinner();
         }
-      }, 3000);
+      }, 5000);
     });
   </script>
 

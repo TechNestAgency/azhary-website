@@ -12,23 +12,15 @@ class IndexController extends Controller
 {
     public function index()
     {
-        // Enhanced caching with longer duration and optimized queries
-        $teachers = Cache::remember('homepage_teachers_v2', 7200, function () {
+        // Cache teachers and articles for 1 hour to reduce database queries
+        $teachers = Cache::remember('homepage_teachers', 3600, function () {
             return Teacher::select('id', 'name', 'short_description', 'photo', 'rating', 'total_reviews')
                          ->where('is_active', true)
-                         ->orderBy('rating', 'desc')
-                         ->orderBy('total_reviews', 'desc')
                          ->take(6)
-                         ->get()
-                         ->map(function ($teacher) {
-                             // Pre-compute localized data to reduce view processing
-                             $teacher->localized_name = $teacher->name;
-                             $teacher->localized_short_description = $teacher->short_description;
-                             return $teacher;
-                         });
+                         ->get();
         });
 
-        $articles = Cache::remember('homepage_articles_v2', 7200, function () {
+        $articles = Cache::remember('homepage_articles', 3600, function () {
             return Article::select('id', 'title', 'content', 'image', 'created_at')
                          ->where('status', true)
                          ->latest()
@@ -36,10 +28,6 @@ class IndexController extends Controller
                          ->get();
         });
 
-        // Add cache headers for better browser caching
-        return response()
-            ->view('website.index', compact('teachers', 'articles'))
-            ->header('Cache-Control', 'public, max-age=3600, s-maxage=7200')
-            ->header('Vary', 'Accept-Language');
+        return view('website.index', compact('teachers', 'articles'));
     }
 }
