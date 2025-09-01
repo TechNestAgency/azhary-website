@@ -54,7 +54,7 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
             <div class="app-brand demo">
-                <a href="{{url('/admin')}}" class="app-brand-link">
+                <a href="{{url('/admin/dashboard')}}" class="app-brand-link">
               <span class="app-brand-logo demo">
             
               <img src="{{asset('website_assets/img/logo-no.png')}}" style="width: 50px; height: 50px;" alt="Logo" class="img-fluid">

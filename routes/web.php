@@ -30,7 +30,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
 // Admin Protected Routes
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
-    Route::get('/', [AdminIndexController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [AdminIndexController::class, 'index'])->name('dashboard');
     Route::resource('teachers', TeacherController::class);
     Route::resource('enrollments', AdminEnrollmentController::class);
     Route::resource('articles', ArticleController::class);
