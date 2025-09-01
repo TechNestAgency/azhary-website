@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EnrollmentRequest;
+use App\Mail\EnrollmentNotification;
 use App\Models\Enrollment;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class EnrollmentController extends Controller
 {
@@ -45,6 +47,33 @@ class EnrollmentController extends Controller
                 'email' => $enrollment->email,
                 'course' => $enrollment->package
             ]);
+
+            // Send email notification
+            try {
+                Mail::to('Madrassatazhary4@gmail.com')->send(new EnrollmentNotification($enrollment));
+                \Log::info('Enrollment notification email sent successfully');
+            } catch (\Exception $e) {
+                \Log::error('Failed to send enrollment notification email', [
+                    'error' => $e->getMessage(),
+                    'enrollment_id' => $enrollment->id
+                ]);
+                
+                // Fallback: Log enrollment details to a file for manual review
+                $logData = [
+                    'timestamp' => now()->format('Y-m-d H:i:s'),
+                    'enrollment_id' => $enrollment->id,
+                    'name' => $enrollment->name,
+                    'email' => $enrollment->email,
+                    'phone' => $enrollment->mobile,
+                    'course' => $enrollment->package,
+                    'arabic_level' => $enrollment->arabic_level,
+                    'details' => $enrollment->course_details,
+                    'preferred_days' => $enrollment->preferred_days,
+                    'preferred_times' => $enrollment->preferred_times,
+                ];
+                
+                \Log::channel('enrollments')->info('New enrollment (email failed)', $logData);
+            }
 
             if ($request->ajax()) {
                 return response()->json([

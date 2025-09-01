@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\Website\IndexController;
 use App\Http\Controllers\Admin\IndexController as AdminIndexController;
@@ -74,6 +75,18 @@ Route::get('debug/locale', function () {
         'session_data' => session()->all()
     ]);
 })->name('debug.locale');
+
+// Test email route (remove in production)
+Route::get('test/email', function () {
+    try {
+        Mail::raw('Test email from Azhary Academy', function($message) {
+            $message->to('ahmmedd606@gmail.com')->subject('Test Email');
+        });
+        return response()->json(['success' => true, 'message' => 'Test email sent successfully']);
+    } catch (Exception $e) {
+        return response()->json(['success' => false, 'message' => 'Email error: ' . $e->getMessage()]);
+    }
+})->name('test.email');
 
 // Test route to manually set locale
 Route::get('test/set-locale/{locale}', function ($locale) {
