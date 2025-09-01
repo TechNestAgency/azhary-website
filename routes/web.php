@@ -80,7 +80,7 @@ Route::get('debug/locale', function () {
 Route::get('test/email', function () {
     try {
         Mail::raw('Test email from Azhary Academy', function($message) {
-            $message->to('ahmmedd606@gmail.com')->subject('Test Email');
+            $message->to('Madrassatazhary4@gmail.com')->subject('Test Email');
         });
         return response()->json(['success' => true, 'message' => 'Test email sent successfully']);
     } catch (Exception $e) {

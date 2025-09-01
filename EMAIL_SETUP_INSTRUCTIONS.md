@@ -67,7 +67,7 @@ MAIL_FROM_NAME="Azhary Academy"
 
 Once configured, every time someone submits an enrollment form:
 1. The enrollment will be saved to the database
-2. An email notification will be sent to `ahmmedd606@gmail.com`
+2. An email notification will be sent to `Madrassatazhary4@gmail.com`
 3. The email will contain all enrollment details
 4. You'll receive a professional-looking email with a link to view the enrollment in your admin panel
 

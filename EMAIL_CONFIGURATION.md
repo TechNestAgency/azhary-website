@@ -1,7 +1,7 @@
 # Email Configuration Guide
 
 ## Current Setup
-The enrollment form is now configured to send email notifications to `ahmmedd606@gmail.com` when someone submits an enrollment.
+The enrollment form is now configured to send email notifications to `Madrassatazhary4@gmail.com` when someone submits an enrollment.
 
 ## Email Configuration Options
 
@@ -62,7 +62,7 @@ php artisan tinker
 Then run:
 ```php
 Mail::raw('Test email from Azhary Academy', function($message) {
-    $message->to('ahmmedd606@gmail.com')->subject('Test Email');
+    $message->to('Madrassatazhary4@gmail.com')->subject('Test Email');
 });
 ```
 

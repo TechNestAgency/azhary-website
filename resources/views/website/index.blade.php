@@ -3,7 +3,12 @@
 
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" name="viewport">
+  <meta name="theme-color" content="#0a2260">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="format-detection" content="telephone=no">
   <title>Madrassat Azhary - Islamic Education Online</title>
   <meta name="description" content="Learn Quran, Arabic, and Islamic studies online with qualified French-speaking teachers. Join our community of learners worldwide.">
   <meta name="keywords" content="Quran online, Arabic learning, Islamic studies, French Muslim education, online Islamic academy">
@@ -11,21 +16,23 @@
   <!-- CSRF Token for AJAX requests -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   
-  <!-- Android-specific optimizations -->
-  <meta name="mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="format-detection" content="telephone=no">
+
   
   <!-- Performance Optimizations -->
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
-  <link rel="dns-prefetch" href="//code.jquery.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="preconnect" href="https://cdn.jsdelivr.net">
-  <link rel="preconnect" href="https://code.jquery.com">
+  
+  <!-- Preload critical resources -->
+  <link rel="preload" href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}"></noscript>
+  <link rel="preload" href="{{ asset('website_assets/css/main.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="{{ asset('website_assets/css/main.css') }}"></noscript>
+  
+  <!-- Preload hero images for better LCP -->
+  <link rel="preload" href="{{ asset('presenting.png') }}" as="image" media="(max-width: 768px)">
+  <link rel="preload" href="{{ asset('hero-back.jpg') }}" as="image">
   
   <!-- Critical CSS Inline -->
   <style>
@@ -287,6 +294,35 @@
     img {
       max-width: 100%;
       height: auto;
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+    
+    /* Mobile-first performance optimizations */
+    @media (max-width: 768px) {
+      * {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      /* Reduce paint operations on mobile */
+      .carousel-item {
+        will-change: auto;
+        transform: translateZ(0);
+      }
+      
+      /* Optimize animations for mobile */
+      .stat-card,
+      .feature-card,
+      .service-item {
+        transition: none;
+        transform: none;
+      }
+      
+      /* Reduce shadow complexity on mobile */
+      .shadow {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
     }
 
     /* Android-specific optimizations */
@@ -311,6 +347,39 @@
         line-height: 1.1;
       }
     }
+    
+    /* Critical mobile performance optimizations */
+    @media (max-width: 768px) {
+      /* Reduce repaints and reflows */
+      .hero {
+        contain: layout style paint;
+      }
+      
+      .carousel-item {
+        contain: layout style paint;
+      }
+      
+      /* Optimize text rendering */
+      body {
+        text-rendering: optimizeSpeed;
+        -webkit-font-feature-settings: "kern" 1;
+        font-feature-settings: "kern" 1;
+      }
+      
+      /* Reduce animation complexity */
+      .aos-animate {
+        animation: none !important;
+      }
+      
+      /* Optimize swiper performance */
+      .swiper-wrapper {
+        will-change: auto;
+      }
+      
+      .swiper-slide {
+        will-change: auto;
+      }
+    }
 
     /* Android-specific mobile optimizations */
     @media (max-width: 768px) {
@@ -322,6 +391,8 @@
       /* Optimize images for mobile */
       .hero {
         background-attachment: scroll;
+        background-size: cover;
+        background-position: center;
       }
       
       /* Reduce transition times */
@@ -332,6 +403,7 @@
       /* Optimize carousel for mobile */
       .carousel-item {
         will-change: auto;
+        transform: translateZ(0);
       }
       
       /* Disable hover effects on mobile */
@@ -360,6 +432,23 @@
         -ms-user-select: text;
         user-select: text;
       }
+      
+      /* Reduce paint operations */
+      .carousel-control-prev,
+      .carousel-control-next {
+        display: none;
+      }
+      
+      /* Optimize swiper for mobile */
+      .swiper-slide {
+        will-change: auto;
+      }
+      
+      /* Reduce shadow complexity */
+      .shadow,
+      .islamic-card {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      }
     }
   </style>
 
@@ -368,15 +457,14 @@
   <link href="{{ asset('website_assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
 
   <!-- CSS Files -->
-  <link href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('website_assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
   <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet">
   <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
   <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet">
   <link href="{{ asset('website_assets/css/language-switcher.css') }}" rel="stylesheet">
 </head>
 <body class="index-page">
@@ -385,7 +473,7 @@
   <div id="loading-spinner" class="loading-overlay">
     <div class="loading-content">
       <div class="loading-logo">
-        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="Madrassat Azhary" class="spinner-logo">
+        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="Madrassat Azhary" class="spinner-logo" width="120" height="120">
       </div>
       <div class="loading-spinner"></div>
       <div class="loading-text">Chargement...</div>
@@ -420,7 +508,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white" style="border: none !important;">
     <div class="container">
       <a href="{{ route('home') }}" class="navbar-brand d-flex align-items-center me-auto me-xl-0" style="min-width: 120px;">
-        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="" style="max-height: 80px;" data-critical="true">
+        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="Madrassat Azhary Logo" style="max-height: 80px;" data-critical="true">
       </a>
       
       <!-- Mobile Trial Button - Centered in Mobile Topbar -->
@@ -481,7 +569,7 @@
     </nav>
   </div>
 
-  <main class="main" style="padding-top: 140px;">
+  <main class="main" style="padding-top: 170px;">
 
     <!-- Hero Section -->
     <section id="hero" class="hero section p-0" style="background: url('{{ asset('hero-back.jpg') }}') no-repeat center center; background-size: cover; position: relative; direction: ltr;">
@@ -496,7 +584,7 @@
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
                 <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
-                  <img src="{{ asset('presenting.png') }}" alt="Welcome Man" class="img-fluid" style="max-height: 400px;" loading="lazy">
+                  <img src="{{ asset('presenting.png') }}" alt="Welcome Man" class="img-fluid" style="max-height: 400px;" loading="lazy" width="400" height="400">
                 </div>
                 <!-- Welcome Title (right) -->
                 <div class="col-12 col-lg-6 text-white text-center text-lg-start">
@@ -513,7 +601,7 @@
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
                 <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
-                  <img src="{{ asset('man2.png') }}" alt="Online Learning" class="img-fluid" style="max-height: 400px;" loading="lazy">
+                  <img src="{{ asset('man2.png') }}" alt="Online Learning" class="img-fluid" style="max-height: 400px;" loading="lazy" width="400" height="400">
                 </div>
                 <!-- Online Learning Content (right) -->
                 <div class="col-12 col-lg-6 text-white text-center text-lg-start">
@@ -532,7 +620,7 @@
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
                 <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
-                  <img src="{{ asset('man3.png') }}" alt="French Community" class="img-fluid" style="max-height: 400px;" loading="lazy">
+                  <img src="{{ asset('man3.png') }}" alt="French Community" class="img-fluid" style="max-height: 400px;" loading="lazy" width="400" height="400">
                 </div>
                 <!-- French Community Content (right) -->
                 <div class="col-12 col-lg-6 text-white text-center text-lg-start">
@@ -551,7 +639,7 @@
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
                 <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
-                  <img src="{{ asset('man4.png') }}" alt="Children's Arabic Learning" class="img-fluid" style="max-height: 400px;" loading="lazy">
+                  <img src="{{ asset('man4.png') }}" alt="Children's Arabic Learning" class="img-fluid" style="max-height: 400px;" loading="lazy" width="400" height="400">
                 </div>
                 <!-- Children's Program Content (right) -->
                 <div class="col-12 col-lg-6 text-white text-center text-lg-start">
@@ -790,7 +878,7 @@
           
             <div class="col-12 col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
               <div class="about-image-container">
-                <img src="{{asset('about.png')}}" class="img-fluid rounded-4 shadow" alt="Online Islamic Class" loading="lazy">
+                <img src="{{asset('about.png')}}" class="img-fluid rounded-4 shadow" alt="Online Islamic Class" loading="lazy" width="500" height="400">
               </div>
             </div>
           
@@ -935,7 +1023,7 @@
             <div class="swiper-slide" data-aos="zoom-in" data-aos-delay="{{ $loop->iteration * 100 }}">
               <div class="teacher-profile-card">
                 <div class="teacher-photo-section">
-                  <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->localized_name }}" loading="lazy">
+                  <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->localized_name }}" loading="lazy" width="300" height="280">
                 </div>
                 <div class="teacher-info-section">
                   <h4 class="teacher-name">{{ $teacher->localized_name }}</h4>
@@ -1005,7 +1093,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/man1.jpeg') }}" alt="Student Profile" loading="lazy" fetchpriority="low">
+                    <img src="{{ asset('website_assets/img/man1.jpeg') }}" alt="Student Profile" loading="lazy" width="60" height="60">
                     <div>
                       <h3>Ahmed Hassan</h3>
                       <h4>{{ __('website.Quran Student') }}</h4>
@@ -1032,7 +1120,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/girl.jpeg') }}" alt="Student Profile" loading="lazy">
+                    <img src="{{ asset('website_assets/img/girl.jpeg') }}" alt="Student Profile" loading="lazy" width="60" height="60">
                     <div>
                       <h3>Fatima Zahra</h3>
                       <h4>{{ __('website.Islamic Studies Student') }}</h4>
@@ -1059,7 +1147,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/whomen1.jpeg') }}" alt="Student Profile" loading="lazy">
+                    <img src="{{ asset('website_assets/img/whomen1.jpeg') }}" alt="Student Profile" loading="lazy" width="60" height="60">
                     <div>
                       <h3>Sarah Mohammed</h3>
                       <h4>{{ __('website.Parent') }}</h4>
@@ -1086,9 +1174,9 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/boy.jpeg') }}" alt="Student Profile" loading="lazy">
+                    <img src="{{ asset('website_assets/img/boy.jpeg') }}" alt="Student Profile" loading="lazy" width="60" height="60">
                     <div>
-                      <h3>Yusuf Ali</h3>
+                      <h3>Yusuf Ali</h4>
                       <h4>{{ __('website.Professional Student') }}</h4>
                     </div>
                   </div>
@@ -1113,7 +1201,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/girl.jpeg') }}" alt="Student Profile" loading="lazy">
+                    <img src="{{ asset('website_assets/img/girl.jpeg') }}" alt="Student Profile" loading="lazy" width="60" height="60">
                     <div>
                       <h3>Layla Ibrahim</h3>
                       <h4>{{ __('website.Hifz Student') }}</h4>
@@ -1140,7 +1228,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/boy2.jpeg') }}" alt="Student Profile" loading="lazy">
+                    <img src="{{ asset('website_assets/img/boy2.jpeg') }}" alt="Student Profile" loading="lazy" width="60" height="60">
                     <div>
                       <h3>Omar Khalid</h3>
                       <h4>{{ __('website.Tajweed Student') }}</h4>
@@ -1216,17 +1304,19 @@
   <!-- Preloader -->
   <div id="preloader"></div>
 
-  <!-- JavaScript Files -->
+  <!-- Critical JavaScript Files -->
   <script src="{{ asset('website_assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/php-email-form/validate.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/aos/aos.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-  <script src="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-  <script src="{{ asset('website_assets/js/main.js') }}"></script>
-  <script src="{{ asset('website_assets/js/enroll-form.js') }}"></script>
-  <script src="{{ asset('website_assets/js/language-switcher.js') }}"></script>
+  
+  <!-- Deferred JavaScript Files -->
+  <script src="{{ asset('website_assets/vendor/php-email-form/validate.js') }}" defer></script>
+  <script src="{{ asset('website_assets/vendor/aos/aos.js') }}" defer></script>
+  <script src="{{ asset('website_assets/vendor/glightbox/js/glightbox.min.js') }}" defer></script>
+  <script src="{{ asset('website_assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}" defer></script>
+  <script src="{{ asset('website_assets/vendor/isotope-layout/isotope.pkgd.min.js') }}" defer></script>
+  <script src="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.js') }}" defer></script>
+  <script src="{{ asset('website_assets/js/main.js') }}" defer></script>
+  <script src="{{ asset('website_assets/js/enroll-form.js') }}" defer></script>
+  <script src="{{ asset('website_assets/js/language-switcher.js') }}" defer></script>
 
   <!-- Carousel will be initialized after content loading is complete -->
 
@@ -1252,6 +1342,10 @@
         const images = document.querySelectorAll('img');
         images.forEach(img => {
           img.style.imageRendering = 'optimizeSpeed';
+          // Add loading priority for above-the-fold images
+          if (img.closest('.hero') || img.closest('.carousel-item')) {
+            img.loading = 'eager';
+          }
         });
         
         // Reduce animation complexity
@@ -1259,6 +1353,37 @@
         animatedElements.forEach(el => {
           el.style.transition = 'none';
         });
+        
+        // Optimize carousel for mobile
+        const carousel = document.getElementById('heroCarousel');
+        if (carousel) {
+          // Reduce carousel interval on mobile
+          if (typeof bootstrap !== 'undefined') {
+            const bsCarousel = new bootstrap.Carousel(carousel, {
+              interval: 3000,
+              ride: true,
+              wrap: true,
+              touch: true
+            });
+          }
+        }
+        
+        // Lazy load non-critical images
+        const lazyImages = document.querySelectorAll('img[loading="lazy"]:not(.hero img)');
+        if ('IntersectionObserver' in window) {
+          const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.src;
+                img.classList.remove('lazy');
+                observer.unobserve(img);
+              }
+            });
+          });
+          
+          lazyImages.forEach(img => imageObserver.observe(img));
+        }
       }
     });
   </script>
@@ -2399,19 +2524,18 @@
       
       // Function to check if all content is loaded
       function checkContentLoaded() {
-        const images = document.querySelectorAll('img');
-        const videos = document.querySelectorAll('video');
-        const criticalElements = document.querySelectorAll('.carousel-item, .feature-card, .stat-card');
+        const images = document.querySelectorAll('img[data-critical="true"], .hero img, .carousel-item img');
+        const criticalElements = document.querySelectorAll('.carousel-item:first-child, .hero');
         
-        totalResources = images.length + videos.length + criticalElements.length;
+        totalResources = images.length + criticalElements.length;
         loadedResources = 0;
         
         if (totalResources === 0) {
-          setTimeout(enableContent, 500);
+          setTimeout(enableContent, 300);
           return;
         }
         
-        // Check images
+        // Check critical images first
         images.forEach(img => {
           if (img.complete) {
             loadedResources++;
@@ -2431,39 +2555,18 @@
           }
         });
         
-        // Check videos
-        videos.forEach(video => {
-          if (video.readyState >= 2) { // HAVE_CURRENT_DATA
-            loadedResources++;
-            updateProgress();
-            checkComplete();
-          } else {
-            video.addEventListener('loadeddata', () => {
-              loadedResources++;
-              updateProgress();
-              checkComplete();
-            });
-            video.addEventListener('error', () => {
-              loadedResources++;
-              updateProgress();
-              checkComplete();
-            });
-          }
-        });
-        
-        // Check critical elements (carousel items, feature cards, etc.)
+        // Check critical elements
         criticalElements.forEach(element => {
-          // Simulate loading for critical elements
           setTimeout(() => {
             loadedResources++;
             updateProgress();
             checkComplete();
-          }, Math.random() * 200 + 100); // Random delay between 100-300ms
+          }, 150);
         });
         
         function checkComplete() {
           if (loadedResources >= totalResources) {
-            setTimeout(enableContent, 800);
+            setTimeout(enableContent, 500);
           }
         }
       }
