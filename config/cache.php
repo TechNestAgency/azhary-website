@@ -52,6 +52,7 @@ return [
         'file' => [
             'driver' => 'file',
             'path' => storage_path('framework/cache/data'),
+            'lock_path' => storage_path('framework/cache/data'),
         ],
 
         'memcached' => [
@@ -105,6 +106,50 @@ return [
     |
     */
 
-    'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache_'),
+    'prefix' => env(
+        'CACHE_PREFIX',
+        Str::slug(env('APP_NAME', 'laravel'), '_').'_cache_'
+    ),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cache TTL (Time To Live)
+    |--------------------------------------------------------------------------
+    |
+    | This option controls the default time-to-live for cached items.
+    | You can override this value for specific cache operations.
+    |
+    */
+
+    'ttl' => env('CACHE_TTL', 3600),
+
+    /*
+    |--------------------------------------------------------------------------
+    | Language-Specific Cache Settings
+    |--------------------------------------------------------------------------
+    |
+    | These settings help prevent caching issues when switching languages.
+    |
+    */
+
+    'language_aware' => [
+        'enabled' => env('CACHE_LANGUAGE_AWARE', true),
+        'prefix_locale' => env('CACHE_PREFIX_LOCALE', true),
+        'clear_on_switch' => env('CACHE_CLEAR_ON_SWITCH', true),
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Cache Tags
+    |--------------------------------------------------------------------------
+    |
+    | Cache tags allow you to tag related items in the cache and then
+    | flush all cached items using a given tag name.
+    |
+    */
+
+    'tags' => [
+        'enabled' => env('CACHE_TAGS_ENABLED', true),
+    ],
 
 ];

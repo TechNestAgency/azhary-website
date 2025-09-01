@@ -24,7 +24,7 @@ Route::get('/debug-content', function () {
 // Admin Authentication Routes
 Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('login', [AdminAuthController::class, 'showLoginForm'])->name('login');
-    Route::post('login', [AdminAuthController::class, 'login']);
+    Route::post('login', [AdminAuthController::class, 'login'])->name('login');
     Route::post('logout', [AdminAuthController::class, 'logout'])->name('logout');
 });
 
@@ -58,8 +58,10 @@ Route::prefix('articles')->name('website.articles.')->group(function () {
     Route::get('/{id}', [App\Http\Controllers\Website\ArticleController::class, 'show'])->name('show');
 });
 
-// Language Switch Route
+// Language Switch Routes
 Route::get('language/{locale}', [App\Http\Controllers\LanguageController::class, 'switchLang'])->name('language.switch');
+Route::get('language/status/current', [App\Http\Controllers\LanguageController::class, 'getCurrentLang'])->name('language.status');
+Route::post('language/refresh', [App\Http\Controllers\LanguageController::class, 'refreshLang'])->name('language.refresh');
 
 // Debug route to test language switching
 Route::get('debug/locale', function () {

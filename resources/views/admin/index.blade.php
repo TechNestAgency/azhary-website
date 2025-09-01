@@ -218,10 +218,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach(\App\Models\TeacherReview::with(['teacher'])->latest()->take(5)->get() as $review)
+                                        @php
+                                            $recentReviews = \App\Models\TeacherReview::with(['teacher'])->latest()->take(5)->get();
+                                        @endphp
+                                        @forelse($recentReviews as $review)
                                         <tr>
-                                            <td>{{ $review->teacher->name }}</td>
-                                            <td>{{ Str::limit($review->comment, 50) }}</td>
+                                            <td>{{ $review->teacher->name ?? 'Unknown Teacher' }}</td>
+                                            <td>{{ \Illuminate\Support\Str::limit($review->comment, 50) }}</td>
                                             <td>
                                                 <div class="text-warning">
                                                     @for($i = 1; $i <= 5; $i++)
@@ -235,7 +238,11 @@
                                             </td>
                                             <td>{{ $review->created_at->diffForHumans() }}</td>
                                         </tr>
-                                        @endforeach
+                                        @empty
+                                        <tr>
+                                            <td colspan="4" class="text-center text-muted">No reviews yet</td>
+                                        </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

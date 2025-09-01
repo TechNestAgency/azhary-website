@@ -8,6 +8,9 @@
   <meta name="description" content="Learn Quran, Arabic, and Islamic studies online with qualified French-speaking teachers. Join our community of learners worldwide.">
   <meta name="keywords" content="Quran online, Arabic learning, Islamic studies, French Muslim education, online Islamic academy">
   
+  <!-- CSRF Token for AJAX requests -->
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  
   <!-- Android-specific optimizations -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -146,7 +149,7 @@
       .col-lg-3, .col-lg-6 { flex: 0 0 50%; }
     }
 
-    /* Loading Spinner Styles */
+    /* Styles de l'écran de chargement */
     .loading-overlay {
       position: fixed;
       top: 0;
@@ -203,6 +206,29 @@
       margin-top: 10px;
     }
 
+    .loading-progress {
+      width: 200px;
+      height: 6px;
+      background: #f3f3f3;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .loading-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #d4af37, #228b22);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+
+    .loading-status {
+      font-size: 14px;
+      color: #666;
+      margin-top: 5px;
+    }
+
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
@@ -222,6 +248,39 @@
     body.loading .main {
       filter: blur(5px);
       transition: filter 0.3s ease;
+    }
+
+    /* Carousel loading state */
+    #heroCarousel.loading {
+      pointer-events: none;
+      opacity: 0.5;
+      transition: opacity 0.5s ease;
+    }
+
+    #heroCarousel.loading .carousel-item {
+      animation: none !important;
+    }
+
+    #heroCarousel.loading .carousel-control-prev,
+    #heroCarousel.loading .carousel-control-next {
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    /* Loading animation for carousel items */
+    @keyframes carouselItemLoad {
+      0% {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .carousel-item.loaded {
+      animation: carouselItemLoad 0.8s ease-out;
     }
 
     /* Light performance optimizations */
@@ -318,6 +377,7 @@
   <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
   <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
   <link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet">
+  <link href="{{ asset('website_assets/css/language-switcher.css') }}" rel="stylesheet">
 </head>
 <body class="index-page">
 
@@ -328,7 +388,11 @@
         <img src="{{asset('website_assets/img/logo-no.png')}}" alt="Madrassat Azhary" class="spinner-logo">
       </div>
       <div class="loading-spinner"></div>
-      <div class="loading-text">Loading...</div>
+      <div class="loading-text">Chargement...</div>
+      <div class="loading-progress">
+        <div class="loading-progress-bar" id="loading-progress-bar"></div>
+      </div>
+      <div class="loading-status" id="loading-status">Initialisation...</div>
     </div>
   </div>
 
@@ -424,7 +488,7 @@
       <!-- Transparent Overlay -->
       <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color:rgb(2, 37, 108); opacity: 0.88;"></div>
       <!-- Carousel Content (Third Layer) -->
-      <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2000" style="position: relative; z-index: 2;">
+      <div id="heroCarousel" class="carousel slide" style="position: relative; z-index: 2;">
         <div class="carousel-inner pt-5">
           <!-- Slide 1: Welcome (default/active) -->
           <div class="carousel-item active">
@@ -600,7 +664,7 @@
             🏆 {{ __('website.Our Achievements') }}
           </h2>
           <p class="text-white-50 lead" style="font-size: 1.2rem;">
-            {{ __('website.Join thousands of students who have transformed their Quranic journey with us') }}
+            {{ __('website.Join our dedicated community of students who have transformed their Quranic journey with us') }}
           </p>
         </div>
 
@@ -612,7 +676,7 @@
                 <i class="bi bi-people-fill"></i>
               </div>
               <div class="stat-number mb-2">
-                <span class="counter" data-target="2500" data-live="true" data-live-increment="3">0</span>+
+                <span class="counter" data-target="65" data-live="true" data-live-increment="1">0</span>+
               </div>
               <div class="stat-label">{{ __('website.Happy Students') }}</div>
               <div class="stat-description">{{ __('website.Enrolled worldwide') }}</div>
@@ -626,7 +690,7 @@
                 <i class="bi bi-person-workspace"></i>
               </div>
               <div class="stat-number mb-2">
-                <span class="counter" data-target="85" data-live="true" data-live-increment="1">0</span>+
+                <span class="counter" data-target="7" data-live="true" data-live-increment="1">0</span>+
               </div>
               <div class="stat-label">{{ __('website.Expert Teachers') }}</div>
               <div class="stat-description">{{ __('website.Certified instructors') }}</div>
@@ -640,7 +704,7 @@
                 <i class="bi bi-clock-history"></i>
               </div>
               <div class="stat-number mb-2">
-                <span class="counter" data-target="15000" data-live="true" data-live-increment="25">0</span>+
+                <span class="counter" data-target="480" data-live="true" data-live-increment="2">0</span>+
               </div>
               <div class="stat-label">{{ __('website.Hours Conducted') }}</div>
               <div class="stat-description">{{ __('website.Quranic lessons') }}</div>
@@ -654,7 +718,7 @@
                 <i class="bi bi-globe"></i>
               </div>
               <div class="stat-number mb-2">
-                <span class="counter" data-target="45" data-live="true" data-live-increment="1">0</span>+
+                <span class="counter" data-target="4" data-live="true" data-live-increment="1">0</span>+
               </div>
               <div class="stat-label">{{ __('website.Countries') }}</div>
               <div class="stat-description">{{ __('website.Worldwide reach') }}</div>
@@ -671,7 +735,7 @@
                 <i class="bi bi-award-fill"></i>
               </div>
               <div class="stat-number mb-2">
-                <span class="counter" data-target="750" data-live="true" data-live-increment="2">0</span>+
+                <span class="counter" data-target="18" data-live="true" data-live-increment="1">0</span>+
               </div>
               <div class="stat-label">{{ __('website.Certificates Awarded') }}</div>
               <div class="stat-description">{{ __('website.Quran completion') }}</div>
@@ -685,7 +749,7 @@
                 <i class="bi bi-calendar-check-fill"></i>
               </div>
               <div class="stat-number mb-2">
-                <span class="counter" data-target="12" data-live="true" data-live-increment="1">0</span>+
+                <span class="counter" data-target="3" data-live="true" data-live-increment="1">0</span>+
               </div>
               <div class="stat-label">{{ __('website.Years of Experience') }}</div>
               <div class="stat-description">{{ __('website.In Islamic education') }}</div>
@@ -1091,115 +1155,6 @@
       </div>
     </section><!-- /Testimonials Section -->
 
-    <!-- Video Testimonials Section -->
-    <section id="video-testimonials" class="video-testimonials section">
-      <div class="container section-title islamic-section-header" data-aos="fade-up">
-        <h2>{{ __('website.Video Testimonials') }}</h2>
-        <p>{{ __('website.Watch our students share their learning experience and success stories') }}</p>
-      </div>
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <div class="row g-4 justify-content-center">
-          <!-- Video 1 -->
-        
-
-          <!-- Video 2 -->
-          <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="200">
-            <div class="video-testimonial-card h-100 bg-white rounded-4 shadow-lg overflow-hidden">
-              <div class="video-container position-relative">
-                <video class="w-100" controls>
-                  <source src="{{ asset('video2.mp4') }}" type="video/mp4">
-                  {{ __('website.Your browser does not support the video tag.') }}
-                </video>
-              </div>
-          
-            </div>
-          </div>
-
-      
-        </div>
-
-        <!-- Call to Action -->
-        <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="400">
-          <div class="cta-video-box bg-primary text-white p-5 rounded-4">
-            <h3 class="mb-3" style="color: white;">{{ __('website.Join Our Success Stories') }}</h3>
-            <p class="mb-4">{{ __('website.Be part of our growing community of successful learners. Start your Quranic journey today and create your own success story.') }}</p>
-            <a href="{{ route('enroll.show') }}" class="btn btn-islamic btn-lg px-5">{{ __('website.Start Learning Now') }}</a>
-          </div>
-        </div>
-      </div>
-
-      <style>
-        .video-testimonials {
-          padding: 80px 0;
-        }
-        
-        .video-testimonial-card {
-          transition: transform 0.3s ease, box-shadow 0.3s ease;
-          border: none;
-        }
-        
-        .video-testimonial-card:hover {
-          transform: translateY(-10px);
-          box-shadow: 0 20px 40px rgba(0,0,0,0.1) !important;
-        }
-        
-        .video-container {
-          position: relative;
-          overflow: hidden;
-        }
-        
-        .video-container video {
-          display: block;
-          width: 100%;
-          height: auto;
-        }
-        
-        .video-content h4 {
-          color: #13223F;
-          font-weight: 600;
-        }
-        
-        .video-content p {
-          font-size: 0.95rem;
-          line-height: 1.6;
-        }
-        
-        .cta-video-box {
-          background: linear-gradient(135deg, #0d7adb 0%, #0a2260 100%) !important;
-          box-shadow: 0 15px 35px rgba(13, 122, 219, 0.3);
-        }
-        
-        .cta-video-box h3 {
-          font-weight: 700;
-          font-size: 2rem;
-        }
-        
-        .cta-video-box p {
-          font-size: 1.1rem;
-          opacity: 0.9;
-        }
-        
-        .avatar img {
-          border: 2px solid #e9ecef;
-        }
-        
-        @media (max-width: 768px) {
-          .video-testimonials {
-            padding: 60px 0;
-          }
-          
-          .cta-video-box {
-            padding: 3rem 2rem !important;
-          }
-          
-          .cta-video-box h3 {
-            font-size: 1.5rem;
-          }
-        }
-      </style>
-    </section><!-- /Video Testimonials Section -->
-
 
     <!-- Contact Section -->
     <section id="contact" class="contact section">
@@ -1271,32 +1226,9 @@
   <script src="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
   <script src="{{ asset('website_assets/js/main.js') }}"></script>
   <script src="{{ asset('website_assets/js/enroll-form.js') }}"></script>
+  <script src="{{ asset('website_assets/js/language-switcher.js') }}"></script>
 
-  <!-- Android-Optimized Carousel Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const carousel = document.getElementById('heroCarousel');
-      if (carousel) {
-        // Detect mobile device
-        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-        
-        const bsCarousel = new bootstrap.Carousel(carousel, {
-          interval: isMobile ? 3000 : 2000, // Slower on mobile for better performance
-          ride: true,
-          wrap: true,
-          touch: true // Enable touch support
-        });
-        
-        // Optimize for mobile
-        if (isMobile) {
-          // Reduce carousel complexity on mobile
-          carousel.style.willChange = 'auto';
-        }
-        
-        bsCarousel.cycle();
-      }
-    });
-  </script>
+  <!-- Carousel will be initialized after content loading is complete -->
 
   <!-- Android Performance Optimization Script -->
   <script>
@@ -1419,7 +1351,7 @@
       }
     }
     
-    @keyframes live-glow {
+    @keyframes counter-glow {
       0%, 100% {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
       }
@@ -1428,8 +1360,31 @@
       }
     }
     
+    .counter.animated {
+      animation: counter-glow 3s ease-out;
+    }
+    
+    /* Live counter indicators */
     .counter[data-live="true"] {
-      animation: live-glow 3s infinite;
+      position: relative;
+    }
+    
+    .counter[data-live="true"] .live-indicator {
+      font-size: 0.4em;
+      opacity: 0.7;
+      margin-left: 2px;
+      animation: pulse 3s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        opacity: 0.7;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.1);
+      }
     }
     
     .stat-number {
@@ -2318,10 +2273,10 @@
     });
   </script>
 
-  <!-- Counter Animation Script -->
+  <!-- Script d'animation des compteurs -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Simple counter animation function
+      // Fonction d'animation simple des compteurs
       function animateCounter(element, target, duration = 2000) {
         const start = 0;
         const increment = target / (duration / 16);
@@ -2337,14 +2292,14 @@
         }, 16);
       }
       
-      // Live counter update function
+      // Live counter update function with smaller increments
       function startLiveCounter(element, baseTarget, increment) {
         let currentValue = baseTarget;
         
         setInterval(() => {
           currentValue += increment;
           element.textContent = Math.floor(currentValue);
-        }, 3000); // Update every 3 seconds
+        }, 8000); // Update every 8 seconds (slower updates)
       }
       
       // Intersection Observer for triggering counter animation
@@ -2365,11 +2320,12 @@
               counter.classList.add('animated');
               animateCounter(counter, target);
               
-              // Start live updates if enabled
+              // Start live updates if enabled (with smaller increments)
               if (isLive) {
                 setTimeout(() => {
                   startLiveCounter(counter, target, liveIncrement);
-                }, 2000); // Start live updates after initial animation
+                }, 3000); // Start live updates after 3 seconds
+                console.log(`Compteur en direct démarré pour ${target} avec incrément ${liveIncrement}`);
               }
             }
           }
@@ -2382,71 +2338,161 @@
         observer.observe(card);
       });
       
-      // Add pulsing effect to live counters
+      // Add subtle live indicator for live counters
       function addLiveIndicator() {
         const liveCounters = document.querySelectorAll('.counter[data-live="true"]');
         liveCounters.forEach(counter => {
           counter.style.position = 'relative';
           
-          // Add live indicator dot
+          // Add subtle live indicator
           const liveDot = document.createElement('span');
-          liveDot.innerHTML = ' 🔴';
-          liveDot.style.fontSize = '0.5em';
-          liveDot.style.animation = 'pulse 2s infinite';
+          liveDot.innerHTML = ' ✨';
+          liveDot.style.fontSize = '0.4em';
+          liveDot.style.opacity = '0.7';
+          liveDot.style.animation = 'pulse 3s infinite';
           counter.appendChild(liveDot);
         });
       }
       
       // Add live indicator after a delay
-      setTimeout(addLiveIndicator, 3000);
+      setTimeout(addLiveIndicator, 4000);
     });
   </script>
 
-  <!-- Loading Spinner Script -->
+  <!-- Script de l'écran de chargement -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const loadingSpinner = document.getElementById('loading-spinner');
+      const loadingProgressBar = document.getElementById('loading-progress-bar');
+      const loadingStatus = document.getElementById('loading-status');
       const body = document.body;
+      const heroCarousel = document.getElementById('heroCarousel');
       
-      // Add loading class to body
+      // Ajouter la classe de chargement au body
       body.classList.add('loading');
       
-      // Function to check if images are loaded
-      function checkImagesLoaded() {
-        const images = document.querySelectorAll('img');
-        const totalImages = images.length;
-        let loadedImages = 0;
+      // Désactiver le carousel initialement
+      if (heroCarousel) {
+        heroCarousel.classList.add('loading');
+      }
+      
+      // Suivi du progrès
+      let totalResources = 0;
+      let loadedResources = 0;
+      
+      function updateProgress() {
+        const progress = (loadedResources / totalResources) * 100;
+        loadingProgressBar.style.width = progress + '%';
         
-        if (totalImages === 0) {
-          setTimeout(hideSpinner, 500);
+        if (progress < 25) {
+          loadingStatus.textContent = 'Chargement des images...';
+        } else if (progress < 50) {
+          loadingStatus.textContent = 'Chargement des vidéos...';
+        } else if (progress < 75) {
+          loadingStatus.textContent = 'Préparation du contenu...';
+        } else if (progress < 100) {
+          loadingStatus.textContent = 'Presque prêt...';
+        } else {
+          loadingStatus.textContent = 'Prêt !';
+        }
+      }
+      
+      // Function to check if all content is loaded
+      function checkContentLoaded() {
+        const images = document.querySelectorAll('img');
+        const videos = document.querySelectorAll('video');
+        const criticalElements = document.querySelectorAll('.carousel-item, .feature-card, .stat-card');
+        
+        totalResources = images.length + videos.length + criticalElements.length;
+        loadedResources = 0;
+        
+        if (totalResources === 0) {
+          setTimeout(enableContent, 500);
           return;
         }
         
+        // Check images
         images.forEach(img => {
           if (img.complete) {
-            loadedImages++;
+            loadedResources++;
+            updateProgress();
             checkComplete();
           } else {
             img.addEventListener('load', () => {
-              loadedImages++;
+              loadedResources++;
+              updateProgress();
               checkComplete();
             });
             img.addEventListener('error', () => {
-              loadedImages++;
+              loadedResources++;
+              updateProgress();
               checkComplete();
             });
           }
         });
         
+        // Check videos
+        videos.forEach(video => {
+          if (video.readyState >= 2) { // HAVE_CURRENT_DATA
+            loadedResources++;
+            updateProgress();
+            checkComplete();
+          } else {
+            video.addEventListener('loadeddata', () => {
+              loadedResources++;
+              updateProgress();
+              checkComplete();
+            });
+            video.addEventListener('error', () => {
+              loadedResources++;
+              updateProgress();
+              checkComplete();
+            });
+          }
+        });
+        
+        // Check critical elements (carousel items, feature cards, etc.)
+        criticalElements.forEach(element => {
+          // Simulate loading for critical elements
+          setTimeout(() => {
+            loadedResources++;
+            updateProgress();
+            checkComplete();
+          }, Math.random() * 200 + 100); // Random delay between 100-300ms
+        });
+        
         function checkComplete() {
-          if (loadedImages >= totalImages) {
-            setTimeout(hideSpinner, 500);
+          if (loadedResources >= totalResources) {
+            setTimeout(enableContent, 800);
           }
         }
       }
       
-      // Function to hide spinner
-      function hideSpinner() {
+      // Function to enable content and hide spinner
+      function enableContent() {
+        // Enable carousel
+        if (heroCarousel) {
+          heroCarousel.classList.remove('loading');
+          
+          // Add loaded class to all carousel items for animation
+          const carouselItems = heroCarousel.querySelectorAll('.carousel-item');
+          carouselItems.forEach(item => {
+            item.classList.add('loaded');
+          });
+          
+          // Initialize carousel if Bootstrap is available
+          if (typeof bootstrap !== 'undefined') {
+            const bsCarousel = new bootstrap.Carousel(heroCarousel, {
+              interval: 2000,
+              ride: true,
+              wrap: true,
+              touch: true
+            });
+            bsCarousel.cycle();
+          }
+        }
+        
+        // Hide spinner with smooth transition
         loadingSpinner.classList.add('hidden');
         body.classList.remove('loading');
         
@@ -2457,15 +2503,29 @@
         }, 500);
       }
       
-      // Start checking images
-      setTimeout(checkImagesLoaded, 100);
+      // Start checking content
+      setTimeout(checkContentLoaded, 100);
       
-      // Fallback: hide spinner after 5 seconds
+      // Fallback: enable content after 10 seconds
       setTimeout(() => {
         if (!loadingSpinner.classList.contains('hidden')) {
-          hideSpinner();
+          enableContent();
         }
-      }, 5000);
+      }, 10000);
+      
+      // Additional safety: enable content if page becomes visible after being hidden
+      document.addEventListener('visibilitychange', function() {
+        if (!document.hidden && loadingSpinner && !loadingSpinner.classList.contains('hidden')) {
+          setTimeout(enableContent, 500);
+        }
+      });
+      
+      // Handle window focus as a fallback
+      window.addEventListener('focus', function() {
+        if (loadingSpinner && !loadingSpinner.classList.contains('hidden')) {
+          setTimeout(enableContent, 500);
+        }
+      });
     });
   </script>
 

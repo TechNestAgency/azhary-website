@@ -1,0 +1,186 @@
+/**
+ * Language Switcher Styles for Madrassat Azhary
+ */
+
+/* Language switching state */
+body.language-switching {
+    cursor: wait;
+}
+
+body.language-switching * {
+    pointer-events: none;
+}
+
+body.language-switching .language-link:not([style*="pointer-events: none"]) {
+    pointer-events: auto;
+}
+
+/* Language notification styles */
+.language-notification {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 16px 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 9999;
+    transform: translateX(400px);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-width: 350px;
+    border-left: 4px solid transparent;
+}
+
+.language-notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.language-notification.success {
+    border-left-color: #28a745;
+    background: linear-gradient(135deg, #f8fff9, #ffffff);
+}
+
+.language-notification.error {
+    border-left-color: #dc3545;
+    background: linear-gradient(135deg, #fff8f8, #ffffff);
+}
+
+.language-notification i {
+    font-size: 20px;
+    flex-shrink: 0;
+}
+
+.language-notification.success i {
+    color: #28a745;
+}
+
+.language-notification.error i {
+    color: #dc3545;
+}
+
+.language-notification span {
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+/* Language switcher loading animation */
+.language-link .bi-arrow-clockwise {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Enhanced language switcher styles */
+.language-switcher {
+    position: relative;
+}
+
+.language-switcher .language-link {
+    position: relative;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+    padding: 4px 8px;
+    margin: 0 2px;
+}
+
+.language-switcher .language-link:hover {
+    background: rgba(10, 34, 96, 0.1);
+    transform: translateY(-1px);
+}
+
+.language-switcher .language-link.active {
+    background: rgba(10, 34, 96, 0.15);
+    position: relative;
+}
+
+.language-switcher .language-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 2px;
+    background: linear-gradient(90deg, #d4af37, #228b22);
+    border-radius: 1px;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+    .language-notification {
+        top: 80px;
+        right: 15px;
+        left: 15px;
+        max-width: none;
+        transform: translateY(-100px);
+    }
+    
+    .language-notification.show {
+        transform: translateY(0);
+    }
+    
+    .language-switcher .language-link {
+        padding: 6px 10px;
+        font-size: 14px;
+    }
+}
+
+/* RTL language support */
+[dir="rtl"] .language-notification {
+    right: auto;
+    left: 20px;
+    transform: translateX(-400px);
+}
+
+[dir="rtl"] .language-notification.show {
+    transform: translateX(0);
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .language-notification {
+        border: 2px solid #000;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    }
+    
+    .language-notification.success {
+        border-color: #006400;
+    }
+    
+    .language-notification.error {
+        border-color: #8b0000;
+    }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+    .language-notification,
+    .language-switcher .language-link,
+    .language-link .bi-arrow-clockwise {
+        transition: none;
+        animation: none;
+    }
+    
+    .language-notification.show {
+        transform: none;
+        opacity: 1;
+    }
+}
+
+/* Print styles */
+@media print {
+    .language-notification,
+    .language-switcher {
+        display: none !important;
+    }
+}
