@@ -179,7 +179,7 @@ return [
     'Explore Courses' => 'Explorer les cours',
     
     // Hero Carousel Slides
-    'Welcome to Azhary Academy' => 'Bienvenue à l\'Madrassat Azhary',
+    'Welcome to Azhary Academy' => 'Bienvenue à Madrassat Azhary',
     'SACT Certificate' => 'Certificat SACT',
     'Now is your chance to assess your level as a Quran and Arabic language teacher for non-native speakers and evaluate yourself to grow further. Take the test offered by Studio Arabiya Institute to earn the SACT certificate, which documents your scientific and practical skills to stand out in the job market.' => 'C\'est maintenant votre chance d\'évaluer votre niveau en tant qu\'enseignant du Coran et de la langue arabe pour les non-natifs et de vous évaluer pour progresser davantage. Passez le test proposé par l\'Institut Studio Arabiya pour obtenir le certificat SACT, qui documente vos compétences scientifiques et pratiques pour vous démarquer sur le marché du travail.',
     'Register Now & Seize the Opportunity' => 'Essayer le premier cours d\'essai gratuit',

@@ -16,8 +16,6 @@
   <!-- CSRF Token for AJAX requests -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
   
-
-  
   <!-- Performance Optimizations -->
   <link rel="dns-prefetch" href="//fonts.googleapis.com">
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -27,30 +25,31 @@
   <!-- Preload critical resources -->
   <link rel="preload" href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}"></noscript>
-  <link rel="preload" href="{{ asset('website_assets/css/main.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="{{ asset('website_assets/css/main.css') }}"></noscript>
   
   <!-- Preload hero images for better LCP -->
   <link rel="preload" href="{{ asset('presenting.png') }}" as="image" media="(max-width: 768px)">
   <link rel="preload" href="{{ asset('hero-back.jpg') }}" as="image">
   
-  <!-- Critical CSS Inline -->
+  <!-- Critical CSS Inline - Only essential styles for above-the-fold content -->
   <style>
-    /* Critical CSS for above-the-fold content */
+    /* Critical CSS for above-the-fold content - Optimized */
     :root {
       --islamic-gold: #d4af37;
       --islamic-green: #228b22;
       --islamic-blue: #1e3a8a;
     }
     
+    /* Essential body styles */
     body {
       font-family: "Roboto", system-ui, -apple-system, sans-serif;
       line-height: 1.6;
       color: #212529;
       margin: 0;
       padding: 0;
+      overflow-x: hidden;
     }
     
+    /* Critical header styles */
     .fixed-top {
       background-color: rgb(2, 37, 108);
       opacity: 0.88;
@@ -68,6 +67,7 @@
       max-height: 60px;
     }
     
+    /* Critical hero styles */
     .hero {
       background: url('{{ asset("hero-back.jpg") }}') no-repeat center center;
       background-size: cover;
@@ -87,6 +87,7 @@
       opacity: 0.88;
     }
     
+    /* Critical button styles */
     .btn-islamic {
       background: linear-gradient(135deg, var(--islamic-gold), var(--islamic-green));
       border: none;
@@ -99,103 +100,30 @@
       display: inline-block;
     }
     
-    .btn-islamic:hover {
-      background: linear-gradient(135deg, var(--islamic-green), var(--islamic-blue));
-      transform: translateY(-2px);
-      color: white;
-      text-decoration: none;
-    }
-    
-    .main {
-      padding-top: 140px;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 15px;
-    }
-    
-    .row {
-      display: flex;
-      flex-wrap: wrap;
-      margin: 0 -15px;
-    }
-    
-    .col-12, .col-md-4, .col-md-6, .col-lg-3, .col-lg-6 {
-      padding: 0 15px;
-      box-sizing: border-box;
-    }
-    
-    .col-12 { flex: 0 0 100%; }
-    .col-md-4 { flex: 0 0 33.333333%; }
-    .col-md-6 { flex: 0 0 50%; }
-    .col-lg-3 { flex: 0 0 25%; }
-    .col-lg-6 { flex: 0 0 50%; }
-    
-    /* Additional critical styles */
-    .text-white { color: white !important; }
-    .text-center { text-align: center; }
-    .mb-4 { margin-bottom: 1.5rem; }
-    .mb-lg-0 { margin-bottom: 0; }
-    .py-5 { padding-top: 3rem; padding-bottom: 3rem; }
-    .section { padding: 60px 0; }
-    .display-5 { font-size: 3rem; font-weight: 300; line-height: 1.2; }
-    .fw-bold { font-weight: 700 !important; }
-    .btn-lg { padding: 0.75rem 1.5rem; font-size: 1.25rem; }
-    .img-fluid { max-width: 100%; height: auto; }
-    .rounded-4 { border-radius: 0.5rem; }
-    .shadow { box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); }
-    
-    @media (max-width: 768px) {
-      .col-md-4, .col-md-6 { flex: 0 0 100%; }
-      .display-5 { font-size: 2.5rem; }
-    }
-    
-    @media (max-width: 992px) {
-      .col-lg-3, .col-lg-6 { flex: 0 0 50%; }
-    }
-
-    /* Styles de l'écran de chargement */
+    /* Loading spinner - Critical for UX */
     .loading-overlay {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      z-index: 9999;
+      background: rgba(255, 255, 255, 0.98);
       display: flex;
       justify-content: center;
       align-items: center;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
+      z-index: 9999;
+      transition: opacity 0.5s ease;
     }
-
+    
     .loading-overlay.hidden {
       opacity: 0;
-      visibility: hidden;
+      pointer-events: none;
     }
-
+    
     .loading-content {
       text-align: center;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
     }
-
-    .loading-logo {
-      margin-bottom: 10px;
-    }
-
-    .spinner-logo {
-      width: 120px;
-      height: auto;
-      animation: logoPulse 2s ease-in-out infinite;
-    }
-
+    
     .loading-spinner {
       width: 50px;
       height: 50px;
@@ -203,284 +131,81 @@
       border-top: 4px solid #d4af37;
       border-radius: 50%;
       animation: spin 1s linear infinite;
+      margin: 20px auto;
     }
-
-    .loading-text {
-      font-family: "Roboto", sans-serif;
-      font-size: 18px;
-      font-weight: 500;
-      color: #333;
-      margin-top: 10px;
-    }
-
-    .loading-progress {
-      width: 200px;
-      height: 6px;
-      background: #f3f3f3;
-      border-radius: 3px;
-      overflow: hidden;
-      margin-top: 10px;
-    }
-
-    .loading-progress-bar {
-      height: 100%;
-      background: linear-gradient(90deg, #d4af37, #228b22);
-      border-radius: 3px;
-      width: 0%;
-      transition: width 0.3s ease;
-    }
-
-    .loading-status {
-      font-size: 14px;
-      color: #666;
-      margin-top: 5px;
-    }
-
+    
     @keyframes spin {
       0% { transform: rotate(0deg); }
       100% { transform: rotate(360deg); }
     }
-
-    @keyframes logoPulse {
-      0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.8; }
-    }
-
-    /* Blur effect for main content while loading */
-    body.loading {
-      overflow: hidden;
-    }
-
-    body.loading .fixed-top,
-    body.loading .main {
-      filter: blur(5px);
-      transition: filter 0.3s ease;
-    }
-
-    /* Carousel loading state */
-    #heroCarousel.loading {
-      pointer-events: none;
-      opacity: 0.5;
-      transition: opacity 0.5s ease;
-    }
-
-    #heroCarousel.loading .carousel-item {
-      animation: none !important;
-    }
-
-    #heroCarousel.loading .carousel-control-prev,
-    #heroCarousel.loading .carousel-control-next {
-      pointer-events: none;
-      opacity: 0.3;
-    }
-
-    /* Loading animation for carousel items */
-    @keyframes carouselItemLoad {
-      0% {
-        opacity: 0;
-        transform: translateY(20px);
+    
+    /* Critical mobile styles */
+    @media (max-width: 768px) {
+      .hero {
+        min-height: 400px;
       }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
+      
+      .btn-islamic {
+        padding: 10px 25px;
+        font-size: 0.9rem;
       }
     }
-
-    .carousel-item.loaded {
-      animation: carouselItemLoad 0.8s ease-out;
+    
+    /* Performance optimizations */
+    * {
+      box-sizing: border-box;
     }
-
-    /* Light performance optimizations */
+    
     img {
       max-width: 100%;
       height: auto;
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
     }
     
-    /* Mobile-first performance optimizations */
-    @media (max-width: 768px) {
-      * {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-      
-      /* Reduce paint operations on mobile */
-      .carousel-item {
-        will-change: auto;
-        transform: translateZ(0);
-      }
-      
-      /* Optimize animations for mobile */
-      .stat-card,
-      .feature-card,
-      .service-item {
-        transition: none;
-        transform: none;
-      }
-      
-      /* Reduce shadow complexity on mobile */
-      .shadow {
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-      }
-    }
-
-    /* Android-specific optimizations */
-    @media screen and (-webkit-min-device-pixel-ratio: 0) {
-      /* WebKit browsers (Chrome, Safari, Android) */
-      * {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-      }
-    }
-
-    /* Mobile Enroll Button - Optimized for Performance */
-    @media (max-width: 576px) {
-      .mobile-enroll-btn {
-        max-width: 120px;
-        top: 45px;
-      }
-      
-      .mobile-enroll-link {
-        font-size: 0.6rem;
-        padding: 0.25rem 0.4rem;
-        line-height: 1.1;
-      }
-    }
-    
-    /* Critical mobile performance optimizations */
-    @media (max-width: 768px) {
-      /* Reduce repaints and reflows */
-      .hero {
-        contain: layout style paint;
-      }
-      
-      .carousel-item {
-        contain: layout style paint;
-      }
-      
-      /* Optimize text rendering */
-      body {
-        text-rendering: optimizeSpeed;
-        -webkit-font-feature-settings: "kern" 1;
-        font-feature-settings: "kern" 1;
-      }
-      
-      /* Reduce animation complexity */
-      .aos-animate {
-        animation: none !important;
-      }
-      
-      /* Optimize swiper performance */
-      .swiper-wrapper {
-        will-change: auto;
-      }
-      
-      .swiper-slide {
-        will-change: auto;
-      }
-    }
-
-    /* Android-specific mobile optimizations */
-    @media (max-width: 768px) {
-      /* Reduce animations on mobile */
-      .btn-islamic:hover {
-        transform: none;
-      }
-      
-      /* Optimize images for mobile */
-      .hero {
-        background-attachment: scroll;
-        background-size: cover;
-        background-position: center;
-      }
-      
-      /* Reduce transition times */
-      .fixed-top {
-        transition: none;
-      }
-      
-      /* Optimize carousel for mobile */
-      .carousel-item {
-        will-change: auto;
-        transform: translateZ(0);
-      }
-      
-      /* Disable hover effects on mobile */
-      .stat-card:hover,
-      .testimonial-card:hover,
-      .teacher-profile-card:hover {
-        transform: none;
-      }
-      
-      /* Optimize touch interactions */
-      * {
-        -webkit-tap-highlight-color: transparent;
-        -webkit-touch-callout: none;
-        -webkit-user-select: none;
-        -khtml-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-      }
-      
-      /* Allow text selection where needed */
-      p, h1, h2, h3, h4, h5, h6, span, div {
-        -webkit-user-select: text;
-        -khtml-user-select: text;
-        -moz-user-select: text;
-        -ms-user-select: text;
-        user-select: text;
-      }
-      
-      /* Reduce paint operations */
-      .carousel-control-prev,
-      .carousel-control-next {
-        display: none;
-      }
-      
-      /* Optimize swiper for mobile */
-      .swiper-slide {
-        will-change: auto;
-      }
-      
-      /* Reduce shadow complexity */
-      .shadow,
-      .islamic-card {
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      }
+    /* Reduce paint operations */
+    .hero, .navbar, .fixed-top {
+      will-change: auto;
+      transform: translateZ(0);
     }
   </style>
-
-  <!-- Favicons -->
+  
+  <!-- Favicons and PWA -->
   <link href="{{ asset('website_assets/img/logo-no.png') }}" rel="icon">
   <link href="{{ asset('website_assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
+  <link href="{{ asset('website_assets/manifest.json') }}" rel="manifest">
 
-  <!-- Fonts -->
+  <!-- Fonts - Optimized loading -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
 
-  <!-- CSS Files -->
-  <link href="{{ asset('website_assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet">
-  <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('website_assets/css/language-switcher.css') }}" rel="stylesheet">
+  <!-- CSS Files - Deferred loading for non-critical styles -->
+  <link href="{{ asset('website_assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="{{ asset('website_assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet"></noscript>
+  
+  <link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="{{ asset('website_assets/vendor/aos/aos.css') }}" rel="stylesheet"></noscript>
+  
+  <link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="{{ asset('website_assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet"></noscript>
+  
+  <link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet"></noscript>
+  
+  <link href="{{ asset('website_assets/css/language-switcher.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="{{ asset('website_assets/css/language-switcher.css') }}" rel="stylesheet"></noscript>
+  
+  <!-- Main CSS - Loaded after critical content -->
+  <link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet"></noscript>
 </head>
+
 <body class="index-page">
 
-  <!-- Loading Spinner -->
+  <!-- Loading Spinner - Optimized -->
   <div id="loading-spinner" class="loading-overlay">
     <div class="loading-content">
-      <div class="loading-logo">
-        <img src="{{asset('website_assets/img/logo-no.png')}}" alt="Madrassat Azhary" class="spinner-logo" width="120" height="120">
-      </div>
+      <img src="{{asset('website_assets/img/logo-no.png')}}" alt="Madrassat Azhary" width="80" height="80" style="margin-bottom: 20px;">
       <div class="loading-spinner"></div>
-      <div class="loading-text">Chargement...</div>
-      <div class="loading-progress">
-        <div class="loading-progress-bar" id="loading-progress-bar"></div>
-      </div>
-      <div class="loading-status" id="loading-status">Initialisation...</div>
+      <div style="margin-top: 15px; font-family: 'Roboto', sans-serif; font-size: 16px; color: #333;">Chargement...</div>
     </div>
   </div>
 
@@ -2383,29 +2108,56 @@
     }
   </style>
 
-  <!-- Scroll Shadow Effect Script -->
+  <!-- Optimized Scroll Effect Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const header = document.getElementById('fixedHeader');
+      let ticking = false;
       
-      window.addEventListener('scroll', function() {
-        if (window.scrollY > 10) {
-          header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-        } else {
-          header.style.boxShadow = 'none';
+      function updateHeader() {
+        if (header) {
+          header.style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0, 0, 0, 0.1)' : 'none';
         }
-      });
+        ticking = false;
+      }
+      
+      function requestTick() {
+        if (!ticking) {
+          requestAnimationFrame(updateHeader);
+          ticking = true;
+        }
+      }
+      
+      window.addEventListener('scroll', requestTick, { passive: true });
     });
   </script>
 
-  <!-- Script d'animation des compteurs -->
+    <!-- Optimized Counter Animation Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      // Fonction d'animation simple des compteurs
-      function animateCounter(element, target, duration = 2000) {
-        const start = 0;
+      // Simple counter animation with Intersection Observer
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+            const counter = entry.target.querySelector('.counter');
+            if (counter) {
+              const target = parseInt(counter.getAttribute('data-target')) || 0;
+              animateCounter(counter, target);
+              entry.target.classList.add('animated');
+            }
+          }
+        });
+      }, { threshold: 0.3 });
+
+      // Observe all stat cards
+      document.querySelectorAll('.stat-card').forEach(card => {
+        counterObserver.observe(card);
+      });
+
+      function animateCounter(element, target) {
+        const duration = 1500;
         const increment = target / (duration / 16);
-        let current = start;
+        let current = 0;
         
         const timer = setInterval(() => {
           current += increment;
@@ -2416,223 +2168,84 @@
           element.textContent = Math.floor(current);
         }, 16);
       }
-      
-      // Live counter update function with smaller increments
-      function startLiveCounter(element, baseTarget, increment) {
-        let currentValue = baseTarget;
-        
-        setInterval(() => {
-          currentValue += increment;
-          element.textContent = Math.floor(currentValue);
-        }, 8000); // Update every 8 seconds (slower updates)
-      }
-      
-      // Intersection Observer for triggering counter animation
-      const observerOptions = {
-        threshold: 0.5,
-        rootMargin: '0px 0px -100px 0px'
-      };
-      
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const counter = entry.target.querySelector('.counter');
-            if (counter && !counter.classList.contains('animated')) {
-              const target = parseInt(counter.getAttribute('data-target'));
-              const isLive = counter.getAttribute('data-live') === 'true';
-              const liveIncrement = parseInt(counter.getAttribute('data-live-increment')) || 1;
-              
-              counter.classList.add('animated');
-              animateCounter(counter, target);
-              
-              // Start live updates if enabled (with smaller increments)
-              if (isLive) {
-                setTimeout(() => {
-                  startLiveCounter(counter, target, liveIncrement);
-                }, 3000); // Start live updates after 3 seconds
-                console.log(`Compteur en direct démarré pour ${target} avec incrément ${liveIncrement}`);
-              }
-            }
-          }
-        });
-      }, observerOptions);
-      
-      // Observe all stat cards
-      const statCards = document.querySelectorAll('.stat-card');
-      statCards.forEach(card => {
-        observer.observe(card);
-      });
-      
-      // Add subtle live indicator for live counters
-      function addLiveIndicator() {
-        const liveCounters = document.querySelectorAll('.counter[data-live="true"]');
-        liveCounters.forEach(counter => {
-          counter.style.position = 'relative';
-          
-          // Add subtle live indicator
-          const liveDot = document.createElement('span');
-          liveDot.innerHTML = ' ✨';
-          liveDot.style.fontSize = '0.4em';
-          liveDot.style.opacity = '0.7';
-          liveDot.style.animation = 'pulse 3s infinite';
-          counter.appendChild(liveDot);
-        });
-      }
-      
-      // Add live indicator after a delay
-      setTimeout(addLiveIndicator, 4000);
     });
   </script>
 
-  <!-- Script de l'écran de chargement -->
+  <!-- Optimized Loading Script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       const loadingSpinner = document.getElementById('loading-spinner');
-      const loadingProgressBar = document.getElementById('loading-progress-bar');
-      const loadingStatus = document.getElementById('loading-status');
-      const body = document.body;
       const heroCarousel = document.getElementById('heroCarousel');
       
-      // Ajouter la classe de chargement au body
-      body.classList.add('loading');
-      
-      // Désactiver le carousel initialement
-      if (heroCarousel) {
-        heroCarousel.classList.add('loading');
-      }
-      
-      // Suivi du progrès
-      let totalResources = 0;
-      let loadedResources = 0;
-      
-      function updateProgress() {
-        const progress = (loadedResources / totalResources) * 100;
-        loadingProgressBar.style.width = progress + '%';
-        
-        if (progress < 25) {
-          loadingStatus.textContent = 'Chargement des images...';
-        } else if (progress < 50) {
-          loadingStatus.textContent = 'Chargement des vidéos...';
-        } else if (progress < 75) {
-          loadingStatus.textContent = 'Préparation du contenu...';
-        } else if (progress < 100) {
-          loadingStatus.textContent = 'Presque prêt...';
-        } else {
-          loadingStatus.textContent = 'Prêt !';
-        }
-      }
-      
-      // Function to check if all content is loaded
-      function checkContentLoaded() {
-        const images = document.querySelectorAll('img[data-critical="true"], .hero img, .carousel-item img');
-        const criticalElements = document.querySelectorAll('.carousel-item:first-child, .hero');
-        
-        totalResources = images.length + criticalElements.length;
-        loadedResources = 0;
-        
-        if (totalResources === 0) {
-          setTimeout(enableContent, 300);
-          return;
-        }
-        
-        // Check critical images first
-        images.forEach(img => {
-          if (img.complete) {
-            loadedResources++;
-            updateProgress();
-            checkComplete();
-          } else {
-            img.addEventListener('load', () => {
-              loadedResources++;
-              updateProgress();
-              checkComplete();
-            });
-            img.addEventListener('error', () => {
-              loadedResources++;
-              updateProgress();
-              checkComplete();
-            });
-          }
-        });
-        
-        // Check critical elements
-        criticalElements.forEach(element => {
+      // Simple loading logic - hide spinner after critical content loads
+      function hideSpinner() {
+        if (loadingSpinner) {
+          loadingSpinner.classList.add('hidden');
           setTimeout(() => {
-            loadedResources++;
-            updateProgress();
-            checkComplete();
-          }, 150);
-        });
-        
-        function checkComplete() {
-          if (loadedResources >= totalResources) {
-            setTimeout(enableContent, 500);
-          }
+            if (loadingSpinner.parentNode) {
+              loadingSpinner.parentNode.removeChild(loadingSpinner);
+            }
+          }, 500);
         }
-      }
-      
-      // Function to enable content and hide spinner
-      function enableContent() {
-        // Enable carousel
-        if (heroCarousel) {
-          heroCarousel.classList.remove('loading');
-          
-          // Add loaded class to all carousel items for animation
-          const carouselItems = heroCarousel.querySelectorAll('.carousel-item');
-          carouselItems.forEach(item => {
-            item.classList.add('loaded');
+        
+        // Initialize carousel if available
+        if (heroCarousel && typeof bootstrap !== 'undefined') {
+          const bsCarousel = new bootstrap.Carousel(heroCarousel, {
+            interval: 3000,
+            ride: true,
+            wrap: true,
+            touch: true
           });
-          
-          // Initialize carousel if Bootstrap is available
-          if (typeof bootstrap !== 'undefined') {
-            const bsCarousel = new bootstrap.Carousel(heroCarousel, {
-              interval: 2000,
-              ride: true,
-              wrap: true,
-              touch: true
-            });
-            bsCarousel.cycle();
-          }
         }
-        
-        // Hide spinner with smooth transition
-        loadingSpinner.classList.add('hidden');
-        body.classList.remove('loading');
-        
-        setTimeout(() => {
-          if (loadingSpinner.parentNode) {
-            loadingSpinner.parentNode.removeChild(loadingSpinner);
-          }
-        }, 500);
       }
       
-      // Start checking content
-      setTimeout(checkContentLoaded, 100);
+      // Hide spinner after a short delay or when page is fully loaded
+      setTimeout(hideSpinner, 1500);
       
-      // Fallback: enable content after 10 seconds
-      setTimeout(() => {
-        if (!loadingSpinner.classList.contains('hidden')) {
-          enableContent();
-        }
-      }, 10000);
+      // Fallback: hide spinner when page is fully loaded
+      window.addEventListener('load', hideSpinner);
+    });
+  </script>
+
+  <!-- Optimized JavaScript Loading -->
+  <script>
+    // Load non-critical JavaScript after page load
+    window.addEventListener('load', function() {
+      // Load Bootstrap and other libraries asynchronously
+      const scripts = [
+        '/website_assets/vendor/bootstrap/js/bootstrap.bundle.min.js',
+        '/website_assets/vendor/aos/aos.js',
+        '/website_assets/vendor/glightbox/js/glightbox.min.js',
+        '/website_assets/vendor/swiper/swiper-bundle.min.js',
+        '/website_assets/js/optimized.js'
+      ];
       
-      // Additional safety: enable content if page becomes visible after being hidden
-      document.addEventListener('visibilitychange', function() {
-        if (!document.hidden && loadingSpinner && !loadingSpinner.classList.contains('hidden')) {
-          setTimeout(enableContent, 500);
-        }
-      });
-      
-      // Handle window focus as a fallback
-      window.addEventListener('focus', function() {
-        if (loadingSpinner && !loadingSpinner.classList.contains('hidden')) {
-          setTimeout(enableContent, 500);
-        }
+      scripts.forEach(src => {
+        const script = document.createElement('script');
+        script.src = src;
+        script.async = true;
+        script.defer = true;
+        document.body.appendChild(script);
       });
     });
+  </script>
+
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', function() {
+        navigator.serviceWorker.register('/sw.js')
+          .then(function(registration) {
+            console.log('Service Worker registered successfully:', registration.scope);
+          })
+          .catch(function(error) {
+            console.log('Service Worker registration failed:', error);
+          });
+      });
+    }
   </script>
 
 </body>
 
-</html></html>
+</html>
 

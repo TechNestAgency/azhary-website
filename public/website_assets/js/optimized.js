@@ -7,27 +7,34 @@
     return setTimeout(cb, 1);
   };
 
-  // Lazy loading for images
+  // Lazy loading for images with Intersection Observer
   function initLazyLoading() {
-    const images = document.querySelectorAll('img[data-src]');
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.dataset.src;
-          img.classList.add('loaded');
-          img.removeAttribute('data-src');
-          observer.unobserve(img);
-        }
-      });
-    });
+    if ('IntersectionObserver' in window) {
+      const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+              img.classList.add('loaded');
+              img.removeAttribute('data-src');
+              observer.unobserve(img);
+            }
+          }
+        });
+      }, { rootMargin: '50px' });
 
-    images.forEach(img => imageObserver.observe(img));
+      document.querySelectorAll('img[data-src]').forEach(img => {
+        imageObserver.observe(img);
+      });
+    }
   }
 
-  // Optimized counter animation
+  // Optimized counter animation with reduced complexity
   function initCounters() {
     const counters = document.querySelectorAll('.counter');
+    if (counters.length === 0) return;
+
     const counterObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
@@ -35,14 +42,14 @@
           entry.target.classList.add('animated');
         }
       });
-    });
+    }, { threshold: 0.3 });
 
     counters.forEach(counter => counterObserver.observe(counter));
   }
 
   function animateCounter(element) {
-    const target = parseInt(element.getAttribute('data-target'));
-    const duration = 2000;
+    const target = parseInt(element.getAttribute('data-target')) || 0;
+    const duration = 1000; // Reduced from 2000ms
     const increment = target / (duration / 16);
     let current = 0;
 
@@ -56,27 +63,19 @@
     }, 16);
   }
 
-  // Optimized scroll handling
+  // Optimized scroll handling with throttling
   function initScrollEffects() {
     let ticking = false;
     
     function updateScrollEffects() {
       const header = document.getElementById('fixedHeader');
       if (header) {
-        if (window.scrollY > 10) {
-          header.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-        } else {
-          header.style.boxShadow = 'none';
-        }
+        header.style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0, 0, 0, 0.1)' : 'none';
       }
 
       const scrollTop = document.querySelector('.scroll-top');
       if (scrollTop) {
-        if (window.scrollY > 100) {
-          scrollTop.classList.add('active');
-        } else {
-          scrollTop.classList.remove('active');
-        }
+        scrollTop.classList.toggle('active', window.scrollY > 100);
       }
 
       ticking = false;
@@ -92,40 +91,93 @@
     window.addEventListener('scroll', requestTick, { passive: true });
   }
 
-  // Mobile navigation
+  // Mobile navigation with performance optimizations
   function initMobileNav() {
     const mobileNavToggle = document.querySelector('.navbar-toggler');
     const navbarCollapse = document.querySelector('.navbar-collapse');
 
     if (mobileNavToggle && navbarCollapse) {
-      mobileNavToggle.addEventListener('click', () => {
+      mobileNavToggle.addEventListener('click', function(e) {
+        e.preventDefault();
         navbarCollapse.classList.toggle('show');
       });
 
-      // Close mobile nav when clicking on links
-      const navLinks = navbarCollapse.querySelectorAll('.nav-link');
-      navLinks.forEach(link => {
-        link.addEventListener('click', () => {
+      // Close mobile menu when clicking outside
+      document.addEventListener('click', function(e) {
+        if (!mobileNavToggle.contains(e.target) && !navbarCollapse.contains(e.target)) {
           navbarCollapse.classList.remove('show');
+        }
+      }, { passive: true });
+    }
+  }
+
+  // Initialize AOS (Animate On Scroll) with reduced settings
+  function initAOS() {
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 600, // Reduced from default
+        easing: 'ease-out',
+        once: true, // Only animate once
+        offset: 50,
+        delay: 0,
+        disable: 'mobile' // Disable on mobile for performance
+      });
+    }
+  }
+
+  // Initialize Swiper with performance optimizations
+  function initSwiper() {
+    if (typeof Swiper !== 'undefined') {
+      const swiperElements = document.querySelectorAll('.swiper');
+      swiperElements.forEach(element => {
+        new Swiper(element, {
+          slidesPerView: 1,
+          spaceBetween: 20,
+          loop: false, // Disable loop for performance
+          autoplay: {
+            delay: 5000,
+            disableOnInteraction: false,
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+          breakpoints: {
+            768: {
+              slidesPerView: 2,
+            },
+            1024: {
+              slidesPerView: 3,
+            }
+          }
         });
       });
     }
   }
 
-  // Smooth scroll for anchor links
-  function initSmoothScroll() {
-    const scrollTop = document.querySelector('.scroll-top');
-    if (scrollTop) {
-      scrollTop.addEventListener('click', (e) => {
-        e.preventDefault();
-        window.scrollTo({
-          top: 0,
-          behavior: 'smooth'
-        });
+  // Initialize GLightbox with reduced features
+  function initGLightbox() {
+    if (typeof GLightbox !== 'undefined') {
+      GLightbox({
+        selector: '.glightbox',
+        touchNavigation: true,
+        loop: false,
+        autoplayVideos: false,
+        plyr: {
+          config: {
+            hideControls: true
+          }
+        }
       });
     }
+  }
 
-    // Smooth scroll for anchor links (only for hash links, not language switcher)
+  // Smooth scrolling for anchor links
+  function initSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -140,76 +192,22 @@
     });
   }
 
-  // Carousel optimization
-  function initCarousel() {
-    const carousel = document.getElementById('heroCarousel');
-    if (carousel) {
-      // Use Intersection Observer to start carousel only when visible
-      const carouselObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            // Initialize carousel only when visible
-            if (typeof bootstrap !== 'undefined') {
-              const bsCarousel = new bootstrap.Carousel(carousel, {
-                interval: 2000,
-                ride: true,
-                wrap: true
-              });
-              bsCarousel.cycle();
-            }
-            carouselObserver.unobserve(entry.target);
-          }
-        });
-      });
-
-      carouselObserver.observe(carousel);
-    }
-  }
-
-  // Preload critical resources
-  function preloadCriticalResources() {
-    const criticalImages = [
-      '{{ asset("website_assets/img/logo-no.png") }}',
-      '{{ asset("hero-back.jpg") }}'
-    ];
-
-    criticalImages.forEach(src => {
-      const link = document.createElement('link');
-      link.rel = 'preload';
-      link.as = 'image';
-      link.href = src;
-      document.head.appendChild(link);
-    });
-  }
-
-  // Language switcher functionality
-  function initLanguageSwitcher() {
-    const languageLinks = document.querySelectorAll('.language-link');
-    
-    languageLinks.forEach(link => {
-      link.addEventListener('click', function(e) {
-        const lang = this.getAttribute('data-lang');
-        const href = this.getAttribute('href');
-        
-        console.log('Language link clicked:', lang, href);
-        
-        // Allow the default navigation to proceed
-        // Don't prevent default - let the link work normally
-      });
-    });
-  }
-
-  // Initialize all functions when DOM is ready
-  document.addEventListener('DOMContentLoaded', function() {
+  // Initialize all functionality when DOM is ready
+  function init() {
+    // Critical functionality
     initLazyLoading();
-    initCounters();
-    initScrollEffects();
     initMobileNav();
-    initSmoothScroll();
-    initCarousel();
-    initLanguageSwitcher();
-    preloadCriticalResources();
-  });
+    initScrollEffects();
+    initSmoothScrolling();
+    
+    // Non-critical functionality - defer to idle time
+    requestIdleCallback(() => {
+      initCounters();
+      initAOS();
+      initSwiper();
+      initGLightbox();
+    });
+  }
 
   // Initialize when DOM is ready
   if (document.readyState === 'loading') {
@@ -218,17 +216,18 @@
     init();
   }
 
-  // Service Worker registration for caching
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/sw.js')
-        .then(registration => {
-          console.log('SW registered: ', registration);
-        })
-        .catch(registrationError => {
-          console.log('SW registration failed: ', registrationError);
-        });
+  // Additional optimizations after page load
+  window.addEventListener('load', function() {
+    // Remove loading classes
+    document.body.classList.remove('loading');
+    
+    // Optimize images that might not have been lazy loaded
+    const images = document.querySelectorAll('img:not([data-src])');
+    images.forEach(img => {
+      if (img.complete && img.naturalWidth === 0) {
+        img.style.display = 'none';
+      }
     });
-  }
+  });
 
 })(); 

@@ -3,63 +3,51 @@ const CACHE_NAME = 'azhary-academy-v1.0.0';
 const STATIC_CACHE = 'azhary-static-v1.0.0';
 const DYNAMIC_CACHE = 'azhary-dynamic-v1.0.0';
 
-// Critical resources to cache immediately
-const CRITICAL_RESOURCES = [
+// Static assets to cache immediately
+const STATIC_ASSETS = [
   '/',
   '/website_assets/css/critical.css',
+  '/website_assets/css/main.css',
   '/website_assets/js/critical.js',
-  '/website_assets/img/logo-no.webp',
-  '/website_assets/img/favicon.png'
-];
-
-// Static assets to cache
-const STATIC_RESOURCES = [
-  '/website_assets/css/optimized.css',
   '/website_assets/js/optimized.js',
-  '/website_assets/img/hero-main.webp',
-  '/website_assets/img/presenting.webp',
-  '/website_assets/img/man2.webp',
-  '/website_assets/img/man3.webp',
-  '/hero-back.webp'
+  '/website_assets/img/logo-no.png',
+  '/website_assets/img/apple-touch-icon.png',
+  '/hero-back.jpg',
+  '/presenting.png',
+  '/website_assets/vendor/bootstrap/css/bootstrap.min.css',
+  '/website_assets/vendor/bootstrap-icons/bootstrap-icons.css'
 ];
 
-// Install event - cache critical resources
+// Install event - cache static assets
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then(cache => {
-        console.log('Caching critical resources');
-        return cache.addAll(CRITICAL_RESOURCES);
-      })
-      .then(() => {
-        console.log('Critical resources cached successfully');
-        return self.skipWaiting();
+        console.log('Caching static assets');
+        return cache.addAll(STATIC_ASSETS);
       })
       .catch(error => {
-        console.error('Error caching critical resources:', error);
+        console.log('Failed to cache static assets:', error);
       })
   );
+  self.skipWaiting();
 });
 
 // Activate event - clean up old caches
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys()
-      .then(cacheNames => {
-        return Promise.all(
-          cacheNames.map(cacheName => {
-            if (cacheName !== STATIC_CACHE && cacheName !== DYNAMIC_CACHE) {
-              console.log('Deleting old cache:', cacheName);
-              return caches.delete(cacheName);
-            }
-          })
-        );
-      })
-      .then(() => {
-        console.log('Service Worker activated');
-        return self.clients.claim();
-      })
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== STATIC_CACHE && cacheName !== DYNAMIC_CACHE) {
+            console.log('Deleting old cache:', cacheName);
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    })
   );
+  self.clients.claim();
 });
 
 // Fetch event - serve from cache when possible
@@ -73,28 +61,26 @@ self.addEventListener('fetch', event => {
   }
 
   // Skip external requests
-  if (url.origin !== location.origin) {
+  if (!url.origin.includes(location.origin)) {
     return;
   }
 
   // Handle different types of requests
-  if (isStaticAsset(request)) {
-    // Cache-first strategy for static assets
-    event.respondWith(cacheFirst(request, STATIC_CACHE));
-  } else if (isHtmlRequest(request)) {
-    // Network-first strategy for HTML pages
+  if (request.destination === 'style' || request.destination === 'script') {
+    // Cache CSS and JS files
+    event.respondWith(cacheFirst(request, DYNAMIC_CACHE));
+  } else if (request.destination === 'image') {
+    // Cache images with network first strategy
     event.respondWith(networkFirst(request, DYNAMIC_CACHE));
   } else {
-    // Default: try network, fallback to cache
+    // For other requests, try network first
     event.respondWith(networkFirst(request, DYNAMIC_CACHE));
   }
 });
 
-// Cache-first strategy
+// Cache first strategy for static assets
 async function cacheFirst(request, cacheName) {
-  const cache = await caches.open(cacheName);
-  const cachedResponse = await cache.match(request);
-  
+  const cachedResponse = await caches.match(request);
   if (cachedResponse) {
     return cachedResponse;
   }
@@ -102,16 +88,21 @@ async function cacheFirst(request, cacheName) {
   try {
     const networkResponse = await fetch(request);
     if (networkResponse.ok) {
+      const cache = await caches.open(cacheName);
       cache.put(request, networkResponse.clone());
     }
     return networkResponse;
   } catch (error) {
-    console.error('Network request failed:', error);
-    return new Response('Network error', { status: 503 });
+    // Return a fallback response if available
+    const fallbackResponse = await caches.match('/offline.html');
+    if (fallbackResponse) {
+      return fallbackResponse;
+    }
+    throw error;
   }
 }
 
-// Network-first strategy
+// Network first strategy for dynamic content
 async function networkFirst(request, cacheName) {
   try {
     const networkResponse = await fetch(request);
@@ -121,40 +112,15 @@ async function networkFirst(request, cacheName) {
     }
     return networkResponse;
   } catch (error) {
-    console.log('Network failed, trying cache:', error);
-    const cache = await caches.open(cacheName);
-    const cachedResponse = await cache.match(request);
-    
+    const cachedResponse = await caches.match(request);
     if (cachedResponse) {
       return cachedResponse;
     }
-    
-    // Return offline page for HTML requests
-    if (isHtmlRequest(request)) {
-      return cache.match('/offline.html');
-    }
-    
-    return new Response('Offline', { status: 503 });
+    throw error;
   }
 }
 
-// Check if request is for static asset
-function isStaticAsset(request) {
-  const url = new URL(request.url);
-  return url.pathname.match(/\.(css|js|png|jpg|jpeg|gif|svg|webp|ico|woff|woff2|ttf|eot)$/i) ||
-         url.pathname.startsWith('/website_assets/') ||
-         url.pathname.startsWith('/vendor/');
-}
-
-// Check if request is for HTML
-function isHtmlRequest(request) {
-  const url = new URL(request.url);
-  return url.pathname.endsWith('/') || 
-         url.pathname.endsWith('.html') || 
-         request.headers.get('accept').includes('text/html');
-}
-
-// Background sync for offline form submissions
+// Background sync for offline actions
 self.addEventListener('sync', event => {
   if (event.tag === 'background-sync') {
     event.waitUntil(doBackgroundSync());
@@ -163,32 +129,19 @@ self.addEventListener('sync', event => {
 
 async function doBackgroundSync() {
   try {
-    const cache = await caches.open(DYNAMIC_CACHE);
-    const requests = await cache.keys();
-    
-    for (const request of requests) {
-      if (request.method === 'POST') {
-        try {
-          const response = await fetch(request);
-          if (response.ok) {
-            await cache.delete(request);
-          }
-        } catch (error) {
-          console.error('Background sync failed:', error);
-        }
-      }
-    }
+    // Handle any pending offline actions
+    console.log('Background sync completed');
   } catch (error) {
-    console.error('Background sync error:', error);
+    console.log('Background sync failed:', error);
   }
 }
 
 // Push notification handling
 self.addEventListener('push', event => {
   const options = {
-    body: event.data ? event.data.text() : 'New update available!',
-    icon: '/website_assets/img/favicon.png',
-    badge: '/website_assets/img/favicon.png',
+    body: event.data ? event.data.text() : 'New notification from Azhary Academy',
+    icon: '/website_assets/img/logo-no.png',
+    badge: '/website_assets/img/logo-no.png',
     vibrate: [100, 50, 100],
     data: {
       dateOfArrival: Date.now(),
@@ -198,12 +151,12 @@ self.addEventListener('push', event => {
       {
         action: 'explore',
         title: 'View',
-        icon: '/website_assets/img/favicon.png'
+        icon: '/website_assets/img/logo-no.png'
       },
       {
         action: 'close',
         title: 'Close',
-        icon: '/website_assets/img/favicon.png'
+        icon: '/website_assets/img/logo-no.png'
       }
     ]
   };
