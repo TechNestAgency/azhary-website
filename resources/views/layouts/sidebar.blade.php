@@ -5,7 +5,7 @@
         <div data-i18n="Teachers">Teachers</div>
     </a>
     <ul class="menu-sub">
-        <li class="menu-item {{ request()->is('admin/teachers') ? 'active' : '' }}">
+        <li class="menu-item {{ request()->is('admin/teachers/list') ? 'active' : '' }}">
             <a href="{{ route('admin.teachers.index') }}" class="menu-link">
                 <div data-i18n="All Teachers">All Teachers</div>
             </a>

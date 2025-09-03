@@ -83,9 +83,9 @@
                 </li>
                 <!-- Teachers Management -->
             @php
-                $teachersActive = request()->is('admin/teachers') || request()->is('admin/teachers/*');
+                $teachersActive = request()->is('admin/teachers*');
                 $teachersCreateActive = request()->is('admin/teachers/create');
-                $teachersListActive = request()->is('admin/teachers') || (request()->is('admin/teachers/*') && !request()->is('admin/teachers/create'));
+                $teachersListActive = request()->is('admin/teachers/list');
             @endphp
             <li class="menu-item {{ $teachersActive ? 'active open' : '' }}">
                 <a href="javascript:void(0);" class="menu-link menu-toggle">

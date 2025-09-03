@@ -32,7 +32,16 @@ Route::prefix('admin')->name('admin.')->group(function () {
 // Admin Protected Routes
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
     Route::get('/dashboard', [AdminIndexController::class, 'index'])->name('dashboard');
-    Route::resource('teachers', TeacherController::class);
+    
+    // Custom teachers routes
+    Route::get('/teachers/list', [TeacherController::class, 'index'])->name('teachers.index');
+    Route::get('/teachers/create', [TeacherController::class, 'create'])->name('teachers.create');
+    Route::post('/teachers', [TeacherController::class, 'store'])->name('teachers.store');
+    Route::get('/teachers/{teacher}', [TeacherController::class, 'show'])->name('teachers.show');
+    Route::get('/teachers/{teacher}/edit', [TeacherController::class, 'edit'])->name('teachers.edit');
+    Route::put('/teachers/{teacher}', [TeacherController::class, 'update'])->name('teachers.update');
+    Route::delete('/teachers/{teacher}', [TeacherController::class, 'destroy'])->name('teachers.destroy');
+    
     Route::resource('enrollments', AdminEnrollmentController::class);
     Route::resource('articles', ArticleController::class);
 });
