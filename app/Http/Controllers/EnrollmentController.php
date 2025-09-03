@@ -33,8 +33,8 @@ class EnrollmentController extends Controller
                 'age' => null,
                 'gender' => null,
                 'arabic_level' => $request->arabic_level,
-                'package' => $request->course_interest,
-                'course_details' => trim($request->message ?? ''),
+                'package' => null,
+                'course_details' => $request->course_interest,
                 'preferred_days' => $request->date ? [$request->date] : [],
                 'preferred_times' => $request->time ? [$request->time] : [],
                 'status' => 'pending'
@@ -98,7 +98,7 @@ class EnrollmentController extends Controller
             if ($request->ajax()) {
                 return response()->json([
                     'success' => false,
-                    'message' => __('website.An error occurred while saving your enrollment. Please try again.')
+                    'message' => $e->getMessage(),
                 ], 500);
             }
 

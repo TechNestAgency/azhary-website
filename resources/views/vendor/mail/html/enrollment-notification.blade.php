@@ -1,30 +1,30 @@
 @component('mail::message')
-# New Enrollment Submission
+# Nouvelle Inscription Soumise
 
-A new enrollment has been submitted on your website.
+Une nouvelle inscription a été soumise sur votre site web.
 
-## Student Information
-**Name:** {{ $enrollment->name }}  
-**Email:** {{ $enrollment->email }}  
-**Phone:** {{ $enrollment->mobile }}  
-**Arabic Level:** {{ $enrollment->arabic_level }}
+## Informations de l’étudiant
+**Nom :** {{ $enrollment->name }}  
+**Email :** {{ $enrollment->email }}  
+**Téléphone :** {{ $enrollment->mobile }}  
+**Niveau d’arabe :** {{ $enrollment->arabic_level }}
 
-## Course Details
-**Package/Course:** {{ $enrollment->package }}  
-**Course Details:** {{ $enrollment->course_details ?: 'No additional details provided' }}
+## Détails du cours
+**Forfait/Cours :** {{ $enrollment->package }}  
+**Détails du cours :** {{ $enrollment->course_details ?: 'Aucun détail supplémentaire fourni' }}
 
-## Preferred Schedule
-**Preferred Days:** {{ $enrollment->preferred_days ? implode(', ', $enrollment->preferred_days) : 'Not specified' }}  
-**Preferred Times:** {{ $enrollment->preferred_times ? implode(', ', $enrollment->preferred_times) : 'Not specified' }}
+## Préférences d’horaire
+**Jours préférés :** {{ $enrollment->preferred_days ? implode(', ', $enrollment->preferred_days) : 'Non spécifié' }}  
+**Heures préférées :** {{ $enrollment->preferred_times ? implode(', ', $enrollment->preferred_times) : 'Non spécifié' }}
 
-## Enrollment Status
-**Status:** {{ ucfirst($enrollment->status) }}  
-**Submitted:** {{ $enrollment->created_at->format('F j, Y \a\t g:i A') }}
+## Statut de l’inscription
+**Statut :** {{ ucfirst($enrollment->status) }}  
+**Soumis le :** {{ $enrollment->created_at->format('j F Y \à H:i') }}
 
 @component('mail::button', ['url' => route('admin.enrollments.show', $enrollment->id)])
-View Enrollment Details
+Voir les détails de l’inscription
 @endcomponent
 
-Thanks,<br>
+Merci,<br>
 {{ config('app.name') }}
 @endcomponent
