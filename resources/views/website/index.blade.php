@@ -1890,6 +1890,40 @@
       z-index: 2;
     }
     
+    /* Scroll Top Button Styles */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      z-index: 1000;
+      width: 50px;
+      height: 50px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+    }
+    
+    .scroll-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .scroll-top:hover {
+      background-color: #0056b3;
+      color: white;
+      transform: translateY(-3px);
+      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
+    }
+    
+    .scroll-top i {
+      font-size: 24px;
+    }
+
     /* WhatsApp Float Styles */
     .whatsapp-float {
       position: fixed;
