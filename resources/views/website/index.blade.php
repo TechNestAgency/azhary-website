@@ -1149,17 +1149,103 @@
     });
   </script>
 
+  <!-- WhatsApp Icon Visibility Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure WhatsApp icon is always visible
+      const whatsappIcon = document.getElementById('whatsapp-float');
+      if (whatsappIcon) {
+        whatsappIcon.style.display = 'block';
+        whatsappIcon.style.visibility = 'visible';
+        whatsappIcon.style.opacity = '1';
+        whatsappIcon.style.position = 'fixed';
+        whatsappIcon.style.bottom = '30px';
+        whatsappIcon.style.right = '30px';
+        whatsappIcon.style.zIndex = '1000';
+      }
+    });
+  </script>
+
   <!-- Fixed WhatsApp Icon -->
-  <div id="whatsapp-float" class="whatsapp-float">
-    <a href="https://wa.me/33758684170" target="_blank" class="whatsapp-link">
-      <i class="bi bi-whatsapp"></i>
+  <div id="whatsapp-float" class="whatsapp-float" role="complementary">
+    <a href="https://wa.me/33758684170" target="_blank" class="whatsapp-link" aria-label="Contact us on WhatsApp">
+      <i class="bi bi-whatsapp" aria-hidden="true"></i>
     </a>
   </div>
 
-
-
   <!-- Additional Styles -->
   <style>
+    /* WhatsApp Float Button Styles */
+    .whatsapp-float {
+      position: fixed !important;
+      bottom: 30px !important;
+      right: 30px !important;
+      z-index: 1000 !important;
+      animation: whatsapp-bounce 2s infinite;
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+    }
+
+    .whatsapp-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .whatsapp-link:hover {
+      background-color: #128C7E;
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+      color: white;
+    }
+
+    .whatsapp-link i {
+      font-size: 28px;
+    }
+
+    @keyframes whatsapp-bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .whatsapp-float {
+        bottom: 20px;
+        right: 20px;
+      }
+      
+      .whatsapp-link {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .whatsapp-link i {
+        font-size: 24px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .whatsapp-float {
+        animation: none;
+      }
+    }
+
     /* Additional custom styles for enhanced visual appeal */
     
     .islamic-pattern-overlay {
