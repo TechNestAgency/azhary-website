@@ -226,7 +226,7 @@
                 </div>
                 <div class="teacher-info-section">
                     <h4 class="teacher-name">{{ $teacher->localized_name }}</h4>
-                    <div class="text-warning mb-3">
+                    <div class="text-warning mb-2">
                         @for($i = 1; $i <= 5; $i++)
                             @if($i <= round($teacher->rating))
                                 ★
@@ -235,6 +235,11 @@
                             @endif
                         @endfor
                         <span class="text-muted ms-1">({{ $teacher->total_reviews }})</span>
+                    </div>
+                    <div class="mb-3">
+                        <span class="badge bg-success text-white px-3 py-2" style="font-size: 0.9rem;">
+                            <i class="bi bi-people-fill me-1"></i>+30 Students
+                        </span>
                     </div>
                     <p class="teacher-description">{!! Str::limit($teacher->localized_short_description, 150) !!}</p>
                     <a href="{{ route('website.teachers.show', $teacher) }}" class="teacher-btn">{{ __('website.Learn More') }}</a>

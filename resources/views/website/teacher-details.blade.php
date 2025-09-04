@@ -153,8 +153,8 @@
                   <div class="stat-label" style="font-size: 1rem; opacity: 0.9;">{{ __('website.Years Experience') }}</div>
                 </div>
                 <div class="stat-item text-center">
-                  <div class="stat-number" style="font-size: 2.5rem; font-weight: bold; display: block;">{{ $teacher->total_reviews }}+</div>
-                  <div class="stat-label" style="font-size: 1rem; opacity: 0.9;">{{ __('website.Happy Students') }}</div>
+                  <div class="stat-number" style="font-size: 2.5rem; font-weight: bold; display: block;">30+</div>
+                  <div class="stat-label" style="font-size: 1rem; opacity: 0.9;">{{ __('website.Current Students') }}</div>
                 </div>
               </div>
               

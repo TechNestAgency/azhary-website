@@ -837,6 +837,7 @@ return [
     'out of 5' => 'sur 5',
     'Teaching Hours' => 'Heures d\'enseignement',
     'Years Experience' => 'Années d\'expérience',
+    'Current Students' => 'Étudiants actuels',
     'Happy Students' => 'Étudiants satisfaits',
     'Book Your Lesson' => 'Réservez votre cours',
     'Languages Spoken' => 'Langues parlées',

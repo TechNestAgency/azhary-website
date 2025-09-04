@@ -702,6 +702,7 @@ return [
     'out of 5' => 'out of 5',
     'Teaching Hours' => 'Teaching Hours',
     'Years Experience' => 'Years Experience',
+    'Current Students' => 'Current Students',
     'Happy Students' => 'Happy Students',
     'Book Your Lesson' => 'Book Your Lesson',
     'Languages Spoken' => 'Languages Spoken',
