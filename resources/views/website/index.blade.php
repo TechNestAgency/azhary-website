@@ -22,13 +22,13 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   
-  <!-- Preload critical resources -->
-  <link rel="preload" href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-  <noscript><link rel="stylesheet" href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}"></noscript>
+  <!-- Load optimized CSS synchronously for proper styling -->
+  <link rel="stylesheet" href="{{ asset('website_assets/css/optimized.css') }}">
   
   <!-- Preload hero images for better LCP -->
   <link rel="preload" href="{{ asset('presenting.png') }}" as="image" media="(max-width: 768px)">
   <link rel="preload" href="{{ asset('hero-back.jpg') }}" as="image">
+  <link rel="preload" href="{{ asset('website_assets/img/logo-no.png') }}" as="image">
   
   <!-- Critical CSS Inline - Only essential styles for above-the-fold content -->
   <style>
@@ -173,11 +173,14 @@
   <link href="{{ asset('website_assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
   <link href="{{ asset('website_assets/manifest.json') }}" rel="manifest">
 
-  <!-- Fonts - Optimized loading -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet"></noscript>
+  <!-- Fonts - Optimized loading with display=swap -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;600;700&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Poppins:wght@400;500;600;700&family=Raleway:wght@400;500;600&display=swap" rel="stylesheet"></noscript>
 
   <!-- CSS Files - Deferred loading for non-critical styles -->
+  <link href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="{{ asset('website_assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"></noscript>
+  
   <link href="{{ asset('website_assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="{{ asset('website_assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet"></noscript>
   
@@ -192,10 +195,6 @@
   
   <link href="{{ asset('website_assets/css/language-switcher.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="{{ asset('website_assets/css/language-switcher.css') }}" rel="stylesheet"></noscript>
-  
-  <!-- Main CSS - Loaded after critical content -->
-  <link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="{{ asset('website_assets/css/main.css') }}" rel="stylesheet"></noscript>
 </head>
 
 <body class="index-page">
@@ -309,7 +308,7 @@
               <div class="row align-items-center flex-column flex-lg-row" style="min-height: 560px;">
                 <!-- Image (left) -->
                 <div class="col-12 col-lg-6 text-center mb-4 mb-lg-0">
-                  <img src="{{ asset('presenting.png') }}" alt="Welcome Man" class="img-fluid" style="max-height: 400px;" loading="lazy" width="400" height="400">
+                  <img src="{{ asset('presenting.png') }}" alt="Welcome Man" class="img-fluid" style="max-height: 400px;" loading="eager" width="400" height="400" fetchpriority="high">
                 </div>
                 <!-- Welcome Title (right) -->
                 <div class="col-12 col-lg-6 text-white text-center text-lg-start">
@@ -749,7 +748,7 @@
               <div class="teacher-profile-card">
                 <div class="teacher-photo-section">
                   @if($teacher->photo)
-                    <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->localized_name }}" loading="lazy" width="300" height="280">
+                    <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->localized_name }}" loading="lazy" width="300" height="280" decoding="async">
                   @else
                     <div class="teacher-photo bg-secondary d-flex align-items-center justify-content-center">
                       <i class="bi bi-person" style="font-size: 3rem; color: #6c757d;"></i>
@@ -829,7 +828,7 @@
                     <i class="bi bi-star-fill"></i>
                   </div>
                   <div class="profile-info">
-                    <img src="{{ asset('website_assets/img/man1.jpeg') }}" alt="Student Profile" loading="lazy" width="60" height="60">
+                    <img src="{{ asset('website_assets/img/man1.jpeg') }}" alt="Student Profile" loading="lazy" width="60" height="60" decoding="async">
                     <div>
                       <h3>Ahmed Hassan</h3>
                       <h4>{{ __('website.Quran Student') }}</h4>
@@ -1043,27 +1042,8 @@
   <!-- Critical JavaScript Files -->
   <script src="{{ asset('website_assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
   
-  <!-- Dropdown Fix Script -->
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      // Ensure Bootstrap dropdowns work properly
-      const dropdownToggleList = [].slice.call(document.querySelectorAll('[data-bs-toggle="dropdown"]'));
-      const dropdownList = dropdownToggleList.map(function (dropdownToggleEl) {
-        return new bootstrap.Dropdown(dropdownToggleEl);
-      });
-      
-      // Add click event listeners to dropdown items to ensure they work
-      document.querySelectorAll('.dropdown-item').forEach(function(item) {
-        item.addEventListener('click', function(e) {
-          // Close the dropdown after clicking an item
-          const dropdown = bootstrap.Dropdown.getInstance(this.closest('.dropdown').querySelector('[data-bs-toggle="dropdown"]'));
-          if (dropdown) {
-            dropdown.hide();
-          }
-        });
-      });
-    });
-  </script>
+  <!-- Optimized JavaScript -->
+  <script src="{{ asset('website_assets/js/optimized.js') }}" defer></script>
   
   <!-- Deferred JavaScript Files -->
   <script src="{{ asset('website_assets/vendor/php-email-form/validate.js') }}" defer></script>
@@ -1072,7 +1052,6 @@
   <script src="{{ asset('website_assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}" defer></script>
   <script src="{{ asset('website_assets/vendor/isotope-layout/isotope.pkgd.min.js') }}" defer></script>
   <script src="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.js') }}" defer></script>
-  <script src="{{ asset('website_assets/js/main.js') }}" defer></script>
   <script src="{{ asset('website_assets/js/enroll-form.js') }}" defer></script>
   <script src="{{ asset('website_assets/js/language-switcher.js') }}" defer></script>
 
@@ -2298,6 +2277,9 @@
     });
   </script>
 
+  <!-- Cache Buster (only runs when clear-cache=true) -->
+  <script src="{{ asset('cache-buster.js') }}"></script>
+  
   <!-- Service Worker Registration -->
   <script>
     if ('serviceWorker' in navigator) {
@@ -2305,6 +2287,17 @@
         navigator.serviceWorker.register('/sw.js')
           .then(function(registration) {
             console.log('Service Worker registered successfully:', registration.scope);
+            
+            // Check for updates but don't auto-reload
+            registration.addEventListener('updatefound', function() {
+              const newWorker = registration.installing;
+              newWorker.addEventListener('statechange', function() {
+                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                  console.log('New service worker available. Please refresh the page to update.');
+                  // Don't auto-reload, just log the message
+                }
+              });
+            });
           })
           .catch(function(error) {
             console.log('Service Worker registration failed:', error);

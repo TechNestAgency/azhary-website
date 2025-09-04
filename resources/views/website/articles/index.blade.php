@@ -196,7 +196,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center">
-                    <h1 class="page-title">{{ __('website.Latest Articles') }}</h1>
+                    <h1 class="page-title" style="color: black;">{{ __('website.Latest Articles') }}</h1>
                     <p class="page-subtitle">{{ __('website.Discover insightful articles about Islamic teachings and education') }}</p>
                 </div>
             </div>

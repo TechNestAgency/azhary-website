@@ -1,233 +1,296 @@
-// Optimized JavaScript for Azhary Academy - Performance Focused
+/**
+ * Optimized JavaScript for Azhary Academy
+ * Performance-focused with minimal dependencies
+ */
+
 (function() {
-  'use strict';
+    'use strict';
 
-  // Performance optimization: Use requestIdleCallback for non-critical tasks
-  const requestIdleCallback = window.requestIdleCallback || function(cb) {
-    return setTimeout(cb, 1);
-  };
-
-  // Lazy loading for images with Intersection Observer
-  function initLazyLoading() {
-    if ('IntersectionObserver' in window) {
-      const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            if (img.dataset.src) {
-              img.src = img.dataset.src;
-              img.classList.add('loaded');
-              img.removeAttribute('data-src');
-              observer.unobserve(img);
+    // Performance optimization: Use requestAnimationFrame for smooth animations
+    const raf = window.requestAnimationFrame || window.setTimeout;
+    
+    // Throttle function for scroll events
+    function throttle(func, limit) {
+        let inThrottle;
+        return function() {
+            const args = arguments;
+            const context = this;
+            if (!inThrottle) {
+                func.apply(context, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
             }
-          }
-        });
-      }, { rootMargin: '50px' });
-
-      document.querySelectorAll('img[data-src]').forEach(img => {
-        imageObserver.observe(img);
-      });
+        };
     }
-  }
 
-  // Optimized counter animation with reduced complexity
-  function initCounters() {
-    const counters = document.querySelectorAll('.counter');
-    if (counters.length === 0) return;
+    // Debounce function for resize events
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
 
-    const counterObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
-          animateCounter(entry.target);
-          entry.target.classList.add('animated');
+    // Optimized scroll handler
+    function handleScroll() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const header = document.getElementById('fixedHeader');
+        const scrollTopBtn = document.getElementById('scroll-top');
+        
+        // Header shadow effect
+        if (header) {
+            header.style.boxShadow = scrollTop > 10 ? '0 2px 20px rgba(0, 0, 0, 0.1)' : 'none';
         }
-      });
-    }, { threshold: 0.3 });
-
-    counters.forEach(counter => counterObserver.observe(counter));
-  }
-
-  function animateCounter(element) {
-    const target = parseInt(element.getAttribute('data-target')) || 0;
-    const duration = 1000; // Reduced from 2000ms
-    const increment = target / (duration / 16);
-    let current = 0;
-
-    const timer = setInterval(() => {
-      current += increment;
-      if (current >= target) {
-        current = target;
-        clearInterval(timer);
-      }
-      element.textContent = Math.floor(current);
-    }, 16);
-  }
-
-  // Optimized scroll handling with throttling
-  function initScrollEffects() {
-    let ticking = false;
-    
-    function updateScrollEffects() {
-      const header = document.getElementById('fixedHeader');
-      if (header) {
-        header.style.boxShadow = window.scrollY > 10 ? '0 2px 20px rgba(0, 0, 0, 0.1)' : 'none';
-      }
-
-      const scrollTop = document.querySelector('.scroll-top');
-      if (scrollTop) {
-        scrollTop.classList.toggle('active', window.scrollY > 100);
-      }
-
-      ticking = false;
-    }
-
-    function requestTick() {
-      if (!ticking) {
-        requestAnimationFrame(updateScrollEffects);
-        ticking = true;
-      }
-    }
-
-    window.addEventListener('scroll', requestTick, { passive: true });
-  }
-
-  // Mobile navigation with performance optimizations
-  function initMobileNav() {
-    const mobileNavToggle = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-
-    if (mobileNavToggle && navbarCollapse) {
-      mobileNavToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        navbarCollapse.classList.toggle('show');
-      });
-
-      // Close mobile menu when clicking outside
-      document.addEventListener('click', function(e) {
-        if (!mobileNavToggle.contains(e.target) && !navbarCollapse.contains(e.target)) {
-          navbarCollapse.classList.remove('show');
-        }
-      }, { passive: true });
-    }
-  }
-
-  // Initialize AOS (Animate On Scroll) with reduced settings
-  function initAOS() {
-    if (typeof AOS !== 'undefined') {
-      AOS.init({
-        duration: 600, // Reduced from default
-        easing: 'ease-out',
-        once: true, // Only animate once
-        offset: 50,
-        delay: 0,
-        disable: 'mobile' // Disable on mobile for performance
-      });
-    }
-  }
-
-  // Initialize Swiper with performance optimizations
-  function initSwiper() {
-    if (typeof Swiper !== 'undefined') {
-      const swiperElements = document.querySelectorAll('.swiper');
-      swiperElements.forEach(element => {
-        new Swiper(element, {
-          slidesPerView: 1,
-          spaceBetween: 20,
-          loop: false, // Disable loop for performance
-          autoplay: {
-            delay: 5000,
-            disableOnInteraction: false,
-          },
-          pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-          },
-          navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-          },
-          breakpoints: {
-            768: {
-              slidesPerView: 2,
-            },
-            1024: {
-              slidesPerView: 3,
+        
+        // Scroll to top button
+        if (scrollTopBtn) {
+            if (scrollTop > 300) {
+                scrollTopBtn.classList.add('show');
+            } else {
+                scrollTopBtn.classList.remove('show');
             }
-          }
+        }
+    }
+
+    // Optimized counter animation
+    function animateCounter(element, target, duration = 2000) {
+        const start = performance.now();
+        const startValue = 0;
+        
+        function updateCounter(currentTime) {
+            const elapsed = currentTime - start;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function for smooth animation
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            const currentValue = Math.floor(startValue + (target - startValue) * easeOutQuart);
+            
+            element.textContent = currentValue;
+            
+            if (progress < 1) {
+                raf(updateCounter);
+            }
+        }
+        
+        raf(updateCounter);
+    }
+
+    // Intersection Observer for counter animations
+    function initCounterAnimations() {
+        if (!('IntersectionObserver' in window)) return;
+        
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+                    const counter = entry.target.querySelector('.counter');
+                    if (counter) {
+                        const target = parseInt(counter.getAttribute('data-target')) || 0;
+                        animateCounter(counter, target);
+                        entry.target.classList.add('animated');
+                    }
+                }
+            });
+        }, { threshold: 0.3 });
+
+        // Observe all stat cards
+        document.querySelectorAll('.stat-card').forEach(card => {
+            counterObserver.observe(card);
         });
-      });
     }
-  }
 
-  // Initialize GLightbox with reduced features
-  function initGLightbox() {
-    if (typeof GLightbox !== 'undefined') {
-      GLightbox({
-        selector: '.glightbox',
-        touchNavigation: true,
-        loop: false,
-        autoplayVideos: false,
-        plyr: {
-          config: {
-            hideControls: true
-          }
-        }
-      });
+    // Optimized image lazy loading
+    function initLazyLoading() {
+        if (!('IntersectionObserver' in window)) return;
+        
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        observer.unobserve(img);
+                    }
+                }
+            });
+        });
+
+        // Observe lazy images
+        document.querySelectorAll('img[data-src]').forEach(img => {
+            imageObserver.observe(img);
+        });
     }
-  }
 
-  // Smooth scrolling for anchor links
-  function initSmoothScrolling() {
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+    // Smooth scroll for anchor links
+    function initSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    const headerHeight = document.querySelector('.fixed-top')?.offsetHeight || 0;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+
+    // Optimized loading spinner
+    function initLoadingSpinner() {
+        const loadingSpinner = document.getElementById('loading-spinner');
+        if (!loadingSpinner) return;
+        
+        // Hide spinner after critical content loads
+        function hideSpinner() {
+            loadingSpinner.classList.add('hidden');
+            setTimeout(() => {
+                if (loadingSpinner.parentNode) {
+                    loadingSpinner.parentNode.removeChild(loadingSpinner);
+                }
+            }, 500);
         }
-      });
-    });
-  }
+        
+        // Hide spinner after a short delay or when page is fully loaded
+        setTimeout(hideSpinner, 1500);
+        window.addEventListener('load', hideSpinner);
+    }
 
-  // Initialize all functionality when DOM is ready
-  function init() {
-    // Critical functionality
-    initLazyLoading();
-    initMobileNav();
-    initScrollEffects();
-    initSmoothScrolling();
-    
-    // Non-critical functionality - defer to idle time
-    requestIdleCallback(() => {
-      initCounters();
-      initAOS();
-      initSwiper();
-      initGLightbox();
-    });
-  }
+    // Initialize Swiper with optimized settings
+    function initSwiper() {
+        if (typeof Swiper === 'undefined') return;
+        
+        // Teachers slider
+        const teachersSlider = document.querySelector('.teachers-slider');
+        if (teachersSlider) {
+            const config = JSON.parse(teachersSlider.querySelector('.swiper-config')?.textContent || '{}');
+            new Swiper(teachersSlider, {
+                ...config,
+                lazy: {
+                    loadPrevNext: true,
+                },
+                watchSlidesProgress: true,
+                watchSlidesVisibility: true,
+            });
+        }
+        
+        // Testimonials slider
+        const testimonialsSlider = document.querySelector('.testimonials-slider');
+        if (testimonialsSlider) {
+            const config = JSON.parse(testimonialsSlider.querySelector('.swiper-config')?.textContent || '{}');
+            new Swiper(testimonialsSlider, {
+                ...config,
+                lazy: {
+                    loadPrevNext: true,
+                },
+                watchSlidesProgress: true,
+                watchSlidesVisibility: true,
+            });
+        }
+    }
 
-  // Initialize when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+    // Initialize AOS with optimized settings
+    function initAOS() {
+        if (typeof AOS === 'undefined') return;
+        
+        AOS.init({
+            duration: 800,
+            easing: 'ease-in-out',
+            once: true,
+            offset: 100,
+            disable: function() {
+                // Disable AOS on mobile for better performance
+                return window.innerWidth < 768;
+            }
+        });
+    }
 
-  // Additional optimizations after page load
-  window.addEventListener('load', function() {
-    // Remove loading classes
-    document.body.classList.remove('loading');
-    
-    // Optimize images that might not have been lazy loaded
-    const images = document.querySelectorAll('img:not([data-src])');
-    images.forEach(img => {
-      if (img.complete && img.naturalWidth === 0) {
-        img.style.display = 'none';
-      }
-    });
-  });
+    // Initialize GLightbox with optimized settings
+    function initGLightbox() {
+        if (typeof GLightbox === 'undefined') return;
+        
+        GLightbox({
+            selector: '.glightbox',
+            touchNavigation: true,
+            loop: false,
+            autoplayVideos: false,
+        });
+    }
 
-})(); 
+    // Mobile performance optimizations
+    function initMobileOptimizations() {
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        
+        if (isMobile) {
+            // Reduce animation complexity on mobile
+            const animatedElements = document.querySelectorAll('.stat-card, .testimonial-card, .teacher-profile-card');
+            animatedElements.forEach(el => {
+                el.style.transition = 'none';
+            });
+            
+            // Optimize images for mobile
+            const images = document.querySelectorAll('img');
+            images.forEach(img => {
+                img.style.imageRendering = 'optimizeSpeed';
+                if (img.closest('.hero') || img.closest('.carousel-item')) {
+                    img.loading = 'eager';
+                }
+            });
+        }
+    }
+
+    // Initialize all components when DOM is ready
+    function init() {
+        // Critical functionality - load immediately
+        initLoadingSpinner();
+        initSmoothScroll();
+        initMobileOptimizations();
+        
+        // Add scroll listener with throttling
+        window.addEventListener('scroll', throttle(handleScroll, 16), { passive: true });
+        
+        // Add resize listener with debouncing
+        window.addEventListener('resize', debounce(() => {
+            // Handle resize events
+        }, 250));
+        
+        // Non-critical functionality - load after a short delay
+        setTimeout(() => {
+            initCounterAnimations();
+            initLazyLoading();
+            initSwiper();
+            initAOS();
+            initGLightbox();
+        }, 100);
+    }
+
+    // Initialize when DOM is ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+
+    // Service Worker registration for caching
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+            navigator.serviceWorker.register('/sw.js')
+                .then(function(registration) {
+                    console.log('Service Worker registered successfully:', registration.scope);
+                })
+                .catch(function(error) {
+                    console.log('Service Worker registration failed:', error);
+                });
+        });
+    }
+
+})();
