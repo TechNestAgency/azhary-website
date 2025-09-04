@@ -7,8 +7,8 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   
   <!-- Primary Meta Tags -->
-  <title>@yield('title', 'Azhary Academy - Online Quran & Islamic Studies for French Speakers')</title>
-  <meta name="title" content="@yield('title', 'Azhary Academy - Online Quran & Islamic Studies for French Speakers')">
+  <title>@yield('title', 'Madrassat Azhary - Islamic Education Online')</title>
+  <meta name="title" content="@yield('title', 'Madrassat Azhary - Islamic Education Online')">
   <meta name="description" content="@yield('meta_description', 'Learn Quran recitation, tajweed, Arabic language, and Islamic studies online with native French-speaking teachers. Personalized learning for all levels.')">
   <meta name="keywords" content="@yield('meta_keywords', 'Quran online, Islamic studies, Arabic language, French Quran teachers, tajweed, Quran memorization, Islamic education, online Islamic classes')">
   <meta name="author" content="Azhary Academy">
@@ -17,7 +17,7 @@
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
   <meta property="og:url" content="{{ url()->current() }}">
-  <meta property="og:title" content="@yield('title', 'Azhary Academy - Online Quran & Islamic Studies for French Speakers')">
+  <meta property="og:title" content="@yield('title', 'Madrassat Azhary - Islamic Education Online')">
   <meta property="og:description" content="@yield('meta_description', 'Learn Quran recitation, tajweed, Arabic language, and Islamic studies online with native French-speaking teachers. Personalized learning for all levels.')">
   <meta property="og:image" content="@yield('og_image', asset('website_assets/img/hero-main.png'))">
   <meta property="og:image:width" content="1200">
@@ -28,7 +28,7 @@
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image">
   <meta property="twitter:url" content="{{ url()->current() }}">
-  <meta property="twitter:title" content="@yield('title', 'Azhary Academy - Online Quran & Islamic Studies for French Speakers')">
+  <meta property="twitter:title" content="@yield('title', 'Madrassat Azhary - Islamic Education Online')">
   <meta property="twitter:description" content="@yield('meta_description', 'Learn Quran recitation, tajweed, Arabic language, and Islamic studies online with native French-speaking teachers. Personalized learning for all levels.')">
   <meta property="twitter:image" content="@yield('og_image', asset('website_assets/img/hero-main.png'))">
   
@@ -43,8 +43,8 @@
   <link rel="canonical" href="{{ url()->current() }}">
   
   <!-- Favicons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('website_assets/img/favicon.png') }}">
-  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('website_assets/img/favicon.png') }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('website_assets/img/logo-no.png') }}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('website_assets/img/logo-no.png') }}">
   <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('website_assets/img/apple-touch-icon.png') }}">
   <link rel="manifest" href="{{ asset('website_assets/manifest.json') }}">
   

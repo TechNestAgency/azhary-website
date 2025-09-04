@@ -1,6 +1,6 @@
 @extends('website.layouts.app')
 
-@section('title', __('website.Our Teachers') . ' - Azhary Academy')
+@section('title', __('website.Our Teachers') . ' - Madrassat Azhary')
 @section('meta_description', __('website.Meet our qualified and experienced Quran teachers who are dedicated to helping you learn'))
 
 @push('styles')
@@ -8,7 +8,7 @@
   /* Teacher Profile Card Styles - Matching the Design */
   .teacher-profile-card {
     background: white;
-    border-radius: 90px 90px 20px 20px;
+    border-radius: 20px 20px 20px 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -28,16 +28,18 @@
     background: white;
     padding: 0;
     overflow: hidden;
-    border-radius: 90px 90px 0 0;
+    border-radius: 20px 20px 0 0;
   }
   
   .teacher-photo {
     width: 100%;
     height: 280px;
-    object-fit: cover;
-    border-radius: 0 0 20px 20px;
+    object-fit: contain;
+    object-position: center top;
+    border-radius: 20px 20px 0 0;
     display: block;
     position: relative;
+    background-color: #f8f9fa;
   }
   
   .teacher-photo::after {

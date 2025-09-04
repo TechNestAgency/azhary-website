@@ -14,7 +14,7 @@ class IndexController extends Controller
     {
         // Cache teachers and articles for 1 hour to reduce database queries
         $teachers = Cache::remember('homepage_teachers', 3600, function () {
-            return Teacher::select('id', 'name', 'short_description', 'photo', 'rating', 'total_reviews')
+            return Teacher::select('id', 'name', 'name_fr', 'short_description', 'short_description_fr', 'photo', 'rating', 'total_reviews')
                          ->where('is_active', true)
                          ->take(6)
                          ->get();

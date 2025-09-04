@@ -44,8 +44,8 @@ class TeacherController extends Controller
         if ($request->hasFile('photo')) {
             $photo = $request->file('photo');
             $photoName = time() . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('storage/teachers'), $photoName);
-            $validated['photo'] = 'storage/teachers/' . $photoName;
+            $photo->move(public_path('images/teachers'), $photoName);
+            $validated['photo'] = 'images/teachers/' . $photoName;
         }
 
         Teacher::create($validated);
@@ -95,8 +95,8 @@ class TeacherController extends Controller
             
             $photo = $request->file('photo');
             $photoName = time() . '_' . $photo->getClientOriginalName();
-            $photo->move(public_path('storage/teachers'), $photoName);
-            $validated['photo'] = 'storage/teachers/' . $photoName;
+            $photo->move(public_path('images/teachers'), $photoName);
+            $validated['photo'] = 'images/teachers/' . $photoName;
         }
 
         $teacher->update($validated);

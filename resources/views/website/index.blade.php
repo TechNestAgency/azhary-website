@@ -748,7 +748,13 @@
             <div class="swiper-slide" data-aos="zoom-in" data-aos-delay="{{ $loop->iteration * 100 }}">
               <div class="teacher-profile-card">
                 <div class="teacher-photo-section">
-                  <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->localized_name }}" loading="lazy" width="300" height="280">
+                  @if($teacher->photo)
+                    <img src="{{ asset($teacher->photo) }}" class="teacher-photo" alt="{{ $teacher->localized_name }}" loading="lazy" width="300" height="280">
+                  @else
+                    <div class="teacher-photo bg-secondary d-flex align-items-center justify-content-center">
+                      <i class="bi bi-person" style="font-size: 3rem; color: #6c757d;"></i>
+                    </div>
+                  @endif
                 </div>
                 <div class="teacher-info-section">
                   <h4 class="teacher-name">{{ $teacher->localized_name }}</h4>
@@ -1031,6 +1037,28 @@
 
   <!-- Critical JavaScript Files -->
   <script src="{{ asset('website_assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  
+  <!-- Dropdown Fix Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Ensure Bootstrap dropdowns work properly
+      const dropdownToggleList = [].slice.call(document.querySelectorAll('[data-bs-toggle="dropdown"]'));
+      const dropdownList = dropdownToggleList.map(function (dropdownToggleEl) {
+        return new bootstrap.Dropdown(dropdownToggleEl);
+      });
+      
+      // Add click event listeners to dropdown items to ensure they work
+      document.querySelectorAll('.dropdown-item').forEach(function(item) {
+        item.addEventListener('click', function(e) {
+          // Close the dropdown after clicking an item
+          const dropdown = bootstrap.Dropdown.getInstance(this.closest('.dropdown').querySelector('[data-bs-toggle="dropdown"]'));
+          if (dropdown) {
+            dropdown.hide();
+          }
+        });
+      });
+    });
+  </script>
   
   <!-- Deferred JavaScript Files -->
   <script src="{{ asset('website_assets/vendor/php-email-form/validate.js') }}" defer></script>
@@ -1998,7 +2026,7 @@
     /* Teacher Profile Card Styles - Matching the Design */
     .teacher-profile-card {
       background: white;
-      border-radius: 90px 90px 20px 20px;
+      border-radius: 20px 20px 20px 20px;
       overflow: hidden;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
       position: relative;
@@ -2018,16 +2046,18 @@
       background: white;
       padding: 0;
       overflow: hidden;
-      border-radius: 90px 90px 0 0;
+      border-radius: 20px 20px 0 0;
     }
     
     .teacher-photo {
       width: 100%;
       height: 280px;
-      object-fit: cover;
-      border-radius: 0 0 20px 20px;
+      object-fit: contain;
+      object-position: center top;
+      border-radius: 20px 20px 0 0;
       display: block;
       position: relative;
+      background-color: #f8f9fa;
     }
     
     .teacher-photo::after {
@@ -2211,9 +2241,8 @@
   <script>
     // Load non-critical JavaScript after page load
     window.addEventListener('load', function() {
-      // Load Bootstrap and other libraries asynchronously
+      // Load other libraries asynchronously (Bootstrap already loaded above)
       const scripts = [
-        '/website_assets/vendor/bootstrap/js/bootstrap.bundle.min.js',
         '/website_assets/vendor/aos/aos.js',
         '/website_assets/vendor/glightbox/js/glightbox.min.js',
         '/website_assets/vendor/swiper/swiper-bundle.min.js',
