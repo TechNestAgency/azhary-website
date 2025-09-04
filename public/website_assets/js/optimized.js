@@ -213,12 +213,57 @@
         }
     }
     
+    // Initialize Bootstrap carousel with mobile-specific fixes
+    function initBootstrapCarousel() {
+        const heroCarousel = document.getElementById('heroCarousel');
+        if (heroCarousel && typeof bootstrap !== 'undefined') {
+            // Check if carousel is already initialized
+            const existingCarousel = bootstrap.Carousel.getInstance(heroCarousel);
+            if (!existingCarousel) {
+                const carouselOptions = {
+                    interval: isMobile ? 4000 : 5000,
+                    ride: 'carousel',
+                    wrap: true,
+                    touch: true,
+                    keyboard: true,
+                    pause: 'hover'
+                };
+                
+                const bsCarousel = new bootstrap.Carousel(heroCarousel, carouselOptions);
+                
+                // Additional mobile fix - ensure carousel starts
+                if (isMobile) {
+                    setTimeout(() => {
+                        if (bsCarousel && !bsCarousel._isSliding) {
+                            bsCarousel.cycle();
+                        }
+                    }, 500);
+                    
+                    // Add touch event listener to ensure carousel starts on first touch
+                    heroCarousel.addEventListener('touchstart', function() {
+                        if (bsCarousel && !bsCarousel._isSliding) {
+                            bsCarousel.cycle();
+                        }
+                    }, { once: true, passive: true });
+                    
+                    // Also add click event as fallback
+                    heroCarousel.addEventListener('click', function() {
+                        if (bsCarousel && !bsCarousel._isSliding) {
+                            bsCarousel.cycle();
+                        }
+                    }, { once: true, passive: true });
+                }
+            }
+        }
+    }
+    
     // Initialize all non-critical functionality
     function init() {
         // Initialize with delays to prevent blocking
         setTimeout(initAOS, 100);
         setTimeout(initSwipers, 200);
         setTimeout(initGLightbox, 300);
+        setTimeout(initBootstrapCarousel, 350); // Initialize carousel early
         setTimeout(initScrollToTop, 400);
         setTimeout(initWhatsAppFloat, 500);
         setTimeout(initFormValidation, 600);

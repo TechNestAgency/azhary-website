@@ -143,12 +143,40 @@
         // Initialize carousel if available
         const heroCarousel = document.getElementById('heroCarousel');
         if (heroCarousel && typeof bootstrap !== 'undefined') {
-            const bsCarousel = new bootstrap.Carousel(heroCarousel, {
-                interval: isMobile ? 3000 : 4000,
-                ride: true,
+            // Ensure carousel starts automatically on mobile
+            const carouselOptions = {
+                interval: isMobile ? 4000 : 5000,
+                ride: 'carousel', // This ensures auto-start
                 wrap: true,
-                touch: true
-            });
+                touch: true,
+                keyboard: true,
+                pause: 'hover'
+            };
+            
+            const bsCarousel = new bootstrap.Carousel(heroCarousel, carouselOptions);
+            
+            // Force start the carousel on mobile if it doesn't start automatically
+            if (isMobile) {
+                setTimeout(() => {
+                    if (bsCarousel && !bsCarousel._isSliding) {
+                        bsCarousel.cycle();
+                    }
+                }, 1000);
+                
+                // Add touch event listener to ensure carousel starts on first touch
+                heroCarousel.addEventListener('touchstart', function() {
+                    if (bsCarousel && !bsCarousel._isSliding) {
+                        bsCarousel.cycle();
+                    }
+                }, { once: true, passive: true });
+                
+                // Also add click event as fallback
+                heroCarousel.addEventListener('click', function() {
+                    if (bsCarousel && !bsCarousel._isSliding) {
+                        bsCarousel.cycle();
+                    }
+                }, { once: true, passive: true });
+            }
         }
     }
     
