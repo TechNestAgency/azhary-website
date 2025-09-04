@@ -74,14 +74,20 @@ class PerformanceOptimization
     private function addPreloadHints(Response $response): void
     {
         $preloadHints = [
-            '<link rel="preload" href="/website_assets/css/optimized.css" as="style">',
-            '<link rel="preload" href="/website_assets/js/optimized.js" as="script">',
+            '<link rel="preload" href="/website_assets/css/critical.css" as="style">',
+            '<link rel="preload" href="/website_assets/css/main.css" as="style">',
+            '<link rel="preload" href="/website_assets/js/critical.js" as="script">',
             '<link rel="preload" href="/website_assets/img/logo-no.png" as="image">',
             '<link rel="preload" href="/hero-back.jpg" as="image">',
+            '<link rel="preload" href="/presenting.png" as="image">',
             '<link rel="dns-prefetch" href="//fonts.googleapis.com">',
             '<link rel="dns-prefetch" href="//fonts.gstatic.com">',
             '<link rel="preconnect" href="https://fonts.googleapis.com">',
-            '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
+            '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+            '<link rel="preconnect" href="https://wa.me">',
+            '<link rel="preconnect" href="https://www.facebook.com">',
+            '<link rel="preconnect" href="https://www.instagram.com">',
+            '<link rel="preconnect" href="https://x.com">'
         ];
 
         $content = $response->getContent();

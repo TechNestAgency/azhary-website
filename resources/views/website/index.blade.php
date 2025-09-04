@@ -1042,6 +1042,7 @@
 
   <!-- Critical JavaScript Files -->
   <script src="{{ asset('website_assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('website_assets/js/critical.js') }}"></script>
   
   <!-- Dropdown Fix Script -->
   <script>
@@ -1072,6 +1073,9 @@
   <script src="{{ asset('website_assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}" defer></script>
   <script src="{{ asset('website_assets/vendor/isotope-layout/isotope.pkgd.min.js') }}" defer></script>
   <script src="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.js') }}" defer></script>
+  <script src="{{ asset('website_assets/js/optimized.js') }}" defer></script>
+  <script src="{{ asset('website_assets/js/image-optimizer.js') }}" defer></script>
+  <script src="{{ asset('website_assets/js/performance-monitor.js') }}" defer></script>
   <script src="{{ asset('website_assets/js/main.js') }}" defer></script>
   <script src="{{ asset('website_assets/js/enroll-form.js') }}" defer></script>
   <script src="{{ asset('website_assets/js/language-switcher.js') }}" defer></script>
@@ -1895,101 +1899,7 @@
       z-index: 2;
     }
     
-    /* Scroll Top Button Styles */
-    .scroll-top {
-      position: fixed;
-      bottom: 30px;
-      left: 30px;
-      z-index: 1000;
-      width: 50px;
-      height: 50px;
-      background-color: #007bff;
-      color: white;
-      border-radius: 50%;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.4);
-      transition: all 0.3s ease;
-      opacity: 0;
-      visibility: hidden;
-    }
-    
-    .scroll-top.show {
-      opacity: 1;
-      visibility: visible;
-    }
-    
-    .scroll-top:hover {
-      background-color: #0056b3;
-      color: white;
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 123, 255, 0.6);
-    }
-    
-    .scroll-top i {
-      font-size: 24px;
-    }
-
-    /* WhatsApp Float Styles */
-    .whatsapp-float {
-      position: fixed;
-      bottom: 30px;
-      right: 30px;
-      z-index: 1000;
-      animation: whatsapp-bounce 2s infinite;
-    }
-    
-    .whatsapp-link {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      width: 60px;
-      height: 60px;
-      background-color: #25d366;
-      color: white;
-      border-radius: 50%;
-      text-decoration: none;
-      box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-      transition: all 0.3s ease;
-    }
-    
-    .whatsapp-link:hover {
-      background-color: #128c7e;
-      color: white;
-      transform: scale(1.1);
-      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
-    }
-    
-    .whatsapp-link i {
-      font-size: 28px;
-    }
-    
-    @keyframes whatsapp-bounce {
-      0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-      }
-      40% {
-        transform: translateY(-10px);
-      }
-      60% {
-        transform: translateY(-5px);
-      }
-    }
-    
-    @media (max-width: 768px) {
-      .whatsapp-float {
-        bottom: 20px;
-        right: 20px;
-      }
-      
-      .whatsapp-link {
-        width: 50px;
-        height: 50px;
-      }
-      
-      .whatsapp-link i {
-        font-size: 24px;
-      }
-    }
+    /* Scroll Top and WhatsApp buttons now use main.css styles */
     
     /* Teachers Slider Styles */
     .teachers-slider {
