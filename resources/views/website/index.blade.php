@@ -1042,7 +1042,6 @@
 
   <!-- Critical JavaScript Files -->
   <script src="{{ asset('website_assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-  <script src="{{ asset('website_assets/js/image-fallback.js') }}"></script>
   <script src="{{ asset('website_assets/js/critical.js') }}"></script>
   
   <!-- Dropdown Fix Script -->
@@ -1075,7 +1074,6 @@
   <script src="{{ asset('website_assets/vendor/isotope-layout/isotope.pkgd.min.js') }}" defer></script>
   <script src="{{ asset('website_assets/vendor/swiper/swiper-bundle.min.js') }}" defer></script>
   <script src="{{ asset('website_assets/js/optimized.js') }}" defer></script>
-  <script src="{{ asset('website_assets/js/image-optimizer.js') }}" defer></script>
   <script src="{{ asset('website_assets/js/performance-monitor.js') }}" defer></script>
   <script src="{{ asset('website_assets/js/main.js') }}" defer></script>
   <script src="{{ asset('website_assets/js/enroll-form.js') }}" defer></script>

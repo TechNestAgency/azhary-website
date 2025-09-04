@@ -72,12 +72,22 @@
         }, 16);
     }
     
-    // Optimized image lazy loading - Server Safe
+    // Simple image loading - No interference with existing images
     function initLazyLoading() {
-        if (!('IntersectionObserver' in window)) return;
+        // Only handle images that explicitly have data-src and no src
+        const lazyImages = document.querySelectorAll('img[data-src]:not([src])');
+        if (lazyImages.length === 0) return;
         
-        // Only observe images that have data-src attribute (lazy loaded images)
-        const lazyImages = document.querySelectorAll('img[loading="lazy"][data-src]:not(.hero img)');
+        if (!('IntersectionObserver' in window)) {
+            // Fallback for older browsers
+            lazyImages.forEach(img => {
+                if (img.dataset.src) {
+                    img.src = img.dataset.src;
+                }
+            });
+            return;
+        }
+        
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -86,7 +96,6 @@
                         img.src = img.dataset.src;
                         img.removeAttribute('data-src');
                     }
-                    img.classList.remove('lazy');
                     observer.unobserve(img);
                 }
             });
@@ -105,10 +114,9 @@
             el.style.transition = 'none';
         });
         
-        // Optimize images for mobile
-        const images = document.querySelectorAll('img');
+        // Only optimize images that don't have src yet
+        const images = document.querySelectorAll('img:not([src])');
         images.forEach(img => {
-            img.style.imageRendering = 'optimizeSpeed';
             if (img.closest('.hero') || img.closest('.carousel-item')) {
                 img.loading = 'eager';
             }
