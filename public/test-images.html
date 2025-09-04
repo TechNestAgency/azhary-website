@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Test - Azhary Academy</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        .image-test { margin: 20px 0; padding: 10px; border: 1px solid #ccc; }
+        img { max-width: 200px; height: auto; margin: 10px; border: 1px solid #ddd; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Image Test Page - Azhary Academy</h1>
+    <p>This page tests if images are accessible on the server.</p>
+    
+    <div class="image-test">
+        <h3>Hero Images</h3>
+        <img src="/hero-back.jpg" alt="Hero Background" onerror="this.style.border='2px solid red'; this.alt='ERROR: Cannot load /hero-back.jpg';">
+        <img src="/presenting.png" alt="Presenting" onerror="this.style.border='2px solid red'; this.alt='ERROR: Cannot load /presenting.png';">
+        <img src="/man2.png" alt="Man 2" onerror="this.style.border='2px solid red'; this.alt='ERROR: Cannot load /man2.png';">
+        <img src="/man3.png" alt="Man 3" onerror="this.style.border='2px solid red'; this.alt='ERROR: Cannot load /man3.png';">
+        <img src="/man4.png" alt="Man 4" onerror="this.style.border='2px solid red'; this.alt='ERROR: Cannot load /man4.png';">
+        <img src="/about.png" alt="About" onerror="this.style.border='2px solid red'; this.alt='ERROR: Cannot load /about.png';">
+    </div>
+    
+    <div class="image-test">
+        <h3>Website Assets Images</h3>
+        <img src="/website_assets/img/logo-no.png" alt="Logo" onerror="this.style.border='2px solid red'; this.alt='ERROR: Cannot load /website_assets/img/logo-no.png';">
+        <img src="/website_assets/img/apple-touch-icon.png" alt="Apple Touch Icon" onerror="this.style.border='2px solid red'; this.alt='ERROR: Cannot load /website_assets/img/apple-touch-icon.png';">
+    </div>
+    
+    <div class="image-test">
+        <h3>Teacher Images</h3>
+        <img src="/images/teachers/1756157696_man1.jpeg" alt="Teacher 1" onerror="this.style.border='2px solid red'; this.alt='ERROR: Cannot load teacher image';">
+        <img src="/images/teachers/1756985523_WhatsApp Image 2025-09-04 at 12.27.00 AM.jpeg" alt="Teacher 2" onerror="this.style.border='2px solid red'; this.alt='ERROR: Cannot load teacher image';">
+    </div>
+    
+    <div class="image-test">
+        <h3>Test Results</h3>
+        <p>Red borders indicate images that cannot be loaded.</p>
+        <p>Check the server file permissions and paths.</p>
+    </div>
+</body>
+</html>
