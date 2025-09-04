@@ -1,4 +1,4 @@
-// Image Optimization Script for Azhary Academy
+// Image Optimization Script for Azhary Academy - Server Safe Version
 (function() {
     'use strict';
 
@@ -17,7 +17,7 @@
         return canvas.toDataURL('image/avif').indexOf('data:image/avif') === 0;
     };
 
-    // Optimize images based on device capabilities
+    // Optimize images based on device capabilities - Server Safe
     function optimizeImages() {
         const images = document.querySelectorAll('img');
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
@@ -27,13 +27,18 @@
             // Skip if already optimized
             if (img.dataset.optimized) return;
             
-            // Only add lazy loading to images that don't have src yet (have data-src)
-            if (!img.hasAttribute('loading') && img.dataset.src) {
+            // Ensure image is visible
+            img.style.display = '';
+            img.style.visibility = 'visible';
+            img.style.opacity = '1';
+            
+            // Only add lazy loading to images that explicitly have data-src
+            if (!img.hasAttribute('loading') && img.dataset.src && !img.src) {
                 img.loading = 'lazy';
             }
             
-            // Add decoding optimization
-            if (!img.hasAttribute('decoding')) {
+            // Add decoding optimization only if image has src
+            if (!img.hasAttribute('decoding') && img.src) {
                 img.decoding = 'async';
             }
             
@@ -47,10 +52,10 @@
                 }
             }
             
-            // Add error handling
+            // Add error handling - but don't hide images on server
             img.addEventListener('error', function() {
-                this.style.display = 'none';
                 console.warn('Failed to load image:', this.src);
+                // Don't hide images on server - just log the error
             });
             
             // Mark as optimized

@@ -72,7 +72,7 @@
         }, 16);
     }
     
-    // Optimized image lazy loading
+    // Optimized image lazy loading - Server Safe
     function initLazyLoading() {
         if (!('IntersectionObserver' in window)) return;
         
@@ -82,7 +82,7 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    if (img.dataset.src) {
+                    if (img.dataset.src && !img.src) {
                         img.src = img.dataset.src;
                         img.removeAttribute('data-src');
                     }

@@ -1042,6 +1042,7 @@
 
   <!-- Critical JavaScript Files -->
   <script src="{{ asset('website_assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('website_assets/js/image-fallback.js') }}"></script>
   <script src="{{ asset('website_assets/js/critical.js') }}"></script>
   
   <!-- Dropdown Fix Script -->
